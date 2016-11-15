@@ -8,7 +8,7 @@
 
 require_relative "../test/blueprints.rb"
 
-1.upto(60) do |number|
+1.upto(5) do |number|
   territory = Householder.make!.territory
 
   1.upto(30) do

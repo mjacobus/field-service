@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115174218) do
+ActiveRecord::Schema.define(version: 20161115174851) do
+
+  create_table "householders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "territory_id"
+    t.string   "street_name"
+    t.integer  "house_number"
+    t.string   "name"
+    t.boolean  "show"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["territory_id"], name: "index_householders_on_territory_id", using: :btree
+  end
 
   create_table "territories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -20,4 +31,5 @@ ActiveRecord::Schema.define(version: 20161115174218) do
     t.index ["name"], name: "index_territories_on_name", unique: true, using: :btree
   end
 
+  add_foreign_key "householders", "territories"
 end

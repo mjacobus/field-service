@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Territory:</strong>
+  <%= @householder.territory %>
+</p>
+
+<p>
+  <strong>Street name:</strong>
+  <%= @householder.street_name %>
+</p>
+
+<p>
+  <strong>House number:</strong>
+  <%= @householder.house_number %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @householder.name %>
+</p>
+
+<p>
+  <strong>Show:</strong>
+  <%= @householder.show %>
+</p>
+
+<%= link_to 'Edit', edit_householder_path(@householder) %> |
+<%= link_to 'Back', householders_path %>

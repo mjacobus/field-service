@@ -1,0 +1,1 @@
+json.array! @householders, partial: 'householders/householder', as: :householder

@@ -6,8 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require_relative "../test/blueprints.rb"
+
 1.upto(60) do |number|
-  Territory.create({
-    name: number
-  })
+  territory = Householder.make!.territory
+
+  1.upto(30) do
+    Householder.make! territory: territory
+  end
 end

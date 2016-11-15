@@ -46,6 +46,18 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov', require: false
+  gem 'database_cleaner', '~>1.5'
+  gem 'minitest-around', '~>0.3'
+  gem 'minitest-rg'
+  gem 'shoulda', '~>3.5'
+  gem 'shoulda-matchers', '~> 2.0'
+  gem 'shoulda-context', '~>1.2'
+  gem 'minitest-spec-rails'
+  gem 'mocha'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'faker' 
   gem 'machinist', '~>2.0'
 end
 

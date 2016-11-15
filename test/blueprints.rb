@@ -1,13 +1,15 @@
 require 'machinist/active_record'
-
-# Add your blueprints here.
-#
-# e.g.
-#   Post.blueprint do
-#     title { "Post #{sn}" }
-#     body  { "Lorem ipsum..." }
-#   end
+require 'faker'
 
 Territory.blueprint do
-  # Attributes here
+  name { sn }
+  description { "Description for #{sn}" }
+end
+
+Householder.blueprint do
+  name { "Householder name #{sn}" }
+  street_name { Faker::Address.street_name }
+  house_number { sn }
+  show { (sn%2) != 0 }
+  territory
 end

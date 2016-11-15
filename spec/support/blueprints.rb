@@ -1,0 +1,1 @@
+../../test/blueprints.rb

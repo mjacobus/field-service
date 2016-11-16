@@ -12,7 +12,7 @@ module Territories
     end
 
     test "extends ViewObject" do
-      assert @view.is_a?(::ViewObject)
+      assert @view.is_a?(::Crud::ItemView)
     end
 
     test "#edit_url returns correct url" do

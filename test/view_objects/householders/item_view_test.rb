@@ -6,13 +6,17 @@ module Householders
       @item = stub(
         to_param: 1,
         name: 'theName',
+        house_number: 'houseNumber',
+        street_name: 'theStreet',
+        show: true,
+        territory: 'theTerritory',
         description: 'theDescription',
       )
       @view = ItemView.new(@item)
     end
 
     test "extends ViewObject" do
-      assert @view.is_a?(::ViewObject)
+      assert @view.is_a?(::Crud::ItemView)
     end
 
     test "#edit_url returns correct url" do
@@ -27,16 +31,24 @@ module Householders
       assert_equal '/householders', @view.index_url
     end
 
-    test "delegates name to the item" do
-      assert_equal 'theName', @view.name
+    test "delegates name" do
+      assert_delegates :name, @view, @item
     end
 
-    test "delegates description to the item" do
-      assert_equal 'theDescription', @view.description
+    test "delegates house_number" do
+      assert_delegates :house_number, @view, @item
     end
 
-    test "can get form object" do
-      assert_equal @item, @view.form_object
+    test "delegates street_name" do
+      assert_delegates :street_name, @view, @item
+    end
+
+    test "delegates show" do
+      assert_delegates :show, @view, @item
+    end
+
+    test "delegates territory" do
+      assert_delegates :territory, @view, @item
     end
   end
 end

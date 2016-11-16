@@ -21,4 +21,25 @@ class ActiveSupport::TestCase
   teardown do
     DatabaseCleaner.clean
   end
+
+  def assert_delegates(method, delegator, delegated)
+    message = "does not delegate #{method} to #{delegated}"
+
+    assert_respond_to delegator, method, message
+    assert_respond_to delegated, method, "delegated does not respond to #{method}"
+
+    assert_equal(
+      delegator.send(method),
+      delegated.send(method),
+      message
+    )
+
+    assert_equal(
+      delegator.send(method),
+      delegated.send(method),
+      message
+    )
+
+    assert_not_nil delegated.send(method), "cannot check if delegates if value is nil"
+  end
 end

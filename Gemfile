@@ -46,6 +46,7 @@ group :development do
 end
 
 group :test do
+  gem 'rails-controller-testing'
   gem 'simplecov', require: false
   gem 'database_cleaner', '~>1.5'
   gem 'minitest-around', '~>0.3'

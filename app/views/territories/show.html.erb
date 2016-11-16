@@ -2,13 +2,13 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @territory.name %>
+  <%= @territory_view.name %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @territory.description %>
+  <%= @territory_view.description %>
 </p>
 
-<%= link_to 'Edit', edit_territory_path(@territory) %> |
-<%= link_to 'Back', territories_path %>
+<%= link_to 'Edit', @territory_view.edit_url %> |
+<%= link_to 'Back', @territory_view.index_url %>

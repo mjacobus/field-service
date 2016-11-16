@@ -16,6 +16,7 @@ class TerritoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create territory" do
+    @territory = Territory.make
     assert_difference('Territory.count') do
       post territories_url, params: { territory: { description: @territory.description, name: @territory.name } }
     end

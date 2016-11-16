@@ -2,28 +2,28 @@
 
 <p>
   <strong>Territory:</strong>
-  <%= @householder.territory %>
+  <%= @householder_view.territory %>
 </p>
 
 <p>
   <strong>Street name:</strong>
-  <%= @householder.street_name %>
+  <%= @householder_view.street_name %>
 </p>
 
 <p>
   <strong>House number:</strong>
-  <%= @householder.house_number %>
+  <%= @householder_view.house_number %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @householder.name %>
+  <%= @householder_view.name %>
 </p>
 
 <p>
   <strong>Show:</strong>
-  <%= @householder.show %>
+  <%= @householder_view.show %>
 </p>
 
-<%= link_to 'Edit', edit_householder_path(@householder) %> |
-<%= link_to 'Back', householders_path %>
+<%= link_to 'Edit', @householder_view.edit_url %> |
+<%= link_to 'Back', @householder_view.index_url %>

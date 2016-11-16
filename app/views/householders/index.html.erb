@@ -15,16 +15,16 @@
   </thead>
 
   <tbody>
-    <% @householders.each do |householder| %>
+    <% @householders_view.each do |householder| %>
       <tr>
         <td><%= householder.territory %></td>
         <td><%= householder.street_name %></td>
         <td><%= householder.house_number %></td>
         <td><%= householder.name %></td>
         <td><%= householder.show %></td>
-        <td><%= link_to 'Show', householder %></td>
-        <td><%= link_to 'Edit', edit_householder_path(householder) %></td>
-        <td><%= link_to 'Destroy', householder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', householder.url %></td>
+        <td><%= link_to 'Edit', householder.edit_url %></td>
+        <td><%= link_to 'Destroy', householder.url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Householder', new_householder_path %>
+<%= link_to 'New Householder', @householders_view.new_url %>

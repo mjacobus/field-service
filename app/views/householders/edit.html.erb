@@ -1,6 +1,6 @@
 <h1>Editing Householder</h1>
 
-<%= render 'form', householder: @householder %>
+<%= render 'form', householder: @householder_view.form_object %>
 
-<%= link_to 'Show', @householder %> |
-<%= link_to 'Back', householders_path %>
+<%= link_to 'Show', @householder_view.url %> |
+<%= link_to 'Back', @householder_view.index_url %>

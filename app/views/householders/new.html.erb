@@ -1,5 +1,5 @@
 <h1>New Householder</h1>
 
-<%= render 'form', householder: @householder %>
+<%= render 'form', householder: @householder_view.form_object %>
 
-<%= link_to 'Back', householders_path %>
+<%= link_to 'Back', @householder_view.index_url %>

@@ -12,13 +12,13 @@
   </thead>
 
   <tbody>
-    <% @territories.each do |territory| %>
+    <% @territories_view.each do |territory| %>
       <tr>
         <td><%= territory.name %></td>
         <td><%= territory.description %></td>
-        <td><%= link_to 'Show', territory %></td>
-        <td><%= link_to 'Edit', edit_territory_path(territory) %></td>
-        <td><%= link_to 'Destroy', territory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', territory.url %></td>
+        <td><%= link_to 'Edit', territory.edit_url %></td>
+        <td><%= link_to 'Destroy', territory.url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Territory', new_territory_path %>
+<%= link_to 'New Territory', @territories_view.new_url %>

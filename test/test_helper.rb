@@ -2,7 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require File.expand_path(File.dirname(__FILE__) + '/blueprints')
-
+require "mocha/mini_test"
 
 if ENV["COVERAGE"]
   require "simplecov"
@@ -15,6 +15,7 @@ if ENV["COVERAGE"]
     add_filter "test/"
 
     add_group "Lib", "lib"
+    add_group "Views Objects", "app/view_objects"
   end
 end
 

@@ -1,28 +1,22 @@
 class TerritoriesController < ApplicationController
-  before_action :set_territory, only: [:show, :edit, :update, :destroy]
-
-  # GET /territories
-  # GET /territories.json
   def index
     @territories = Territory.all
+    @territories_view = create_view(Territories::CollectionView, @territories)
   end
 
-  # GET /territories/1
-  # GET /territories/1.json
   def show
+    @territory_view = create_view(Territories::ItemView, territory)
   end
 
-  # GET /territories/new
   def new
-    @territory = Territory.new
+    territory = Territory.new
+    @territory_view = create_view(Territories::ItemView, territory)
   end
 
-  # GET /territories/1/edit
   def edit
+    @territory_view = create_view(Territories::ItemView, territory)
   end
 
-  # POST /territories
-  # POST /territories.json
   def create
     @territory = Territory.new(territory_params)
 
@@ -31,44 +25,55 @@ class TerritoriesController < ApplicationController
         format.html { redirect_to @territory, notice: 'Territory was successfully created.' }
         format.json { render :show, status: :created, location: @territory }
       else
-        format.html { render :new }
+        format.html do
+          @territory_view = create_view(Territories::ItemView, @territory)
+          render :new
+        end
         format.json { render json: @territory.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /territories/1
-  # PATCH/PUT /territories/1.json
   def update
+    @territory = territory
+    @territory_view = create_view(Territories::ItemView, @territory)
+
     respond_to do |format|
       if @territory.update(territory_params)
         format.html { redirect_to @territory, notice: 'Territory was successfully updated.' }
         format.json { render :show, status: :ok, location: @territory }
       else
-        format.html { render :edit }
+        format.html do
+          @territory_view = create_view(Territories::ItemView, @territory)
+          render :edit
+        end
+
         format.json { render json: @territory.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /territories/1
-  # DELETE /territories/1.json
   def destroy
+    @territory = territory
+    @territory_view = create_view(Territories::ItemView, @territory)
+
     @territory.destroy
+
     respond_to do |format|
-      format.html { redirect_to territories_url, notice: 'Territory was successfully destroyed.' }
+      format.html { redirect_to @territory_view.index_url, notice: 'Territory was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_territory
-      @territory = Territory.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def territory_params
-      params.require(:territory).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def territory
+    Territory.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def territory_params
+    params.require(:territory).permit(:name, :description)
+  end
 end

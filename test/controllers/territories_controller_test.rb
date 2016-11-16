@@ -24,6 +24,11 @@ class TerritoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to territory_url(Territory.last)
   end
 
+  test "re-renders form on create error" do
+    post territories_url, params: { territory: { description: '', name: '' } }
+    assert_template 'new'
+  end
+
   test "should show territory" do
     get territory_url(@territory)
     assert_response :success
@@ -37,6 +42,11 @@ class TerritoriesControllerTest < ActionDispatch::IntegrationTest
   test "should update territory" do
     patch territory_url(@territory), params: { territory: { description: @territory.description, name: @territory.name } }
     assert_redirected_to territory_url(@territory)
+  end
+
+  test "re-renders form on update error" do
+    patch territory_url(@territory), params: { territory: { description: '', name: '' } }
+    assert_template 'edit'
   end
 
   test "should destroy territory" do

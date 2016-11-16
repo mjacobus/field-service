@@ -5,64 +5,52 @@ class TerritoriesController < ApplicationController
   end
 
   def show
-    @territory_view = create_view(Territories::ItemView, territory)
+    @territory_view = create_view(Territories::ItemView, find_territory)
   end
 
   def new
-    territory = Territory.new
-    @territory_view = create_view(Territories::ItemView, territory)
+    @territory_view = create_view(Territories::ItemView, Territory.new)
   end
 
   def edit
-    @territory_view = create_view(Territories::ItemView, territory)
+    @territory_view = create_view(Territories::ItemView, find_territory)
   end
 
   def create
-    @territory = Territory.new(territory_params)
+    territory = Territory.new(territory_params)
 
-    respond_to do |format|
-      if @territory.save
-        format.html { redirect_to @territory, notice: 'Territory was successfully created.' }
-      else
-        format.html do
-          @territory_view = create_view(Territories::ItemView, @territory)
-          render :new
-        end
-      end
+    if territory.save
+      redirect_to territory, notice: 'Territory was successfully created.'
+    else
+      @territory_view = create_view(Territories::ItemView, territory)
+      render :new
     end
   end
 
   def update
-    @territory = territory
-    @territory_view = create_view(Territories::ItemView, @territory)
+    territory = find_territory
+    @territory_view = create_view(Territories::ItemView, territory)
 
-    respond_to do |format|
-      if @territory.update(territory_params)
-        format.html { redirect_to @territory, notice: 'Territory was successfully updated.' }
-      else
-        format.html do
-          @territory_view = create_view(Territories::ItemView, @territory)
-          render :edit
-        end
-      end
+    if territory.update(territory_params)
+      redirect_to territory, notice: 'Territory was successfully updated.'
+    else
+      territory_view = create_view(Territories::ItemView, territory)
+      render :edit
     end
   end
 
   def destroy
-    @territory = territory
-    @territory_view = create_view(Territories::ItemView, @territory)
+    territory = find_territory
+    territory.destroy
 
-    @territory.destroy
-
-    respond_to do |format|
-      format.html { redirect_to @territory_view.index_url, notice: 'Territory was successfully destroyed.' }
-    end
+    @territory_view = create_view(Territories::ItemView, territory)
+    redirect_to @territory_view.index_url, notice: 'Territory was successfully destroyed.'
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def territory
+  def find_territory
     Territory.find(params[:id])
   end
 

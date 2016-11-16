@@ -25,4 +25,11 @@ class TerritoryTest < ActiveSupport::TestCase
 
     assert !second.valid?
   end
+
+  test "#to_s returns name" do
+    record = valid_territory
+    record.name = 'thename';
+
+    assert_equal 'thename', "#{record}"
+  end
 end

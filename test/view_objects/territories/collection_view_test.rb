@@ -13,7 +13,7 @@ module Territories
     end
 
     test "item class is ItemView" do
-      assert_equal ItemView, @view.item_class
+      assert_equal ItemView, @view.item_decorator_class
     end
 
     test "can get index url" do

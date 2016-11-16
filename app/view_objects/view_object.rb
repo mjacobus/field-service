@@ -1,8 +1,9 @@
 class ViewObject
+  MethodNotImplemented = Class.new(StandardError)
+
   def with_view_helpers(helpers)
-    other = dup
-    other.view_helpers = helpers
-    other
+    @view_helpers = helpers
+    self
   end
 
   protected

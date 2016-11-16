@@ -4,7 +4,7 @@ module Householders
       '/householders'
     end
 
-    def item_class
+    def item_decorator_class
       ItemView
     end
   end

@@ -11,6 +11,5 @@ class ViewObjectTest < ActiveSupport::TestCase
     object = subject.with_view_helpers(helpers)
 
     assert_same helpers, object.send(:view_helpers)
-    assert_not_same subject, object
   end
 end

@@ -4,7 +4,7 @@ module Territories
       '/territories'
     end
 
-    def item_class
+    def item_decorator_class
       ItemView
     end
   end

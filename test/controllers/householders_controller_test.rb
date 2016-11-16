@@ -23,6 +23,12 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to householder_url(Householder.last)
   end
 
+  test "re-render form when create fails" do
+    post householders_url, params: { householder: { house_number: '', name: '', show: '', street_name: @householder.street_name, territory_id: @householder.territory_id } }
+
+    assert_template :new
+  end
+
   test "should show householder" do
     get householder_url(@householder)
     assert_response :success
@@ -36,6 +42,12 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
   test "should update householder" do
     patch householder_url(@householder), params: { householder: { house_number: @householder.house_number, name: @householder.name, show: @householder.show, street_name: @householder.street_name, territory_id: @householder.territory_id } }
     assert_redirected_to householder_url(@householder)
+  end
+
+  test "re-render form when update fails" do
+    patch householder_url(@householder), params: { householder: { house_number: '', name: @householder.name, show: @householder.show, street_name: @householder.street_name, territory_id: @householder.territory_id } }
+
+    assert_template :edit
   end
 
   test "should destroy householder" do

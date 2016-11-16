@@ -1,25 +1,11 @@
 module Territories
-  class CollectionView < ViewObject
-    def initialize(collection)
-      @collection = collection
-    end
-
+  class CollectionView < Crud::IndexView
     def index_url
       '/territories'
     end
 
-    def new_url
-      '/territories/new'
+    def item_class
+      ItemView
     end
-
-    def each(&block)
-      collection.each do |item|
-        block.call(ItemView.new(item))
-      end
-    end
-
-    private
-
-    attr_reader :collection
   end
 end

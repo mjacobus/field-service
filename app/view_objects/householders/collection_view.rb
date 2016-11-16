@@ -1,15 +1,15 @@
-module Territories
+module Householders
   class CollectionView < ViewObject
     def initialize(collection)
       @collection = collection
     end
 
     def index_url
-      '/territories'
+      '/householders'
     end
 
     def new_url
-      '/territories/new'
+      '/householders/new'
     end
 
     def each(&block)

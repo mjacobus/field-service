@@ -1,19 +1,19 @@
 require "test_helper"
 
-module Territories
+module Householders
   class CollectionViewTest < ActiveSupport::TestCase
     def setup
       @item = stub(id: 1)
       @collection = [@item]
-      @subject ||= Territories::CollectionView.new(@collection)
+      @subject ||= Householders::CollectionView.new(@collection)
     end
 
     test "can get index url" do
-      assert_equal "/territories", @subject.index_url
+      assert_equal "/householders", @subject.index_url
     end
 
     test "can get new url" do
-      assert_equal "/territories/new", @subject.new_url
+      assert_equal "/householders/new", @subject.new_url
     end
 
     test "each yields item view" do

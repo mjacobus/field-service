@@ -1,4 +1,4 @@
-module Territories
+module Householders
   class ItemView < ViewObject
     delegate :name, :description, to: :item
 
@@ -7,15 +7,15 @@ module Territories
     end
 
     def edit_url
-      "/territories/#{item.to_param}/edit"
+      "/householders/#{item.to_param}/edit"
     end
 
     def url
-      "/territories/#{item.to_param}"
+      "/householders/#{item.to_param}"
     end
 
     def index_url
-      "/territories"
+      "/householders"
     end
 
     def form_object

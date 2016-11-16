@@ -1,6 +1,6 @@
 require "test_helper"
 
-module Territories
+module Householders
   class ItemViewTest < ActiveSupport::TestCase
     def setup
       @item = stub(
@@ -16,22 +16,22 @@ module Territories
     end
 
     test "#edit_url returns correct url" do
-      assert_equal '/territories/1/edit', @view.edit_url
+      assert_equal '/householders/1/edit', @view.edit_url
     end
 
     test "#url returns correct url" do
-      assert_equal '/territories/1', @view.url
+      assert_equal '/householders/1', @view.url
     end
 
     test "#index_url returns correct url" do
-      assert_equal '/territories', @view.index_url
+      assert_equal '/householders', @view.index_url
     end
 
-    test "delegates name to the territory" do
+    test "delegates name to the item" do
       assert_equal 'theName', @view.name
     end
 
-    test "delegates description to the territory" do
+    test "delegates description to the item" do
       assert_equal 'theDescription', @view.description
     end
 

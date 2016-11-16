@@ -23,13 +23,11 @@ class TerritoriesController < ApplicationController
     respond_to do |format|
       if @territory.save
         format.html { redirect_to @territory, notice: 'Territory was successfully created.' }
-        format.json { render :show, status: :created, location: @territory }
       else
         format.html do
           @territory_view = create_view(Territories::ItemView, @territory)
           render :new
         end
-        format.json { render json: @territory.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,14 +39,11 @@ class TerritoriesController < ApplicationController
     respond_to do |format|
       if @territory.update(territory_params)
         format.html { redirect_to @territory, notice: 'Territory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @territory }
       else
         format.html do
           @territory_view = create_view(Territories::ItemView, @territory)
           render :edit
         end
-
-        format.json { render json: @territory.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,7 +56,6 @@ class TerritoriesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @territory_view.index_url, notice: 'Territory was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

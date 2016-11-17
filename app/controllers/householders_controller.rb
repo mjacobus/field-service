@@ -1,7 +1,7 @@
 class HouseholdersController < ApplicationController
   def index
-    householders = Householder.all
-    @householders_view = create_view(Householders::CollectionView, householders)
+    householders = territory.householders
+    @householders_view = create_view(Householders::CollectionView, householders, territory)
   end
 
   def show
@@ -10,7 +10,7 @@ class HouseholdersController < ApplicationController
   end
 
   def new
-    householder = Householder.new
+    householder = territory.householders.build
     @householder_view = create_view(Householders::ItemView, householder)
   end
 
@@ -20,7 +20,7 @@ class HouseholdersController < ApplicationController
   end
 
   def create
-    householder = Householder.new(householder_params)
+    householder = territory.householders.build(householder_params)
     @householder_view = create_view(Householders::ItemView, householder)
 
     if householder.save
@@ -51,6 +51,10 @@ class HouseholdersController < ApplicationController
 
   private
 
+  def territory
+    @_territory ||= Territory.find(params[:territory_id])
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def find_householder
     Householder.find(params[:id])
@@ -58,6 +62,6 @@ class HouseholdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def householder_params
-    params.require(:householder).permit(:territory_id, :street_name, :house_number, :name, :show)
+    params.require(:householder).permit(:street_name, :house_number, :name, :show)
   end
 end

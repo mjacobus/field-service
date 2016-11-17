@@ -20,6 +20,10 @@ module Crud
       raise "not implemented"
     end
 
+    def form_url
+      item.persisted? ? url : index_url
+    end
+
     def form_object
       item
     end

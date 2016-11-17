@@ -1,4 +1,4 @@
-<%= form_for(householder) do |f| %>
+<%= form_for(householder_view.form_object, url: householder_view.form_url) do |f| %>
   <% if householder.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(householder.errors.count, "error") %> prohibited this householder from being saved:</h2>
@@ -10,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :territory_id %>
-    <%= f.text_field :territory_id %>
-  </div>
 
   <div class="field">
     <%= f.label :street_name %>

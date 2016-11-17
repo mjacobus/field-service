@@ -3,6 +3,7 @@ require "test_helper"
 module Householders
   class ItemViewTest < ActiveSupport::TestCase
     def setup
+      @territory = stub(id: 4)
       @item = stub(
         to_param: 1,
         name: 'theName',
@@ -10,6 +11,7 @@ module Householders
         street_name: 'theStreet',
         show: true,
         territory: 'theTerritory',
+        territory_id: ':tid',
         description: 'theDescription',
       )
       @view = ItemView.new(@item)
@@ -20,15 +22,15 @@ module Householders
     end
 
     test "#edit_url returns correct url" do
-      assert_equal '/householders/1/edit', @view.edit_url
+      assert_equal '/territories/:tid/householders/1/edit', @view.edit_url
     end
 
     test "#url returns correct url" do
-      assert_equal '/householders/1', @view.url
+      assert_equal '/territories/:tid/householders/1', @view.url
     end
 
     test "#index_url returns correct url" do
-      assert_equal '/householders', @view.index_url
+      assert_equal '/territories/:tid/householders', @view.index_url
     end
 
     test "delegates name" do

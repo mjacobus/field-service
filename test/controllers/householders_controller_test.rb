@@ -2,7 +2,11 @@ require 'test_helper'
 
 class HouseholdersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @householder = Householder.make!
+    # other territory
+    Householder.make!
+
+    @territory = Territory.make!
+    @householder = Householder.make!(territory: @territory)
     @decorator = Householders::ItemView.new(@householder)
     @edit_url = @decorator.edit_url
     @new_url = @decorator.new_url
@@ -14,7 +18,6 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
       name: @householder.name,
       show: @householder.show,
       street_name: @householder.street_name,
-      territory_id: @householder.territory_id
     }
   end
 
@@ -26,6 +29,7 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
     get @decorator.index_url
 
     assert_response :success
+    assert_equal 1, assigns(:householders_view).send(:collection).count
   end
 
   test "should get new" do
@@ -35,15 +39,15 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create householder" do
-    assert_difference('Householder.count') do
-      post @index_url, params: { householder: @householder_params }
+    assert_difference ->{ @territory.householders.count }, 1 do
+      post @index_url, params: { territory_id: @territory.id, householder: @householder_params }
     end
 
     assert_redirected_to resource_url(Householder.last)
   end
 
   test "re-render form when create fails" do
-    post @index_url, params: { householder: @householder_params.merge(name: '') }
+    post @index_url, params: { territory_id: @territory.id, householder: @householder_params.merge(name: '') }
 
     assert_template :new
   end
@@ -55,25 +59,25 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    get @resource_url
+    get @edit_url
 
     assert_response :success
   end
 
   test "should update householder" do
-    patch @resource_url, params: { householder: @householder_params }
+    patch @resource_url, params: { territory_id: @territory.id, householder: @householder_params }
 
     assert_redirected_to @resource_url
   end
 
   test "re-render form when update fails" do
-    patch @resource_url, params: { householder: @householder_params.merge(name: '') }
+    patch @resource_url, params: { territory_id: @territory.id, householder: @householder_params.merge(name: '') }
 
     assert_template :edit
   end
 
   test "should destroy householder" do
-    assert_difference('Householder.count', -1) do
+    assert_difference ->{ @territory.householders.count }, -1 do
       delete @decorator.url
     end
 

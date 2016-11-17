@@ -3,57 +3,76 @@ require 'test_helper'
 class TerritoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @territory = Territory.make!
+    @decorator = Territories::ItemView.new(@territory)
+    @edit_url = @decorator.edit_url
+    @new_url = @decorator.new_url
+    @index_url = @decorator.index_url
+    @resource_url = @decorator.url
+
+    @territory_params = { description: @territory.description, name: @territory.name }
+  end
+
+  def resource_url(resource = @resource)
+    Territories::ItemView.new(resource).url
   end
 
   test "should get index" do
-    get territories_url
+    get @index_url
+
     assert_response :success
   end
 
   test "should get new" do
-    get new_territory_url
+    get @new_url
+
     assert_response :success
   end
 
   test "should create territory" do
     @territory = Territory.make
+
     assert_difference('Territory.count') do
-      post territories_url, params: { territory: { description: @territory.description, name: @territory.name } }
+      post @index_url, params: { territory: @territory_params.merge(name: @territory.name) }
     end
 
-    assert_redirected_to territory_url(Territory.last)
+    assert_redirected_to resource_url(Territory.last)
   end
 
   test "re-renders form on create error" do
-    post territories_url, params: { territory: { description: '', name: '' } }
+    post @index_url, params: { territory: @territory_params.merge(name: '') }
+
     assert_template 'new'
   end
 
   test "should show territory" do
-    get territory_url(@territory)
+    get @resource_url
+
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_territory_url(@territory)
+    get @edit_url
+
     assert_response :success
   end
 
   test "should update territory" do
-    patch territory_url(@territory), params: { territory: { description: @territory.description, name: @territory.name } }
-    assert_redirected_to territory_url(@territory)
+    patch @resource_url, params: { territory: @territory_params }
+
+    assert_redirected_to @resource_url
   end
 
   test "re-renders form on update error" do
-    patch territory_url(@territory), params: { territory: { description: '', name: '' } }
+    patch @resource_url, params: { territory: @territory_params.merge(name: '') }
+
     assert_template 'edit'
   end
 
   test "should destroy territory" do
     assert_difference('Territory.count', -1) do
-      delete territory_url(@territory)
+      delete @resource_url
     end
 
-    assert_redirected_to territories_url
+    assert_redirected_to @index_url
   end
 end

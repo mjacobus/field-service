@@ -26,6 +26,10 @@ module Crud
       assert_equal '/resource_name/1/edit', @view.edit_url
     end
 
+    test "#new_url returns correct url" do
+      assert_equal '/resource_name/new', @view.new_url
+    end
+
     test "#url returns correct url" do
       assert_equal '/resource_name/1', @view.url
     end

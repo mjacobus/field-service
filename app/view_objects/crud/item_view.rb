@@ -8,6 +8,10 @@ module Crud
       "#{index_url}/#{item.to_param}/edit"
     end
 
+    def new_url
+      "#{index_url}/new"
+    end
+
     def url
       "#{index_url}/#{item.to_param}"
     end

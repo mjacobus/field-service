@@ -32,4 +32,8 @@ class TerritoryTest < ActiveSupport::TestCase
 
     assert_equal 'thename', "#{record}"
   end
+
+  test "has many householders" do
+    assert_respond_to valid_territory, :householders
+  end
 end

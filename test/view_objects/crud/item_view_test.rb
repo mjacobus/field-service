@@ -3,7 +3,7 @@ require "test_helper"
 module Crud
   class ItemViewTest < ActiveSupport::TestCase
     def setup
-      klass = Class.new(ItemView) do
+      @klass = Class.new(ItemView) do
         def index_url
           '/resource_name'
         end
@@ -11,11 +11,12 @@ module Crud
 
       @item = stub(
         to_param: 1,
+        persisted?: true,
         name: 'theName',
         description: 'theDescription',
       )
 
-      @view = klass.new(@item)
+      @view = @klass.new(@item)
     end
 
     test "extends ViewObject" do
@@ -40,6 +41,11 @@ module Crud
 
     test "can get form object" do
       assert_equal @item, @view.form_object
+    end
+
+    test "#form_url returns correct form url" do
+      assert_equal '/resource_name/1', @klass.new(@item).form_url
+      assert_equal '/resource_name', @klass.new(stub(persisted?: false)).form_url
     end
   end
 end

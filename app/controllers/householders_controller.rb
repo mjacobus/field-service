@@ -1,7 +1,7 @@
 class HouseholdersController < ApplicationController
   def index
     householders = territory.householders
-    @householders_view = create_view(Householders::CollectionView, householders, territory)
+    @householders_view = create_view(HouseholdersDecorator, householders, territory)
   end
 
   def show

@@ -8,8 +8,8 @@ module Householders
       @view ||= Householders::CollectionView.new(@collection)
     end
 
-    test "is a Crud::IndexDecorator" do
-      assert @view.is_a?(Crud::IndexDecorator)
+    test "is a ActiveRecordCollectionDecorator" do
+      assert @view.is_a?(ActiveRecordCollectionDecorator)
     end
 
     test "item class is ItemView" do

@@ -11,7 +11,7 @@ module Territories
       @view = ItemView.new(@item)
     end
 
-    test "extends ViewObject" do
+    test "extends BaseDecorator" do
       assert @view.is_a?(::Crud::ItemView)
     end
 

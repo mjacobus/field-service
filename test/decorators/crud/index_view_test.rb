@@ -32,8 +32,8 @@ module Crud
       @view ||= klass.new(@collection)
     end
 
-    test "extends ViewObject" do
-      assert @view.is_a?(ViewObject)
+    test "extends BaseDecorator" do
+      assert @view.is_a?(BaseDecorator)
     end
 
     test "can get index url" do
@@ -47,7 +47,7 @@ module Crud
     test "index_url must be implemented" do
       subject = IndexView.new([])
 
-      assert_raises(ViewObject::MethodNotImplemented) do
+      assert_raises(BaseDecorator::MethodNotImplemented) do
         subject.index_url
       end
     end
@@ -55,7 +55,7 @@ module Crud
     test "item_decorator_class must be implemented" do
       subject = IndexView.new([])
 
-      exception = assert_raises(ViewObject::MethodNotImplemented) do
+      exception = assert_raises(BaseDecorator::MethodNotImplemented) do
         subject.item_decorator_class
       end
     end

@@ -1,5 +1,5 @@
 module Crud
-  class ItemView < ViewObject
+  class ItemView < BaseDecorator
     def initialize(item)
       @item = item
     end

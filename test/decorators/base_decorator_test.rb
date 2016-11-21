@@ -1,9 +1,9 @@
 require "test_helper"
 
-class ViewObjectTest < ActiveSupport::TestCase
+class BaseDecoratorTest < ActiveSupport::TestCase
 
   def subject
-    @subject ||= ViewObject.new
+    @subject ||= BaseDecorator.new
   end
 
   test "can set helper" do

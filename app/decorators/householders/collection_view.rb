@@ -1,5 +1,5 @@
 module Householders
-  class CollectionView < Crud::IndexView
+  class CollectionView < ActiveRecordCollectionDecorator
     def initialize(collection, territory = nil)
       super(collection)
       @territory = territory

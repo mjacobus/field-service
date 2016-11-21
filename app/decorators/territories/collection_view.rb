@@ -1,5 +1,5 @@
 module Territories
-  class CollectionView < Crud::IndexView
+  class CollectionView < ActiveRecordCollectionDecorator
     def index_url
       '/territories'
     end

@@ -7,7 +7,7 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
 
     @territory = Territory.make!
     @householder = Householder.make!(territory: @territory)
-    @decorator = Householders::ItemView.new(@householder)
+    @decorator = HouseholderDecorator.new(@householder)
     @edit_url = @decorator.edit_url
     @new_url = @decorator.new_url
     @index_url = @decorator.index_url
@@ -22,7 +22,7 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   def resource_url(resource)
-    Householders::ItemView.new(resource).url
+    HouseholderDecorator.new(resource).url
   end
 
   test "should get index" do

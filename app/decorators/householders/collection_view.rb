@@ -10,7 +10,7 @@ module Householders
     end
 
     def item_decorator_class
-      ItemView
+      HouseholderDecorator
     end
 
     def territory

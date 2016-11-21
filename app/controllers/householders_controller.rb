@@ -6,22 +6,22 @@ class HouseholdersController < ApplicationController
 
   def show
     householder = find_householder
-    @householder_view = create_view(Householders::ItemView, householder)
+    @householder_view = create_view(HouseholderDecorator, householder)
   end
 
   def new
     householder = territory.householders.build
-    @householder_view = create_view(Householders::ItemView, householder)
+    @householder_view = create_view(HouseholderDecorator, householder)
   end
 
   def edit
     householder = find_householder
-    @householder_view = create_view(Householders::ItemView, householder)
+    @householder_view = create_view(HouseholderDecorator, householder)
   end
 
   def create
     householder = territory.householders.build(householder_params)
-    @householder_view = create_view(Householders::ItemView, householder)
+    @householder_view = create_view(HouseholderDecorator, householder)
 
     if householder.save
       redirect_to @householder_view.url, notice: 'Householder was successfully created.'
@@ -32,7 +32,7 @@ class HouseholdersController < ApplicationController
 
   def update
     householder = find_householder
-    @householder_view = create_view(Householders::ItemView, householder)
+    @householder_view = create_view(HouseholderDecorator, householder)
 
     if householder.update(householder_params)
       redirect_to @householder_view.url, notice: 'Householder was successfully updated.'
@@ -44,7 +44,7 @@ class HouseholdersController < ApplicationController
   def destroy
     householder = find_householder
     householder.destroy
-    @householder_view = create_view(Householders::ItemView, householder)
+    @householder_view = create_view(HouseholderDecorator, householder)
 
     redirect_to @householder_view.index_url, notice: 'Householder was successfully destroyed.'
   end

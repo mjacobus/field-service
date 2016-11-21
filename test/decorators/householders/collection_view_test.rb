@@ -13,8 +13,8 @@ module Householders
       assert @view.is_a?(ActiveRecordCollectionDecorator)
     end
 
-    test "item class is ItemView" do
-      assert_equal ItemView, @view.item_decorator_class
+    test "item class is HouseholderDecorator" do
+      assert_equal HouseholderDecorator, @view.item_decorator_class
     end
 
     test "can get index url" do
@@ -33,7 +33,7 @@ module Householders
       end
 
       assert_same @item, collected.first.send(:item)
-      assert collected.first.is_a?(ItemView)
+      assert collected.first.is_a?(HouseholderDecorator)
     end
 
     test "#territory return territory" do

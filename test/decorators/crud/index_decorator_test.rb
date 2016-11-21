@@ -14,10 +14,10 @@ class DummyItemDecoratorClass
 end
 
 module Crud
-  class IndexViewTest < ActiveSupport::TestCase
+  class IndexDecoratorTest < ActiveSupport::TestCase
 
     def setup
-      klass = Class.new(Crud::IndexView) do
+      klass = Class.new(Crud::IndexDecorator) do
         def index_url
           '/resource_name'
         end
@@ -45,7 +45,7 @@ module Crud
     end
 
     test "index_url must be implemented" do
-      subject = IndexView.new([])
+      subject = IndexDecorator.new([])
 
       assert_raises(BaseDecorator::MethodNotImplemented) do
         subject.index_url
@@ -53,7 +53,7 @@ module Crud
     end
 
     test "item_decorator_class must be implemented" do
-      subject = IndexView.new([])
+      subject = IndexDecorator.new([])
 
       exception = assert_raises(BaseDecorator::MethodNotImplemented) do
         subject.item_decorator_class

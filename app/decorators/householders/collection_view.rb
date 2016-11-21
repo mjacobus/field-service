@@ -1,5 +1,5 @@
 module Householders
-  class CollectionView < Crud::IndexView
+  class CollectionView < Crud::IndexDecorator
     def index_url
       '/householders'
     end

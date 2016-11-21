@@ -8,8 +8,8 @@ module Territories
       @view ||= Territories::CollectionView.new(@collection)
     end
 
-    test "is a Crud::IndexView" do
-      assert @view.is_a?(Crud::IndexView)
+    test "is a Crud::IndexDecorator" do
+      assert @view.is_a?(Crud::IndexDecorator)
     end
 
     test "item class is ItemView" do

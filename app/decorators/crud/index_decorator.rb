@@ -1,5 +1,5 @@
 module Crud
-  class IndexView < BaseDecorator
+  class IndexDecorator < BaseDecorator
     def initialize(collection)
       @collection = collection
     end

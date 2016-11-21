@@ -1,7 +1,7 @@
 class TerritoriesController < ApplicationController
   def index
     @territories = Territory.all
-    @territories_view = create_view(Territories::CollectionView, @territories)
+    @territories_view = create_view(TerritoriesDecorator, @territories)
   end
 
   def show

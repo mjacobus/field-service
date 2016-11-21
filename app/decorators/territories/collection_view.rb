@@ -5,7 +5,7 @@ module Territories
     end
 
     def item_decorator_class
-      ItemView
+      TerritoryDecorator
     end
   end
 end

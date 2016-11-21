@@ -3,7 +3,7 @@ require 'test_helper'
 class TerritoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @territory = Territory.make!
-    @decorator = Territories::ItemView.new(@territory)
+    @decorator = TerritoryDecorator.new(@territory)
     @edit_url = @decorator.edit_url
     @new_url = @decorator.new_url
     @index_url = @decorator.index_url
@@ -13,7 +13,7 @@ class TerritoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def resource_url(resource = @resource)
-    Territories::ItemView.new(resource).url
+    TerritoryDecorator.new(resource).url
   end
 
   test "should get index" do

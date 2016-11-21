@@ -1,4 +1,4 @@
-class ViewObject
+class BaseDecorator
   MethodNotImplemented = Class.new(StandardError)
 
   def with_view_helpers(helpers)

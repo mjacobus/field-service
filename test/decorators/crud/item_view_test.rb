@@ -18,8 +18,8 @@ module Crud
       @view = klass.new(@item)
     end
 
-    test "extends ViewObject" do
-      assert @view.is_a?(::ViewObject)
+    test "extends BaseDecorator" do
+      assert @view.is_a?(::BaseDecorator)
     end
 
     test "#edit_url returns correct url" do

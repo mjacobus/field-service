@@ -1,5 +1,5 @@
 module Territories
-  class ItemView < Crud::ItemView
+  class ItemView < ActiveRecordModelDecorator
     delegate :name, :description, to: :item
 
     def index_url

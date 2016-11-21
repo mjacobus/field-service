@@ -12,7 +12,7 @@ module Territories
     end
 
     test "extends BaseDecorator" do
-      assert @view.is_a?(::Crud::ItemView)
+      assert @view.is_a?(ActiveRecordModelDecorator)
     end
 
     test "#edit_url returns correct url" do

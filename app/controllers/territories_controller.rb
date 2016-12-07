@@ -1,6 +1,6 @@
 class TerritoriesController < ApplicationController
   def index
-    @territories = Territory.all
+    @territories = Territory.sorted
     @territories_view = create_view(TerritoriesDecorator, @territories)
   end
 

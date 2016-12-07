@@ -1,6 +1,6 @@
 class HouseholdersController < ApplicationController
   def index
-    householders = territory.householders
+    householders = territory.householders.sorted
     @householders_view = create_view(HouseholdersDecorator, householders, territory)
   end
 

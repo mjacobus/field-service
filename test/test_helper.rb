@@ -8,7 +8,7 @@ if ENV["COVERAGE"]
     add_filter 'app/channels/application_cable/connection.rb'
     add_filter 'app/jobs/application_job.rb'
     add_filter 'app/mailers/application_mailer.rb'
-    add_group "Views Objects", "app/view_objects"
+    add_group "Decorators", "app/decorators"
   end
 end
 

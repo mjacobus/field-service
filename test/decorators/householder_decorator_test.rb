@@ -13,42 +13,42 @@ class HouseholderDecoratorTest < ActiveSupport::TestCase
       territory_id: ':tid',
       description: 'theDescription',
     )
-    @view = HouseholderDecorator.new(@item)
+    @decorator = HouseholderDecorator.new(@item)
   end
 
   test "extends BaseDecorator" do
-    assert @view.is_a?(ActiveRecordModelDecorator)
+    assert @decorator.is_a?(ActiveRecordModelDecorator)
   end
 
   test "#edit_url returns correct url" do
-    assert_equal '/territories/:tid/householders/1/edit', @view.edit_url
+    assert_equal '/territories/:tid/householders/1/edit', @decorator.edit_url
   end
 
   test "#url returns correct url" do
-    assert_equal '/territories/:tid/householders/1', @view.url
+    assert_equal '/territories/:tid/householders/1', @decorator.url
   end
 
   test "#index_url returns correct url" do
-    assert_equal '/territories/:tid/householders', @view.index_url
+    assert_equal '/territories/:tid/householders', @decorator.index_url
   end
 
   test "delegates name" do
-    assert_delegates :name, @view, @item
+    assert_delegates :name, @decorator, @item
   end
 
   test "delegates house_number" do
-    assert_delegates :house_number, @view, @item
+    assert_delegates :house_number, @decorator, @item
   end
 
   test "delegates street_name" do
-    assert_delegates :street_name, @view, @item
+    assert_delegates :street_name, @decorator, @item
   end
 
   test "delegates show" do
-    assert_delegates :show, @view, @item
+    assert_delegates :show, @decorator, @item
   end
 
   test "delegates territory" do
-    assert_delegates :territory, @view, @item
+    assert_delegates :territory, @decorator, @item
   end
 end

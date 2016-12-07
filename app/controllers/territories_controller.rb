@@ -1,19 +1,19 @@
 class TerritoriesController < ApplicationController
   def index
     @territories = Territory.sorted
-    @territories_view = create_view(TerritoriesDecorator, @territories)
+    @territories_decorator = create_decorator(TerritoriesDecorator, @territories)
   end
 
   def show
-    @territory_view = create_view(TerritoryDecorator, find_territory)
+    @territory_decorator = create_decorator(TerritoryDecorator, find_territory)
   end
 
   def new
-    @territory_view = create_view(TerritoryDecorator, Territory.new)
+    @territory_decorator = create_decorator(TerritoryDecorator, Territory.new)
   end
 
   def edit
-    @territory_view = create_view(TerritoryDecorator, find_territory)
+    @territory_decorator = create_decorator(TerritoryDecorator, find_territory)
   end
 
   def create
@@ -22,19 +22,19 @@ class TerritoriesController < ApplicationController
     if territory.save
       redirect_to territory, notice: 'Territory was successfully created.'
     else
-      @territory_view = create_view(TerritoryDecorator, territory)
+      @territory_decorator = create_decorator(TerritoryDecorator, territory)
       render :new
     end
   end
 
   def update
     territory = find_territory
-    @territory_view = create_view(TerritoryDecorator, territory)
+    @territory_decorator = create_decorator(TerritoryDecorator, territory)
 
     if territory.update(territory_params)
       redirect_to territory, notice: 'Territory was successfully updated.'
     else
-      territory_view = create_view(TerritoryDecorator, territory)
+      territory_decorator = create_decorator(TerritoryDecorator, territory)
       render :edit
     end
   end
@@ -43,8 +43,8 @@ class TerritoriesController < ApplicationController
     territory = find_territory
     territory.destroy
 
-    @territory_view = create_view(TerritoryDecorator, territory)
-    redirect_to @territory_view.index_url, notice: 'Territory was successfully destroyed.'
+    @territory_decorator = create_decorator(TerritoryDecorator, territory)
+    redirect_to @territory_decorator.index_url, notice: 'Territory was successfully destroyed.'
   end
 
   private

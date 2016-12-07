@@ -28,19 +28,19 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
 
     @item = stub(id: 1)
     @collection = [@item]
-    @view ||= klass.new(@collection)
+    @decorator ||= klass.new(@collection)
   end
 
   test "extends BaseDecorator" do
-    assert @view.is_a?(BaseDecorator)
+    assert @decorator.is_a?(BaseDecorator)
   end
 
   test "can get index url" do
-    assert_equal "/resource_name", @view.index_url
+    assert_equal "/resource_name", @decorator.index_url
   end
 
   test "can get new url" do
-    assert_equal "/resource_name/new", @view.new_url
+    assert_equal "/resource_name/new", @decorator.new_url
   end
 
   test "index_url must be implemented" do
@@ -62,10 +62,10 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
   test "each yields item view" do
     view_helpers = stub(:helpers)
 
-    @view.with_view_helpers(view_helpers)
+    @decorator.with_view_helpers(view_helpers)
     collected = []
 
-    @view.each do |item|
+    @decorator.each do |item|
       collected << item
     end
 

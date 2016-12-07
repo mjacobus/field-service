@@ -5,29 +5,29 @@ class HouseholdersDecoratorTest < ActiveSupport::TestCase
     @territory = stub(id: ':tid')
     @item = stub(id: 1)
     @collection = [@item]
-    @view ||= HouseholdersDecorator.new(@collection, @territory)
+    @decorator ||= HouseholdersDecorator.new(@collection, @territory)
   end
 
   test "is a ActiveRecordCollectionDecorator" do
-    assert @view.is_a?(ActiveRecordCollectionDecorator)
+    assert @decorator.is_a?(ActiveRecordCollectionDecorator)
   end
 
   test "item class is HouseholderDecorator" do
-    assert_equal HouseholderDecorator, @view.item_decorator_class
+    assert_equal HouseholderDecorator, @decorator.item_decorator_class
   end
 
   test "can get index url" do
-    assert_equal "/territories/:tid/householders", @view.index_url
+    assert_equal "/territories/:tid/householders", @decorator.index_url
   end
 
   test "can get new url" do
-    assert_equal "/territories/:tid/householders/new", @view.new_url
+    assert_equal "/territories/:tid/householders/new", @decorator.new_url
   end
 
   test "each yields item view" do
     collected = []
 
-    @view.each do |item|
+    @decorator.each do |item|
       collected << item
     end
 
@@ -36,7 +36,7 @@ class HouseholdersDecoratorTest < ActiveSupport::TestCase
   end
 
   test "#territory return territory" do
-    assert_same @territory, @view.territory
+    assert_same @territory, @decorator.territory
   end
 
   test "#territory raises when territory is not set" do

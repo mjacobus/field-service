@@ -15,31 +15,31 @@ class ActiveRecordModelDecoratorTest < ActiveSupport::TestCase
       description: 'theDescription',
     )
 
-    @view = @klass.new(@item)
+    @decorator = @klass.new(@item)
   end
 
   test "extends BaseDecorator" do
-    assert @view.is_a?(::BaseDecorator)
+    assert @decorator.is_a?(::BaseDecorator)
   end
 
   test "#edit_url returns correct url" do
-    assert_equal '/resource_name/1/edit', @view.edit_url
+    assert_equal '/resource_name/1/edit', @decorator.edit_url
   end
 
   test "#new_url returns correct url" do
-    assert_equal '/resource_name/new', @view.new_url
+    assert_equal '/resource_name/new', @decorator.new_url
   end
 
   test "#url returns correct url" do
-    assert_equal '/resource_name/1', @view.url
+    assert_equal '/resource_name/1', @decorator.url
   end
 
   test "#index_url returns correct url" do
-    assert_equal '/resource_name', @view.index_url
+    assert_equal '/resource_name', @decorator.index_url
   end
 
   test "can get form object" do
-    assert_equal @item, @view.form_object
+    assert_equal @item, @decorator.form_object
   end
 
   test "#form_url returns correct form url" do

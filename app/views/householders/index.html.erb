@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @householders_view.each do |householder| %>
+    <% @householders_decorator.each do |householder| %>
       <tr>
         <td><%= householder.territory %></td>
         <td><%= householder.street_name %></td>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Householder', @householders_view.new_url %>
+<%= link_to 'New Householder', @householders_decorator.new_url %>

@@ -2,14 +2,14 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @territory_view.name %>
+  <%= @territory_decorator.name %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @territory_view.description %>
+  <%= @territory_decorator.description %>
 </p>
 
-<%= link_to 'Territories', @territory_view.householders_url %> |
-<%= link_to 'Edit', @territory_view.edit_url %> |
-<%= link_to 'Back', @territory_view.index_url %>
+<%= link_to 'Territories', @territory_decorator.householders_url %> |
+<%= link_to 'Edit', @territory_decorator.edit_url %> |
+<%= link_to 'Back', @territory_decorator.index_url %>

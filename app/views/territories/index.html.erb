@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @territories_view.each do |territory| %>
+    <% @territories_decorator.each do |territory| %>
       <tr>
         <td><%= territory.name %></td>
         <td><%= territory.description %></td>
@@ -27,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Territory', @territories_view.new_url %>
+<%= link_to 'New Territory', @territories_decorator.new_url %>

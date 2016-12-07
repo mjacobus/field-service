@@ -29,7 +29,7 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
     get @decorator.index_url
 
     assert_response :success
-    assert_equal 1, assigns(:householders_view).send(:collection).count
+    assert_equal 1, assigns(:householders_decorator).send(:collection).count
   end
 
   test "should get new" do

@@ -1,30 +1,30 @@
 class HouseholdersController < ApplicationController
   def index
     householders = territory.householders.sorted
-    @householders_view = create_view(HouseholdersDecorator, householders, territory)
+    @householders_decorator = create_decorator(HouseholdersDecorator, householders, territory)
   end
 
   def show
     householder = find_householder
-    @householder_view = create_view(HouseholderDecorator, householder)
+    @householder_decorator = create_decorator(HouseholderDecorator, householder)
   end
 
   def new
     householder = territory.householders.build
-    @householder_view = create_view(HouseholderDecorator, householder)
+    @householder_decorator = create_decorator(HouseholderDecorator, householder)
   end
 
   def edit
     householder = find_householder
-    @householder_view = create_view(HouseholderDecorator, householder)
+    @householder_decorator = create_decorator(HouseholderDecorator, householder)
   end
 
   def create
     householder = territory.householders.build(householder_params)
-    @householder_view = create_view(HouseholderDecorator, householder)
+    @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
     if householder.save
-      redirect_to @householder_view.url, notice: 'Householder was successfully created.'
+      redirect_to @householder_decorator.url, notice: 'Householder was successfully created.'
     else
       render :new
     end
@@ -32,10 +32,10 @@ class HouseholdersController < ApplicationController
 
   def update
     householder = find_householder
-    @householder_view = create_view(HouseholderDecorator, householder)
+    @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
     if householder.update(householder_params)
-      redirect_to @householder_view.url, notice: 'Householder was successfully updated.'
+      redirect_to @householder_decorator.url, notice: 'Householder was successfully updated.'
     else
       render :edit
     end
@@ -44,9 +44,9 @@ class HouseholdersController < ApplicationController
   def destroy
     householder = find_householder
     householder.destroy
-    @householder_view = create_view(HouseholderDecorator, householder)
+    @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
-    redirect_to @householder_view.index_url, notice: 'Householder was successfully destroyed.'
+    redirect_to @householder_decorator.index_url, notice: 'Householder was successfully destroyed.'
   end
 
   private

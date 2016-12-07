@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def create_view(*args)
+  def create_decorator(*args)
     klass = args.shift
     klass.new(*args).with_view_helpers(view_context)
   end

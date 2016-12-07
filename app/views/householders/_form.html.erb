@@ -1,37 +1,7 @@
-<%= form_for(householder_view.form_object, url: householder_view.form_url) do |f| %>
-  <% if householder.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(householder.errors.count, "error") %> prohibited this householder from being saved:</h2>
-
-      <ul>
-      <% householder.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :street_name %>
-    <%= f.text_field :street_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :house_number %>
-    <%= f.text_field :house_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :show %>
-    <%= f.check_box :show %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(householder_view.form_object, url: householder_view.form_url) do |f| %>
+    <%= f.input :street_name %>
+    <%= f.input :house_number %>
+    <%= f.input :name %>
+    <%= f.input :show %>
+    <%= f.button :submit %>
 <% end %>

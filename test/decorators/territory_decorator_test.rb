@@ -26,6 +26,10 @@ class TerritoryDecoratorTest < ActiveSupport::TestCase
     assert_equal '/territories', @view.index_url
   end
 
+  test "#householders_url returns the correct url" do
+    assert_equal "/territories/1/householders", @view.householders_url
+  end
+
   test "delegates name to the territory" do
     assert_equal 'theName', @view.name
   end

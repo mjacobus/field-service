@@ -5,6 +5,10 @@ class TerritoryDecorator < ActiveRecordModelDecorator
     "/territories"
   end
 
+  def householders_url
+    url + "/householders"
+  end
+
   def form_object
     item
   end

@@ -8,6 +8,8 @@
 
 require_relative "../test/blueprints.rb"
 
+User.create(email: 'admin@example.com', password: 'admin', admin: true)
+
 1.upto(5) do |number|
   territory = Householder.make!.territory
 

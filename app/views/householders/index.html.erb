@@ -2,6 +2,12 @@
 
 <h1>Householders</h1>
 
+<%= breadcrumbs([
+  ['foo', 'bar'],
+  ['bar', 'baz'],
+  # ['<script>alert("ha")</script']
+]) %>
+
 <p>
   <strong>Territory:</strong>
   <%= @householders_decorator.territory %>

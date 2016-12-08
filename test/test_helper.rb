@@ -59,3 +59,6 @@ class ControllerTestCase < ActionDispatch::IntegrationTest
     }
   end
 end
+
+class TestCase < ActiveSupport::TestCase
+end

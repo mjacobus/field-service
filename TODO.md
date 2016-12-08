@@ -5,6 +5,7 @@ TODO
 - Button to disable householder, with confirmation
 - Better buttons
 - Better error messages
+- Better flash messages
 
 ## Done
 

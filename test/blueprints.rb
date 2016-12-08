@@ -15,5 +15,7 @@ Householder.blueprint do
 end
 
 User.blueprint do
-  # Attributes here
+  name { "Householder name #{sn}" }
+  email { "email#{sn}@email.com" }
+  password { "123456" }
 end

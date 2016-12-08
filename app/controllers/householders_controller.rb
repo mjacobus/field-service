@@ -1,4 +1,4 @@
-class HouseholdersController < ApplicationController
+class HouseholdersController < AuthenticatedController
   def index
     householders = territory.householders.sorted
     @householders_decorator = create_decorator(HouseholdersDecorator, householders, territory)

@@ -1,4 +1,4 @@
-class TerritoriesController < ApplicationController
+class TerritoriesController < AuthenticatedController
   def index
     @territories = Territory.sorted
     @territories_decorator = create_decorator(TerritoriesDecorator, @territories)

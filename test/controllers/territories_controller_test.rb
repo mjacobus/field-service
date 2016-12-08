@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TerritoriesControllerTest < ActionDispatch::IntegrationTest
+class TerritoriesControllerTest < ControllerTestCase
   setup do
     @territory = Territory.make!
     @decorator = TerritoryDecorator.new(@territory)
@@ -10,10 +10,15 @@ class TerritoriesControllerTest < ActionDispatch::IntegrationTest
     @resource_url = @decorator.url
 
     @territory_params = { description: @territory.description, name: @territory.name }
+    sign_in_as(current_user)
   end
 
   def resource_url(resource = @resource)
     TerritoryDecorator.new(resource).url
+  end
+
+  test "is authenticated controller" do
+    assert subject.is_a?(AuthenticatedController)
   end
 
   test "should get index" do

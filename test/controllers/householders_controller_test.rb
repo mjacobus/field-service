@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HouseholdersControllerTest < ActionDispatch::IntegrationTest
+class HouseholdersControllerTest < ControllerTestCase
   setup do
     # other territory
     Householder.make!
@@ -19,10 +19,15 @@ class HouseholdersControllerTest < ActionDispatch::IntegrationTest
       show: @householder.show,
       street_name: @householder.street_name,
     }
+    sign_in_as(current_user)
   end
 
   def resource_url(resource)
     HouseholderDecorator.new(resource).url
+  end
+
+  test "is authenticated controller" do
+    assert subject.is_a?(AuthenticatedController)
   end
 
   test "should get index" do

@@ -16,6 +16,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require File.expand_path(File.dirname(__FILE__) + '/blueprints')
 require "mocha/mini_test"
+require "clearance/test_unit"
 
 class ActiveSupport::TestCase
   teardown do
@@ -41,5 +42,20 @@ class ActiveSupport::TestCase
     )
 
     assert_not_nil delegated.send(method), "cannot check if delegates if value is nil"
+  end
+end
+
+class ControllerTestCase < ActionDispatch::IntegrationTest
+  def current_user
+    @current_user ||= User.make!(password: 'admin')
+  end
+
+  def sign_in_as(user, password = 'admin')
+    post session_url, params: {
+      session: {
+        email: user.email,
+        password: password,
+      }
+    }
   end
 end

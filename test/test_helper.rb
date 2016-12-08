@@ -61,6 +61,15 @@ class ControllerTestCase < ActionDispatch::IntegrationTest
 end
 
 class TestCase < ActiveSupport::TestCase
+  def fake_view_helpers
+    @fake_view_helpers ||= FakeViewHelpers.new
+  end
+end
+
+class FakeViewHelpers
+  def t(arg)
+    ['t', arg].join('.')
+  end
 end
 
 class HelperTestCase < ActionView::TestCase

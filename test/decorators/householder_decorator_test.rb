@@ -1,19 +1,23 @@
 require "test_helper"
 
-class HouseholderDecoratorTest < ActiveSupport::TestCase
+class HouseholderDecoratorTest < TestCase
   def setup
     @territory = stub(id: 4)
     @item = stub(
+      id: 1,
+      territory: stub(
+        name: 'T1'
+      ),
       to_param: 1,
       name: 'theName',
       house_number: 'houseNumber',
       street_name: 'theStreet',
       show: true,
-      territory: 'theTerritory',
       territory_id: ':tid',
       description: 'theDescription',
     )
-    @decorator = HouseholderDecorator.new(@item)
+
+    @decorator = HouseholderDecorator.new(@item).with_view_helpers(fake_view_helpers)
   end
 
   test "extends BaseDecorator" do
@@ -60,5 +64,32 @@ class HouseholderDecoratorTest < ActiveSupport::TestCase
     @decorator = HouseholderDecorator.new(stub(show: false))
 
     assert_equal 'disabled', @decorator.html_classes.to_s
+  end
+
+  test "#breadcrumbs for existing record" do
+    actual = @decorator.breadcrumbs
+
+    expected = [
+      ['t.titles.territories', "/territories"],
+      ['T1', "/territories/:tid"],
+      ['t.titles.householders', "/territories/:tid/householders"],
+      ['theStreet houseNumber (theName)'],
+    ]
+
+    assert_equal expected, actual
+  end
+
+  test "#breadcrumbs for new record" do
+    @decorator.stubs(id: nil)
+    actual = @decorator.breadcrumbs
+
+    expected = [
+      ['t.titles.territories', "/territories"],
+      ['T1', "/territories/:tid"],
+      ['t.titles.householders', "/territories/:tid/householders"],
+      ['t.actions.new'],
+    ]
+
+    assert_equal expected, actual
   end
 end

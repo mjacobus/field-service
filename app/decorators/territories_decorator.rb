@@ -6,4 +6,10 @@ class TerritoriesDecorator < ActiveRecordCollectionDecorator
   def item_decorator_class
     TerritoryDecorator
   end
+
+  def breadcrumbs
+    [
+      [t('titles.territories')]
+    ]
+  end
 end

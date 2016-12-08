@@ -8,5 +8,9 @@ class BaseDecorator
 
   protected
 
+  def t(*args)
+    view_helpers.t(*args)
+  end
+
   attr_accessor :view_helpers
 end

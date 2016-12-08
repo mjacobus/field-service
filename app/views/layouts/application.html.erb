@@ -15,6 +15,7 @@
     <%= render partial: 'top_menu' %>
 
     <div id="main-container">
+      <%= content_for(:breadcrumbs) %>
       <%= yield %>
     </div>
 

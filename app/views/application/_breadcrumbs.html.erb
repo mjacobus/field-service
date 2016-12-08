@@ -1,0 +1,13 @@
+<!-- http://foundation.zurb.com/sites/docs/breadcrumbs.html -->
+
+<nav aria-label="You are here:" role="navigation">
+  <ul class="breadcrumbs">
+    <% parts.each do |part| %>
+      <% if part.size > 1 %>
+        <li> <%= link_to(*part) %></li>
+      <% else %>
+        <li> <span class="show-for-sr">Current</span><%= part.first %> </li>
+      <% end %>
+    <% end %>
+  </ul>
+</nav>

@@ -5,7 +5,11 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
   end
 
   def index_url
-    "/territories/#{territory.id}/householders"
+    "#{territory_url}/householders"
+  end
+
+  def territory_url
+    "/territories/#{territory.id}"
   end
 
   def item_decorator_class
@@ -14,5 +18,13 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
 
   def territory
     @territory or raise "territory was not set"
+  end
+
+  def breadcrumbs
+    [
+      [t('titles.territories'), '/territories'],
+      [territory.name, territory_url],
+      [t('titles.householders')],
+    ]
   end
 end

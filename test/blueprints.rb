@@ -13,3 +13,7 @@ Householder.blueprint do
   show { (sn%2) != 0 }
   territory
 end
+
+User.blueprint do
+  # Attributes here
+end

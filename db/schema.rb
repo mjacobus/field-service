@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115174851) do
+ActiveRecord::Schema.define(version: 20161208035657) do
 
   create_table "householders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "territory_id"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20161115174851) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["name"], name: "index_territories_on_name", unique: true, using: :btree
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
   add_foreign_key "householders", "territories"

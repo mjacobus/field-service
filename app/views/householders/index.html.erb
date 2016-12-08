@@ -2,34 +2,34 @@
 
 <h1>Householders</h1>
 
+<p>
+  <strong>Territory:</strong>
+  <%= @householders_decorator.territory %>
+</p>
+
 <table>
   <thead>
     <tr>
-      <th>Territory</th>
       <th>Street name</th>
       <th>House number</th>
       <th>Name</th>
-      <th>Show</th>
-      <th colspan="3"></th>
+      <th class="action" colspan="3">
+        <%= link_to 'New Householder', @householders_decorator.new_url %>
+      </th>
     </tr>
   </thead>
 
   <tbody>
     <% @householders_decorator.each do |householder| %>
-      <tr>
-        <td><%= householder.territory %></td>
+      <tr class="<%= householder.html_classes %>">
         <td><%= householder.street_name %></td>
         <td><%= householder.house_number %></td>
         <td><%= householder.name %></td>
-        <td><%= householder.show %></td>
-        <td><%= link_to 'Show', householder.url %></td>
-        <td><%= link_to 'Edit', householder.edit_url %></td>
-        <td><%= link_to 'Destroy', householder.url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="action"><%= link_to 'Show', householder.url %></td>
+        <td class="action"><%= link_to 'Edit', householder.edit_url %></td>
+        <td class="action"><%= link_to 'Destroy', householder.url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Householder', @householders_decorator.new_url %>

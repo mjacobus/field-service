@@ -51,4 +51,14 @@ class HouseholderDecoratorTest < ActiveSupport::TestCase
   test "delegates territory" do
     assert_delegates :territory, @decorator, @item
   end
+
+  test "#html_classes returns empty when active" do
+    assert_equal '', @decorator.html_classes.to_s
+  end
+
+  test "#html_classes returns 'disabled' when show is false" do
+    @decorator = HouseholderDecorator.new(stub(show: false))
+
+    assert_equal 'disabled', @decorator.html_classes.to_s
+  end
 end

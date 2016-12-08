@@ -4,4 +4,8 @@ class HouseholderDecorator < ActiveRecordModelDecorator
   def index_url
     "/territories/#{item.territory_id}/householders"
   end
+
+  def html_classes
+    'disabled' unless show
+  end
 end

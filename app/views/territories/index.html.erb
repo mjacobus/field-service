@@ -7,7 +7,9 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th colspan="4"></th>
+      <th class="action" colspan="4">
+        <%= link_to 'New Territory', @territories_decorator.new_url %>
+      </th>
     </tr>
   </thead>
 
@@ -24,7 +26,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Territory', @territories_decorator.new_url %>

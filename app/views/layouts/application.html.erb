@@ -16,6 +16,7 @@
 
     <div id="main-container">
       <%= content_for(:breadcrumbs) %>
+      <%= render partial: 'flash_messages' %>
       <%= yield %>
     </div>
 

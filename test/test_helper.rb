@@ -62,3 +62,6 @@ end
 
 class TestCase < ActiveSupport::TestCase
 end
+
+class HelperTestCase < ActionView::TestCase
+end

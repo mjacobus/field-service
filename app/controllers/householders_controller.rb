@@ -10,7 +10,7 @@ class HouseholdersController < AuthenticatedController
   end
 
   def new
-    householder = territory.householders.build
+    householder = territory.householders.build(show: true)
     @householder_decorator = create_decorator(HouseholderDecorator, householder)
   end
 

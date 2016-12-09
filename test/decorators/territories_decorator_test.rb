@@ -1,10 +1,10 @@
 require "test_helper"
 
-class TerritoriesDecoratorTest < ActiveSupport::TestCase
+class TerritoriesDecoratorTest < TestCase
   def setup
     @item = stub(id: 1)
     @collection = [@item]
-    @decorator ||= TerritoriesDecorator.new(@collection)
+    @decorator ||= TerritoriesDecorator.new(@collection).with_view_helpers(fake_view_helpers)
   end
 
   test "is a ActiveRecordCollectionDecorator" do
@@ -32,5 +32,15 @@ class TerritoriesDecoratorTest < ActiveSupport::TestCase
 
     assert_same @item, collected.first.send(:item)
     assert collected.first.is_a?(TerritoryDecorator)
+  end
+
+  test "#breadcrumbs returns correct collection" do
+    expected = [
+      ['t.titles.territories']
+    ]
+
+    actual = @decorator.breadcrumbs
+
+    assert_equal expected, actual
   end
 end

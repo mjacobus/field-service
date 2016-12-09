@@ -1,0 +1,9 @@
+<% classes = { notice: :success, alert: :alert } %>
+
+<div id="flash" class="row">
+  <% flash.each do |key, value| %>
+    <div class="<%= classes[key.to_sym] %> callout">
+      <p><%= value %></p>
+    </div>
+  <% end %>
+</div>

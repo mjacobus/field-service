@@ -1,11 +1,12 @@
 require "test_helper"
 
-class HouseholdersDecoratorTest < ActiveSupport::TestCase
+class HouseholdersDecoratorTest < TestCase
   def setup
-    @territory = stub(id: ':tid')
+    @territory = stub(id: ':tid', name: 'T1')
     @item = stub(id: 1)
     @collection = [@item]
     @decorator ||= HouseholdersDecorator.new(@collection, @territory)
+    @decorator = @decorator.with_view_helpers(fake_view_helpers)
   end
 
   test "is a ActiveRecordCollectionDecorator" do
@@ -46,4 +47,17 @@ class HouseholdersDecoratorTest < ActiveSupport::TestCase
 
     assert_equal 'territory was not set', error.message
   end
+
+  test "#breadcrumbs returns correct collection" do
+    actual = @decorator.breadcrumbs
+
+    expected = [
+      ['t.titles.territories', "/territories"],
+      ['T1', "/territories/:tid"],
+      ['t.titles.householders'],
+    ]
+
+    assert_equal expected, actual
+  end
+
 end

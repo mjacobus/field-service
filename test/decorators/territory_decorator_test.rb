@@ -1,13 +1,13 @@
 require "test_helper"
 
-class TerritoryDecoratorTest < ActiveSupport::TestCase
+class TerritoryDecoratorTest < TestCase
   def setup
     @item = stub(
       to_param: 1,
       name: 'theName',
       description: 'theDescription',
     )
-    @decorator = TerritoryDecorator.new(@item)
+    @decorator = TerritoryDecorator.new(@item).with_view_helpers(fake_view_helpers)
   end
 
   test "extends BaseDecorator" do
@@ -40,5 +40,31 @@ class TerritoryDecoratorTest < ActiveSupport::TestCase
 
   test "can get form object" do
     assert_equal @item, @decorator.form_object
+  end
+
+  test "#breadcrumbs returns correct collection for new record" do
+    @item.stubs(id: nil)
+
+    expected = [
+      ['t.titles.territories', '/territories'],
+      ['t.actions.new'],
+    ]
+
+    actual = @decorator.breadcrumbs
+
+    assert_equal expected, actual
+  end
+
+  test "#breadcrumbs returns correct collection for new record" do
+    @item.stubs(id: true)
+
+    expected = [
+      ['t.titles.territories', '/territories'],
+      ['theName'],
+    ]
+
+    actual = @decorator.breadcrumbs
+
+    assert_equal expected, actual
   end
 end

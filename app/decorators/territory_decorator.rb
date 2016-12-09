@@ -12,4 +12,19 @@ class TerritoryDecorator < ActiveRecordModelDecorator
   def form_object
     item
   end
+
+  def breadcrumbs
+    [
+      [t('titles.territories'), index_url],
+      [to_s],
+    ]
+  end
+
+  def to_s
+    if item.id
+      return name
+    end
+
+    t('actions.new')
+  end
 end

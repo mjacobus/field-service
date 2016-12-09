@@ -10,6 +10,9 @@
   <%= @territory_decorator.description %>
 </p>
 
-<%= link_to 'Territories', @territory_decorator.householders_url %> |
-<%= link_to 'Edit', @territory_decorator.edit_url %> |
-<%= link_to 'Back', @territory_decorator.index_url %>
+
+<%= button_group(
+  @territory_decorator.householders_button,
+  @territory_decorator.edit_button,
+  @territory_decorator.cancel_button
+) %>

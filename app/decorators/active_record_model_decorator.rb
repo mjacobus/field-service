@@ -39,6 +39,10 @@ class ActiveRecordModelDecorator < BaseDecorator
     link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button alert'
   end
 
+  def cancel_button
+    link_to 'Cancel', url, class: 'button alert'
+  end
+
   protected
 
   attr_reader :item

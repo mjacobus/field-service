@@ -25,5 +25,7 @@
   <%= @householder_decorator.show %>
 </p>
 
-<%= link_to 'Edit', @householder_decorator.edit_url %> |
-<%= link_to 'Back', @householder_decorator.index_url %>
+<%= button_group(
+  @householder_decorator.edit_button,
+  @householder_decorator.cancel_button
+) %>

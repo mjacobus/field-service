@@ -27,6 +27,18 @@ class ActiveRecordModelDecorator < BaseDecorator
     item
   end
 
+  def show_button(*args)
+    link_to 'Show', url, class: 'button secondary'
+  end
+
+  def edit_button(*args)
+    link_to 'Edit', edit_url, class: 'button success'
+  end
+
+  def destroy_button(*args)
+    link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button alert'
+  end
+
   protected
 
   attr_reader :item

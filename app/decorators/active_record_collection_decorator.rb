@@ -21,6 +21,10 @@ class ActiveRecordCollectionDecorator < BaseDecorator
     end
   end
 
+  def new_button
+    link_to 'New', new_url, class: 'button'
+  end
+
   protected
 
   def create_item_decorator(item)

@@ -4,9 +4,10 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
-      <th class="action" colspan="4">
-        <%= link_to 'New Territory', @territories_decorator.new_url %>
+      <th class="action" colspan="">
+        <div class="small button-group">
+          <%= @territories_decorator.new_button %>
+        </div>
       </th>
     </tr>
   </thead>
@@ -15,11 +16,14 @@
     <% @territories_decorator.each do |territory| %>
       <tr>
         <td><%= territory.name %></td>
-        <td><%= territory.description %></td>
-        <td><%= link_to 'Householders', territory.householders_url %></td>
-        <td><%= link_to 'Show', territory.url %></td>
-        <td><%= link_to 'Edit', territory.edit_url %></td>
-        <td><%= link_to 'Destroy', territory.url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="action">
+          <div class="small button-group">
+            <%= territory.householders_button %>
+            <%= territory.show_button %>
+            <%= territory.edit_button %>
+            <%= territory.destroy_button %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>

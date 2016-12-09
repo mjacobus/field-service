@@ -11,8 +11,10 @@
       <th>Street name</th>
       <th>House number</th>
       <th>Name</th>
-      <th class="action" colspan="3">
-        <%= link_to 'New Householder', @householders_decorator.new_url %>
+      <th class="action" colspan="">
+        <div class="small button-group">
+          <%= @householders_decorator.new_button %>
+        </div>
       </th>
     </tr>
   </thead>
@@ -23,9 +25,13 @@
         <td><%= householder.street_name %></td>
         <td><%= householder.house_number %></td>
         <td><%= householder.name %></td>
-        <td class="action"><%= link_to 'Show', householder.url %></td>
-        <td class="action"><%= link_to 'Edit', householder.edit_url %></td>
-        <td class="action"><%= link_to 'Destroy', householder.url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="action">
+          <div class="small button-group">
+            <%= householder.show_button %>
+            <%= householder.edit_button %>
+            <%= householder.destroy_button %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>

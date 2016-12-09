@@ -9,6 +9,10 @@ class TerritoryDecorator < ActiveRecordModelDecorator
     url + "/householders"
   end
 
+  def householders_button
+    link_to 'Householders', householders_url, class: 'button warning'
+  end
+
   def form_object
     item
   end

@@ -22,7 +22,9 @@ class ActiveRecordCollectionDecorator < BaseDecorator
   end
 
   def new_button
-    link_to 'New', new_url, class: 'button'
+    link_to new_url, class: "button" do
+      content_tag(:i, nil, class: "fi-plus")
+    end
   end
 
   protected

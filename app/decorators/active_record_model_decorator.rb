@@ -28,19 +28,28 @@ class ActiveRecordModelDecorator < BaseDecorator
   end
 
   def show_button(*args)
-    link_to 'Show', url, class: 'button secondary'
+    button_link_with_icon url, :eye, :secondary
   end
 
   def edit_button(*args)
-    link_to 'Edit', edit_url, class: 'button success'
+    button_link_with_icon edit_url, :pencil, :success
   end
 
   def destroy_button(*args)
-    link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button alert'
+    link_to url, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button alert' do
+      content_tag(:i, nil, class: "fi-x")
+    end
   end
 
   def cancel_button
-    link_to 'Cancel', url, class: 'button alert'
+    button_link_with_icon index_url, 'arrow-left', :alert
+  end
+
+  # http://zurb.com/playground/foundation-icon-fonts-3
+  def button_link_with_icon(url, icon, button_type = nil)
+    link_to url, class: "button #{button_type}" do
+      content_tag(:i, nil, class: "fi-#{icon}")
+    end
   end
 
   protected

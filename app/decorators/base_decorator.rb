@@ -12,8 +12,12 @@ class BaseDecorator
     view_helpers.t(*args)
   end
 
-  def link_to(*args)
-    view_helpers.link_to(*args)
+  def link_to(*args, &block)
+    view_helpers.link_to(*args, &block)
+  end
+
+  def content_tag(*args, &block)
+    view_helpers.content_tag(*args, &block)
   end
 
   attr_accessor :view_helpers

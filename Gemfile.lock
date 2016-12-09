@@ -81,6 +81,9 @@ GEM
     faker (1.6.6)
       i18n (~> 0.5)
     ffi (1.9.14)
+    foundation-icons-sass-rails (3.0.0)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     foundation-rails (6.2.4.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
@@ -233,6 +236,7 @@ DEPENDENCIES
   database_cleaner (~> 1.5)
   dotenv-rails
   faker
+  foundation-icons-sass-rails
   foundation-rails
   jbuilder (~> 2.5)
   jquery-rails

@@ -12,9 +12,7 @@
       <th>House number</th>
       <th>Name</th>
       <th class="action" colspan="">
-        <div class="small button-group">
-          <%= @householders_decorator.new_button %>
-        </div>
+        <%= small_button_group(@householders_decorator.new_button) %>
       </th>
     </tr>
   </thead>
@@ -26,11 +24,11 @@
         <td><%= householder.house_number %></td>
         <td><%= householder.name %></td>
         <td class="action">
-          <div class="small button-group">
-            <%= householder.show_button %>
-            <%= householder.edit_button %>
-            <%= householder.destroy_button %>
-          </div>
+          <%= small_button_group(
+            householder.show_button,
+            householder.edit_button,
+            householder.destroy_button
+          ) %>
         </td>
       </tr>
     <% end %>

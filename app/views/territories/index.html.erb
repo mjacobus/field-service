@@ -5,9 +5,7 @@
     <tr>
       <th>Name</th>
       <th class="action" colspan="">
-        <div class="small button-group">
-          <%= @territories_decorator.new_button %>
-        </div>
+        <%= small_button_group(@territories_decorator.new_button) %>
       </th>
     </tr>
   </thead>
@@ -17,12 +15,13 @@
       <tr>
         <td><%= territory.name %></td>
         <td class="action">
-          <div class="small button-group">
-            <%= territory.householders_button %>
-            <%= territory.show_button %>
-            <%= territory.edit_button %>
-            <%= territory.destroy_button %>
-          </div>
+          <%= small_button_group(
+              territory.householders_button,
+              territory.show_button,
+              territory.edit_button,
+              territory.destroy_button
+            )
+          %>
         </td>
       </tr>
     <% end %>

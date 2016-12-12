@@ -1,6 +1,6 @@
 <% breadcrumbs_for @territory_decorator %>
 
-<%= render 'form', territory: @territory_decorator.form_object %>
+<%= render 'form', territory: @territory_decorator.form_object, territory_decorator: @territory_decorator %>
 
 <%= button_group(
   @territory_decorator.show_button,

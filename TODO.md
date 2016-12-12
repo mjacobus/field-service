@@ -4,7 +4,6 @@ TODO
 - Translations
 - Button to disable householder, with confirmation
 - Better error messages
-- Better buttons
 
 ## Done
 
@@ -13,3 +12,4 @@ TODO
 - Make Breadcrumbs html safe
 - Better flash messages
 - Default householder show to true
+- Better buttons

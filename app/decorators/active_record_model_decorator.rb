@@ -45,6 +45,12 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
     button_link_with_icon index_url, 'arrow-left', :alert
   end
 
+  def save_button
+    content_tag :button, class: 'button large success', title: t('save', default: 'Save') do
+      content_tag(:i, nil, class: 'fi-save')
+    end
+  end
+
   protected
 
   attr_reader :item

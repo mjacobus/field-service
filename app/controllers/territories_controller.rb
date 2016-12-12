@@ -41,10 +41,16 @@ class TerritoriesController < AuthenticatedController
 
   def destroy
     territory = find_territory
-    territory.destroy
+
+    begin
+      territory.destroy
+      notice = { notice: 'Territory was successfully destroyed.' }
+    rescue
+      notice = { alert:  'cannot delete territory'}
+    end
 
     @territory_decorator = create_decorator(TerritoryDecorator, territory)
-    redirect_to @territory_decorator.index_url, notice: 'Territory was successfully destroyed.'
+    redirect_to @territory_decorator.index_url, notice
   end
 
   private

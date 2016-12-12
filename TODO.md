@@ -3,12 +3,12 @@ TODO
 
 - Translations
 - Button to disable householder, with confirmation
-- Better buttons
 - Better error messages
-- Prevent territories with householders to be deleted (with nice error page)
+- Better buttons
 
 ## Done
 
+- Prevent territories with householders to be deleted (with nice error page)
 - Breadcrumbs
 - Make Breadcrumbs html safe
 - Better flash messages

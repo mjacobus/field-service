@@ -80,4 +80,13 @@ class TerritoriesControllerTest < ControllerTestCase
 
     assert_redirected_to @index_url
   end
+
+  test "displays error when cannot destroy a territory" do
+    Householder.make!(territory: @territory)
+
+    delete @resource_url
+
+    assert_equal 'cannot delete territory', flash[:alert]
+    assert_redirected_to @index_url
+  end
 end

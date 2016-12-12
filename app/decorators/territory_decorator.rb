@@ -10,7 +10,7 @@ class TerritoryDecorator < ActiveRecordModelDecorator
   end
 
   def householders_button
-    link_to 'Householders', householders_url, class: 'button warning'
+    button_link_with_icon householders_url, 'home', 'warning', title: t('householders', default: 'householders')
   end
 
   def form_object

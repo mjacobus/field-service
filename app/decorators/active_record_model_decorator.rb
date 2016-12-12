@@ -1,4 +1,4 @@
-class ActiveRecordModelDecorator < BaseDecorator
+class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
   def initialize(item)
     @item = item
   end
@@ -43,13 +43,6 @@ class ActiveRecordModelDecorator < BaseDecorator
 
   def cancel_button
     button_link_with_icon index_url, 'arrow-left', :alert
-  end
-
-  # http://zurb.com/playground/foundation-icon-fonts-3
-  def button_link_with_icon(url, icon, button_type = nil)
-    link_to url, class: "button #{button_type}" do
-      content_tag(:i, nil, class: "fi-#{icon}")
-    end
   end
 
   protected

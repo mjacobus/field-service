@@ -1,4 +1,4 @@
-class ActiveRecordCollectionDecorator < BaseDecorator
+class ActiveRecordCollectionDecorator < ActiveRecordBaseDecorator
   def initialize(collection)
     @collection = collection
   end

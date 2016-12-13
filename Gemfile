@@ -7,6 +7,7 @@ gem 'foundation-rails'
 gem 'pg'
 gem 'simple_form'
 gem 'unicorn'
+gem 'capistrano'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'

@@ -3,7 +3,6 @@ TODO
 
 - Translations
 - Button to disable householder, with confirmation
-- Better error messages
 
 ## Done
 
@@ -13,3 +12,4 @@ TODO
 - Better flash messages
 - Default householder show to true
 - Better buttons
+- Better error messages

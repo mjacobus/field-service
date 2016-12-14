@@ -2,13 +2,13 @@
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text">Field Service</li>
-      <li><%= link_to 'Territories', territories_path %></li>
+      <li><%= link_to t('titles.territories'), territories_path %></li>
     </ul>
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li><input type="search" disabled="disabled" placeholder="Search"></li>
-      <li><button type="button" class="button">Search</button></li>
+      <li><input type="search" disabled="disabled" placeholder="<%= t('titles.search') %>"></li>
+      <li><button type="button" class="button"><%= t('titles.search') %></button></li>
     </ul>
   </div>
 </div>

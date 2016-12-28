@@ -16,3 +16,9 @@ pt-BR:
     territories: Territórios
     householders: Moradores
     search: Pesquisar
+
+  territories:
+    created: Território criado com sucesso!
+    updated: Território atualizado com sucesso!
+    destroyed: Território removido com sucesso!
+    cannot_destroy: Território não pode ser removido. Certifique-se de que ele não possua moradores.

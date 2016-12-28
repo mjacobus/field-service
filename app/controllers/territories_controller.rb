@@ -20,7 +20,7 @@ class TerritoriesController < AuthenticatedController
     territory = Territory.new(territory_params)
 
     if territory.save
-      redirect_to territory, notice: 'Territory was successfully created.'
+      redirect_to territory, notice: t('territories.created')
     else
       @territory_decorator = create_decorator(TerritoryDecorator, territory)
       render :new
@@ -32,7 +32,7 @@ class TerritoriesController < AuthenticatedController
     @territory_decorator = create_decorator(TerritoryDecorator, territory)
 
     if territory.update(territory_params)
-      redirect_to territory, notice: 'Territory was successfully updated.'
+      redirect_to territory, notice: t('territories.updated')
     else
       territory_decorator = create_decorator(TerritoryDecorator, territory)
       render :edit
@@ -44,9 +44,9 @@ class TerritoriesController < AuthenticatedController
 
     begin
       territory.destroy
-      notice = { notice: 'Territory was successfully destroyed.' }
+      notice = { notice: t('territories.destroyed') }
     rescue
-      notice = { alert:  'cannot delete territory'}
+      notice = { alert:  t('territories.cannot_destroy') }
     end
 
     @territory_decorator = create_decorator(TerritoryDecorator, territory)

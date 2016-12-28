@@ -12,6 +12,10 @@ pt-BR:
         house_number: Número da casa
         street_name: Nome da rua
         show: Exibir
+
+  'yes': 'Sim'
+  'no': 'Não'
+
   titles:
     territories: Territórios
     householders: Moradores

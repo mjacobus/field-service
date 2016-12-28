@@ -20,5 +20,10 @@ class BaseDecorator
     view_helpers.content_tag(*args, &block)
   end
 
+  def boolean_to_human(boolean)
+    yes_or_no = boolean ? 'yes' : 'no'
+    t(yes_or_no)
+  end
+
   attr_accessor :view_helpers
 end

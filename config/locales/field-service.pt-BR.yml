@@ -17,6 +17,9 @@ pt-BR:
   'yes': 'Sim'
   'no': 'Não'
 
+  messages:
+    confirm_destroy: Tem certeza que deseja excuir este registro?
+
   titles:
     field_service: Serviço de Campo
     territories: Territórios

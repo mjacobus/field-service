@@ -36,7 +36,7 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
   end
 
   def destroy_button(*args)
-    link_to url, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button alert' do
+    link_to url, method: :delete, data: { confirm: t('messages.confirm_destroy') }, class: 'button alert' do
       content_tag(:i, nil, class: "fi-x")
     end
   end

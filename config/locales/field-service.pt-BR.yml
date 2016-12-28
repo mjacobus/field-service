@@ -22,3 +22,8 @@ pt-BR:
     updated: Território atualizado com sucesso!
     destroyed: Território removido com sucesso!
     cannot_destroy: Território não pode ser removido. Certifique-se de que ele não possua moradores.
+
+  householders:
+    created: Morador criado com sucesso!
+    updated: Morador atualizado com sucesso!
+    destroyed: Morador removido com sucesso!

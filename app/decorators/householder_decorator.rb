@@ -36,4 +36,8 @@ class HouseholderDecorator < ActiveRecordModelDecorator
 
     t('actions.new')
   end
+
+  def show?
+    boolean_to_human(item.show?)
+  end
 end

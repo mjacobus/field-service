@@ -92,4 +92,14 @@ class HouseholderDecoratorTest < TestCase
 
     assert_equal expected, actual
   end
+
+  test "#show?" do
+    @item.stubs(show?: true)
+
+    assert_equal 't.yes', @decorator.show?
+
+    @item.stubs(show?: false)
+
+    assert_equal 't.no', @decorator.show?
+  end
 end

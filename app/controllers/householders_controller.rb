@@ -24,7 +24,7 @@ class HouseholdersController < AuthenticatedController
     @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
     if householder.save
-      redirect_to @householder_decorator.url, notice: 'Householder was successfully created.'
+      redirect_to @householder_decorator.url, notice: t('householders.created')
     else
       render :new
     end
@@ -35,7 +35,7 @@ class HouseholdersController < AuthenticatedController
     @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
     if householder.update(householder_params)
-      redirect_to @householder_decorator.url, notice: 'Householder was successfully updated.'
+      redirect_to @householder_decorator.url, notice: t('householders.updated')
     else
       render :edit
     end
@@ -46,7 +46,7 @@ class HouseholdersController < AuthenticatedController
     householder.destroy
     @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
-    redirect_to @householder_decorator.index_url, notice: 'Householder was successfully destroyed.'
+    redirect_to @householder_decorator.index_url, notice: t('householders.destroyed')
   end
 
   private

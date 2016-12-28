@@ -49,6 +49,7 @@ class HouseholdersControllerTest < ControllerTestCase
     end
 
     assert_redirected_to resource_url(Householder.last)
+    assert_equal t('householders.created'), flash[:notice]
   end
 
   test "re-render form when create fails" do
@@ -73,6 +74,7 @@ class HouseholdersControllerTest < ControllerTestCase
     patch @resource_url, params: { territory_id: @territory.id, householder: @householder_params }
 
     assert_redirected_to @resource_url
+    assert_equal t('householders.updated'), flash[:notice]
   end
 
   test "re-render form when update fails" do
@@ -87,5 +89,6 @@ class HouseholdersControllerTest < ControllerTestCase
     end
 
     assert_redirected_to @decorator.index_url
+    assert_equal t('householders.destroyed'), flash[:notice]
   end
 end

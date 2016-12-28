@@ -23,6 +23,10 @@ class ActiveSupport::TestCase
     DatabaseCleaner.clean
   end
 
+  def t(*args)
+    I18n.t(*args)
+  end
+
   def assert_delegates(method, delegator, delegated)
     message = "does not delegate #{method} to #{delegated}"
 

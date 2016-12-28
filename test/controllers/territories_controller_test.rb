@@ -41,6 +41,7 @@ class TerritoriesControllerTest < ControllerTestCase
     end
 
     assert_redirected_to resource_url(Territory.last)
+    assert_equal t('territories.created'), flash[:notice]
   end
 
   test "re-renders form on create error" do
@@ -65,6 +66,7 @@ class TerritoriesControllerTest < ControllerTestCase
     patch @resource_url, params: { territory: @territory_params }
 
     assert_redirected_to @resource_url
+    assert_equal t('territories.updated'), flash[:notice]
   end
 
   test "re-renders form on update error" do
@@ -79,6 +81,7 @@ class TerritoriesControllerTest < ControllerTestCase
     end
 
     assert_redirected_to @index_url
+    assert_equal t('territories.destroyed'), flash[:notice]
   end
 
   test "displays error when cannot destroy a territory" do
@@ -86,7 +89,7 @@ class TerritoriesControllerTest < ControllerTestCase
 
     delete @resource_url
 
-    assert_equal 'cannot delete territory', flash[:alert]
+    assert_equal t('territories.cannot_destroy'), flash[:alert]
     assert_redirected_to @index_url
   end
 end

@@ -3,6 +3,7 @@ TODO
 
 - Translations
 - Button to disable householder, with confirmation
+- Translate delete confirmations
 
 ## Done
 

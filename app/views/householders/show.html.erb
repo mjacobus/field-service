@@ -1,24 +1,16 @@
 <% breadcrumbs_for @householder_decorator %>
 
-<p>
-  <strong><%= @householder_decorator.title_for(:territory) %>:</strong>
-  <%= @householder_decorator.territory %>
-</p>
-
-<p>
-  <strong><%= @householder_decorator.title_for(:street_name) %>:</strong>
-  <%= @householder_decorator.street_name %>
-</p>
-
-<p>
-  <strong><%= @householder_decorator.title_for(:house_number) %>:</strong>
-  <%= @householder_decorator.house_number %>
-</p>
-
-<p>
-  <strong><%= @householder_decorator.title_for(:name) %>:</strong>
-  <%= @householder_decorator.name %>
-</p>
+<div class="<%= @householder_decorator.html_classes %> media-object">
+  <div class="media-object-section">
+    <div class="thumbnail">
+      <i class="fi-torso large"></i>
+    </div>
+  </div>
+  <div class="media-object-section">
+    <h4> <%= @householder_decorator.name %></h4>
+    <p> <%= @householder_decorator.address %></p>
+  </div>
+</div>
 
 <p>
   <strong><%= @householder_decorator.title_for(:show) %>:</strong>

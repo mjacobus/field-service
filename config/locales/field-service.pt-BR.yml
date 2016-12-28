@@ -8,6 +8,7 @@ pt-BR:
         name: Nome
         description: Descrição
       householder:
+        territory: Território
         name: Nome
         house_number: Número da casa
         street_name: Nome da rua
@@ -17,6 +18,7 @@ pt-BR:
   'no': 'Não'
 
   titles:
+    field_service: Serviço de Campo
     territories: Territórios
     householders: Moradores
     search: Pesquisar

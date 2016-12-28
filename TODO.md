@@ -1,9 +1,7 @@
 TODO
 ----
 
-- Translations
 - Button to disable householder, with confirmation
-- Translate delete confirmations
 
 ## Done
 
@@ -14,3 +12,5 @@ TODO
 - Default householder show to true
 - Better buttons
 - Better error messages
+- Translations
+- Translate delete confirmations

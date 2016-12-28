@@ -31,10 +31,14 @@ class HouseholderDecorator < ActiveRecordModelDecorator
 
   def to_s
     if id
-      return "#{street_name} #{house_number} (#{name})"
+      return "#{address} (#{name})"
     end
 
     t('actions.new')
+  end
+
+  def address
+    "#{street_name} #{house_number}"
   end
 
   def show?

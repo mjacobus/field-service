@@ -1,12 +1,12 @@
 <% breadcrumbs_for @territory_decorator %>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= @territory_decorator.title_for(:name) %>:</strong>
   <%= @territory_decorator.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= @territory_decorator.title_for(:description) %>:</strong>
   <%= @territory_decorator.description %>
 </p>
 

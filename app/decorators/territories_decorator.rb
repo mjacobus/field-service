@@ -12,4 +12,8 @@ class TerritoriesDecorator < ActiveRecordCollectionDecorator
       [t('titles.territories')]
     ]
   end
+
+  def title_for(attribute_name)
+    TerritoryDecorator.new(Territory.new).title_for(attribute_name)
+  end
 end

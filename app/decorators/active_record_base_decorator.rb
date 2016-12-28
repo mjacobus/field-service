@@ -1,4 +1,7 @@
 class ActiveRecordBaseDecorator < BaseDecorator
+  def title_for(attribute_name)
+    item.class.human_attribute_name(attribute_name)
+  end
 
   protected
 

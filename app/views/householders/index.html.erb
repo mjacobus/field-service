@@ -9,9 +9,9 @@
 <table>
   <thead>
     <tr>
-      <th>Street name</th>
-      <th>House number</th>
-      <th>Name</th>
+      <th> <%= @householders_decorator.title_for(:street_name) %></th>
+      <th><%= @householders_decorator.title_for(:house_number) %></th>
+      <th><%= @householders_decorator.title_for(:name) %></th>
       <th class="action" colspan="">
         <%= small_button_group(@householders_decorator.new_button) %>
       </th>

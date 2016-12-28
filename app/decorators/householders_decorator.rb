@@ -27,4 +27,8 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
       [t('titles.householders')],
     ]
   end
+
+  def title_for(attribute_name)
+    HouseholderDecorator.new(Householder.new).title_for(attribute_name)
+  end
 end

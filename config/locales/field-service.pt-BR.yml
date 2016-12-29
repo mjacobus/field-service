@@ -18,6 +18,7 @@ pt-BR:
   'no': 'Não'
 
   links:
+    logout: Sair
     edit: Editar
     destroy: Excluir
     show: Visualizar

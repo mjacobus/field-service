@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails'
 gem 'simple_form'
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'

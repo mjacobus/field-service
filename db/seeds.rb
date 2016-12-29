@@ -6,14 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require_relative "../test/blueprints.rb"
+if User.count == 0
+  User.create(email: 'admin@example.com', password: 'admin', admin: true)
+end
 
-User.create(email: 'admin@example.com', password: 'admin', admin: true)
+if ENV['RAILS_ENV'] == 'development'
+  require_relative "../test/blueprints.rb"
 
-1.upto(5) do |number|
-  territory = Householder.make!.territory
+  1.upto(5) do |number|
+    territory = Householder.make!.territory
 
-  1.upto(30) do
-    Householder.make! territory: territory
+    1.upto(30) do
+      Householder.make! territory: territory
+    end
   end
 end
+

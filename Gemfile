@@ -5,6 +5,7 @@ gem 'simple_form'
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 gem 'clearance', '~>1.14.1'
+gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'

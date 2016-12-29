@@ -128,6 +128,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    pg (0.18.4)
     poltergeist (1.10.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -247,6 +248,7 @@ DEPENDENCIES
   minitest-spec-rails
   mocha
   mysql2 (>= 0.3.18, < 0.5)
+  pg
   poltergeist
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)

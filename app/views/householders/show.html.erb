@@ -3,21 +3,20 @@
 <div class="<%= @householder_decorator.html_classes %> media-object">
   <div class="media-object-section">
     <div class="thumbnail">
-      <i class="fi-torso large"></i>
+      <%= image_tag('avatar.png') %>
     </div>
+
+    <%= button_group(
+      @householder_decorator.edit_button,
+      @householder_decorator.cancel_button
+    ) %>
   </div>
   <div class="media-object-section">
     <h4> <%= @householder_decorator.name %></h4>
     <p> <%= @householder_decorator.address %></p>
+    <p>
+      <strong><%= @householder_decorator.title_for(:show) %>:</strong>
+      <%= @householder_decorator.show? %>
+    </p>
   </div>
 </div>
-
-<p>
-  <strong><%= @householder_decorator.title_for(:show) %>:</strong>
-  <%= @householder_decorator.show? %>
-</p>
-
-<%= button_group(
-  @householder_decorator.edit_button,
-  @householder_decorator.cancel_button
-) %>

@@ -1,18 +1,22 @@
 <% breadcrumbs_for @territory_decorator %>
 
-<p>
-  <strong><%= @territory_decorator.title_for(:name) %>:</strong>
-  <%= @territory_decorator.name %>
-</p>
+<div class="media-object">
+  <div class="media-object-section">
+    <div class="thumbnail">
+      <%= image_tag('territory2.png') %>
+    </div>
 
-<p>
-  <strong><%= @territory_decorator.title_for(:description) %>:</strong>
-  <%= @territory_decorator.description %>
-</p>
+    <%= button_group(
+      @territory_decorator.householders_button,
+      @territory_decorator.edit_button,
+      @territory_decorator.cancel_button
+    ) %>
+  </div>
+  <div class="media-object-section">
+    <h4> <%= @territory_decorator.name %></h4>
+    <p> <%= @territory_decorator.description %> </p>
+  </div>
 
-
-<%= button_group(
-  @territory_decorator.householders_button,
-  @territory_decorator.edit_button,
-  @territory_decorator.cancel_button
-) %>
+  <div class="media-object-section">
+  </div>
+</div>

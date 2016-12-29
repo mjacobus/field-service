@@ -17,6 +17,13 @@ pt-BR:
   'yes': 'Sim'
   'no': 'Não'
 
+  links:
+    edit: Editar
+    destroy: Excluir
+    show: Visualizar
+    back: Voltar
+    cancel: Cancelar
+
   messages:
     confirm_destroy: Tem certeza que deseja excuir este registro?
 

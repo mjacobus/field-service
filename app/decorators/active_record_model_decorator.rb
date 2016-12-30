@@ -27,15 +27,15 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
     item
   end
 
-  def show_button(*args)
+  def show_button
     button_link_with_icon url, :eye, :secondary
   end
 
-  def edit_button(*args)
+  def edit_button
     button_link_with_icon edit_url, :pencil, :success
   end
 
-  def destroy_button(*args)
+  def destroy_button
     link_to url, method: :delete, data: { confirm: t('messages.confirm_destroy') }, class: 'button alert' do
       content_tag(:i, nil, class: "fi-x")
     end

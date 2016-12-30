@@ -34,7 +34,6 @@ class TerritoriesController < AuthenticatedController
     if territory.update(territory_params)
       redirect_to territory, notice: t('territories.updated')
     else
-      territory_decorator = create_decorator(TerritoryDecorator, territory)
       render :edit
     end
   end

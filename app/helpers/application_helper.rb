@@ -12,14 +12,14 @@ module ApplicationHelper
   end
 
   def button_group(*buttons)
-    render  partial: 'button_group', locals: {
+    render partial: 'button_group', locals: {
       buttons: buttons,
       type: ''
     }
   end
 
   def small_button_group(*buttons)
-    render  partial: 'button_group', locals: {
+    render partial: 'button_group', locals: {
       buttons: buttons,
       type: 'small'
     }

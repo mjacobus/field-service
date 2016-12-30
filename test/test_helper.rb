@@ -2,6 +2,12 @@ ENV['RAILS_ENV'] ||= 'test'
 
 if ENV["COVERAGE"]
   require "simplecov"
+  require "coveralls"
+
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ])
 
   SimpleCov.start 'rails' do
     add_filter 'app/channels/application_cable/channel.rb'

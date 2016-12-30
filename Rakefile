@@ -10,4 +10,6 @@ namespace :test do
     ENV["COVERAGE"] = "true"
     Rake::Task["test"].invoke
   end
+
+  task :coveralls => ['test:coverage']
 end

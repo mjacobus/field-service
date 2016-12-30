@@ -51,6 +51,7 @@ group :development do
 end
 
 group :test do
+  gem 'coveralls', require: false
   gem 'rails-controller-testing'
   gem 'simplecov', require: false
   gem 'database_cleaner', '~>1.5'

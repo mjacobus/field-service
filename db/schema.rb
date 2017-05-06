@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20161208035733) do
 
-  create_table "householders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "householders", force: :cascade do |t|
     t.integer  "territory_id"
     t.string   "street_name"
     t.string   "house_number"
@@ -20,18 +20,18 @@ ActiveRecord::Schema.define(version: 20161208035733) do
     t.boolean  "show"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["territory_id"], name: "index_householders_on_territory_id", using: :btree
+    t.index ["territory_id"], name: "index_householders_on_territory_id"
   end
 
-  create_table "territories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "territories", force: :cascade do |t|
     t.string   "name"
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.index ["name"], name: "index_territories_on_name", unique: true, using: :btree
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["name"], name: "index_territories_on_name", unique: true
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.boolean  "admin"
@@ -40,9 +40,8 @@ ActiveRecord::Schema.define(version: 20161208035733) do
     t.string   "encrypted_password", limit: 128
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
-  add_foreign_key "householders", "territories"
 end

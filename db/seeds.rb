@@ -10,7 +10,7 @@ if User.count == 0
   User.create(email: 'admin@example.com', password: 'admin', admin: true)
 end
 
-if ENV['RAILS_ENV'] == 'development'
+if ENV['INCLUDE_DEV_SEED'] == 'yes'
   require_relative "../test/blueprints.rb"
 
   1.upto(5) do |number|

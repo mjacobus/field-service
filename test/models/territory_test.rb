@@ -36,4 +36,23 @@ class TerritoryTest < ActiveSupport::TestCase
   test "has many householders" do
     assert_respond_to valid_territory, :householders
   end
+
+  test '.remove deletes when no households' do
+    created = Territory.make!
+
+    deleted = Territory.remove(created)
+
+    assert_equal 0, Territory.count
+    assert_same created, deleted
+  end
+
+  test '. raises when there are houlseholders assigned to it' do
+    created = Householder.make!.territory
+
+    assert_raise(Territory::TerritoryError) do
+      Territory.remove(created)
+    end
+
+    assert_equal 1, Territory.count
+  end
 end

@@ -42,7 +42,7 @@ class TerritoriesController < AuthenticatedController
     territory = find_territory
 
     begin
-      territory.destroy
+      Territory.remove(territory)
       notice = { notice: t('territories.destroyed') }
     rescue
       notice = { alert:  t('territories.cannot_destroy') }

@@ -46,7 +46,7 @@ class TerritoryTest < ActiveSupport::TestCase
     assert_same created, deleted
   end
 
-  test '. raises when there are houlseholders assigned to it' do
+  test '.remove raises when there are houlseholders assigned to it' do
     created = Householder.make!.territory
 
     assert_raise(Territory::TerritoryError) do

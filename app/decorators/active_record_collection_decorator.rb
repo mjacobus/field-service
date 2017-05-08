@@ -15,15 +15,15 @@ class ActiveRecordCollectionDecorator < ActiveRecordBaseDecorator
     raise MethodNotImplemented
   end
 
-  def each(&block)
+  def each
     collection.each do |item|
-      block.call(create_item_decorator(item))
+      yield(create_item_decorator(item))
     end
   end
 
   def new_button
-    link_to new_url, class: "button" do
-      content_tag(:i, nil, class: "fi-plus")
+    link_to new_url, class: 'button' do
+      content_tag(:i, nil, class: 'fi-plus')
     end
   end
 

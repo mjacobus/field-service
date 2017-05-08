@@ -17,7 +17,7 @@ class HouseholdersControllerTest < ControllerTestCase
       house_number: @householder.house_number,
       name: @householder.name,
       show: @householder.show,
-      street_name: @householder.street_name,
+      street_name: @householder.street_name
     }
     sign_in_as(current_user)
   end
@@ -26,25 +26,25 @@ class HouseholdersControllerTest < ControllerTestCase
     HouseholderDecorator.new(resource).url
   end
 
-  test "is authenticated controller" do
+  test 'is authenticated controller' do
     assert subject.is_a?(AuthenticatedController)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get @decorator.index_url
 
     assert_response :success
     assert_equal 1, assigns(:householders_decorator).send(:collection).count
   end
 
-  test "should get new" do
+  test 'should get new' do
     get @decorator.new_url
 
     assert_response :success
   end
 
-  test "should create householder" do
-    assert_difference ->{ @territory.householders.count }, 1 do
+  test 'should create householder' do
+    assert_difference -> { @territory.householders.count }, 1 do
       post @index_url, params: { territory_id: @territory.id, householder: @householder_params }
     end
 
@@ -52,39 +52,39 @@ class HouseholdersControllerTest < ControllerTestCase
     assert_equal t('householders.created'), flash[:notice]
   end
 
-  test "re-render form when create fails" do
+  test 're-render form when create fails' do
     post @index_url, params: { territory_id: @territory.id, householder: @householder_params.merge(name: '') }
 
     assert_template :new
   end
 
-  test "should show householder" do
+  test 'should show householder' do
     get @resource_url
 
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get @edit_url
 
     assert_response :success
   end
 
-  test "should update householder" do
+  test 'should update householder' do
     patch @resource_url, params: { territory_id: @territory.id, householder: @householder_params }
 
     assert_redirected_to @resource_url
     assert_equal t('householders.updated'), flash[:notice]
   end
 
-  test "re-render form when update fails" do
+  test 're-render form when update fails' do
     patch @resource_url, params: { territory_id: @territory.id, householder: @householder_params.merge(name: '') }
 
     assert_template :edit
   end
 
-  test "should destroy householder" do
-    assert_difference ->{ @territory.householders.count }, -1 do
+  test 'should destroy householder' do
+    assert_difference -> { @territory.householders.count }, -1 do
       delete @decorator.url
     end
 

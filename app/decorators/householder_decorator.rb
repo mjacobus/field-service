@@ -1,13 +1,13 @@
 class HouseholderDecorator < ActiveRecordModelDecorator
   delegate :territory,
-    :territory_id,
-    :name,
-    :uuid,
-    :house_number,
-    :show,
-    :street_name,
-    :id,
-    to: :item
+           :territory_id,
+           :name,
+           :uuid,
+           :house_number,
+           :show,
+           :street_name,
+           :id,
+           to: :item
 
   def index_url
     "/territories/#{territory_id}/householders"
@@ -26,14 +26,12 @@ class HouseholderDecorator < ActiveRecordModelDecorator
       [t('titles.territories'), '/territories'],
       [territory.name, territory_url],
       [t('titles.householders'), index_url],
-      [to_s],
+      [to_s]
     ]
   end
 
   def to_s
-    if id
-      return "#{address} (#{name})"
-    end
+    return "#{address} (#{name})" if id
 
     t('actions.new')
   end

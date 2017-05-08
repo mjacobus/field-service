@@ -14,7 +14,7 @@ class ActiveRecordBaseDecorator < BaseDecorator
       text = content_tag(:div, options[:text])
 
       content = content_tag(:span) do
-         content + text
+        content + text
       end
     end
 

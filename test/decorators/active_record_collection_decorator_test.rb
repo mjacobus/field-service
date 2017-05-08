@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class DummyItemDecoratorClass
   attr_accessor :view_helpers, :item
@@ -14,7 +14,6 @@ class DummyItemDecoratorClass
 end
 
 class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
-
   def setup
     klass = Class.new(ActiveRecordCollectionDecorator) do
       def index_url
@@ -31,19 +30,19 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
     @decorator ||= klass.new(@collection)
   end
 
-  test "extends BaseDecorator" do
+  test 'extends BaseDecorator' do
     assert @decorator.is_a?(BaseDecorator)
   end
 
-  test "can get index url" do
-    assert_equal "/resource_name", @decorator.index_url
+  test 'can get index url' do
+    assert_equal '/resource_name', @decorator.index_url
   end
 
-  test "can get new url" do
-    assert_equal "/resource_name/new", @decorator.new_url
+  test 'can get new url' do
+    assert_equal '/resource_name/new', @decorator.new_url
   end
 
-  test "index_url must be implemented" do
+  test 'index_url must be implemented' do
     subject = ActiveRecordCollectionDecorator.new([])
 
     assert_raises(BaseDecorator::MethodNotImplemented) do
@@ -51,7 +50,7 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
     end
   end
 
-  test "item_decorator_class must be implemented" do
+  test 'item_decorator_class must be implemented' do
     subject = ActiveRecordCollectionDecorator.new([])
 
     exception = assert_raises(BaseDecorator::MethodNotImplemented) do
@@ -59,7 +58,7 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
     end
   end
 
-  test "each yields item view" do
+  test 'each yields item view' do
     view_helpers = stub(:helpers)
 
     @decorator.with_view_helpers(view_helpers)

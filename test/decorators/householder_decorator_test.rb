@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class HouseholderDecoratorTest < TestCase
   def setup
@@ -15,53 +15,53 @@ class HouseholderDecoratorTest < TestCase
       street_name: 'theStreet',
       show: true,
       territory_id: ':tid',
-      description: 'theDescription',
+      description: 'theDescription'
     )
 
     @decorator = HouseholderDecorator.new(@item).with_view_helpers(fake_view_helpers)
   end
 
-  test "extends BaseDecorator" do
+  test 'extends BaseDecorator' do
     assert @decorator.is_a?(ActiveRecordModelDecorator)
   end
 
-  test "#edit_url returns correct url" do
+  test '#edit_url returns correct url' do
     assert_equal '/territories/:tid/householders/1/edit', @decorator.edit_url
   end
 
-  test "#url returns correct url" do
+  test '#url returns correct url' do
     assert_equal '/territories/:tid/householders/1', @decorator.url
   end
 
-  test "#index_url returns correct url" do
+  test '#index_url returns correct url' do
     assert_equal '/territories/:tid/householders', @decorator.index_url
   end
 
-  test "delegates name" do
+  test 'delegates name' do
     assert_delegates :name, @decorator, @item
   end
 
-  test "delegates name" do
+  test 'delegates name' do
     assert_delegates :uuid, @decorator, @item
   end
 
-  test "delegates house_number" do
+  test 'delegates house_number' do
     assert_delegates :house_number, @decorator, @item
   end
 
-  test "delegates street_name" do
+  test 'delegates street_name' do
     assert_delegates :street_name, @decorator, @item
   end
 
-  test "delegates show" do
+  test 'delegates show' do
     assert_delegates :show, @decorator, @item
   end
 
-  test "delegates territory" do
+  test 'delegates territory' do
     assert_delegates :territory, @decorator, @item
   end
 
-  test "#html_classes returns empty when active" do
+  test '#html_classes returns empty when active' do
     assert_equal '', @decorator.html_classes.to_s
   end
 
@@ -71,34 +71,34 @@ class HouseholderDecoratorTest < TestCase
     assert_equal 'disabled', @decorator.html_classes.to_s
   end
 
-  test "#breadcrumbs for existing record" do
+  test '#breadcrumbs for existing record' do
     actual = @decorator.breadcrumbs
 
     expected = [
-      ['t.titles.territories', "/territories"],
-      ['T1', "/territories/:tid"],
-      ['t.titles.householders', "/territories/:tid/householders"],
-      ['theStreet houseNumber (theName)'],
+      ['t.titles.territories', '/territories'],
+      ['T1', '/territories/:tid'],
+      ['t.titles.householders', '/territories/:tid/householders'],
+      ['theStreet houseNumber (theName)']
     ]
 
     assert_equal expected, actual
   end
 
-  test "#breadcrumbs for new record" do
+  test '#breadcrumbs for new record' do
     @decorator.stubs(id: nil)
     actual = @decorator.breadcrumbs
 
     expected = [
-      ['t.titles.territories', "/territories"],
-      ['T1', "/territories/:tid"],
-      ['t.titles.householders', "/territories/:tid/householders"],
-      ['t.actions.new'],
+      ['t.titles.territories', '/territories'],
+      ['T1', '/territories/:tid'],
+      ['t.titles.householders', '/territories/:tid/householders'],
+      ['t.actions.new']
     ]
 
     assert_equal expected, actual
   end
 
-  test "#show?" do
+  test '#show?' do
     @item.stubs(show?: true)
 
     assert_equal 't.yes', @decorator.show?

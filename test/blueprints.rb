@@ -12,12 +12,12 @@ Householder.blueprint do
   uuid { UniqueId.new }
   street_name { Faker::Address.street_name }
   house_number { sn }
-  show { (sn%2) != 0 }
+  show { sn%2 == 0 }
   territory
 end
 
 User.blueprint do
   name { "Householder name #{sn}" }
   email { "email#{sn}@email.com" }
-  password { "123456" }
+  password { '123456' }
 end

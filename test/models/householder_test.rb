@@ -5,32 +5,32 @@ class HouseholderTest < ActiveSupport::TestCase
     Householder.make
   end
 
-  test "valid record is considered valid" do
+  test 'valid record is considered valid' do
     assert valid_record.valid?
   end
 
-  test "validates presence of #street_name" do
+  test 'validates presence of #street_name' do
     record = valid_record
     record.street_name = nil
 
     assert !record.valid?
   end
 
-  test "validates presence of #name" do
+  test 'validates presence of #name' do
     record = valid_record
     record.name = nil
 
     assert !record.valid?
   end
 
-  test "validates presence of #uuid" do
+  test 'validates presence of #uuid' do
     record = valid_record
     record.uuid = nil
 
     assert !record.valid?
   end
 
-  test "validates uniqueness of #uuid" do
+  test 'validates uniqueness of #uuid' do
     record = Householder.make!
     record.uuid = UniqueId.new('Foo')
     record.save!
@@ -52,7 +52,7 @@ class HouseholderTest < ActiveSupport::TestCase
     assert_instance_of Householder, Householder.find_by_uuid(record.uuid)
   end
 
-  test "validates presence of #house_number" do
+  test 'validates presence of #house_number' do
     record = valid_record
     record.house_number = nil
 

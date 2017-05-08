@@ -16,7 +16,7 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
   end
 
   def index_url
-    raise "not implemented"
+    raise 'not implemented'
   end
 
   def form_url
@@ -37,7 +37,7 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
 
   def destroy_button
     link_to url, method: :delete, data: { confirm: t('messages.confirm_destroy') }, class: 'button alert' do
-      content_tag(:i, nil, class: "fi-x")
+      content_tag(:i, nil, class: 'fi-x')
     end
   end
 

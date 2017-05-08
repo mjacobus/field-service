@@ -5,28 +5,28 @@ class TerritoryTest < ActiveSupport::TestCase
     Territory.make
   end
 
-  test "valid is valid" do
+  test 'valid is valid' do
     assert valid_territory.valid?
   end
 
-  test "validates presence of name" do
+  test 'validates presence of name' do
     territory = valid_territory
     territory.name = nil
     assert !territory.valid?
   end
 
-  test "validates uniqueness of name" do
+  test 'validates uniqueness of name' do
     first = valid_territory
     first.name = 'theName'
     first.save!
 
     second = valid_territory
-    second.name = 'thename';
+    second.name = 'thename'
 
     assert !second.valid?
   end
 
-  test "validates uniqueness of uuid" do
+  test 'validates uniqueness of uuid' do
     first = valid_territory
     first.uuid = UniqueId.new('Id')
     first.save!
@@ -48,21 +48,21 @@ class TerritoryTest < ActiveSupport::TestCase
     assert_instance_of Territory, Territory.find_by_uuid(record.uuid)
   end
 
-  test "validates presence of #uuid" do
+  test 'validates presence of #uuid' do
     record = Territory.make
     record.uuid = nil
 
     assert !record.valid?
   end
 
-  test "#to_s returns name" do
+  test '#to_s returns name' do
     record = valid_territory
-    record.name = 'thename';
+    record.name = 'thename'
 
-    assert_equal 'thename', "#{record}"
+    assert_equal 'thename', record.to_s
   end
 
-  test "has many householders" do
+  test 'has many householders' do
     assert_respond_to valid_territory, :householders
   end
 

@@ -17,14 +17,14 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
   end
 
   def territory
-    @territory or raise "territory was not set"
+    @territory || raise('territory was not set')
   end
 
   def breadcrumbs
     [
       [t('titles.territories'), '/territories'],
       [territory.name, territory_url],
-      [t('titles.householders')],
+      [t('titles.householders')]
     ]
   end
 

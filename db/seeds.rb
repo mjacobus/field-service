@@ -11,9 +11,9 @@ if User.count == 0
 end
 
 if ENV['INCLUDE_DEV_SEED'] == 'yes'
-  require_relative "../test/blueprints.rb"
+  require_relative '../test/blueprints.rb'
 
-  1.upto(5) do |number|
+  1.upto(5) do |_number|
     territory = Householder.make!.territory
 
     1.upto(30) do

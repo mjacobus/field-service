@@ -2,11 +2,11 @@ class TerritoryDecorator < ActiveRecordModelDecorator
   delegate :name, :uuid, :description, to: :item
 
   def index_url
-    "/territories"
+    '/territories'
   end
 
   def householders_url
-    url + "/householders"
+    url + '/householders'
   end
 
   def householders_button
@@ -25,14 +25,12 @@ class TerritoryDecorator < ActiveRecordModelDecorator
   def breadcrumbs
     [
       [t('titles.territories'), index_url],
-      [to_s],
+      [to_s]
     ]
   end
 
   def to_s
-    if item.id
-      return name
-    end
+    return name if item.id
 
     t('actions.new')
   end

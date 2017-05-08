@@ -1,12 +1,11 @@
-require "test_helper"
+require 'test_helper'
 
 class BaseDecoratorTest < ActiveSupport::TestCase
-
   def subject
     @subject ||= BaseDecorator.new
   end
 
-  test "can set helper" do
+  test 'can set helper' do
     helpers = []
     object = subject.with_view_helpers(helpers)
 

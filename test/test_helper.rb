@@ -1,28 +1,28 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-if ENV["COVERAGE"]
-  require "simplecov"
-  require "coveralls"
+if ENV['COVERAGE']
+  require 'simplecov'
+  require 'coveralls'
 
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-  ])
+                                                                   SimpleCov::Formatter::HTMLFormatter,
+                                                                   Coveralls::SimpleCov::Formatter
+                                                                 ])
 
   SimpleCov.start 'rails' do
     add_filter 'app/channels/application_cable/channel.rb'
     add_filter 'app/channels/application_cable/connection.rb'
     add_filter 'app/jobs/application_job.rb'
     add_filter 'app/mailers/application_mailer.rb'
-    add_group "Decorators", "app/decorators"
+    add_group 'Decorators', 'app/decorators'
   end
 end
 
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require File.expand_path(File.dirname(__FILE__) + '/blueprints')
-require "mocha/mini_test"
-require "clearance/test_unit"
+require 'mocha/mini_test'
+require 'clearance/test_unit'
 
 class ActiveSupport::TestCase
   teardown do
@@ -51,7 +51,7 @@ class ActiveSupport::TestCase
       message
     )
 
-    assert_not_nil delegated.send(method), "cannot check if delegates if value is nil"
+    assert_not_nil delegated.send(method), 'cannot check if delegates if value is nil'
   end
 end
 
@@ -64,7 +64,7 @@ class ControllerTestCase < ActionDispatch::IntegrationTest
     post session_url, params: {
       session: {
         email: user.email,
-        password: password,
+        password: password
       }
     }
   end

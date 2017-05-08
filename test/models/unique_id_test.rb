@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class UniqueIdTest < TestCase
   test 'when no id is given in the constructor creates a new unique id' do

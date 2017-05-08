@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails'
-gem 'simple_form'
-gem 'foundation-rails'
-gem 'foundation-icons-sass-rails'
 gem 'clearance', '~>1.14.1'
+gem 'dotenv-rails'
+gem 'foundation-icons-sass-rails'
+gem 'foundation-rails'
 gem 'pg'
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
@@ -45,30 +45,30 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
   gem 'listen', '~> 3.0.5'
+  gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
+  gem 'capybara'
   gem 'coveralls', require: false
-  gem 'rails-controller-testing'
-  gem 'simplecov', require: false
   gem 'database_cleaner', '~>1.5'
+  gem 'faker'
+  gem 'machinist', '~>2.0'
   gem 'minitest-around', '~>0.3'
   gem 'minitest-rg'
-  gem 'shoulda', '~>3.5'
-  gem 'shoulda-matchers', '~> 2.0'
-  gem 'shoulda-context', '~>1.2'
   gem 'minitest-spec-rails'
   gem 'mocha'
-  gem 'capybara'
   gem 'poltergeist'
-  gem 'faker' 
-  gem 'machinist', '~>2.0'
+  gem 'rails-controller-testing'
+  gem 'shoulda', '~>3.5'
+  gem 'shoulda-context', '~>1.2'
+  gem 'shoulda-matchers', '~> 2.0'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

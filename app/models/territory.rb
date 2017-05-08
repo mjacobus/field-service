@@ -7,6 +7,11 @@ class Territory < ApplicationRecord
 
   scope :sorted, -> { order(:name) }
 
+  def initialize(*args)
+    super
+    self.uuid ||= UniqueId.new
+  end
+
   def to_s
     name
   end

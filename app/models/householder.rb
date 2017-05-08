@@ -7,4 +7,9 @@ class Householder < ApplicationRecord
   validates :house_number, presence: true
 
   scope :sorted, -> { order(:street_name, :house_number) }
+
+  def initialize(*attrs)
+    super
+    self.uuid ||= UniqueId.new
+  end
 end

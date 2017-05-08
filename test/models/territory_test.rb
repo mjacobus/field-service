@@ -38,6 +38,16 @@ class TerritoryTest < ActiveSupport::TestCase
     assert first.valid?
   end
 
+  test '#uuid has default value' do
+    record = Territory.new
+    record.save!(validate: false)
+    record = Territory.find_by_uuid(record.uuid)
+
+    assert_not_nil record.uuid
+    assert_instance_of Territory, record
+    assert_instance_of Territory, Territory.find_by_uuid(record.uuid)
+  end
+
   test "validates presence of #uuid" do
     record = Territory.make
     record.uuid = nil

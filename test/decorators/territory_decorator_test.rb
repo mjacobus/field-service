@@ -4,6 +4,7 @@ class TerritoryDecoratorTest < TestCase
   def setup
     @item = stub(
       to_param: 1,
+      uuid: 'theUuid',
       name: 'theName',
       description: 'theDescription',
     )
@@ -28,6 +29,10 @@ class TerritoryDecoratorTest < TestCase
 
   test "#householders_url returns the correct url" do
     assert_equal "/territories/1/householders", @decorator.householders_url
+  end
+
+  test "delegates uuid to the territory" do
+    assert_equal 'theUuid', @decorator.uuid
   end
 
   test "delegates name to the territory" do

@@ -10,6 +10,7 @@ class HouseholderDecoratorTest < TestCase
       ),
       to_param: 1,
       name: 'theName',
+      uuid: 'theUuid',
       house_number: 'houseNumber',
       street_name: 'theStreet',
       show: true,
@@ -38,6 +39,10 @@ class HouseholderDecoratorTest < TestCase
 
   test "delegates name" do
     assert_delegates :name, @decorator, @item
+  end
+
+  test "delegates name" do
+    assert_delegates :uuid, @decorator, @item
   end
 
   test "delegates house_number" do

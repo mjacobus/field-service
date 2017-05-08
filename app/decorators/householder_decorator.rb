@@ -2,6 +2,7 @@ class HouseholderDecorator < ActiveRecordModelDecorator
   delegate :territory,
     :territory_id,
     :name,
+    :uuid,
     :house_number,
     :show,
     :street_name,

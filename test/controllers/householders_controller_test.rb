@@ -17,7 +17,8 @@ class HouseholdersControllerTest < ControllerTestCase
       house_number: @householder.house_number,
       name: @householder.name,
       show: @householder.show,
-      street_name: @householder.street_name
+      street_name: @householder.street_name,
+      notes: @householder.notes
     }
     sign_in_as(current_user)
   end

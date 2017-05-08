@@ -2,6 +2,7 @@ class HouseholderDecorator < ActiveRecordModelDecorator
   delegate :territory,
            :territory_id,
            :name,
+           :notes,
            :uuid,
            :house_number,
            :show,
@@ -42,5 +43,9 @@ class HouseholderDecorator < ActiveRecordModelDecorator
 
   def show?
     boolean_to_human(item.show?)
+  end
+
+  def has_notes?
+    notes.present?
   end
 end

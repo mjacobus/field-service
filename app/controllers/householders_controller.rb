@@ -62,6 +62,6 @@ class HouseholdersController < AuthenticatedController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def householder_params
-    params.require(:householder).permit(:street_name, :house_number, :name, :show)
+    params.require(:householder).permit(:street_name, :house_number, :name, :show, :notes)
   end
 end

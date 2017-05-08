@@ -25,11 +25,12 @@
         <td><%= householder.house_number %></td>
         <td><%= householder.name %></td>
         <td class="action">
-          <%= small_button_group(
-            householder.show_button,
-            householder.edit_button,
-            householder.destroy_button
-          ) %>
+          <% buttons = [
+                householder.edit_button,
+                householder.destroy_button
+            ] %>
+          <% buttons.unshift(householder.show_button) if householder.has_notes? %>
+          <%= small_button_group(*buttons) %>
         </td>
       </tr>
     <% end %>

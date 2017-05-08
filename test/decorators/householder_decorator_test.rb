@@ -10,6 +10,7 @@ class HouseholderDecoratorTest < TestCase
       ),
       to_param: 1,
       name: 'theName',
+      notes: 'theNotes',
       uuid: 'theUuid',
       house_number: 'houseNumber',
       street_name: 'theStreet',
@@ -39,6 +40,10 @@ class HouseholderDecoratorTest < TestCase
 
   test 'delegates name' do
     assert_delegates :name, @decorator, @item
+  end
+
+  test 'delegates notes' do
+    assert_delegates :notes, @decorator, @item
   end
 
   test 'delegates name' do
@@ -106,5 +111,15 @@ class HouseholderDecoratorTest < TestCase
     @item.stubs(show?: false)
 
     assert_equal 't.no', @decorator.show?
+  end
+
+  test '#has_notes?' do
+    @item.stubs(notes: 'some')
+
+    assert @decorator.has_notes?
+
+    @item.stubs(notes: '')
+
+    assert !@decorator.has_notes?
   end
 end

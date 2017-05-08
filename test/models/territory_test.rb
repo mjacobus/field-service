@@ -26,6 +26,25 @@ class TerritoryTest < ActiveSupport::TestCase
     assert !second.valid?
   end
 
+  test "validates uniqueness of uuid" do
+    first = valid_territory
+    first.uuid = UniqueId.new('Id')
+    first.save!
+
+    second = valid_territory
+    second.uuid = UniqueId.new('id')
+
+    assert !second.valid?
+    assert first.valid?
+  end
+
+  test "validates presence of #uuid" do
+    record = Territory.make
+    record.uuid = nil
+
+    assert !record.valid?
+  end
+
   test "#to_s returns name" do
     record = valid_territory
     record.name = 'thename';

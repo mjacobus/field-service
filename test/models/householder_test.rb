@@ -23,6 +23,25 @@ class HouseholderTest < ActiveSupport::TestCase
     assert !record.valid?
   end
 
+  test "validates presence of #uuid" do
+    record = valid_record
+    record.uuid = nil
+
+    assert !record.valid?
+  end
+
+  test "validates uniqueness of #uuid" do
+    record = Householder.make!
+    record.uuid = UniqueId.new('Foo')
+    record.save!
+
+    other = valid_record
+    other.uuid = 'foo'
+
+    assert record.valid?
+    assert !other.valid?
+  end
+
   test "validates presence of #house_number" do
     record = valid_record
     record.house_number = nil

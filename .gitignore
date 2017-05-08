@@ -17,3 +17,5 @@
 .byebug_history
 .env
 coverage
+db/*.sqlite3
+db/schema.rb

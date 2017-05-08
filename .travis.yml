@@ -8,12 +8,13 @@ rvm:
 env:
   - DB=mysql      DATABASE_URL="mysql2://root@127.0.0.1:3306/field_service_test"
   - DB=postgresql DATABASE_URL="postgres://postgres@localhost/field_service_test"
+  - DB=sqlite
 
 before_script:
-  - mysql -e 'CREATE DATABASE field_service_test'
-  - psql -c 'CREATE DATABASE  field_service_test' -U postgres
+  - bundle exec rake db:create
+  # - mysql -e 'CREATE DATABASE field_service_test'
+  # - psql -c 'CREATE DATABASE  field_service_test' -U postgres
 
 script:
   - RAILS_ENV=test bundle exec rake db:migrate
   - RAILS_ENV=test bundle exec rake test:coveralls
-

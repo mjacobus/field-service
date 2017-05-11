@@ -59,6 +59,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'rubocop'
   gem 'coveralls', require: false
   gem 'database_cleaner', '~>1.5'
   gem 'faker'

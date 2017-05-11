@@ -35,6 +35,12 @@ class HouseholderImporterTest < ActiveSupport::TestCase
       end
     end
 
+    it 'imports #show correctly' do
+      import(show: nil)
+
+      assert householder.show?
+    end
+
     describe 'when has uuid and date' do
       it 'when has uuid and date' do
         import(uuid: 'the-uuid')

@@ -1,0 +1,5 @@
+territory,street,house_number,name,active,uuid,updated_at,
+'T1',the street name,the house number,Jon Doe,,uuid1,2001-02-03 00:00:00,
+'T2',the street name,the house number,John Doe,,uuid1,2001-02-03 00:00:01,
+'T1',the street name,the house number,Jon Doe,,uuid1,2001-02-02 00:00:02,
+'T1',the street name,the house number,Jon Doe,no,,,

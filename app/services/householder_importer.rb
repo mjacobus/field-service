@@ -45,7 +45,7 @@ class HouseholderImporter
   end
 
   def territory_changed?(householder, territory_name)
-    householder.territory_name.to_s.downcase != territory_name.downcase
+    !householder.territory_name.to_s.casecmp(territory_name.downcase).zero?
   end
 
   def assign_territory_by_name(householder, territory_name)

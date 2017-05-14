@@ -1,5 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 
+FIXTURES_PATH = File.expand_path('../fixtures/', __FILE__)
+
 if ENV['COVERAGE']
   require 'simplecov'
   require 'coveralls'

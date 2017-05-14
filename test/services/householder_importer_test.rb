@@ -70,6 +70,32 @@ class HouseholderImporterTest < ActiveSupport::TestCase
     end
   end
 
+  describe '#import_batch' do
+    it 'imports collection' do
+      collection = [
+        import_data.dup,
+        import_data.dup.merge(uuid: 'the_uuid', territory_name: 'the-name')
+      ]
+
+      subject.import_batch(collection)
+
+      assert_count(2, 2)
+    end
+
+    it 'rollsback on failure' do
+      collection = [
+        import_data.dup,
+        import_data.dup.merge(foo: :bar)
+      ]
+
+      assert_raise(ArgumentError) do
+        subject.import_batch(collection)
+      end
+
+      assert_count(0, 0)
+    end
+  end
+
   def import(overrides = {})
     subject.import(import_data.merge(overrides))
   end

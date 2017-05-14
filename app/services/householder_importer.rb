@@ -1,4 +1,10 @@
 class HouseholderImporter
+  def import_batch(collection)
+    ActiveRecord::Base.transaction do
+      collection.each { |row| import(row) }
+    end
+  end
+
   def import(territory_name:, street_name:, house_number:, name:, show:, uuid: nil, updated_at: nil)
     show = ![false, 'no'].include?(show)
 

@@ -14,7 +14,6 @@ class CsvImporter
     filter = Filter.new
     collection = @parser.parse(contents).map do |row|
       row = filter.filter(row)
-      ap row
     end
     @importer.import_batch(collection)
   end

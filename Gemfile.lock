@@ -304,7 +304,7 @@ DEPENDENCIES
   foundation-rails
   jbuilder (~> 2.5)
   jquery-rails
-  koine-csv (~> 0.2)
+  koine-csv (~> 0.2.1)
   listen (~> 3.0.5)
   machinist (~> 2.0)
   minitest-around (~> 0.3)

@@ -1,8 +1,10 @@
 # config valid only for current version of Capistrano
 lock "3.8.1"
 
-# set :application, "fs.dev"
-set :application, "fs.dev"
+require 'dotenv'
+Dotenv.load
+
+set :application, ENV['APPLICATION_NAME']
 set :repo_url, "git@github.com:mjacobus/field-service.git"
 
 # Default branch is :master

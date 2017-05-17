@@ -1,4 +1,4 @@
-server "fs.dev",
+server fetch(:application),
   user: "deploy",
   roles: %w{web app},
   ssh_options: {

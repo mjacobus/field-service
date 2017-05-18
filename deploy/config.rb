@@ -38,21 +38,6 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 
 set :bundle_flags, '--deployment'
 
-# before 'deploy:check:linked_files', 'deploy:create_missing_files'
-
-namespace :deploy do
-  desc 'create missing files'
-  task :create_missing_files do
-    on roles(:web) do
-      within shared_path  do
-        fetch(:linked_files).each do |file|
-          exec 'touch', file
-        end
-      end
-    end
-  end
-end
-
 namespace :deploy do
   desc 'Restart application'
   task :restart do
@@ -63,13 +48,4 @@ namespace :deploy do
   end
 
   after :publishing, :restart
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
 end

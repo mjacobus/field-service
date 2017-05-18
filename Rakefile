@@ -34,3 +34,21 @@ namespace :csv do
     puts "Exported to #{file}"
   end
 end
+
+namespace :geolocation do
+  desc 'update geolocations'
+  task  update: [:environment] do
+    Householder.all.each do |householder|
+      begin
+        householder.update_geolocation
+        if householder.has_geolocation?
+          householder.save!
+        else
+          puts "householder: #{householder} has no geolocation"
+        end
+      rescue => e
+        puts e.message
+      end
+    end
+  end
+end

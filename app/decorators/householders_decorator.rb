@@ -31,4 +31,19 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
   def title_for(attribute_name)
     HouseholderDecorator.new(Householder.new).title_for(attribute_name)
   end
+
+  def names_and_addresses
+    [].tap do |array|
+      collection.select(&:show?).map do |householder|
+        array << {
+          address: "#{householder.street_name}, #{householder.house_number}",
+          name: householder.name,
+          location: {
+            lat: householder.lat,
+            lon: householder.lon,
+          }
+        }
+      end
+    end
+  end
 end

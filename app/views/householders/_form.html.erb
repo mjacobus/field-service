@@ -1,8 +1,24 @@
-<%= simple_form_for(householder_decorator.form_object, url: householder_decorator.form_url) do |f| %>
-    <%= f.input :street_name %>
-    <%= f.input :house_number %>
+<%= simple_form_for(
+  householder_decorator.form_object,
+  url: householder_decorator.form_url,
+  html: { id: 'js-householder-form' }
+) do |f| %>
+    <%= f.input :street_name, input_html: { class: 'js-street-name' } %>
+    <%= f.input :house_number, input_html: { class: 'js-house-number' } %>
+    <a class="button js-address-lookup" href="#">
+      <i class="fi-target-two"></i>
+      <%= t('links.current_geolocation') %>
+    </a>
     <%= f.input :name %>
     <%= f.input :notes %>
     <%= f.input :show %>
     <%= householder_decorator.save_button %>
 <% end %>
+
+<script type="text/javascript">
+  var form = new HouseholderForm(
+    document.getElementById('js-householder-form'),
+    navigator,
+    google.maps
+  );
+</script>

@@ -8,6 +8,9 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+
+    <% key = 'AIzaSyCMFbHjf-I2rApFaatnmukLyfb1VIB8Jhk' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= key %>"></script>
     <%= csrf_meta_tags %>
   </head>
 
@@ -19,6 +22,5 @@
       <%= render partial: 'flash_messages' %>
       <%= yield %>
     </div>
-
   </body>
 </html>

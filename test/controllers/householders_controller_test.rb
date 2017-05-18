@@ -55,6 +55,8 @@ class HouseholdersControllerTest < ControllerTestCase
   end
 
   test 'should create householder' do
+    Householder.any_instance.expects(:update_geolocation)
+
     assert_difference -> { @territory.householders.count }, 1 do
       post @index_url, params: { territory_id: @territory.id, householder: @householder_params }
     end
@@ -82,6 +84,8 @@ class HouseholdersControllerTest < ControllerTestCase
   end
 
   test 'should update householder' do
+    Householder.any_instance.expects(:update_geolocation)
+
     patch @resource_url, params: { territory_id: @territory.id, householder: @householder_params }
 
     assert_redirected_to @resource_url

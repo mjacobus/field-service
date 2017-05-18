@@ -21,4 +21,26 @@ class Householder < ApplicationRecord
   def self.ordered
     joins(:territory).order('territories.name', :street_name, :house_number)
   end
+
+  def update_geolocation
+    address = [street_name, house_number].join(' ')
+
+    data = Koine::GoogleMapsClient.new.geocode(address: address)
+
+    result = data['results'].first
+
+    return unless result
+
+    location = result['geometry']['location']
+    self.lat =  location['lat']
+    self.lon =  location['lng']
+  end
+
+  def to_s
+    "#{street_name} #{house_number} (#{name})"
+  end
+
+  def has_geolocation?
+    [lat, lon].compact.length == 2
+  end
 end

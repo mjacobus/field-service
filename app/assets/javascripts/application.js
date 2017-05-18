@@ -15,4 +15,17 @@
 //= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){
+    $(document).foundation();
+
+    $(document).on('click', 'a', 'data[show-map]', function () {
+        var link = $(this);
+        var map = link.data('map-container');
+        $('#' + map + '-container').show();
+        var addresses = link.data('map-addresses');
+        var container = document.getElementById(map);
+        var map = new HouseholdersMap(container, addresses, navigator);
+        map.draw();
+        link.hide();
+    });
+});

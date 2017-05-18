@@ -24,6 +24,8 @@ pt-BR:
     show: Visualizar
     back: Voltar
     cancel: Cancelar
+    show_map: Exibir Mapa
+    current_geolocation: Localização atual
 
   messages:
     confirm_destroy: Tem certeza que deseja excuir este registro?

@@ -1,5 +1,5 @@
 class TerritoryDecorator < ActiveRecordModelDecorator
-  delegate :name, :uuid, :description, to: :item
+  delegate :name, :uuid, :description, :householders, to: :item
 
   def index_url
     '/territories'
@@ -33,5 +33,9 @@ class TerritoryDecorator < ActiveRecordModelDecorator
     return name if item.id
 
     t('actions.new')
+  end
+
+  def names_and_addresses
+    HouseholdersDecorator.new(householders, item).names_and_addresses
   end
 end

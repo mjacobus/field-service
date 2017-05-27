@@ -13,3 +13,14 @@ namespace :test do
 
   task coveralls: ['test:coverage']
 end
+
+namespace :csv do
+  desc 'import csv files from tmp/csv'
+  task  import: [:environment] do
+    importer = CsvImporter.new
+
+    Dir['tmp/csv/*.csv'].each do |file|
+      importer.import(file)
+    end
+  end
+end

@@ -4,6 +4,7 @@ gem 'clearance', '~>1.14.1'
 gem 'dotenv-rails'
 gem 'foundation-icons-sass-rails'
 gem 'foundation-rails'
+gem 'koine-csv', '~> 0.2.1'
 gem 'pg'
 gem 'simple_form'
 gem 'unicorn'
@@ -46,6 +47,7 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'awesome_print'
 end
 
 group :development do
@@ -69,6 +71,7 @@ group :test do
   gem 'mocha'
   gem 'poltergeist'
   gem 'rails-controller-testing'
+  gem 'rubocop'
   gem 'shoulda', '~>3.5'
   gem 'shoulda-context', '~>1.2'
   gem 'shoulda-matchers', '~> 2.0'

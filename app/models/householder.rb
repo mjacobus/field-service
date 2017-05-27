@@ -12,4 +12,9 @@ class Householder < ApplicationRecord
     super
     self.uuid ||= UniqueId.new
   end
+
+  def territory_name
+    return nil unless territory
+    territory.name
+  end
 end

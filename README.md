@@ -12,3 +12,9 @@ My personal field service helper
 ## Installing
 
 Copy .env.example to .env and change accordingly.
+
+## Importing
+
+```bash
+rake csv:import # will import CSVs inside tmp/csv
+```

@@ -4,6 +4,8 @@ cache: bundler
 
 rvm:
   - 2.2.2
+  - 2.3.0
+  - 2.4.0
 
 env:
   - DB=mysql      DATABASE_URL="mysql2://root@127.0.0.1:3306/field_service_test"

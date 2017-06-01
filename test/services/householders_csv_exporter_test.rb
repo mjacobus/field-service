@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class HouseholderCsvExporterTest < TestCase
-  subject { HouseholderCsvExporter.new }
+class HouseholdersCsvExporterTest < TestCase
+  subject { HouseholdersCsvExporter.new }
 
   let(:t1) do
     Territory.new(name: 'território1')

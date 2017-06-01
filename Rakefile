@@ -29,7 +29,7 @@ namespace :csv do
     householders = Householder.ordered
     file = DatePath.new(prefix: 'housholders_', suffix: '.csv').to_s
     file = Rails.root.join('tmp', 'csv', 'exports', file)
-    HouseholderCsvExporter.new.export(householders).to_file(file)
+    HouseholdersCsvExporter.new.export(householders).to_file(file)
 
     puts "Exported to #{file}"
   end

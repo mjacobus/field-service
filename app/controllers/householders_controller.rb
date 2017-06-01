@@ -74,6 +74,6 @@ class HouseholdersController < AuthenticatedController
   end
 
   def to_csv(householders)
-    HouseholderCsvExporter.new.export(householders)
+    HouseholdersCsvExporter.new.export(householders)
   end
 end

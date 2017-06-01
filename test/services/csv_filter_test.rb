@@ -5,12 +5,12 @@ class CsvFilterTest < ActiveSupport::TestCase
 
   let(:input) do
     {
-      territory_name: 'territory name',
       street_name: 'street name',
+      territory_name: 'territory name',
       house_number: 'house number',
       name: 'the name',
-      'show' => 'the show',
       uuid: 'the uuid',
+      'show' => 'the show',
       updated_at: 'the updated at',
       foo: 'the updated at',
       nil: nil,

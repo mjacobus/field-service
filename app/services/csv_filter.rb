@@ -10,9 +10,10 @@ class CsvFilter
   ].freeze
 
   def filter(input)
-    input.dup.symbolize_keys.tap do |filtered|
-      filtered.keys.each do |key|
-        filtered.delete(key) unless ALLOWED_KEYS.include?(key)
+    input = input.dup.symbolize_keys
+    {}.tap do |filtered|
+      ALLOWED_KEYS.each do |key|
+        filtered[key] = input[key]
       end
     end
   end

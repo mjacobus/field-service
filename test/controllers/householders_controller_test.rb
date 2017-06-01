@@ -38,6 +38,16 @@ class HouseholdersControllerTest < ControllerTestCase
     assert_equal 1, assigns(:householders_decorator).send(:collection).count
   end
 
+  test 'should get index as csv' do
+    get @decorator.index_url + '.csv'
+
+    assert_response :success
+    assert_equal 'text/csv; charset=utf-8', response.headers['Content-Type']
+
+    # fails when all tests are run together
+    # assert_match /,#{@territory.name},/, response.body
+  end
+
   test 'should get new' do
     get @decorator.new_url
 

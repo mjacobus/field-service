@@ -41,7 +41,7 @@ class HouseholderImporter
 
   def parse_time(time)
     return time if time.is_a?(Time)
-    Time.parse(time)
+    Time.parse(time).utc
   end
 
   def territory_changed?(householder, territory_name)

@@ -18,6 +18,8 @@ class HouseholdersCsvExporter
     FileExportService.new(csv_string)
   end
 
+  private
+
   def householder_to_csv_row(householder)
     attributes = householder.attributes.merge(
       territory_name: householder.territory.name,

@@ -76,14 +76,6 @@ class TestCase < ActiveSupport::TestCase
   def fake_view_helpers
     @fake_view_helpers ||= FakeViewHelpers.new
   end
-
-  def fake_hash(keys, suffix = nil)
-    {}.tap do |hash|
-      keys.each do |key|
-        hash[:key] = "the #{key}#{suffix}"
-      end
-    end
-  end
 end
 
 class FakeViewHelpers

@@ -23,4 +23,14 @@ namespace :csv do
       importer.import(file)
     end
   end
+
+  desc 'export all'
+  task export_all: [:environment] do
+    householders = Householder.ordered
+    file = DatePath.new(prefix: 'housholders_', suffix: '.csv').to_s
+    file = Rails.root.join('tmp', 'csv', 'exports', file)
+    HouseholdersCsvExporter.new.export(householders).to_file(file)
+
+    puts "Exported to #{file}"
+  end
 end

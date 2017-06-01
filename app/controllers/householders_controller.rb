@@ -2,6 +2,14 @@ class HouseholdersController < AuthenticatedController
   def index
     householders = territory.householders.sorted
     @householders_decorator = create_decorator(HouseholdersDecorator, householders, territory)
+
+    respond_to do |format|
+      format.html
+
+      format.csv do
+        render plain: to_csv(householders)
+      end
+    end
   end
 
   def show
@@ -63,5 +71,9 @@ class HouseholdersController < AuthenticatedController
   # Never trust parameters from the scary internet, only allow the white list through.
   def householder_params
     params.require(:householder).permit(:street_name, :house_number, :name, :show, :notes)
+  end
+
+  def to_csv(householders)
+    HouseholdersCsvExporter.new.export(householders)
   end
 end

@@ -17,4 +17,8 @@ class Householder < ApplicationRecord
     return nil unless territory
     territory.name
   end
+
+  def self.ordered
+    joins(:territory).order('territories.name', :street_name, :house_number)
+  end
 end

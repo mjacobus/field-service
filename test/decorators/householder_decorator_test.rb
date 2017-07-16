@@ -90,7 +90,7 @@ class HouseholderDecoratorTest < TestCase
   end
 
   test '#breadcrumbs for new record' do
-    @decorator.stubs(id: nil)
+    @item.stubs(id: nil)
     actual = @decorator.breadcrumbs
 
     expected = [

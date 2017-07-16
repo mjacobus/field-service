@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BaseDecoratorTest < ActiveSupport::TestCase
   def subject
-    @subject ||= BaseDecorator.new
+    @subject ||= BaseDecorator.new(nil)
   end
 
   test 'can set helper' do

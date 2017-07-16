@@ -1,12 +1,10 @@
-class BaseDecorator
-  MethodNotImplemented = Class.new(StandardError)
-
+class BaseDecorator < SimpleDelegator
   def with_view_helpers(helpers)
     @view_helpers = helpers
     self
   end
 
-  protected
+  private
 
   def t(*args)
     view_helpers.t(*args)

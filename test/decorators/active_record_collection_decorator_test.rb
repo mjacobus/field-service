@@ -45,7 +45,7 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
   test 'index_url must be implemented' do
     subject = ActiveRecordCollectionDecorator.new([])
 
-    assert_raises(BaseDecorator::MethodNotImplemented) do
+    assert_raises(NotImplementedError) do
       subject.index_url
     end
   end
@@ -53,7 +53,7 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
   test 'item_decorator_class must be implemented' do
     subject = ActiveRecordCollectionDecorator.new([])
 
-    exception = assert_raises(BaseDecorator::MethodNotImplemented) do
+    exception = assert_raises(NotImplementedError) do
       subject.item_decorator_class
     end
   end

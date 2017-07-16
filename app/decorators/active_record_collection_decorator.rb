@@ -1,10 +1,6 @@
 class ActiveRecordCollectionDecorator < ActiveRecordBaseDecorator
-  def initialize(collection)
-    @collection = collection
-  end
-
   def index_url
-    raise MethodNotImplemented
+    raise NotImplementedError
   end
 
   def new_url
@@ -12,7 +8,7 @@ class ActiveRecordCollectionDecorator < ActiveRecordBaseDecorator
   end
 
   def item_decorator_class
-    raise MethodNotImplemented
+    raise NotImplementedError
   end
 
   def each
@@ -33,5 +29,7 @@ class ActiveRecordCollectionDecorator < ActiveRecordBaseDecorator
     item_decorator_class.new(item).with_view_helpers(view_helpers)
   end
 
-  attr_reader :collection
+  def collection(*args)
+    __getobj__
+  end
 end

@@ -1,8 +1,4 @@
 class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
-  def initialize(item)
-    @item = item
-  end
-
   def edit_url
     "#{index_url}/#{item.to_param}/edit"
   end
@@ -16,7 +12,7 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
   end
 
   def index_url
-    raise 'not implemented'
+    raise NotImplementedError
   end
 
   def form_url
@@ -51,7 +47,9 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
     end
   end
 
-  protected
+  private
 
-  attr_reader :item
+  def item
+    __getobj__
+  end
 end

@@ -1,15 +1,4 @@
 class HouseholderDecorator < ActiveRecordModelDecorator
-  delegate :territory,
-           :territory_id,
-           :name,
-           :notes,
-           :uuid,
-           :house_number,
-           :show,
-           :street_name,
-           :id,
-           to: :item
-
   def index_url
     "/territories/#{territory_id}/householders"
   end

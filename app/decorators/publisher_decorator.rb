@@ -1,10 +1,4 @@
 class PublisherDecorator < ActiveRecordModelDecorator
-  delegate :name,
-           :id,
-           :email,
-           :phone,
-           to: :item
-
   def index_url
     "/publishers"
   end

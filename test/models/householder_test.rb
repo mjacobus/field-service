@@ -58,4 +58,29 @@ class HouseholderTest < ActiveSupport::TestCase
 
     assert !record.valid?
   end
+
+  test 'can update geocode' do
+    subject = Householder.new(street_name: 'the street', house_number: 'the number')
+
+    data = {
+      'results' => [
+        {
+          'geometry' => {
+            'location' => {
+              'lat' => 1.23,
+              'lng' => 3.21
+            }
+          }
+        }
+      ]
+    }
+
+    Koine::GoogleMapsClient.any_instance.stubs(:geocode)
+      .with(address: 'the street the number').returns(data)
+
+    subject.update_geolocation
+
+    assert_equal 1.23, subject.lat
+    assert_equal 3.21, subject.lon
+  end
 end

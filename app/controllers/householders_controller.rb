@@ -31,6 +31,9 @@ class HouseholdersController < AuthenticatedController
     householder = territory.householders.build(householder_params)
     @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
+    # TODO: improve error handling
+    householder.update_geolocation rescue nil
+
     if householder.save
       redirect_to @householder_decorator.url, notice: t('householders.created')
     else
@@ -41,6 +44,9 @@ class HouseholdersController < AuthenticatedController
   def update
     householder = find_householder
     @householder_decorator = create_decorator(HouseholderDecorator, householder)
+
+    # TODO: improve error handling
+    householder.update_geolocation rescue nil
 
     if householder.update(householder_params)
       redirect_to @householder_decorator.url, notice: t('householders.updated')

@@ -1,7 +1,7 @@
 class PublishersController < AuthenticatedController
 
   def index
-    publishers = Publisher.all
+    publishers = Publisher.all.sorted
     @publishers_decorator = create_decorator(PublishersDecorator, publishers)
   end
 

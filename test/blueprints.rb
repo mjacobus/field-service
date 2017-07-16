@@ -22,3 +22,7 @@ User.blueprint do
   email { "email#{sn}@email.com" }
   password { '123456' }
 end
+
+Publisher.blueprint do
+  # Attributes here
+end

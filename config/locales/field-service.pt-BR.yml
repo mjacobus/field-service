@@ -7,7 +7,9 @@ pt-BR:
       territory:
         name: Nome
         description: Descrição
+        number_of_householders: Número de Moradores
       householder:
+        address: Endereço
         territory: Território
         name: Nome
         house_number: Número da casa

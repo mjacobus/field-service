@@ -11,8 +11,7 @@
 <table>
   <thead>
     <tr>
-      <th> <%= @householders_decorator.title_for(:street_name) %></th>
-      <th><%= @householders_decorator.title_for(:house_number) %></th>
+      <th> <%= @householders_decorator.title_for(:address) %></th>
       <th><%= @householders_decorator.title_for(:name) %></th>
       <th class="action" colspan="">
         <%= small_button_group(@householders_decorator.new_button) %>
@@ -23,8 +22,7 @@
   <tbody>
     <% @householders_decorator.each do |householder| %>
       <tr class="<%= householder.html_classes %>">
-        <td><%= householder.street_name %></td>
-        <td><%= householder.house_number %></td>
+        <td><%= householder.address %></td>
         <td><%= householder.name %></td>
         <td class="action">
           <% buttons = [

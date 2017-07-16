@@ -72,4 +72,13 @@ class TerritoryDecoratorTest < TestCase
 
     assert_equal expected, actual
   end
+
+  test '#number_of_householders returns the number of householders' do
+    @item = Territory.make!
+    Householder.make!(territory: @item)
+    Householder.make!(territory: @item)
+    @decorator = TerritoryDecorator.new(@item)
+
+    assert_equal 2, @decorator.number_of_householders
+  end
 end

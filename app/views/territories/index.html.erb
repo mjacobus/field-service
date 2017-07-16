@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th><%= @territories_decorator.title_for(:name) %></th>
+      <th><%= @territories_decorator.title_for(:number_of_householders) %></th>
       <th class="action" colspan="">
         <%= small_button_group(@territories_decorator.new_button) %>
       </th>
@@ -15,6 +16,7 @@
     <% @territories_decorator.each do |territory| %>
       <tr>
         <td><%= territory.name %></td>
+        <td><%= territory.number_of_householders %></td>
         <td class="action">
           <%= small_button_group(
               territory.householders_button,

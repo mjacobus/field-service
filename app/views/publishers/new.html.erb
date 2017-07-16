@@ -1,0 +1,5 @@
+<% breadcrumbs_for @publisher_decorator %>
+
+<%= render 'form', publisher: @publisher_decorator.form_object, publisher_decorator: @publisher_decorator %>
+
+<%= button_group @publisher_decorator.cancel_button %>

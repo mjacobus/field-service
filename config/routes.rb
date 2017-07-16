@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :territories do
     resources :householders
   end
+
+  resources :publishers
 end

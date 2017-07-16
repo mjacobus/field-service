@@ -22,3 +22,9 @@ User.blueprint do
   email { "email#{sn}@email.com" }
   password { '123456' }
 end
+
+Publisher.blueprint do
+  name { "Householder name #{sn}" }
+  email { "email#{sn}@email.com" }
+  phone { '123456#{sn}' }
+end

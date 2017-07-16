@@ -1,0 +1,15 @@
+<% breadcrumbs_for @publisher_decorator %>
+
+<div class="media-object">
+  <div class="media-object-section">
+    <%= button_group(
+      @publisher_decorator.edit_button,
+      @publisher_decorator.cancel_button
+    ) %>
+  </div>
+  <div class="media-object-section">
+    <h4> <%= @publisher_decorator.name %></h4>
+    <p> <%= @publisher_decorator.email %></p>
+    <p> <%= @publisher_decorator.phone %></p>
+  </div>
+</div>

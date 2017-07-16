@@ -32,7 +32,7 @@ class TerritoryDecorator < ActiveRecordModelDecorator
   def to_s
     return name if item.id
 
-    t('actions.new')
+    t('links.new')
   end
 
   def names_and_addresses

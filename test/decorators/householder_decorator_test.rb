@@ -97,7 +97,7 @@ class HouseholderDecoratorTest < TestCase
       ['t.titles.territories', '/territories'],
       ['T1', '/territories/:tid'],
       ['t.titles.householders', '/territories/:tid/householders'],
-      ['t.actions.new']
+      ['t.links.new']
     ]
 
     assert_equal expected, actual

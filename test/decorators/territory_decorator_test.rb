@@ -52,7 +52,7 @@ class TerritoryDecoratorTest < TestCase
 
     expected = [
       ['t.titles.territories', '/territories'],
-      ['t.actions.new']
+      ['t.links.new']
     ]
 
     actual = @decorator.breadcrumbs

@@ -34,7 +34,7 @@ class HouseholderDecorator < ActiveRecordModelDecorator
   def to_s
     return "#{address} (#{name})" if id
 
-    t('actions.new')
+    t('links.new')
   end
 
   def address

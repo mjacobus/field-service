@@ -1,19 +1,15 @@
-<p id="notice"><%= notice %></p>
+<% breadcrumbs_for @publisher_decorator %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @publisher.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @publisher.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @publisher.phone %>
-</p>
-
-<%= link_to 'Edit', edit_publisher_path(@publisher) %> |
-<%= link_to 'Back', publishers_path %>
+<div class="media-object">
+  <div class="media-object-section">
+    <%= button_group(
+      @publisher_decorator.edit_button,
+      @publisher_decorator.cancel_button
+    ) %>
+  </div>
+  <div class="media-object-section">
+    <h4> <%= @publisher_decorator.name %></h4>
+    <p> <%= @publisher_decorator.email %></p>
+    <p> <%= @publisher_decorator.phone %></p>
+  </div>
+</div>

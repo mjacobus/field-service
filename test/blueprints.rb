@@ -24,5 +24,7 @@ User.blueprint do
 end
 
 Publisher.blueprint do
-  # Attributes here
+  name { "Householder name #{sn}" }
+  email { "email#{sn}@email.com" }
+  phone { '123456#{sn}' }
 end

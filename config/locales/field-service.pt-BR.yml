@@ -15,11 +15,16 @@ pt-BR:
         house_number: Número da casa
         street_name: Nome da rua
         show: Exibir
+      publisher:
+        name: Nome
+        email: Email
+        phone: Telefone
 
   'yes': 'Sim'
   'no': 'Não'
 
   links:
+    new: Novo
     logout: Sair
     edit: Editar
     destroy: Excluir
@@ -37,6 +42,7 @@ pt-BR:
     territories: Territórios
     householders: Moradores
     search: Pesquisar
+    publishers: Publicadores
 
   territories:
     created: Território criado com sucesso!
@@ -48,3 +54,8 @@ pt-BR:
     created: Morador criado com sucesso!
     updated: Morador atualizado com sucesso!
     destroyed: Morador removido com sucesso!
+
+  publishers:
+    created: Publicador criado com sucesso!
+    updated: Publicador atualizado com sucesso!
+    destroyed: Publicador removido com sucesso!

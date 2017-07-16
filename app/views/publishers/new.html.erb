@@ -1,5 +1,5 @@
-<h1>New Publisher</h1>
+<% breadcrumbs_for @publisher_decorator %>
 
-<%= render 'form', publisher: @publisher %>
+<%= render 'form', publisher: @publisher_decorator.form_object, publisher_decorator: @publisher_decorator %>
 
-<%= link_to 'Back', publishers_path %>
+<%= button_group @publisher_decorator.cancel_button %>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :territories do
     resources :householders
+    resources :assignments, controller: 'territory_assignments'
   end
 
   resources :publishers

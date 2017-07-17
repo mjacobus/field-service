@@ -31,9 +31,13 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
     button_link_with_icon edit_url, :pencil, :success
   end
 
-  def destroy_button
-    link_to url, method: :delete, data: { confirm: t('messages.confirm_destroy') }, class: 'button alert' do
-      content_tag(:i, nil, class: 'fi-x')
+  def destroy_button(url = nil, icon: 'x', confirm_message: nil, button_class: 'alert', title: nil)
+    url ||= self.url
+    confirm_message ||= t('messages.confirm_destroy')
+    title ||= t('links.destroy')
+
+    link_to url, method: :delete, data: { confirm: confirm_message }, class: "button #{button_class}", title: title do
+      content_tag(:i, nil, class: "fi-#{icon}")
     end
   end
 

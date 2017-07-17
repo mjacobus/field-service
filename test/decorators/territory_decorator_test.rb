@@ -81,4 +81,18 @@ class TerritoryDecoratorTest < TestCase
 
     assert_equal 2, @decorator.number_of_householders
   end
+
+  describe '#html_classes' do
+    it 'returns "pending-return" if #need_to_be_returned? is true' do
+      @item.stubs(need_to_be_returned?: true)
+
+      assert_equal 'pending-return', @decorator.html_classes
+    end
+
+    it 'returns "" if #need_to_be_returned? is false' do
+      @item.stubs(need_to_be_returned?: false)
+
+      assert_equal '', @decorator.html_classes
+    end
+  end
 end

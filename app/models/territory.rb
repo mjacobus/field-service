@@ -2,6 +2,7 @@ class Territory < ApplicationRecord
   TerritoryError = Class.new(StandardError)
 
   has_many :householders
+  has_many :assignments, class_name: 'TerritoryAssignment'
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uuid, presence: true, uniqueness: { case_sensitive: false }
 
@@ -20,5 +21,18 @@ class Territory < ApplicationRecord
     raise TerritoryError unless territory.householders.count.zero?
     territory.delete
     territory
+  end
+
+  def current_assignment
+    @current_assignment ||= assignments.where(returned: false).last
+  end
+
+  def need_to_be_returned?
+    assignment = current_assignment
+
+    return false unless assignment
+    return false unless assignment.return_date < Date.today
+
+    true
   end
 end

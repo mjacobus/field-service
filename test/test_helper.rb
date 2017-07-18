@@ -23,10 +23,12 @@ end
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require File.expand_path(File.dirname(__FILE__) + '/blueprints')
+require 'object_comparator/minitest'
 require 'mocha/mini_test'
 require 'clearance/test_unit'
 
 class ActiveSupport::TestCase
+  include ObjectComparator::Minitest
   teardown do
     DatabaseCleaner.clean
   end

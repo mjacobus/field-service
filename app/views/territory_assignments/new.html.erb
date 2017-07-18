@@ -1,0 +1,47 @@
+<% page_title t('titles.territory_assignments') %>
+
+<h1> <%= @territory.name %></h1>
+<p> <%= t('assign_territory_to', territory: @territory.name) %>: </p>
+
+<%# <% breadcrumbs_for @publishers_decorator %>
+<form action="<%= @territory.search_url %>" method="get">
+  <div class="row">
+    <div class="input-group small-12 columns">
+      <span class="input-group-label"><%= t('name')  %></span>
+      <input type="text" class="input-group-field" value="<%= @territory.search_term %>" name="q">
+
+      <div class="input-group-button">
+        <button class="button ">
+          <i class="fi-filter"></i>
+          <%= t('links.filter') %>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<table>
+  <thead>
+    <th> <%= t('publisher_name') %></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @territory.candidates.each do |publisher| %>
+      <tr>
+        <td>
+            <%= publisher.name %>
+          </td>
+          <td>
+          <%= form_tag(@territory.assignments_url) do %>
+            <%= hidden_field_tag 'assignment[territory_id]', @territory.id  %>
+            <%= hidden_field_tag 'assignment[publisher_id]', publisher.id  %>
+            <button data-confirm="<%= @territory.assignment_confirmation_message(publisher) %>" class="button success  large right">
+              <i class="fi-arrow-left"></i>
+              <%= t('assign') %>
+            </button>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

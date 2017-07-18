@@ -1,20 +1,21 @@
 source 'https://rubygems.org'
 
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-chruby'
+gem 'capistrano-rails'
 gem 'clearance', '~>1.14.1'
 gem 'dotenv-rails'
 gem 'foundation-icons-sass-rails'
 gem 'foundation-rails'
 gem 'koine-csv', '~> 0.2.1'
+gem 'koine-google_maps_client'
+gem 'object_comparator'
 gem 'pg'
 gem 'simple_form'
-gem 'unicorn'
-gem 'capistrano'
-gem 'capistrano-bundler'
-gem 'capistrano-rails'
-gem 'capistrano-chruby'
 gem 'sprockets'
 gem 'sprockets-es6'
-gem 'koine-google_maps_client'
+gem 'unicorn'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
@@ -49,8 +50,8 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
   gem 'awesome_print'
+  gem 'byebug', platform: :mri
 end
 
 group :development do

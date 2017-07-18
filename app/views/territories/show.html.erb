@@ -7,6 +7,8 @@
     </div>
 
     <%= button_group(
+      @territory_decorator.return_button,
+      @territory_decorator.assign_button,
       @territory_decorator.householders_button,
       @territory_decorator.edit_button,
       @territory_decorator.cancel_button
@@ -15,6 +17,9 @@
   <div class="media-object-section">
     <h4> <%= @territory_decorator.name %></h4>
     <p> <%= @territory_decorator.description %> </p>
+    <p><%= @territory_decorator.title_for(:number_of_householders) %>: <%= @territory_decorator.number_of_householders %></p>
+    <p><%= @territory_decorator.title_for(:current_assignee) %>: <%= @territory_decorator.current_assignee_name %></p>
+    <p><%= @territory_decorator.title_for(:return_date) %>: <%= @territory_decorator.return_date %></p>
   </div>
 
   <div class="media-object-section">

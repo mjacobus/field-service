@@ -28,3 +28,12 @@ Publisher.blueprint do
   email { "email#{sn}@email.com" }
   phone { '123456#{sn}' }
 end
+
+TerritoryAssignment.blueprint do
+  territory
+  publisher
+  returned { false }
+  assigned_at { sn.to_i.days.ago }
+  return_date { sn.to_i.months.from_now }
+  returned_at { nil }
+end

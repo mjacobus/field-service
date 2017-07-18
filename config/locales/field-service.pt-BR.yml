@@ -8,6 +8,8 @@ pt-BR:
         name: Nome
         description: Descrição
         number_of_householders: Número de Moradores
+        current_assignee: Designado para
+        return_date: Data de Retorno
       householder:
         address: Endereço
         territory: Território
@@ -33,6 +35,15 @@ pt-BR:
     cancel: Cancelar
     show_map: Exibir Mapa
     current_geolocation: Localização atual
+    filter: Filtrar
+
+  publisher_name: Nome do publicador
+  territory_name: Nome/Número do território
+  assign_territory_to: "Designar %{territory} para o publicador"
+  name: Nome
+  confirm_assignment_for_publisher: "Designar para %{publisher}?"
+  confirm_territory_return: "Tem certeza que deseja marcar o território %{territory} como devolvido?"
+  assign: "Designar"
 
   messages:
     confirm_destroy: Tem certeza que deseja excuir este registro?
@@ -43,12 +54,17 @@ pt-BR:
     householders: Moradores
     search: Pesquisar
     publishers: Publicadores
+    territory_assignments: Designação de Território
+    assign_territory: Designar Território
+
 
   territories:
     created: Território criado com sucesso!
     updated: Território atualizado com sucesso!
     destroyed: Território removido com sucesso!
     cannot_destroy: Território não pode ser removido. Certifique-se de que ele não possua moradores.
+    assigned: Território designado com sucesso!
+    returned: Território devolvido com sucesso!
 
   householders:
     created: Morador criado com sucesso!

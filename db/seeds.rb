@@ -19,5 +19,9 @@ if ENV['INCLUDE_DEV_SEED'] == 'yes'
     1.upto(30) do
       Householder.make! territory: territory
     end
+
+    1.upto(30) do
+      Publisher.make!
+    end
   end
 end

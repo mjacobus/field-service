@@ -6,6 +6,8 @@
     <tr>
       <th><%= @territories_decorator.title_for(:name) %></th>
       <th><%= @territories_decorator.title_for(:number_of_householders) %></th>
+      <th><%= @territories_decorator.title_for(:current_assignee) %></th>
+      <th><%= @territories_decorator.title_for(:return_date) %></th>
       <th class="action" colspan="">
         <%= small_button_group(@territories_decorator.new_button) %>
       </th>
@@ -14,11 +16,15 @@
 
   <tbody>
     <% @territories_decorator.each do |territory| %>
-      <tr>
+      <tr class="<%= territory.html_classes %>">
         <td><%= territory.name %></td>
         <td><%= territory.number_of_householders %></td>
+        <td><%= territory.current_assignee_name %></td>
+        <td class="date"><%= territory.return_date %></td>
         <td class="action">
           <%= small_button_group(
+              territory.return_button,
+              territory.assign_button,
               territory.householders_button,
               territory.show_button,
               territory.edit_button,

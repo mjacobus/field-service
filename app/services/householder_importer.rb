@@ -1,7 +1,16 @@
 class HouseholderImporter
+  ImportError = Class.new(RuntimeError)
+
   def import_batch(collection)
     ActiveRecord::Base.transaction do
-      collection.each { |row| import(row) }
+      collection.each_with_index do |row, index|
+        begin
+          import(row)
+        rescue Exception => e
+          message = ['Line', index + 2, ':', e.message].join(' ')
+          raise ImportError, message
+        end
+      end
     end
   end
 
@@ -45,7 +54,7 @@ class HouseholderImporter
   end
 
   def territory_changed?(householder, territory_name)
-    !householder.territory_name.to_s.casecmp(territory_name.downcase).zero?
+    !householder.territory_name.to_s.casecmp(territory_name.to_s.downcase).zero?
   end
 
   def assign_territory_by_name(householder, territory_name)

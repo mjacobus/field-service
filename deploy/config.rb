@@ -26,6 +26,7 @@ append :linked_files,
 
 append :linked_dirs,
   "log",
+  "csv",
   "tmp/pids",
   "tmp/cache",
   "tmp/sockets",

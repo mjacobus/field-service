@@ -6,7 +6,13 @@ Dotenv.load
 
 set :application, ENV['APPLICATION_NAME']
 set :repo_url, "git@github.com:mjacobus/field-service.git"
-ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+
+if ENV['BRANCH']
+  set :branch, ENV['BRANCH']
+else
+  ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+end
+
 set :deploy_to, "/var/www/apps/#{fetch(:application)}"
 set :chruby_ruby, 'ruby-2.4.0'
 set :pty, true

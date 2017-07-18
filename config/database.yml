@@ -62,3 +62,9 @@ production:
   database: field-service_production
   username: field-service
   password: <%= ENV['FIELD-SERVICE_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: field-service_staging
+  username: fs-staging
+  password: <%= ENV['FIELD-SERVICE_DATABASE_PASSWORD'] %>

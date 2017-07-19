@@ -15,23 +15,26 @@ namespace :test do
 end
 
 namespace :csv do
-  desc 'import csv files from tmp/csv'
-  task  import: [:environment] do
-    importer = CsvImporter.new
+  namespace :householders do
+    desc 'import csv files from csv/to_import'
+    task  import: [:environment] do
+      importer = CsvImporter.new
 
-    Dir['tmp/csv/*.csv'].each do |file|
-      importer.import(file)
+      Dir['csv/to_import/*.csv'].each do |file|
+        importer.import(file)
+        FileUtils.mv(file, 'csv/imported')
+      end
     end
-  end
 
-  desc 'export all'
-  task export_all: [:environment] do
-    householders = Householder.ordered
-    file = DatePath.new(prefix: 'housholders_', suffix: '.csv').to_s
-    file = Rails.root.join('tmp', 'csv', 'exports', file)
-    HouseholdersCsvExporter.new.export(householders).to_file(file)
+    desc 'export all'
+    task export_all: [:environment] do
+      householders = Householder.ordered
+      file = DatePath.new(prefix: 'housholders_', suffix: '.csv').to_s
+      file = Rails.root.join('csv', 'exports', file)
+      HouseholdersCsvExporter.new.export(householders).to_file(file)
 
-    puts "Exported to #{file}"
+      puts "Exported to #{file}"
+    end
   end
 end
 

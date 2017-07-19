@@ -13,8 +13,19 @@ My personal field service helper
 
 Copy .env.example to .env and change accordingly.
 
-## Importing
+## Importing/exporting
 
 ```bash
-rake csv:import # will import CSVs inside tmp/csv
+rake csv:householders:import     # will import CSVs inside csv/to_import
+rake csv:householders:export_all # will export to csv/exports
 ```
+
+### CSV columns:
+
+- `territory_name` - required
+- `street_name` - required
+- `house_number` - required
+- `name` - required
+- `show` - (yes|no) required
+- `uuid`
+- `updated_at`

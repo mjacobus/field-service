@@ -88,9 +88,11 @@ class HouseholderImporterTest < ActiveSupport::TestCase
         import_data.dup.merge(foo: :bar)
       ]
 
-      assert_raise(ArgumentError) do
+      exception = assert_raise(RuntimeError) do
         subject.import_batch(collection)
       end
+
+      exception.message.must_equal 'Line 3 : unknown keyword: foo'
 
       assert_count(0, 0)
     end

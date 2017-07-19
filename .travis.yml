@@ -3,19 +3,17 @@ sudo: false
 cache: bundler
 
 rvm:
-  - 2.2.2
-  - 2.3.0
+  # - 2.2.2
+  # - 2.3.0
   - 2.4.0
 
 env:
   - DB=mysql      DATABASE_URL="mysql2://root@127.0.0.1:3306/field_service_test"
-  - DB=postgresql DATABASE_URL="postgres://postgres@localhost/field_service_test"
+  # - DB=postgresql DATABASE_URL="postgres://postgres@localhost/field_service_test"
   - DB=sqlite
 
 before_script:
   - bundle exec rake db:create
-  # - mysql -e 'CREATE DATABASE field_service_test'
-  # - psql -c 'CREATE DATABASE  field_service_test' -U postgres
 
 script:
   - RAILS_ENV=test bundle exec rake db:migrate

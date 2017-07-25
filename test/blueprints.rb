@@ -13,6 +13,7 @@ Householder.blueprint do
   street_name { Faker::Address.street_name }
   house_number { sn }
   show { sn%2 == 0 }
+  do_not_visit_date { sn%2 == 0 ? sn.days.ago.to_date : nil }
   notes { "Some notes #{sn}" }
   territory
 end

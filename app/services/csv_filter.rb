@@ -4,6 +4,7 @@ class CsvFilter
     street_name
     house_number
     name
+    do_not_visit_date
     show
     uuid
     updated_at

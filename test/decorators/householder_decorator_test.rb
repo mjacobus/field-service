@@ -14,6 +14,7 @@ class HouseholderDecoratorTest < TestCase
       uuid: 'theUuid',
       house_number: 'houseNumber',
       street_name: 'theStreet',
+      do_not_visit_date?: false,
       show: true,
       territory_id: ':tid',
       description: 'theDescription'
@@ -71,7 +72,13 @@ class HouseholderDecoratorTest < TestCase
   end
 
   test "#html_classes returns 'disabled' when show is false" do
-    @decorator = HouseholderDecorator.new(stub(show: false))
+    @decorator = HouseholderDecorator.new(stub(show: true, do_not_visit_date?: true))
+
+    assert_equal 'disabled', @decorator.html_classes.to_s
+  end
+
+  test "#html_classes returns 'do_not_visit_date?' is true" do
+    @decorator = HouseholderDecorator.new(stub(show: true, do_not_visit_date?: true))
 
     assert_equal 'disabled', @decorator.html_classes.to_s
   end

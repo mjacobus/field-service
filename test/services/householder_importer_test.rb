@@ -36,10 +36,48 @@ class HouseholderImporterTest < ActiveSupport::TestCase
       end
     end
 
-    it 'imports #show correctly' do
-      import(show: nil)
+    describe '#show' do
+      it 'imports nil as true' do
+        import(show: nil)
 
-      assert householder.show?
+        assert householder.show?
+      end
+
+      it 'imports true as true' do
+        import(show: true)
+
+        assert householder.show?
+      end
+
+      it 'imports false as false' do
+        import(show: false)
+
+        refute householder.show?
+      end
+
+      it 'imports 1 as true' do
+        import(show: 1)
+
+        assert householder.show?
+      end
+
+      it 'imports "1" as true' do
+        import(show: '1')
+
+        assert householder.show?
+      end
+
+      it 'imports 0 as false' do
+        import(show: 0)
+
+        refute householder.show?
+      end
+
+      it 'imports "0" as false' do
+        import(show: "0")
+
+        refute householder.show?
+      end
     end
 
     describe '#do_not_visit_date' do

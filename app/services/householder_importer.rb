@@ -24,7 +24,7 @@ class HouseholderImporter
   end
 
   def import(territory_name:, street_name:, house_number:, name:, show:, uuid: nil, updated_at: nil, do_not_visit_date: nil)
-    show = ![false, 'no'].include?(show)
+    show = ![false, 'no', 0, '0'].include?(show)
 
     householder = Householder.find_by_uuid(uuid)
     householder ||= Householder.new

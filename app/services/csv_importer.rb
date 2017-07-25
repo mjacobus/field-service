@@ -2,7 +2,7 @@ require 'koine/csv'
 
 class CsvImporter
   def initialize(
-    parser: ::Koine::Csv::NamedColumnsParser.new(column_separator: ','),
+    parser: ::Koine::Csv::NamedColumnsParser.new(column_separator: ';'),
     importer: HouseholderImporter.new
   )
     @parser = parser
@@ -13,7 +13,7 @@ class CsvImporter
     contents = File.read(file)
     filter = CsvFilter.new
     collection = @parser.parse(contents).map do |row|
-      row = filter.filter(row)
+      filter.filter(row)
     end
     @importer.import_batch(collection)
   end

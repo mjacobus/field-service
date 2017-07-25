@@ -41,9 +41,9 @@ class HouseholdersCsvExporterTest < TestCase
         result = subject.export([h1, h2])
 
         expected = <<-HASH
-territory_name,street_name,house_number,name,show,uuid,updated_at
-território1,street 1,#1,name 1,1,uuid1,#{h1.updated_at.utc.to_s(:db)}
-território2,street 2,#2,name 2,0,uuid2,#{h2.updated_at.utc.to_s(:db)}
+territory_name;street_name;house_number;name;show;uuid;updated_at
+território1;street 1;#1;name 1;1;uuid1;#{h1.updated_at.utc.to_s(:db)}
+território2;street 2;#2;name 2;0;uuid2;#{h2.updated_at.utc.to_s(:db)}
 HASH
 
         assert_equal expected, result.to_s

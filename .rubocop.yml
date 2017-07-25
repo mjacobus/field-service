@@ -39,6 +39,8 @@ Documentation:
 
 AllCops:
   Exclude:
+    - spec/support/blueprints.rb
+    - test/blueprints.rb
     - Gemfile
     - bin/**/*
     - db/schema.rb

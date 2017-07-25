@@ -52,6 +52,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'awesome_print'
   gem 'byebug', platform: :mri
+  gem 'rubocop'
+  gem 'reek'
 end
 
 group :development do
@@ -75,7 +77,6 @@ group :test do
   gem 'mocha'
   gem 'poltergeist'
   gem 'rails-controller-testing'
-  gem 'rubocop'
   gem 'shoulda', '~>3.5'
   gem 'shoulda-context', '~>1.2'
   gem 'shoulda-matchers', '~> 2.0'

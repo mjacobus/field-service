@@ -29,7 +29,7 @@ class ActiveRecordCollectionDecorator < ActiveRecordBaseDecorator
     item_decorator_class.new(item).with_view_helpers(view_helpers)
   end
 
-  def collection(*args)
+  def collection(*_args)
     __getobj__
   end
 end

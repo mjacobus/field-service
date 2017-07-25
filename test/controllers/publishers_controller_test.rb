@@ -21,17 +21,17 @@ class PublishersControllerTest < ControllerTestCase
     assert subject.is_a?(AuthenticatedController)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get @index_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get @new_url
     assert_response :success
   end
 
-  test "should create publisher" do
+  test 'should create publisher' do
     assert_difference('Publisher.count') do
       post @index_url, params: { publisher: { email: @publisher.email, name: @publisher.name, phone: @publisher.phone } }
     end
@@ -39,22 +39,22 @@ class PublishersControllerTest < ControllerTestCase
     assert_redirected_to publisher_url(Publisher.last)
   end
 
-  test "should show publisher" do
+  test 'should show publisher' do
     get @resource_url
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get @edit_url
     assert_response :success
   end
 
-  test "should update publisher" do
+  test 'should update publisher' do
     patch @resource_url, params: { publisher: { email: @publisher.email, name: @publisher.name, phone: @publisher.phone } }
     assert_redirected_to @resource_url
   end
 
-  test "should destroy publisher" do
+  test 'should destroy publisher' do
     assert_difference('Publisher.count', -1) do
       delete @resource_url
     end

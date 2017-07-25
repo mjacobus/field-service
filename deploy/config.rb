@@ -1,11 +1,11 @@
 # config valid only for current version of Capistrano
-lock "3.8.1"
+lock '3.8.1'
 
 require 'dotenv'
 Dotenv.load
 
 set :application, ENV['APPLICATION_NAME']
-set :repo_url, "git@github.com:mjacobus/field-service.git"
+set :repo_url, 'git@github.com:mjacobus/field-service.git'
 
 if ENV['BRANCH']
   set :branch, ENV['BRANCH']
@@ -20,17 +20,17 @@ set :keep_releases, 10
 set :bundle_flags, '--deployment'
 
 append :linked_files,
-  "config/database.yml",
-  "config/secrets.yml",
-  ".env"
+       'config/database.yml',
+       'config/secrets.yml',
+       '.env'
 
 append :linked_dirs,
-  "log",
-  "csv",
-  "tmp/pids",
-  "tmp/cache",
-  "tmp/sockets",
-  "public/system"
+       'log',
+       'csv',
+       'tmp/pids',
+       'tmp/cache',
+       'tmp/sockets',
+       'public/system'
 
 namespace :deploy do
   desc 'Restart application'

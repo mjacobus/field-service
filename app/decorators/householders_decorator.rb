@@ -40,7 +40,7 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
           name: householder.name,
           location: {
             lat: householder.lat,
-            lon: householder.lon,
+            lon: householder.lon
           }
         }
       end

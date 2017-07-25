@@ -7,7 +7,7 @@ class PublisherDecoratorTest < TestCase
       to_param: 1,
       name: 'theName',
       email: 'theEmail',
-      phone: 'thePhone',
+      phone: 'thePhone'
     )
 
     @decorator = PublisherDecorator.new(@item).with_view_helpers(fake_view_helpers)
@@ -64,4 +64,3 @@ class PublisherDecoratorTest < TestCase
     assert_equal expected, actual
   end
 end
-

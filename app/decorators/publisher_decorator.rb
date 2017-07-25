@@ -1,6 +1,6 @@
 class PublisherDecorator < ActiveRecordModelDecorator
   def index_url
-    "/publishers"
+    '/publishers'
   end
 
   def breadcrumbs

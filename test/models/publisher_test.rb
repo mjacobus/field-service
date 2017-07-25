@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PublisherTest < ActiveSupport::TestCase
-  test "validates presence of #name" do
+  test 'validates presence of #name' do
     item = Publisher.new
     refute item.valid?
 

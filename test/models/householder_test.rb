@@ -76,7 +76,7 @@ class HouseholderTest < ActiveSupport::TestCase
     }
 
     Koine::GoogleMapsClient.any_instance.stubs(:geocode)
-      .with(address: 'the street the number').returns(data)
+                           .with(address: 'the street the number').returns(data)
 
     subject.update_geolocation
 

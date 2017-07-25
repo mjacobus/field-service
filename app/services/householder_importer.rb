@@ -1,6 +1,15 @@
 class HouseholderImporter
   ImportError = Class.new(RuntimeError)
 
+  DATE_FORMATS = [
+    # matcher, parser argument
+    [/^(\d{1,2}\.){2}\d{2}$/, '%d.%m.%y']
+  ].freeze
+
+  def initialize(date_formats: DATE_FORMATS)
+    @date_formats = date_formats
+  end
+
   def import_batch(collection)
     ActiveRecord::Base.transaction do
       collection.each_with_index do |row, index|
@@ -14,7 +23,7 @@ class HouseholderImporter
     end
   end
 
-  def import(territory_name:, street_name:, house_number:, name:, show:, uuid: nil, updated_at: nil)
+  def import(territory_name:, street_name:, house_number:, name:, show:, uuid: nil, updated_at: nil, do_not_visit_date: nil)
     show = ![false, 'no'].include?(show)
 
     householder = Householder.find_by_uuid(uuid)
@@ -28,6 +37,7 @@ class HouseholderImporter
       name: name,
       show: show,
       uuid: uuid || UniqueId.new,
+      do_not_visit_date: parse_date(do_not_visit_date),
       updated_at: updated_at
     }
 
@@ -51,6 +61,22 @@ class HouseholderImporter
   def parse_time(time)
     return time if time.is_a?(Time)
     Time.parse(time).utc
+  end
+
+  def parse_date(date)
+    return date if date.is_a?(Date)
+
+    if date.to_s == ''
+      return nil
+    end
+
+    @date_formats.each do |format|
+      if date =~ format.first
+        return Date.strptime(date, format.last)
+      end
+    end
+
+    Date.parse(date)
   end
 
   def territory_changed?(householder, territory_name)

@@ -12,6 +12,7 @@ class CsvFilterTest < ActiveSupport::TestCase
       uuid: 'the uuid',
       'show' => 'the show',
       updated_at: 'the updated at',
+      do_not_visit_date: 'the-date',
       foo: 'the updated at',
       nil: nil,
       nil =>  nil
@@ -25,6 +26,7 @@ class CsvFilterTest < ActiveSupport::TestCase
         street_name: 'street name',
         house_number: 'house number',
         name: 'the name',
+        do_not_visit_date: 'the-date',
         show: 'the show',
         uuid: 'the uuid',
         updated_at: 'the updated at'

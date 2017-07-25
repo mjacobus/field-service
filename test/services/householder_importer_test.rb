@@ -11,6 +11,7 @@ class HouseholderImporterTest < ActiveSupport::TestCase
       street_name: 'street name',
       house_number: 'house number',
       name: 'householder name',
+      do_not_visit_date: '01.02.17',
       show: 'no'
     }
   end
@@ -39,6 +40,52 @@ class HouseholderImporterTest < ActiveSupport::TestCase
       import(show: nil)
 
       assert householder.show?
+    end
+
+    describe '#do_not_visit_date' do
+      it 'accepts date in the YYYY-mm-dd format' do
+        import(do_not_visit_date: '2017-02-01')
+
+        householder.do_not_visit_date.must_equal Date.new(2017, 2, 1)
+      end
+
+      it 'accepts date in th dd.mm.yy format' do
+        import(do_not_visit_date: '01.02.17')
+
+        householder.do_not_visit_date.must_equal Date.new(2017, 2, 1)
+      end
+
+      it 'accepts date in th d.m.yy format' do
+        import(do_not_visit_date: '1.2.17')
+
+        householder.do_not_visit_date.must_equal Date.new(2017, 2, 1)
+      end
+
+      it 'accepts date in the d.m.yyyy format' do
+        import(do_not_visit_date: '1.2.2017')
+
+        householder.do_not_visit_date.must_equal Date.new(2017, 2, 1)
+      end
+
+      it 'accepts Date' do
+        date = Date.new(2017, 2, 1)
+
+        import(do_not_visit_date: date)
+
+        householder.do_not_visit_date.must_equal date
+      end
+
+      it 'accepts blank' do
+        import(do_not_visit_date: '')
+
+        householder.do_not_visit_date.must_be_nil
+      end
+
+      it 'accepts nil' do
+        import(do_not_visit_date: nil)
+
+        householder.do_not_visit_date.must_be_nil
+      end
     end
 
     describe 'when has uuid and date' do

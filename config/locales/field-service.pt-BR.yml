@@ -16,6 +16,7 @@ pt-BR:
         name: Nome
         house_number: Número da casa
         street_name: Nome da rua
+        do_not_visit_date: Não visitar
         show: Exibir
       publisher:
         name: Nome

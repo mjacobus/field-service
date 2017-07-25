@@ -8,7 +8,7 @@ class HouseholdersCsvExporter
 
   # @return FileExportService
   def export(householders)
-    csv_string = CSV.generate do |csv|
+    csv_string = CSV.generate(col_sep: ';') do |csv|
       csv << @fields
       householders.each do |householder|
         csv << householder_to_csv_row(householder)

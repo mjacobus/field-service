@@ -16,7 +16,7 @@ Copy .env.example to .env and change accordingly.
 ## Importing/exporting
 
 ```bash
-rake csv:householders:import     # will import CSVs inside csv/to_import
+rake csv:householders:import     # will import CSVs inside csv/to_import prefixed with householders_
 rake csv:householders:export_all # will export to csv/exports
 ```
 

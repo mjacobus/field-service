@@ -16,11 +16,12 @@ end
 
 namespace :csv do
   namespace :householders do
-    desc 'import csv files from csv/to_import'
+    desc 'import csv files from csv/to_import/householders_*.csv'
     task  import: [:environment] do
       importer = CsvImporter.new
 
       Dir['csv/to_import/householders_*.csv'].each do |file|
+        puts "Importing #{file}"
         importer.import(file)
         FileUtils.mv(file, 'csv/imported')
       end
@@ -34,6 +35,22 @@ namespace :csv do
       HouseholdersCsvExporter.new.export(householders).to_file(file)
 
       puts "Exported to #{file}"
+    end
+  end
+
+  namespace :territory_assignments do
+    desc 'import csv files from csv/to_import/territory_assignments_*.csv'
+    task  import: [:environment] do
+      importer = CsvImporter.new(
+        filter: TerritoryAssignmentCsvFilter.new,
+        importer: TerritoryAssignmentImporter.new
+      )
+
+      Dir['csv/to_import/territory_assignments_*.csv'].each do |file|
+        puts "Importing #{file}"
+        importer.import(file)
+        FileUtils.mv(file, 'csv/imported')
+      end
     end
   end
 end

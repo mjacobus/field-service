@@ -2,8 +2,8 @@ require 'csv'
 
 class HouseholdersCsvExporter
   def initialize
-    @fields = CsvFilter::ALLOWED_KEYS
     @filter = CsvFilter.new
+    @fields = @filter.allowed_fields
   end
 
   # @return FileExportService

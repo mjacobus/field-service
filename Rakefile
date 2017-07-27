@@ -20,7 +20,7 @@ namespace :csv do
     task  import: [:environment] do
       importer = CsvImporter.new
 
-      Dir['csv/to_import/*.csv'].each do |file|
+      Dir['csv/to_import/householders_*.csv'].each do |file|
         importer.import(file)
         FileUtils.mv(file, 'csv/imported')
       end
@@ -29,7 +29,7 @@ namespace :csv do
     desc 'export all'
     task export_all: [:environment] do
       householders = Householder.ordered
-      file = DatePath.new(prefix: 'housholders_', suffix: '.csv').to_s
+      file = DatePath.new(prefix: 'export_housholders_', suffix: '.csv').to_s
       file = Rails.root.join('csv', 'exports', file)
       HouseholdersCsvExporter.new.export(householders).to_file(file)
 

@@ -1,4 +1,8 @@
 class TerritoryAssignmentsController < ApplicationController
+  def index
+    @territories = Territory.sorted
+  end
+
   def new
     @territory = create_decorator(TerritoryAssignmentDecorator, territory)
   end

@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   end
 
   resources :publishers
+
+  resources :territory_assignments, only: [:index]
 end

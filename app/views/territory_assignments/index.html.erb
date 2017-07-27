@@ -1,0 +1,23 @@
+<% @territories.each do |territory| %>
+  <table>
+    <thead>
+      <tr>
+        <th class="text-left" colspan="3">Território: <%= territory.name %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="text-left">Publicador</th>
+        <th class="text-left">Data designação</th>
+        <th class="text-left">Data entrega</th>
+      </tr>
+      <% territory.assignments.each do |assignment| %>
+        <tr>
+          <td><%= assignment.publisher.name %></td>
+          <td> <%= l assignment.assigned_at %></td>
+          <td> <%= l(assignment.returned_at) if assignment.returned? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

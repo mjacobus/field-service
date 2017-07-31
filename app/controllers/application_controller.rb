@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
     klass = args.shift
     klass.new(*args).with_view_helpers(view_context)
   end
+
+  def search_params
+    allowed = [:assigned_to_ids]
+    params.symbolize_keys.select do |key, _value|
+      allowed.include?(key)
+    end
+  end
 end

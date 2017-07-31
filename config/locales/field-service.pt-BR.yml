@@ -37,6 +37,8 @@ pt-BR:
     show_map: Exibir Mapa
     current_geolocation: Localização atual
     filter: Filtrar
+    show_filter: Mostrar filtro
+    hide_filter: Esconder filtro
 
   publisher_name: Nome do publicador
   territory_name: Nome/Número do território
@@ -58,6 +60,9 @@ pt-BR:
     territory_assignments: Designação de Território
     assign_territory: Designar Território
     return_territory: Devolver território
+
+  fields:
+    assigned_to: Designado para
 
 
   territories:

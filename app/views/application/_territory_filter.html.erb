@@ -1,0 +1,31 @@
+<div id="js_filter" style="display: none">
+  <%= form_tag(nil, method: :get) do  %>
+    <label>
+      <%= t('fields.assigned_to') %>
+      <%= select_tag(
+        'assigned_to_ids[]',
+        options_for_select(
+          Publisher.sorted.map { |p| [p.name, p.id] },
+          params[:assigned_to_ids]
+        ),
+        multiple: true
+      ) %>
+    </label>
+
+
+    <a href="javascript:toggle(['#js_filter', '#js_show_filter'])" class="button alert">
+      <i class="fi-filter"></i>
+      <%= t('links.hide_filter') %>
+    </a>
+    <button class="button ">
+      <i class="fi-filter"></i>
+      <%= t('links.filter') %>
+    </button>
+  <% end %>
+
+</div>
+
+<a class="button warning" id="js_show_filter" href="javascript:toggle(['#js_filter', '#js_show_filter'])">
+  <i class="fi-filter"></i>
+  <%= t('links.show_filter') %>
+</a>

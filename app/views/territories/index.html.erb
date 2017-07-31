@@ -1,5 +1,6 @@
 <% page_title t('titles.territories') %>
 <% breadcrumbs_for @territories_decorator %>
+<%= render partial: 'application/territory_filter' %>
 
 <%= small_button_group(@territories_decorator.new_button) %>
 

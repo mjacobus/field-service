@@ -57,6 +57,7 @@ pt-BR:
     publishers: Publicadores
     territory_assignments: Designação de Território
     assign_territory: Designar Território
+    return_territory: Devolver território
 
 
   territories:

@@ -20,7 +20,8 @@ class TerritoryDecorator < ActiveRecordModelDecorator
       householders_url,
       'torsos-all',
       'warning',
-      title: t('titles.householders')
+      title: t('titles.householders'),
+      text: t('titles.householders'),
     )
   end
 
@@ -29,7 +30,8 @@ class TerritoryDecorator < ActiveRecordModelDecorator
       assign_url,
       'arrow-up',
       '',
-      title: t('titles.assign_territory')
+      title: t('titles.assign_territory'),
+      text: t('titles.assign_territory')
     )
   end
 
@@ -38,7 +40,8 @@ class TerritoryDecorator < ActiveRecordModelDecorator
       return_url,
       icon: 'refresh',
       button_class: 'warning',
-      title: t('titles.assign_territory'),
+      title: t('titles.return_territory'),
+      text: t('titles.return_territory'),
       confirm_message: t('confirm_territory_return', territory: name)
     )
   end

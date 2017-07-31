@@ -1,4 +1,4 @@
-class TerritoryAssignmentsController < ApplicationController
+class TerritoryAssignmentsController < AuthenticatedController
   def index
     @territories = Territory.sorted
   end

@@ -28,4 +28,12 @@ module ApplicationHelper
   def page_title(title)
     content_for(:title, title)
   end
+
+  def body_class
+    if root_url =~ /staging|localhost/
+      return 'development-env'
+    end
+
+    'production-env'
+  end
 end

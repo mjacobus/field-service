@@ -11,7 +11,7 @@ class ActiveRecordBaseDecorator < BaseDecorator
     content = content_tag(:i, nil, class: "fi-#{icon}")
 
     if options[:text]
-      text = content_tag(:div, options[:text])
+      text = content_tag(:span, ' ' + options[:text])
 
       content = content_tag(:span) do
         content + text

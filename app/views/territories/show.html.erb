@@ -6,13 +6,7 @@
       <%= image_tag('territory2.png') %>
     </div>
 
-    <%= button_group(
-      @territory_decorator.return_button,
-      @territory_decorator.assign_button,
-      @territory_decorator.householders_button,
-      @territory_decorator.edit_button,
-      @territory_decorator.cancel_button
-    ) %>
+
   </div>
   <div class="media-object-section">
     <h4> <%= @territory_decorator.name %></h4>
@@ -22,8 +16,32 @@
     <p><%= @territory_decorator.title_for(:return_date) %>: <%= @territory_decorator.return_date %></p>
   </div>
 
-  <div class="media-object-section">
-  </div>
+  <div class="media-object-section"></div>
 </div>
+
+<div>
+  <%= @territory_decorator.return_button %>
+</div>
+
+<div>
+  <%= @territory_decorator.assign_button %>
+</div>
+
+<div>
+  <%= @territory_decorator.householders_button %>
+</div>
+
+<div>
+<%= @territory_decorator.edit_button %>
+</div>
+
+<div>
+  <%= @territory_decorator.destroy_button %>
+</div>
+
+<div>
+  <%= @territory_decorator.cancel_button %>
+</div>
+
 
 <%= render partial: 'map', locals: { addresses: @territory_decorator.names_and_addresses } %>

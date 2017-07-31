@@ -1,6 +1,6 @@
 class TerritoriesController < AuthenticatedController
   def index
-    @territories = Territory.sorted
+    @territories = TerritoryService.new.search(search_params)
     @territories_decorator = create_decorator(TerritoriesDecorator, @territories)
   end
 

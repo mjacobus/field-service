@@ -1,6 +1,6 @@
 class TerritoryAssignmentsController < AuthenticatedController
   def index
-    @territories = Territory.sorted
+    @territories = TerritoryService.new.search(search_params)
   end
 
   def new

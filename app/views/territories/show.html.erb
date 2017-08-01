@@ -19,29 +19,51 @@
   <div class="media-object-section"></div>
 </div>
 
-<div>
-  <%= @territory_decorator.return_button %>
+<div class="row">
+  <a class="button warning large-4 medium-4 small-12 columns"
+    href="<%= @territory_decorator.return_url %>"
+    data-method="delete"
+    data-confirm="<%= t('confirm_territory_return', territory: @territory_decorator.name) %>">
+    <i class="fi-refresh"></i>
+    <%= t('titles.return_territory') %>
+  </a>
+
+  <a class="button large-4 medium-4 small-12 columns" href="<%= @territory_decorator.assign_url %>">
+    <i class="fi-arrow-up"></i>
+    <%= t('titles.assign_territory') %>
+  </a>
+
+  <a class="button warning large-4 medium-4 small-12 columns" href="<%= @territory_decorator.householders_url %>">
+    <i class="fi-torsos-all"></i>
+    <%= t('titles.householders') %>
+  </a>
 </div>
 
-<div>
-  <%= @territory_decorator.assign_button %>
+<div class="row">
+
+  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
+
+  <a class="button success  large-4 medium-4 small-12 columns" href="<%= @territory_decorator.edit_url %>">
+    <i class="fi-pencil"></i>
+    <%= t('links.edit') %>
+  </a>
+
+  <a class="button alert  large-4 medium-4 small-12 columns"
+    href="<%= @territory_decorator.url %>"
+    data-method="delete"
+    data-confirm="<%= t('confirm_territory_destroy', territory: @territory_decorator.name) %>">
+    <i class="fi-x"></i>
+    <%= t('links.destroy') %>
+  </a>
 </div>
 
-<div>
-  <%= @territory_decorator.householders_button %>
+<div class="row">
+  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
+  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
+  <a class="button alert hollow large-4 medium-4 small-12 columns" href="<%= @territory_decorator.index_url %>">
+    <i class="fi-arrow-left"></i>
+    <%= t('links.back') %>
+  </a>
 </div>
-
-<div>
-<%= @territory_decorator.edit_button %>
-</div>
-
-<div>
-  <%= @territory_decorator.destroy_button %>
-</div>
-
-<div>
-  <%= @territory_decorator.cancel_button %>
-</div>
-
 
 <%= render partial: 'map', locals: { addresses: @territory_decorator.names_and_addresses } %>

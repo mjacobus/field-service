@@ -46,6 +46,7 @@ pt-BR:
   name: Nome
   confirm_assignment_for_publisher: "Designar para %{publisher}?"
   confirm_territory_return: "Tem certeza que deseja marcar o território %{territory} como devolvido?"
+  confirm_territory_destroy: "Tem certeza que deseja excluir o território %{territory}?"
   assign: "Designar"
 
   messages:

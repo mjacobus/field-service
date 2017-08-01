@@ -28,10 +28,10 @@
         <td><%= householder.do_not_visit_date %></td>
         <td class="action">
           <% buttons = [
-                householder.edit_button,
-                householder.destroy_button
+              householder.show_button,
+              householder.edit_button,
+              householder.destroy_button
             ] %>
-          <% buttons.unshift(householder.show_button) if householder.has_notes? %>
           <%= small_button_group(*buttons) %>
         </td>
       </tr>

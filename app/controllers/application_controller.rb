@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def search_params
-    allowed = [:assigned_to_ids]
+    allowed = %i[assigned_to_ids pending_return]
     params.symbolize_keys.select do |key, _value|
       allowed.include?(key)
     end

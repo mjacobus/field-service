@@ -1,16 +1,27 @@
 <div id="js_filter" style="display: none">
   <%= form_tag(nil, method: :get) do  %>
-    <label>
-      <%= t('fields.assigned_to') %>
-      <%= select_tag(
-        'assigned_to_ids[]',
-        options_for_select(
-          Publisher.sorted.map { |p| [p.name, p.id] },
-          params[:assigned_to_ids]
-        ),
-        multiple: true
-      ) %>
-    </label>
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <label>
+          <%= check_box_tag(:pending_return, 1, params[:pending_return]) %>
+          <%= t('fields.pending_return') %>
+        </label>
+      </div>
+
+      <div class="small-12 large-6 columns">
+        <label>
+          <%= t('fields.assigned_to') %>
+          <%= select_tag(
+            'assigned_to_ids[]',
+            options_for_select(
+              Publisher.sorted.map { |p| [p.name, p.id] },
+              params[:assigned_to_ids]
+            ),
+            multiple: true
+          ) %>
+        </label>
+      </div>
+    </div>
 
 
     <a href="javascript:toggle(['#js_filter', '#js_show_filter'])" class="button alert">

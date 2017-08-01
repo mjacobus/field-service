@@ -1,9 +1,13 @@
 class TerritoryService
-  def search(assigned_to_ids: nil)
+  def search(assigned_to_ids: nil, pending_return: nil)
     query = TerritoryQuery.new
 
     if assigned_to_ids
       query = query.with_publisher_ids(assigned_to_ids)
+    end
+
+    if pending_return
+      query = query.pending_return
     end
 
     query
@@ -22,6 +26,11 @@ class TerritoryQuery < SimpleDelegator
 
   def assigned
     new(joins(:assignments).where(territory_assignments: { returned_at: nil }))
+  end
+
+  def pending_return
+    new_scope = assigned.where('return_date < :today_date', today_date: Date.today)
+    new(new_scope)
   end
 
   private

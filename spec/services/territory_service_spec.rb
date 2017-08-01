@@ -52,5 +52,36 @@ RSpec.describe TerritoryService do
         expect(results.to_a).to eq([territory3])
       end
     end
+
+    describe 'with pending return' do
+      before do
+        TerritoryAssigning.new.perform(
+          territory_id: territory1.id,
+          publisher_id: publisher1.id,
+          assigned_at: Date.today
+        )
+
+        TerritoryAssigning.new.perform(
+          territory_id: territory2.id,
+          publisher_id: publisher1.id,
+          assigned_at: 7.months.ago.to_date
+        )
+
+        TerritoryAssigning.new.perform(
+          territory_id: territory3.id,
+          publisher_id: publisher1.id,
+          assigned_at: 7.months.ago.to_date
+        )
+
+        ReturnTerritory.new.perform(territory_id: territory3.id)
+      end
+
+      it 'returns only the ones with pending return' do
+        results = TerritoryService.new.search(pending_return: '1')
+
+        expect(results.count).to eq(1)
+        expect(results.to_a).to eq([territory2])
+      end
+    end
   end
 end

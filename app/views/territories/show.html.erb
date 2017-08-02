@@ -19,6 +19,21 @@
   <div class="media-object-section"></div>
 </div>
 
+<hr />
+
+<h2>Histórico</h2>
+
+<% @territory_decorator.assignments.each do |assignment| %>
+  <div class="row <% @territory_decorator.html_classes %>">
+    <div class="small-12 large-3 columns"> <strong> <%= assignment.publisher.name %> </strong></div>
+    <div class="small-4 columns">Data: <%= l assignment.assigned_at %></div>
+    <div class="small-4 columns">Data retorno: <%= l assignment.return_date %></div>
+    <div class="small-4 columns date">Retornado: <%= l(assignment.returned_at) if assignment.returned? %></div>
+  </div>
+<% end %>
+
+<hr />
+
 <div class="row">
   <a class="button warning large-4 medium-4 small-12 columns"
     href="<%= @territory_decorator.return_url %>"
@@ -39,8 +54,9 @@
   </a>
 </div>
 
-<div class="row">
+<hr />
 
+<div class="row <%= @territory_decorator.html_classes %>">
   <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
 
   <a class="button success  large-4 medium-4 small-12 columns" href="<%= @territory_decorator.edit_url %>">
@@ -56,6 +72,8 @@
     <%= t('links.destroy') %>
   </a>
 </div>
+
+<hr />
 
 <div class="row">
   <div class="large-4 medium-4 small-12 columns">&nbsp;</div>

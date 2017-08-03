@@ -4,17 +4,17 @@ tr {
 }
 
 table {
-  font-size: 3em;
+  font-size: 24pt;
   width: 100%;
 }
 
 td, th {
   border: 1px solid #ddd;
-  padding: 0.4em;
+  padding: 10px;
 }
 
 th.territory-name {
-  font-size: 1.5em;
+  font-size: 40pt;
 }
 
 tr.disabled td {
@@ -32,4 +32,8 @@ tr.even {
 
 .text-center {
   text-align: center;
+}
+
+.text-top {
+  vertical-align: top;
 }

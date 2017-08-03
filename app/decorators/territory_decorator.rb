@@ -68,7 +68,7 @@ class TerritoryDecorator < ActiveRecordModelDecorator
   end
 
   def number_of_householders
-    householders.count
+    item.householders.count
   end
 
   def assigned_at
@@ -94,7 +94,7 @@ class TerritoryDecorator < ActiveRecordModelDecorator
   end
 
   def householders
-    HouseholdersDecorator.new(item.householders, self)
+    HouseholdersDecorator.new(item.householders, self).with_view_helpers(view_helpers)
   end
 
   private

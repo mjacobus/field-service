@@ -2,6 +2,11 @@ class TerritoriesController < AuthenticatedController
   def index
     @territories = TerritoryService.new.search(search_params)
     @territories_decorator = create_decorator(TerritoriesDecorator, @territories)
+
+    respond_to do |format|
+      format.html
+      format.pdf { export_pdf('territories_') }
+    end
   end
 
   def show

@@ -2,17 +2,30 @@
 <% breadcrumbs_for @territories_decorator %>
 <%= render partial: 'application/territory_filter' %>
 
-<%= small_button_group(@territories_decorator.new_button) %>
+<div class="row">
+  <a class="button warning large-4 medium-4 small-12 columns" href="<%= territories_url(params.symbolize_keys.merge(format: :pdf)) %>">
+    <i class="fi-page-export-pdf"></i>
+    <%= t('links.download_as_pdf') %>
+  </a>
+
+  <a class="button large-4 medium-4 small-12 columns" href="<%= @territories_decorator.new_url %>">
+    <i class="fi-plus"></i>
+    <%= t('links.new') %>
+  </a>
+</div>
+
+<p> <%= t('number_of_results_found', number: @territories_decorator.count) %></p>
 
 <% @territories_decorator.each do |territory| %>
-  <article class="row <%= territory.html_classes %> territory">
-    <div class="small-10 columns large-6">
-      <strong><%= territory.name %></strong>
-      <small>(<%= territory.number_of_householders %>)</small>
-    </div>
-    <div class="small-10 large-3 columns"><%= territory.current_assignee_name %></div>
-    <div class="small-10 large-2 columns date"><%= territory.return_date %></div>
-    <div class="small-2 large-1  columns"> <%= small_button_group(territory.show_button) %> </div>
-  </article>
+  <a href="<%= territory.url  %>">
+    <article class="row <%= territory.html_classes %> territory">
+      <div class="small-12 columns large-7">
+        <strong><%= territory.name %></strong>
+        <small>(<%= territory.number_of_householders %>)</small>
+      </div>
+      <div class="small-10 large-3 columns"><%= territory.current_assignee_name %></div>
+      <div class="small-10 large-2 columns date"><%= territory.return_date %></div>
+    </article>
+  </a>
 <% end %>
 

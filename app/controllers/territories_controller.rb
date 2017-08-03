@@ -6,6 +6,13 @@ class TerritoriesController < AuthenticatedController
 
   def show
     @territory_decorator = create_decorator(TerritoryDecorator, find_territory)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        export_pdf("territory_#{@territory_decorator.name.parameterize}")
+      end
+    end
   end
 
   def new

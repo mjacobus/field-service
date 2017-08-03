@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
       allowed.include?(key)
     end
   end
+
+  private
+
+  def export_pdf(export_type, options = {})
+    file_name = DatePath.new(prefix: "#{export_type}_").to_s
+    render pdf: file_name, layout: 'pdf'
+  end
 end

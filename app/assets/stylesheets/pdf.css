@@ -1,0 +1,35 @@
+/* https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1524#issuecomment-85072480 */
+tr {
+  page-break-inside: avoid;
+}
+
+table {
+  font-size: 3em;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 0.4em;
+}
+
+th.territory-name {
+  font-size: 1.5em;
+}
+
+tr.disabled td {
+  text-decoration: line-through;
+  color: red
+}
+
+tr.even {
+  background-color: #eee;
+}
+
+.no-border {
+  border: 0;
+}
+
+.text-center {
+  text-align: center;
+}

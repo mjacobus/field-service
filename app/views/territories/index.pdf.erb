@@ -1,0 +1,4 @@
+<% @territories_decorator.each do |territory| %>
+  <%= render partial: 'territories/table', locals: { territory: territory } %>
+  <%= page_break %>
+<% end %>

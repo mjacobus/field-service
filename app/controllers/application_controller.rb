@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Clearance::Controller
   protect_from_forgery with: :exception
 
-  protected
+  private
 
   def create_decorator(*args)
     klass = args.shift
@@ -15,8 +15,6 @@ class ApplicationController < ActionController::Base
       allowed.include?(key)
     end
   end
-
-  private
 
   def export_pdf(export_type, options = {})
     file_name = DatePath.new(prefix: "#{export_type}_").to_s

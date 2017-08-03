@@ -37,5 +37,7 @@ class BaseDecorator < SimpleDelegator
     URI.encode(string.to_s)
   end
 
-  attr_accessor :view_helpers
+  def view_helpers
+    @view_helpers || raise('view helpers not set')
+  end
 end

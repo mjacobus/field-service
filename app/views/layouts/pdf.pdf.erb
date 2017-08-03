@@ -4,6 +4,12 @@
     <meta charset='utf-8' />
     <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
     <%= wicked_pdf_javascript_include_tag "number_pages" %>
+    <style type="text/css">
+      body {
+        font-family: 'OpenSansRegular';
+        font-size: 13px;
+      }
+    </style>
   </head>
   <body onload='number_pages'>
     <div id="content">

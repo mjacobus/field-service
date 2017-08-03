@@ -22,7 +22,10 @@ class ApplicationController < ActionController::Base
     default_options = {
       pdf: file_name,
       layout: 'pdf',
-      header: { right: '[page] of [topage]' }
+      header: {
+        right: '[page] of [topage]',
+        font_size: 6
+      }
     }
 
     render(default_options.merge(options))

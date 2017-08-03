@@ -57,7 +57,10 @@
 <hr />
 
 <div class="row <%= @territory_decorator.html_classes %>">
-  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
+  <a class="button large-4 medium-4 small-12 columns" href="<%= @territory_decorator.url %>.pdf">
+    <i class="fi-page-export-pdf"></i>
+    <%= t('links.download_as_pdf') %>
+  </a>
 
   <a class="button success  large-4 medium-4 small-12 columns" href="<%= @territory_decorator.edit_url %>">
     <i class="fi-pencil"></i>

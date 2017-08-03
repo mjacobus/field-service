@@ -17,6 +17,12 @@ class ActiveRecordCollectionDecorator < ActiveRecordBaseDecorator
     end
   end
 
+  def each_with_index
+    collection.each_with_index do |item, index|
+      yield(create_item_decorator(item), index)
+    end
+  end
+
   def new_button
     link_to new_url, class: 'button' do
       content_tag(:i, nil, class: 'fi-plus')

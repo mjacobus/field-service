@@ -1,0 +1,38 @@
+<% householder = HouseholderDecorator.new(Householder.new) %>
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2" class="territory-name"><%= territory.name %></th>
+      <th>Responsável</th>
+      <th>Designado em</th>
+      <th>Data de Retorno:</th>
+      <th>Moradores</th>
+    </tr>
+    <tr>
+      <td class="text-center"><%= territory.current_assignee_name %></td>
+      <td class="text-center"><%= territory.assigned_at %></td>
+      <td class="text-center"><%= territory.return_date %></td>
+      <th><%= territory.number_of_householders %></th>
+    </tr>
+    <tr>
+      <td class="no-border" colspan="5"></td>
+    </tr>
+    <tr>
+      <th colspan="2"><%= householder.title_for(:address) %></th>
+      <th><%= householder.title_for(:house_number) %></th>
+      <th><%= householder.title_for(:name) %></th>
+      <th><%= householder.title_for(:do_not_visit_date) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% territory.householders.each_with_index do |householder, index| %>
+      <tr class="<%= householder.html_classes %> <%= odd_or_even(index) %>">
+        <td colspan="2"><%= householder.street_name %></td>
+        <td class="text-center"><%= householder.house_number %></td>
+        <td><%= householder.name %></td>
+        <td><%= householder.do_not_visit_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

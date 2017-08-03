@@ -39,6 +39,7 @@ pt-BR:
     filter: Filtrar
     show_filter: Mostrar filtro
     hide_filter: Esconder filtro
+    download_as_pdf: Download PDF
 
   publisher_name: Nome do publicador
   territory_name: Nome/Número do território

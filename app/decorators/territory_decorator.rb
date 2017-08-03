@@ -21,7 +21,7 @@ class TerritoryDecorator < ActiveRecordModelDecorator
       'torsos-all',
       'warning',
       title: t('titles.householders'),
-      text: t('titles.householders'),
+      text: t('titles.householders')
     )
   end
 
@@ -71,18 +71,30 @@ class TerritoryDecorator < ActiveRecordModelDecorator
     householders.count
   end
 
+  def assigned_at
+    l(current_assignment.assigned_at) if assigned?
+  end
+
   def current_assignee_name
-    current_assignment.publisher.name if current_assignment
+    current_assignment.publisher.name if assigned?
   end
 
   def return_date
-    l(current_assignment.return_date) if current_assignment
+    l(current_assignment.return_date) if assigned?
+  end
+
+  def assigned?
+    current_assignment
   end
 
   def html_classes
     classes = []
     classes << 'pending-return' if need_to_be_returned?
     classes.join(' ')
+  end
+
+  def householders
+    HouseholdersDecorator.new(item.householders, self)
   end
 
   private

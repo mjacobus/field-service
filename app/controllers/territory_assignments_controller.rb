@@ -1,6 +1,11 @@
 class TerritoryAssignmentsController < AuthenticatedController
   def index
     @territories = TerritoryService.new.search(search_params)
+
+    respond_to do |format|
+      format.html
+      format.pdf { export_pdf('territory_assignments', orientation: 'Landscape') }
+    end
   end
 
   def new

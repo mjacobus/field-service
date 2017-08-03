@@ -18,6 +18,13 @@ class ApplicationController < ActionController::Base
 
   def export_pdf(export_type, options = {})
     file_name = DatePath.new(prefix: "#{export_type}_").to_s
-    render pdf: file_name, layout: 'pdf'
+
+    default_options = {
+      pdf: file_name,
+      layout: 'pdf',
+      header: { right: '[page] of [topage]' }
+    }
+
+    render(default_options.merge(options))
   end
 end

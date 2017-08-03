@@ -1,5 +1,12 @@
 <%= render partial: 'application/territory_filter' %>
 
+<div class="row">
+  <a class="button warning large-4 medium-4 small-12 columns" href="<%= all_territory_assignments_path(params.symbolize_keys.merge(format: :pdf)) %>">
+    <i class="fi-page-export-pdf"></i>
+    <%= t('links.download_as_pdf') %>
+  </a>
+</div>
+
 <% @territories.each do |territory| %>
   <table>
     <thead>

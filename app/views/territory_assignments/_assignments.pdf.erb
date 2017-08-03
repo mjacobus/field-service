@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th class="text-center" colspan="2"><%= territory.name %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% territory.assignments.each do |assignment| %>
+      <tr>
+        <td class="text-center" colspan="2"><%= assignment.publisher.name %></td>
+      </tr>
+      <tr>
+        <td class="text-center"> <%= l assignment.assigned_at %></td>
+        <td class="text-center"> <%= l(assignment.returned_at) if assignment.returned? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

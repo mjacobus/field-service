@@ -1,0 +1,13 @@
+<% @territories.in_groups_of(6) do |territory_groups| %>
+  <table>
+    <tr>
+      <% territory_groups.each do |territory| %>
+        <td class="no-border text-top">
+          <%= render partial: 'assignments', locals: { territory: territory } if territory %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+
+  <%= page_break %>
+<% end %>

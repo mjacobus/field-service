@@ -18,14 +18,14 @@
 
 <% @territories_decorator.each do |territory| %>
   <a href="<%= territory.url  %>">
-    <article class="row <%= territory.html_classes %> territory">
+    <article class="row <%= territory.html_classes %>">
       <div class="small-12 columns large-7">
         <strong><%= territory.name %></strong>
         <small>(<%= territory.number_of_householders %>)</small>
       </div>
-      <div class="small-10 large-3 columns"><%= territory.current_assignee_name %></div>
-      <div class="small-10 large-2 columns date"><%= territory.return_date %></div>
+      <div class="small-8 large-3 columns "><%= territory.current_assignee_name || '&nbsp;'.html_safe %></div>
+      <div class="small-4 large-2 columns date text-right"><%= territory.return_date || '&nbsp;'.html_safe %></div>
     </article>
   </a>
+  <hr>
 <% end %>
-

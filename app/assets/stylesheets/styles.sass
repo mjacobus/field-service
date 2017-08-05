@@ -50,10 +50,26 @@ div.check_boxes
     float: left
 
 .pending-return
-  .date
+  .date, .return-date
     color: red
 
 article.territory
   margin: 5px 0
   padding: 5px 0
   border: 1px solid #ddd
+
+span
+  &.circle
+    background-color: green
+    border-radius: 100%
+    width: 20px
+    height: 20px
+    line-height: 20px
+    display: inline-block
+    text-align: center
+  &.red
+    background-color: red
+  &.yellow
+    background-color: gold
+  i
+    color: white

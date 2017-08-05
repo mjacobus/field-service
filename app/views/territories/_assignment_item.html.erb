@@ -1,0 +1,19 @@
+<div class="row <%= 'pending-return' if assignment.pending_return? %>">
+  <div class="small-12 large-4 columns"> <strong> <%= assignment.publisher.name %> </strong></div>
+  <div class="small-6 large-4 columns"><%= l assignment.assigned_at %></div>
+
+  <div class="small-6 large-4 columns return-date text-right">
+    <% if assignment.returned? %>
+      <%= l(assignment.returned_at) %>
+      <span class="circle"><i class="fi-check"></i></span>
+    <% else %>
+      <%= l assignment.return_date %>
+      <% if assignment.pending_return? %>
+        <span class="circle red"><i class="fi-torso-business"></i></span>
+      <% else %>
+        <span class="circle yellow"><i class="fi-torso-business"></i></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<hr>

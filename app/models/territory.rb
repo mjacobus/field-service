@@ -31,8 +31,6 @@ class Territory < ApplicationRecord
     assignment = current_assignment
 
     return false unless assignment
-    return false unless assignment.return_date < Date.today
-
-    true
+    assignment.pending_return?
   end
 end

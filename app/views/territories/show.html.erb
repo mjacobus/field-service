@@ -19,20 +19,7 @@
   <div class="media-object-section"></div>
 </div>
 
-<hr />
 
-<h2>Histórico</h2>
-
-<% @territory_decorator.assignments.each do |assignment| %>
-  <div class="row <% @territory_decorator.html_classes %>">
-    <div class="small-12 large-3 columns"> <strong> <%= assignment.publisher.name %> </strong></div>
-    <div class="small-4 columns">Data: <%= l assignment.assigned_at %></div>
-    <div class="small-4 columns">Data retorno: <%= l assignment.return_date %></div>
-    <div class="small-4 columns date">Retornado: <%= l(assignment.returned_at) if assignment.returned? %></div>
-  </div>
-<% end %>
-
-<hr />
 
 <div class="row">
   <a class="button warning large-4 medium-4 small-12 columns"
@@ -88,3 +75,18 @@
 </div>
 
 <%= render partial: 'map', locals: { addresses: @territory_decorator.names_and_addresses } %>
+
+<h2>Histórico</h2>
+<hr />
+<% @territory_decorator.assignments.each do |assignment| %>
+  <%= render partial: 'territories/assignment_item', locals: { assignment: assignment } %>
+<% end %>
+
+<div class="row">
+  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
+  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
+  <a class="button alert hollow large-4 medium-4 small-12 columns" href="<%= @territory_decorator.index_url %>">
+    <i class="fi-arrow-left"></i>
+    <%= t('links.back') %>
+  </a>
+</div>

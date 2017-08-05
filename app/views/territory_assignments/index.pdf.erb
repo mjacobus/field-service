@@ -2,7 +2,7 @@
   <table class="no-padding">
     <tr>
       <% territory_groups.each do |territory| %>
-        <td class="no-border text-top">
+        <td class="no-border no-padding text-top">
           <%= render partial: 'assignments', locals: { territory: territory } if territory %>
         </td>
       <% end %>

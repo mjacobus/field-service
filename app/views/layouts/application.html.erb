@@ -17,10 +17,15 @@
   <body class="<%= body_class %>">
     <%= render partial: 'top_menu' %>
 
+    <div class="dev-only warning callout text-center">
+      <p>This is a test environment</p>
+    </div>
+
     <div id="main-container">
       <%= content_for(:breadcrumbs) %>
       <%= render partial: 'flash_messages' %>
       <%= yield %>
     </div>
+
   </body>
 </html>

@@ -1,11 +1,27 @@
+@import '_settings'
+
+body
+  color: #333333
+a
+  color: $blue
+
+.callout.warning
+  color: $red
+
 .top-bar
-  background: #0a0
+  background: #4a6da7
   a
     color: white
 
+.dev-only
+  display: none
+
 .development-env
-  .top-bar
-    background: #f00
+  .dev-only
+    display: block
+
+// h1,h2,h3,h4,h5,h6
+//   color: #4a6da7
 
 #main-container
   max-width: 1200px

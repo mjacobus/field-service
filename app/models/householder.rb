@@ -6,7 +6,8 @@ class Householder < ApplicationRecord
   validates :street_name, presence: true
   validates :house_number, presence: true
 
-  scope :sorted, -> { order(:street_name, :house_number) }
+  default_scope -> { sorted }
+  scope :sorted, -> { order(:street_name, :house_number_as_int, :house_number) }
 
   def initialize(*attrs)
     super
@@ -42,5 +43,10 @@ class Householder < ApplicationRecord
 
   def has_geolocation?
     [lat, lon].compact.length == 2
+  end
+
+  def house_number=(number)
+    super(number)
+    self.house_number_as_int = number.to_i
   end
 end

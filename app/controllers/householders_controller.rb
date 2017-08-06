@@ -1,6 +1,6 @@
 class HouseholdersController < AuthenticatedController
   def index
-    householders = territory.householders.sorted
+    householders = territory.householders
     @householders_decorator = create_decorator(HouseholdersDecorator, householders, territory)
 
     respond_to do |format|

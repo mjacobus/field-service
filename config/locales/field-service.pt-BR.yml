@@ -74,7 +74,7 @@ pt-BR:
     created: Território criado com sucesso!
     updated: Território atualizado com sucesso!
     destroyed: Território removido com sucesso!
-    cannot_destroy: Território não pode ser removido. Certifique-se de que ele não possua moradores.
+    cannot_destroy: Território não pode ser removido. Certifique-se de que ele não possua moradores ou designações.
     assigned: Território designado com sucesso!
     returned: Território devolvido com sucesso!
 
@@ -87,3 +87,4 @@ pt-BR:
     created: Publicador criado com sucesso!
     updated: Publicador atualizado com sucesso!
     destroyed: Publicador removido com sucesso!
+    cannot_destroy: Publicador não pode ser removido. Certifique-se de que ele não possua designações

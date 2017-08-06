@@ -41,8 +41,14 @@ class PublishersController < AuthenticatedController
   end
 
   def destroy
-    find_publisher.destroy
-    redirect_to publishers_url, notice: t('publishers.destroyed')
+    begin
+      find_publisher.destroy
+      notice = { notice: t('publishers.destroyed') }
+    rescue DomainError
+      notice = { alert:  t('publishers.cannot_destroy') }
+    end
+
+    redirect_to publishers_url, notice
   end
 
   private

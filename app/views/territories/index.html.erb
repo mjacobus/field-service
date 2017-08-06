@@ -1,33 +1,41 @@
 <% page_title t('titles.territories') %>
 <% breadcrumbs_for @territories_decorator %>
-<%= render partial: 'application/territory_filter' %>
 
 <div class="row">
-  <a class="button warning large-4 medium-4 small-12 columns" href="<%= territories_url(params.symbolize_keys.merge(format: :pdf)) %>">
-    <i class="fi-page-export-pdf"></i>
-    <%= t('links.download_as_pdf') %>
-  </a>
-
-  <a class="button large-4 medium-4 small-12 columns" href="<%= @territories_decorator.new_url %>">
-    <i class="fi-plus"></i>
-    <%= t('links.new') %>
-  </a>
-</div>
-
-<p> <%= t('number_of_results_found', number: @territories_decorator.count) %></p>
-
-<div class="articles">
-  <% @territories_decorator.each do |territory| %>
-    <a href="<%= territory.url  %>">
-      <article class="row <%= territory.html_classes %>">
-        <div class="small-12 columns large-7">
-          <strong><%= territory.name %></strong>
-          <small>(<%= territory.number_of_householders %>)</small>
-        </div>
-        <div class="small-8 large-3 columns "><%= territory.current_assignee_name || '&nbsp;'.html_safe %></div>
-        <div class="small-4 large-2 columns date text-right"><%= territory.return_date || '&nbsp;'.html_safe %></div>
-      </article>
+  <!-- left -->
+  <div class="large-4 small-12 columns">
+    <a class="button expanded" href="<%= @territories_decorator.new_url %>">
+      <i class="fi-plus"></i>
+      <%= t('links.new') %>
     </a>
-    <hr>
-  <% end %>
+
+    <a class="button expanded" href="<%= territories_url(params.symbolize_keys.merge(format: :pdf)) %>">
+      <i class="fi-page-export-pdf"></i>
+      <%= t('links.download_as_pdf') %>
+    </a>
+
+    <%= render partial: 'application/territory_filter' %>
+  </div>
+
+  <!-- right -->
+  <div class="large-8 small-12 columns">
+
+
+    <p> <%= t('number_of_results_found', number: @territories_decorator.count) %></p>
+    <div class="articles">
+      <% @territories_decorator.each do |territory| %>
+        <a href="<%= territory.url  %>">
+          <article class="row <%= territory.html_classes %>">
+            <div class="small-12 columns large-7">
+              <strong><%= territory.name %></strong>
+              <small>(<%= territory.number_of_householders %>)</small>
+            </div>
+            <div class="small-8 large-3 columns "><%= territory.current_assignee_name || '&nbsp;'.html_safe %></div>
+            <div class="small-4 large-2 columns date text-right"><%= territory.return_date || '&nbsp;'.html_safe %></div>
+          </article>
+        </a>
+        <hr>
+      <% end %>
+    </div>
+  </div>
 </div>

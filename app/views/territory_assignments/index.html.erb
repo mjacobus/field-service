@@ -1,15 +1,21 @@
-<%= render partial: 'application/territory_filter' %>
-
 <div class="row">
-  <a class="button warning large-4 medium-4 small-12 columns" href="<%= all_territory_assignments_path(params.symbolize_keys.merge(format: :pdf)) %>">
-    <i class="fi-page-export-pdf"></i>
-    <%= t('links.download_as_pdf') %>
-  </a>
-</div>
+  <!-- left -->
+  <div class="small-12 large-4 columns">
+    <%= render partial: 'application/territory_filter' %>
 
-<% @territories.each do |territory| %>
-  <h3> <%= territory.name %></h3>
-  <% territory.assignments.each do |assignment| %>
-    <%= render partial: 'territories/assignment_item', locals: { assignment: assignment } %>
-  <% end %>
-<% end %>
+    <a class="button expanded" href="<%= all_territory_assignments_path(params.symbolize_keys.merge(format: :pdf)) %>">
+      <i class="fi-page-export-pdf"></i>
+      <%= t('links.download_as_pdf') %>
+    </a>
+  </div>
+
+  <!-- right -->
+  <div class="small-12 large-8 columns">
+    <% @territories.each do |territory| %>
+      <h3> <%= territory.name %></h3>
+      <% territory.assignments.each do |assignment| %>
+        <%= render partial: 'territories/assignment_item', locals: { assignment: assignment } %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

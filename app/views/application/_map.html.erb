@@ -1,23 +1,15 @@
 
-<a href="#map" class="button expanded js-address-lookup" data-show-map='show-map' data-map-container="map" data-map-addresses="<%= addresses.to_json %>" href="#">
+<a href="#map" class="button  js-address-lookup" data-show-map='show-map' data-map-container="map" data-map-addresses="<%= addresses.to_json %>" href="#">
   <i class="fi-target-two"></i>
   <%= t('links.show_map') %></a>
 </a>
 
 <div id="map-container" style="display:none;">
-  <div class="row">
-    <div class="hidden small-12 medium-12 large-12 columns">
-      <hr>
-    </div>
-  </div>
+  <hr>
 
   <div class="row">
     <div id="map" class="hidden small-12 medium-12 large-12 columns map"></div>
   </div>
 
-  <div class="row">
-    <div class="hidden small-12 medium-12 large-12 columns">
-      <hr>
-    </div>
-  </div>
+  <hr>
 </div>

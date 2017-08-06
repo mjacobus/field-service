@@ -1,92 +1,63 @@
 <% breadcrumbs_for @territory_decorator %>
 
-<div class="media-object">
-  <div class="media-object-section">
-    <div class="thumbnail">
-      <%= image_tag('territory2.png') %>
-    </div>
-
-
-  </div>
-  <div class="media-object-section">
-    <h4> <%= @territory_decorator.name %></h4>
+<div class="row">
+  <div class="large-8 small-12 columns">
+    <h2> <%= @territory_decorator.name %></h2>
     <p> <%= @territory_decorator.description %> </p>
     <p><%= @territory_decorator.title_for(:number_of_householders) %>: <%= @territory_decorator.number_of_householders %></p>
     <p><%= @territory_decorator.title_for(:current_assignee) %>: <%= @territory_decorator.current_assignee_name %></p>
     <p><%= @territory_decorator.title_for(:return_date) %>: <%= @territory_decorator.return_date %></p>
+
+    <h3>Histórico</h3>
+    <% @territory_decorator.assignments.each do |assignment| %>
+      <%= render partial: 'territories/assignment_item', locals: { assignment: assignment } %>
+    <% end %>
   </div>
 
-  <div class="media-object-section"></div>
+  <div class="large-4 small-12 columns">
+      <a class="button expanded"
+        href="<%= @territory_decorator.return_url %>"
+        data-method="delete"
+        data-confirm="<%= t('confirm_territory_return', territory: @territory_decorator.name) %>">
+        <i class="fi-refresh"></i>
+        <%= t('titles.return_territory') %>
+      </a>
+
+      <a class="button expanded" href="<%= @territory_decorator.assign_url %>">
+        <i class="fi-arrow-up"></i>
+        <%= t('titles.assign_territory') %>
+      </a>
+
+      <a class="button expanded" href="<%= @territory_decorator.householders_url %>">
+        <i class="fi-torsos-all"></i>
+        <%= t('titles.householders') %>
+      </a>
+
+      <a class="button expanded" href="<%= @territory_decorator.url %>.pdf">
+        <i class="fi-page-export-pdf"></i>
+        <%= t('links.download_as_pdf') %>
+      </a>
+
+      <a class="button expanded" href="<%= @territory_decorator.edit_url %>">
+        <i class="fi-pencil"></i>
+        <%= t('links.edit') %>
+      </a>
+
+      <a class="button expanded"
+        href="<%= @territory_decorator.url %>"
+        data-method="delete"
+        data-confirm="<%= t('confirm_territory_destroy', territory: @territory_decorator.name) %>">
+        <i class="fi-x"></i>
+        <%= t('links.destroy') %>
+      </a>
+
+      <a class="button expanded" href="<%= @territory_decorator.index_url %>">
+        <i class="fi-arrow-left"></i>
+        <%= t('links.back') %>
+      </a>
+  </div>
 </div>
 
-
-
-<div class="row">
-  <a class="button warning large-4 medium-4 small-12 columns"
-    href="<%= @territory_decorator.return_url %>"
-    data-method="delete"
-    data-confirm="<%= t('confirm_territory_return', territory: @territory_decorator.name) %>">
-    <i class="fi-refresh"></i>
-    <%= t('titles.return_territory') %>
-  </a>
-
-  <a class="button large-4 medium-4 small-12 columns" href="<%= @territory_decorator.assign_url %>">
-    <i class="fi-arrow-up"></i>
-    <%= t('titles.assign_territory') %>
-  </a>
-
-  <a class="button warning large-4 medium-4 small-12 columns" href="<%= @territory_decorator.householders_url %>">
-    <i class="fi-torsos-all"></i>
-    <%= t('titles.householders') %>
-  </a>
-</div>
-
-<hr />
-
-<div class="row <%= @territory_decorator.html_classes %>">
-  <a class="button large-4 medium-4 small-12 columns" href="<%= @territory_decorator.url %>.pdf">
-    <i class="fi-page-export-pdf"></i>
-    <%= t('links.download_as_pdf') %>
-  </a>
-
-  <a class="button success  large-4 medium-4 small-12 columns" href="<%= @territory_decorator.edit_url %>">
-    <i class="fi-pencil"></i>
-    <%= t('links.edit') %>
-  </a>
-
-  <a class="button alert  large-4 medium-4 small-12 columns"
-    href="<%= @territory_decorator.url %>"
-    data-method="delete"
-    data-confirm="<%= t('confirm_territory_destroy', territory: @territory_decorator.name) %>">
-    <i class="fi-x"></i>
-    <%= t('links.destroy') %>
-  </a>
-</div>
-
-<hr />
-
-<div class="row">
-  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
-  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
-  <a class="button alert hollow large-4 medium-4 small-12 columns" href="<%= @territory_decorator.index_url %>">
-    <i class="fi-arrow-left"></i>
-    <%= t('links.back') %>
-  </a>
-</div>
+<hr>
 
 <%= render partial: 'map', locals: { addresses: @territory_decorator.names_and_addresses } %>
-
-<h2>Histórico</h2>
-<hr />
-<% @territory_decorator.assignments.each do |assignment| %>
-  <%= render partial: 'territories/assignment_item', locals: { assignment: assignment } %>
-<% end %>
-
-<div class="row">
-  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
-  <div class="large-4 medium-4 small-12 columns">&nbsp;</div>
-  <a class="button alert hollow large-4 medium-4 small-12 columns" href="<%= @territory_decorator.index_url %>">
-    <i class="fi-arrow-left"></i>
-    <%= t('links.back') %>
-  </a>
-</div>

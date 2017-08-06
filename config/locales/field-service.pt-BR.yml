@@ -54,6 +54,7 @@ pt-BR:
 
   messages:
     confirm_destroy: Tem certeza que deseja excuir este registro?
+    dev_env_warning: Este é um sistema de teste. Use-o a vontade.
 
   titles:
     field_service: Serviço de Campo

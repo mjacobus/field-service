@@ -27,18 +27,18 @@ class HouseholdersControllerTest < ControllerTestCase
     HouseholderDecorator.new(resource).url
   end
 
-  test 'is authenticated controller' do
+  it 'is authenticated controller' do
     assert subject.is_a?(AuthenticatedController)
   end
 
-  test 'should get index' do
+  it 'should get index' do
     get @decorator.index_url
 
     assert_response :success
     assert_equal 1, assigns(:householders_decorator).send(:collection).count
   end
 
-  test 'should get index as csv' do
+  it 'should get index as csv' do
     get @decorator.index_url + '.csv'
 
     assert_response :success
@@ -48,13 +48,13 @@ class HouseholdersControllerTest < ControllerTestCase
     # assert_match /,#{@territory.name},/, response.body
   end
 
-  test 'should get new' do
+  it 'should get new' do
     get @decorator.new_url
 
     assert_response :success
   end
 
-  test 'should create householder' do
+  it 'should create householder' do
     Householder.any_instance.expects(:update_geolocation)
 
     assert_difference -> { @territory.householders.count }, 1 do
@@ -65,25 +65,25 @@ class HouseholdersControllerTest < ControllerTestCase
     assert_equal t('householders.created'), flash[:notice]
   end
 
-  test 're-render form when create fails' do
+  it 're-render form when create fails' do
     post @index_url, params: { territory_id: @territory.id, householder: @householder_params.merge(name: '') }
 
     assert_template :new
   end
 
-  test 'should show householder' do
+  it 'should show householder' do
     get @resource_url
 
     assert_response :success
   end
 
-  test 'should get edit' do
+  it 'should get edit' do
     get @edit_url
 
     assert_response :success
   end
 
-  test 'should update householder' do
+  it 'should update householder' do
     Householder.any_instance.expects(:update_geolocation)
 
     patch @resource_url, params: { territory_id: @territory.id, householder: @householder_params }
@@ -92,13 +92,13 @@ class HouseholdersControllerTest < ControllerTestCase
     assert_equal t('householders.updated'), flash[:notice]
   end
 
-  test 're-render form when update fails' do
+  it 're-render form when update fails' do
     patch @resource_url, params: { territory_id: @territory.id, householder: @householder_params.merge(name: '') }
 
     assert_template :edit
   end
 
-  test 'should destroy householder' do
+  it 'should destroy householder' do
     assert_difference -> { @territory.householders.count }, -1 do
       delete @decorator.url
     end

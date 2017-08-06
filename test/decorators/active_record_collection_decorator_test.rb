@@ -30,19 +30,19 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
     @decorator ||= klass.new(@collection)
   end
 
-  test 'extends BaseDecorator' do
+  it 'extends BaseDecorator' do
     assert @decorator.is_a?(BaseDecorator)
   end
 
-  test 'can get index url' do
+  it 'can get index url' do
     assert_equal '/resource_name', @decorator.index_url
   end
 
-  test 'can get new url' do
+  it 'can get new url' do
     assert_equal '/resource_name/new', @decorator.new_url
   end
 
-  test 'index_url must be implemented' do
+  it 'index_url must be implemented' do
     subject = ActiveRecordCollectionDecorator.new([])
 
     assert_raises(NotImplementedError) do
@@ -50,7 +50,7 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
     end
   end
 
-  test 'item_decorator_class must be implemented' do
+  it 'item_decorator_class must be implemented' do
     subject = ActiveRecordCollectionDecorator.new([])
 
     exception = assert_raises(NotImplementedError) do
@@ -58,7 +58,7 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
     end
   end
 
-  test 'each yields item view' do
+  it 'each yields item view' do
     view_helpers = stub(:helpers)
 
     @decorator.with_view_helpers(view_helpers)

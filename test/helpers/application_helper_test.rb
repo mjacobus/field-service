@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ApplicationHelperTest < HelperTestCase
-  test '#breadcrumbs generates breadcumbs' do
+  it '#breadcrumbs generates breadcumbs' do
     skip 'check this thingy'
 
     expected = [

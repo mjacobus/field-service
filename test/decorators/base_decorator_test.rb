@@ -5,7 +5,7 @@ class BaseDecoratorTest < ActiveSupport::TestCase
     @subject ||= BaseDecorator.new(nil)
   end
 
-  test 'can set helper' do
+  it 'can set helper' do
     helpers = []
     object = subject.with_view_helpers(helpers)
 

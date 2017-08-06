@@ -13,35 +13,35 @@ class PublisherDecoratorTest < TestCase
     @decorator = PublisherDecorator.new(@item).with_view_helpers(fake_view_helpers)
   end
 
-  test 'extends BaseDecorator' do
+  it 'extends BaseDecorator' do
     assert @decorator.is_a?(ActiveRecordModelDecorator)
   end
 
-  test '#edit_url returns correct url' do
+  it '#edit_url returns correct url' do
     assert_equal '/publishers/1/edit', @decorator.edit_url
   end
 
-  test '#url returns correct url' do
+  it '#url returns correct url' do
     assert_equal '/publishers/1', @decorator.url
   end
 
-  test '#index_url returns correct url' do
+  it '#index_url returns correct url' do
     assert_equal '/publishers', @decorator.index_url
   end
 
-  test 'delegates name' do
+  it 'delegates name' do
     assert_delegates :name, @decorator, @item
   end
 
-  test 'delegates email' do
+  it 'delegates email' do
     assert_delegates :email, @decorator, @item
   end
 
-  test 'delegates phone' do
+  it 'delegates phone' do
     assert_delegates :phone, @decorator, @item
   end
 
-  test '#breadcrumbs for existing record' do
+  it '#breadcrumbs for existing record' do
     actual = @decorator.breadcrumbs
 
     expected = [
@@ -52,7 +52,7 @@ class PublisherDecoratorTest < TestCase
     assert_equal expected, actual
   end
 
-  test '#breadcrumbs for new record' do
+  it '#breadcrumbs for new record' do
     @item.stubs(id: nil)
     actual = @decorator.breadcrumbs
 

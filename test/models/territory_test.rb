@@ -5,17 +5,17 @@ class TerritoryTest < ActiveSupport::TestCase
     Territory.make
   end
 
-  test 'valid is valid' do
+  it 'valid is valid' do
     assert valid_territory.valid?
   end
 
-  test 'validates presence of name' do
+  it 'validates presence of name' do
     territory = valid_territory
     territory.name = nil
     assert !territory.valid?
   end
 
-  test 'validates uniqueness of name' do
+  it 'validates uniqueness of name' do
     first = valid_territory
     first.name = 'theName'
     first.save!
@@ -26,7 +26,7 @@ class TerritoryTest < ActiveSupport::TestCase
     assert !second.valid?
   end
 
-  test 'validates uniqueness of uuid' do
+  it 'validates uniqueness of uuid' do
     first = valid_territory
     first.uuid = UniqueId.new('Id')
     first.save!
@@ -38,7 +38,7 @@ class TerritoryTest < ActiveSupport::TestCase
     assert first.valid?
   end
 
-  test '#uuid has default value' do
+  it '#uuid has default value' do
     record = Territory.new
     record.save!(validate: false)
     record = Territory.find_by_uuid(record.uuid)
@@ -48,25 +48,25 @@ class TerritoryTest < ActiveSupport::TestCase
     assert_instance_of Territory, Territory.find_by_uuid(record.uuid)
   end
 
-  test 'validates presence of #uuid' do
+  it 'validates presence of #uuid' do
     record = Territory.make
     record.uuid = nil
 
     assert !record.valid?
   end
 
-  test '#to_s returns name' do
+  it '#to_s returns name' do
     record = valid_territory
     record.name = 'thename'
 
     assert_equal 'thename', record.to_s
   end
 
-  test 'has many householders' do
+  it 'has many householders' do
     assert_respond_to valid_territory, :householders
   end
 
-  test '.remove deletes when no households' do
+  it '.remove deletes when no households' do
     created = Territory.make!
 
     deleted = Territory.remove(created)
@@ -75,7 +75,7 @@ class TerritoryTest < ActiveSupport::TestCase
     assert_same created, deleted
   end
 
-  test '.remove raises when there are houlseholders assigned to it' do
+  it '.remove raises when there are houlseholders assigned to it' do
     created = Householder.make!.territory
 
     assert_raise(Territory::TerritoryError) do

@@ -18,31 +18,31 @@ class ActiveRecordModelDecoratorTest < ActiveSupport::TestCase
     @decorator = @klass.new(@item)
   end
 
-  test 'extends BaseDecorator' do
+  it 'extends BaseDecorator' do
     assert @decorator.is_a?(::BaseDecorator)
   end
 
-  test '#edit_url returns correct url' do
+  it '#edit_url returns correct url' do
     assert_equal '/resource_name/1/edit', @decorator.edit_url
   end
 
-  test '#new_url returns correct url' do
+  it '#new_url returns correct url' do
     assert_equal '/resource_name/new', @decorator.new_url
   end
 
-  test '#url returns correct url' do
+  it '#url returns correct url' do
     assert_equal '/resource_name/1', @decorator.url
   end
 
-  test '#index_url returns correct url' do
+  it '#index_url returns correct url' do
     assert_equal '/resource_name', @decorator.index_url
   end
 
-  test 'can get form object' do
+  it 'can get form object' do
     assert_equal @item, @decorator.form_object
   end
 
-  test '#form_url returns correct form url' do
+  it '#form_url returns correct form url' do
     assert_equal '/resource_name/1', @klass.new(@item).form_url
     assert_equal '/resource_name', @klass.new(stub(persisted?: false)).form_url
   end

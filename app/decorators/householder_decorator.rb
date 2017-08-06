@@ -26,24 +26,11 @@ class HouseholderDecorator < ActiveRecordModelDecorator
     t('links.new')
   end
 
-  def address
-    "#{street_name} #{house_number}"
-  end
-
   def show?
     boolean_to_human(item.show?)
   end
 
-  def has_notes?
-    notes.present?
-  end
-
   def do_not_visit_date
     l(item.do_not_visit_date) if do_not_visit_date?
-  end
-
-  def visit?
-    return false unless show
-    !do_not_visit_date?
   end
 end

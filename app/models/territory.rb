@@ -19,6 +19,7 @@ class Territory < ApplicationRecord
 
   def self.remove(territory)
     raise TerritoryError unless territory.householders.count.zero?
+    raise TerritoryError unless territory.assignments.count.zero?
     territory.delete
     territory
   end

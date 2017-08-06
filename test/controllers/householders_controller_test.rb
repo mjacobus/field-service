@@ -61,7 +61,7 @@ class HouseholdersControllerTest < ControllerTestCase
       post @index_url, params: { territory_id: @territory.id, householder: @householder_params }
     end
 
-    assert_redirected_to resource_url(Householder.last)
+    assert_redirected_to resource_url(Householder.unscoped.last)
     assert_equal t('householders.created'), flash[:notice]
   end
 

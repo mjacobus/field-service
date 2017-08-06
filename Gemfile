@@ -56,6 +56,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'reek'
   gem 'rspec-rails', '~> 3.5'
+  gem 'spring-commands-rspec'
 end
 
 group :development do

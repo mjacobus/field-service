@@ -41,4 +41,14 @@ RSpec.describe Householder do
       expect(Householder.all.to_a).to eq(expected)
     end
   end
+
+  describe '#normalized_street_name' do
+    it 'normalizes street names' do
+      allow_any_instance_of(StreetNameNormalizer)
+        .to receive(:normalize).with('raw') { 'norm' }
+
+      subject.street_name = 'raw'
+      expect(subject.normalized_street_name).to eq('norm')
+    end
+  end
 end

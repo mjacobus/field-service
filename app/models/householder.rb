@@ -24,8 +24,6 @@ class Householder < ApplicationRecord
   end
 
   def update_geolocation
-    address = [street_name, house_number].join(' ')
-
     data = Koine::GoogleMapsClient.new.geocode(address: address)
 
     result = data['results'].first
@@ -38,7 +36,7 @@ class Householder < ApplicationRecord
   end
 
   def to_s
-    "#{street_name} #{house_number} (#{name})"
+    "#{address} (#{name})"
   end
 
   def has_geolocation?
@@ -48,5 +46,22 @@ class Householder < ApplicationRecord
   def house_number=(number)
     super(number)
     self.house_number_as_int = number.to_i
+  end
+
+  def normalized_street_name
+    StreetNameNormalizer.new.normalize(street_name)
+  end
+
+  def address
+    "#{normalized_street_name} #{house_number}"
+  end
+
+  def has_notes?
+    notes.present?
+  end
+
+  def visit?
+    return false unless show
+    !do_not_visit_date?
   end
 end

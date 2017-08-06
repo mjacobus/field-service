@@ -18,8 +18,7 @@ class Territory < ApplicationRecord
   end
 
   def self.remove(territory)
-    raise TerritoryError unless territory.householders.count.zero?
-    raise TerritoryError unless territory.assignments.count.zero?
+    raise TerritoryError if territory.has_children?
     territory.delete
     territory
   end
@@ -33,5 +32,19 @@ class Territory < ApplicationRecord
 
     return false unless assignment
     assignment.pending_return?
+  end
+
+  def has_children?
+    !householders.count.zero? || !assignments.count.zero?
+  end
+
+  def destroy
+    self.class.remove(self)
+  end
+
+  private
+
+  def ensure_no_children
+    !has_children?
   end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Territory do
-  let(:valid_territory) { Territory.make  }
+  let(:valid_territory) { Territory.make }
 
   it 'valid is valid' do
     assert valid_territory.valid?
@@ -87,7 +87,17 @@ RSpec.describe Territory do
     created = TerritoryAssignment.make!.territory
 
     expect do
-      Territory.remove(created)
+      created.destroy
+    end.to raise_error(Territory::TerritoryError)
+
+    assert_equal 1, Territory.count
+  end
+
+  it '.remove raises when there are assignments assigned to it' do
+    created = TerritoryAssignment.make!.territory
+
+    expect do
+      created.destroy
     end.to raise_error(Territory::TerritoryError)
 
     assert_equal 1, Territory.count

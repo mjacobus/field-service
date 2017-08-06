@@ -1,9 +1,7 @@
-require 'test_helper'
+require 'rails_helper'
 
-class TerritoryTest < ActiveSupport::TestCase
-  def valid_territory
-    Territory.make
-  end
+RSpec.describe Territory do
+  let(:valid_territory) { Territory.make  }
 
   it 'valid is valid' do
     assert valid_territory.valid?
@@ -20,7 +18,7 @@ class TerritoryTest < ActiveSupport::TestCase
     first.name = 'theName'
     first.save!
 
-    second = valid_territory
+    second = Territory.make
     second.name = 'thename'
 
     assert !second.valid?
@@ -31,11 +29,11 @@ class TerritoryTest < ActiveSupport::TestCase
     first.uuid = UniqueId.new('Id')
     first.save!
 
-    second = valid_territory
+    second = Territory.make
     second.uuid = UniqueId.new('id')
 
-    assert !second.valid?
-    assert first.valid?
+    expect(second).not_to be_valid
+    expect(first).to be_valid
   end
 
   it '#uuid has default value' do
@@ -43,7 +41,7 @@ class TerritoryTest < ActiveSupport::TestCase
     record.save!(validate: false)
     record = Territory.find_by_uuid(record.uuid)
 
-    assert_not_nil record.uuid
+    expect(record.uuid).not_to be_nil
     assert_instance_of Territory, record
     assert_instance_of Territory, Territory.find_by_uuid(record.uuid)
   end
@@ -78,9 +76,9 @@ class TerritoryTest < ActiveSupport::TestCase
   it '.remove raises when there are houlseholders assigned to it' do
     created = Householder.make!.territory
 
-    assert_raise(Territory::TerritoryError) do
+    expect do
       Territory.remove(created)
-    end
+    end.to raise_error(Territory::TerritoryError)
 
     assert_equal 1, Territory.count
   end

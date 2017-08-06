@@ -82,4 +82,14 @@ RSpec.describe Territory do
 
     assert_equal 1, Territory.count
   end
+
+  it '.remove raises when there are assignments assigned to it' do
+    created = TerritoryAssignment.make!.territory
+
+    expect do
+      Territory.remove(created)
+    end.to raise_error(Territory::TerritoryError)
+
+    assert_equal 1, Territory.count
+  end
 end

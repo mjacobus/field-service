@@ -17,10 +17,6 @@
   <body class="<%= body_class %>">
     <%= render partial: 'top_menu' %>
 
-    <div class="dev-only warning callout text-center">
-      <p> <%= t('messages.dev_env_warning') %></p>
-    </div>
-
     <div id="main-container">
       <%= content_for(:breadcrumbs) %>
       <%= render partial: 'flash_messages' %>

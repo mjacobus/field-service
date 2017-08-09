@@ -1,7 +1,7 @@
 <% breadcrumbs_for @territory_decorator %>
 
 <div class="row">
-  <div class="large-8 small-12 columns">
+  <div class="large-8 medium-8 small-12 columns">
     <h2> <%= @territory_decorator.name %></h2>
     <p> <%= @territory_decorator.description %> </p>
     <p><%= @territory_decorator.title_for(:number_of_householders) %>: <%= @territory_decorator.number_of_householders %></p>
@@ -14,7 +14,9 @@
     <% end %>
   </div>
 
-  <div class="large-4 small-12 columns">
+
+  <div class="large-4 medium-4 small-12 columns right" data-sticky-container>
+    <div class="sticky" data-sticky data-top-anchor="top_bar:bottom">
       <a class="button expanded"
         href="<%= @territory_decorator.return_url %>"
         data-method="delete"
@@ -55,9 +57,8 @@
         <i class="fi-arrow-left"></i>
         <%= t('links.back') %>
       </a>
+    </div>
   </div>
 </div>
-
-<hr>
 
 <%= render partial: 'map', locals: { addresses: @territory_decorator.names_and_addresses } %>

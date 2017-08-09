@@ -1,19 +1,25 @@
-<div class="top-bar">
-  <div class="row">
-    <div class="small-12 medium-3 large-3 columns">
-      <%= link_to t('titles.territories'), territories_path %>
-    </div>
+<div id="top_bar">
+  <div class="top-bar">
+    <div class="row">
+      <div class="small-12 medium-3 large-3 columns">
+        <%= link_to t('titles.territories'), territories_path %>
+      </div>
 
-    <div class="small-12 medium-3 large-3 columns">
-      <%= link_to t('titles.publishers'), publishers_path %>
-    </div>
+      <div class="small-12 medium-3 large-3 columns">
+        <%= link_to t('titles.publishers'), publishers_path %>
+      </div>
 
-    <div class="small-12 medium-3 large-3 columns">
-      <%= link_to t('titles.territory_assignments'), '/territory_assignments' %> 
-    </div>
+      <div class="small-12 medium-3 large-3 columns">
+        <%= link_to t('titles.territory_assignments'), '/territory_assignments' %> 
+      </div>
 
-    <div class="small-12 medium-3 large-3 columns">
-      <%= link_to t('links.logout'), sign_out_path, method: :delete %> 
+      <div class="small-12 medium-3 large-3 columns">
+        <%= link_to t('links.logout'), sign_out_path, method: :delete %> 
+      </div>
     </div>
+  </div>
+
+  <div class="dev-only warning callout text-center">
+    <p> <%= t('messages.dev_env_warning') %></p>
   </div>
 </div>

@@ -22,4 +22,5 @@
   </div>
 </div>
 
-<%= render partial: 'map', locals: { addresses: HouseholdersDecorator.new([@householder_decorator]).names_and_addresses } %>
+<%= render partial: 'map_button', locals: { addresses: HouseholdersDecorator.new([@householder_decorator]).names_and_addresses } %>
+<%= render partial: 'map' %>

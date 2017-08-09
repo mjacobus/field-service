@@ -6,7 +6,8 @@
   <%= @householders_decorator.territory %>
 </p>
 
-<%= render partial: 'map', locals: { addresses: @householders_decorator.names_and_addresses } %>
+<%= render partial: 'map_button', locals: { addresses: @householders_decorator.names_and_addresses } %>
+<%= render partial: 'map' %>
 
 <table>
   <thead>

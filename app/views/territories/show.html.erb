@@ -12,6 +12,8 @@
     <% @territory_decorator.assignments.each do |assignment| %>
       <%= render partial: 'territories/assignment_item', locals: { assignment: assignment } %>
     <% end %>
+
+    <%= render partial: 'map' %>
   </div>
 
 
@@ -57,8 +59,8 @@
         <i class="fi-arrow-left"></i>
         <%= t('links.back') %>
       </a>
+
+      <%= render partial: 'map_button', locals: { addresses: @territory_decorator.names_and_addresses } %>
     </div>
   </div>
 </div>
-
-<%= render partial: 'map', locals: { addresses: @territory_decorator.names_and_addresses } %>

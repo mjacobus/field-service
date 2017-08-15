@@ -21,7 +21,7 @@ config = {
 }
 
 alternative_binaries = [
-  '/opt/wkhtmltox/bin/wkhtmltopdf'
+  # '/opt/wkhtmltox/bin/wkhtmltopdf'
 ]
 
 alternative_binaries.each do |path|

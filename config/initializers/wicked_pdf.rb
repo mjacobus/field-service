@@ -20,7 +20,10 @@ config = {
   # layout: 'pdf.html',
 }
 
+require 'wkhtmltopdf_binary'
+
 alternative_binaries = [
+  WkhtmltopdfBinary.path,
   '/opt/wkhtmltox/bin/wkhtmltopdf'
 ]
 

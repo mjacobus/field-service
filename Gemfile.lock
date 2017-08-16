@@ -337,6 +337,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     wicked_pdf (1.1.0)
+    wkhtmltopdf-binpath (0.0.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -398,6 +399,7 @@ DEPENDENCIES
   unicorn
   web-console
   wicked_pdf
+  wkhtmltopdf-binpath
 
 BUNDLED WITH
    1.14.6

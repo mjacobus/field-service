@@ -23,8 +23,8 @@ config = {
 require 'wkhtmltopdf_binary'
 
 alternative_binaries = [
-  # '/opt/wkhtmltox/bin/wkhtmltopdf'
-  WkhtmltopdfBinary.path
+  WkhtmltopdfBinary.path,
+  '/opt/wkhtmltox/bin/wkhtmltopdf'
 ]
 
 alternative_binaries.each do |path|

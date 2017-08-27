@@ -15,6 +15,9 @@
     <h4> <%= @householder_decorator.name %></h4>
     <p> <%= @householder_decorator.address %></p>
     <p> <%= @householder_decorator.notes %></p>
+    <% if @householder_decorator.do_not_visit_date %>
+      <p> <strong> <%= @householder_decorator.title_for(:do_not_visit_date) %></strong> <%= @householder_decorator.do_not_visit_date %></p>
+    <% end %>
     <p>
       <strong><%= @householder_decorator.title_for(:show) %>:</strong>
       <%= @householder_decorator.show? %>

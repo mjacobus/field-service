@@ -18,6 +18,7 @@ class HouseholdersControllerTest < ControllerTestCase
       name: @householder.name,
       show: @householder.show,
       street_name: @householder.street_name,
+      do_not_visit_date: '2001-02-03',
       notes: @householder.notes
     }
     sign_in_as(current_user)

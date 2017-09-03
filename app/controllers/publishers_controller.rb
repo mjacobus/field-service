@@ -1,3 +1,5 @@
+require 'domain_error'
+
 class PublishersController < AuthenticatedController
   def index
     publishers = Publisher.all.sorted

@@ -13,3 +13,7 @@
     <p> <%= @publisher_decorator.phone %></p>
   </div>
 </div>
+
+<% @publisher_decorator.assignments.each do |assignment| %>
+  <%= render partial: 'territories/assignment_item', locals: { assignment: assignment, display: :territory_name } %>
+<% end %>

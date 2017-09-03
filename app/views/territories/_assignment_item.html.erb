@@ -1,5 +1,11 @@
+<% if display == :territory_name %>
+  <% display = assignment.territory.name %>
+<% else %>
+  <% display = assignment.publisher.name %>
+<% end %>
+
 <div class="row <%= 'pending-return' if assignment.pending_return? %>">
-  <div class="small-12 large-4 columns"> <strong> <%= assignment.publisher.name %> </strong></div>
+  <div class="small-12 large-4 columns"> <strong> <%= display %> </strong></div>
   <div class="small-6 large-4 columns"><%= l assignment.assigned_at %></div>
 
   <div class="small-6 large-4 columns return-date text-right">

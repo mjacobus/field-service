@@ -17,6 +17,6 @@ class PublisherDecorator < ActiveRecordModelDecorator
   end
 
   def html_classes
-    'disabled' unless congregation_member?
+    'disabled' unless item.congregation_member?
   end
 end

@@ -13,7 +13,7 @@
 
   <tbody>
     <% @publishers_decorator.each do |publisher| %>
-      <tr class=" <%= publisher_decorator.html_classes %>">
+      <tr class="<%= publisher_decorator.html_classes %>">
         <td><%= publisher.name %></td>
         <td class="action">
           <%= small_button_group(

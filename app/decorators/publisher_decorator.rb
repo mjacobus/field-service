@@ -15,4 +15,8 @@ class PublisherDecorator < ActiveRecordModelDecorator
 
     t('links.new')
   end
+
+  def html_classes
+    'disabled' unless congregation_member?
+  end
 end

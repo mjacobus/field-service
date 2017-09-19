@@ -60,6 +60,6 @@ class PublishersController < AuthenticatedController
   end
 
   def publisher_params
-    params.require(:publisher).permit(:name, :email, :phone)
+    params.require(:publisher).permit(:name, :email, :phone, :congregation_member)
   end
 end

@@ -63,4 +63,14 @@ class PublisherDecoratorTest < TestCase
 
     assert_equal expected, actual
   end
+
+  it '#html_classes returns classes' do
+    @item.stubs(congregation_member?: false)
+    classes = @decorator.html_classes
+    assert_equal 'disabled', classes
+
+    @item.stubs(congregation_member?: true)
+    classes = @decorator.html_classes
+    assert_nil classes
+  end
 end

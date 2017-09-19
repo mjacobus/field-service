@@ -1,6 +1,6 @@
 class TerritoryAssignmentDecorator < ActiveRecordModelDecorator
   def candidates
-    @candidates ||= Publisher.search(search: params[:q])
+    @candidates ||= Publisher.congregation_members.sorted.search(search: params[:q])
   end
 
   def assignments_url

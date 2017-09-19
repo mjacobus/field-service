@@ -22,6 +22,7 @@ pt-BR:
         name: Nome
         email: Email
         phone: Telefone
+        congregation_member: Membro da congregação
 
   'yes': 'Sim'
   'no': 'Não'

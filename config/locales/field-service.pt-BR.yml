@@ -43,6 +43,7 @@ pt-BR:
     download_as_pdf: Download PDF
 
   number_of_results_found: "%{number} registros encontrados."
+  report_inactive_territories_found: "%{number} territórios não trabalhados desde %{from_date}."
 
   publisher_name: Nome do publicador
   territory_name: Nome/Número do território
@@ -67,10 +68,12 @@ pt-BR:
     territory_assignments: Designações de Território
     assign_territory: Designar Território
     return_territory: Devolver território
+    reports_inactive_territories: Territórios não trabalhados
 
   fields:
     assigned_to: Designado para
     pending_return: Devolução atrasada
+    from_date: A partir da data
 
 
   territories:

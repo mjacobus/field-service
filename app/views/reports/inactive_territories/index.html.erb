@@ -1,0 +1,43 @@
+<% page_title t('titles.reports_inactive_territories') %>
+
+<div class="row">
+  <!-- left -->
+  <div class="large-4 medium-4 small-12 columns" data-sticky-container>
+    <div class="sticky" data-sticky data-top-anchor="top_bar:bottom">
+      <%= form_tag(nil, method: :get) do  %>
+        <p>Territórios não trabalhados</p>
+        <label>
+          <%= t('fields.from_date') %>
+          <%= text_field_tag(:from, params[:from], placeholder: t('messages.date_format_hint')) %>
+        </label>
+
+        <button class="button expanded">
+          <i class="fi-filter"></i>
+          <%= t('links.filter') %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- right -->
+  <div class="large-8 medium-8 small-12 columns">
+    <% if @from %>
+      <p> <%= t('report_inactive_territories_found', number: @territories_decorator.count, from_date: l(@from)) %></p>
+      <div class="articles">
+        <% @territories_decorator.each do |territory| %>
+          <a href="<%= territory.url  %>">
+            <article class="row <%= territory.html_classes %>">
+              <div class="small-12 columns large-7">
+                <strong><%= territory.name %></strong>
+                <small>(<%= territory.number_of_householders %>)</small>
+              </div>
+              <div class="small-8 large-3 columns "><%= territory.current_assignee_name || '&nbsp;'.html_safe %></div>
+              <div class="small-4 large-2 columns date text-right"><%= territory.return_date || '&nbsp;'.html_safe %></div>
+            </article>
+          </a>
+          <hr>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

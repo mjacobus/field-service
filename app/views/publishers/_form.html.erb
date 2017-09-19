@@ -2,5 +2,6 @@
     <%= f.input :name %>
     <%= f.input :email %>
     <%= f.input :phone %>
+    <%= f.input :congregation_member, as: :radio_buttons, boolean_style: :inline %>
     <%= publisher_decorator.save_button %>
 <% end %>

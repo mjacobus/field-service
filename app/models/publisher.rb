@@ -3,6 +3,7 @@ class Publisher < ApplicationRecord
   validates :name, presence: true
 
   scope :sorted, -> { order(name: :asc) }
+  scope :congregation_members, -> { where(congregation_member: true) }
 
   def self.search(search:)
     search = [nil, search, nil].join('%')

@@ -9,7 +9,7 @@ class PublishersControllerTest < ControllerTestCase
     @index_url = @decorator.index_url
     @resource_url = @decorator.url
 
-    @publisher_params = { name: @publisher.name, email: @publisher.email, phone: @publisher.phone }
+    @publisher_params = { name: @publisher.name, email: @publisher.email, phone: @publisher.phone, congregation_member: 1 }
     sign_in_as(current_user)
   end
 

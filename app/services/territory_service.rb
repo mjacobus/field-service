@@ -12,6 +12,10 @@ class TerritoryService
 
     query
   end
+
+  def inactive(from:)
+    TerritoryQuery.new.inactive(from: from)
+  end
 end
 
 class TerritoryQuery < SimpleDelegator
@@ -31,6 +35,11 @@ class TerritoryQuery < SimpleDelegator
   def pending_return
     new_scope = assigned.where('return_date < :today_date', today_date: Date.today)
     new(new_scope)
+  end
+
+  def inactive(from:)
+    ids = TerritoryAssignment.select(:territory_id).where('assigned_at >= ?', from.to_date)
+    new(where.not(id: ids))
   end
 
   private

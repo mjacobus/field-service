@@ -83,5 +83,30 @@ RSpec.describe TerritoryService do
         expect(results.to_a).to eq([territory2])
       end
     end
+
+    describe '#inactive' do
+      it 'returns the territories that were not worked from a given date' do
+        assign(territory1, from: 10.months.ago)
+        assign(territory1, from: 8.months.ago)
+
+        assign(territory2, from: 10.months.ago)
+        assign(territory2, from: 3.months.ago)
+
+        assign(territory3, from: 10.months.ago)
+        assign(territory3, from: 4.months.ago)
+
+        inactive = subject.inactive(from: 3.months.ago)
+
+        expect(inactive.to_a.map(&:id)).to eq([territory1.id, territory3.id])
+      end
+    end
+
+    def assign(territory, from:)
+      TerritoryAssigning.new.perform(
+        territory_id: territory.id,
+        publisher_id: publisher1.id,
+        assigned_at: from
+      )
+    end
   end
 end

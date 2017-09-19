@@ -84,29 +84,48 @@ RSpec.describe TerritoryService do
       end
     end
 
-    describe '#inactive' do
-      it 'returns the territories that were not worked from a given date' do
-        assign(territory1, from: 10.months.ago)
+    describe '#inactive #worked' do
+      let(:territory4) { Territory.make! }
+      let(:territory5) { Territory.make! }
+
+      before do
+        assign(territory1, from: 10.months.ago, to: 8.months.ago)
         assign(territory1, from: 8.months.ago)
 
-        assign(territory2, from: 10.months.ago)
+        assign(territory2, from: 10.months.ago, to: 4.months.ago)
         assign(territory2, from: 3.months.ago)
 
-        assign(territory3, from: 10.months.ago)
+        assign(territory3, from: 10.months.ago, to: 4.months.ago)
         assign(territory3, from: 4.months.ago)
 
+        assign(territory4, from: 8.months.ago, to: 2.months.ago)
+
+        territory5
+      end
+
+      specify '#inactive returns the territories that were not worked from a given date' do
         inactive = subject.inactive(from: 3.months.ago)
 
-        expect(inactive.to_a.map(&:id)).to eq([territory1.id, territory3.id])
+        expect(inactive.to_a.map(&:id)).to eq([territory1.id, territory3.id, territory5.id])
+      end
+
+      specify '#worked returns only the ones returned and worked after the given date' do
+        worked = subject.worked(from: 3.months.ago)
+
+        expect(worked.to_a.map(&:id)).to eq([territory4.id])
       end
     end
 
-    def assign(territory, from:)
+    def assign(territory, from:, to: nil)
       TerritoryAssigning.new.perform(
         territory_id: territory.id,
         publisher_id: publisher1.id,
         assigned_at: from
       )
+
+      if to
+        ReturnTerritory.new.perform(territory_id: territory.id, returned_at: to)
+      end
     end
   end
 end

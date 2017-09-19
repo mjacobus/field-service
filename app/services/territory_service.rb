@@ -16,6 +16,10 @@ class TerritoryService
   def inactive(from:)
     TerritoryQuery.new.inactive(from: from)
   end
+
+  def worked(from:)
+    TerritoryQuery.new.worked(from: from)
+  end
 end
 
 class TerritoryQuery < SimpleDelegator
@@ -38,8 +42,17 @@ class TerritoryQuery < SimpleDelegator
   end
 
   def inactive(from:)
-    ids = TerritoryAssignment.select(:territory_id).where('assigned_at >= ?', from.to_date)
-    new(where.not(id: ids))
+    worked_ids = worked(from: from).select(:id)
+    limit_date = from.to_date
+    assigned_after = TerritoryAssignment.where('assigned_at >= ?', limit_date)
+    new(where.not(id: worked_ids).where.not(id: assigned_after.select(:territory_id)))
+  end
+
+  def worked(from:)
+    limit_date = from.to_date
+    worked_ids = TerritoryAssignment.where('returned_at >= ?', limit_date)
+                                    .where.not(returned_at: nil).select(:territory_id)
+    new(where(id: worked_ids))
   end
 
   private

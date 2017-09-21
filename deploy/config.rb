@@ -27,6 +27,7 @@ append :linked_files,
 append :linked_dirs,
        'log',
        'csv',
+       'bkp',
        'tmp/pids',
        'tmp/cache',
        'tmp/sockets',
@@ -56,3 +57,6 @@ namespace :geolocation do
     end
   end
 end
+
+set :whenever_environment, -> { fetch(:stage) }
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }

@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.hours do
+every 1.hours, roles: [:mysql_dump] do
   rake "mysql:dump"
 end

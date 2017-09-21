@@ -57,3 +57,6 @@ namespace :geolocation do
     end
   end
 end
+
+set :whenever_environment, -> { fetch(:stage) }
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }

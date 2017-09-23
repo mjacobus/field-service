@@ -13,6 +13,7 @@
 
   <!-- right -->
   <div class="small-12 medium-7 large-8 columns">
+    <p> <%= t('number_of_results_found', number: @territories.count) %></p>
     <% @territories.each do |territory| %>
       <h3> <%= territory.name %></h3>
       <% territory.assignments.each do |assignment| %>

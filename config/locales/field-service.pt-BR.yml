@@ -74,6 +74,7 @@ pt-BR:
     assigned_to: Designado para
     pending_return: Devolução atrasada
     from_date: A partir da data
+    inactive_from: Não trabalhado desde
 
 
   territories:

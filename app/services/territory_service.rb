@@ -1,6 +1,10 @@
 class TerritoryService
-  def search(assigned_to_ids: nil, pending_return: nil)
+  def search(assigned_to_ids: nil, pending_return: nil, inactive_from: nil)
     query = TerritoryQuery.new
+
+    if inactive_from
+      query = query.inactive(from: inactive_from)
+    end
 
     if assigned_to_ids
       query = query.with_publisher_ids(assigned_to_ids)

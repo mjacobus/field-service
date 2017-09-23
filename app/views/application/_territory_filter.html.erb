@@ -20,6 +20,11 @@
         ) %>
       </label>
 
+      <label>
+        <%= t('fields.inactive_from') %>
+        <%= text_field_tag(:inactive_from, params[:inactive_from], placeholder: t('messages.date_format_hint')) %>
+      </label>
+
       <button class="button expanded">
         <i class="fi-filter"></i>
         <%= t('links.filter') %>

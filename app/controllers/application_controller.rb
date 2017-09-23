@@ -10,10 +10,17 @@ class ApplicationController < ActionController::Base
   end
 
   def search_params
-    allowed = %i[assigned_to_ids pending_return]
-    params.symbolize_keys.select do |key, _value|
+    allowed = %i[assigned_to_ids pending_return inactive_from]
+
+    new_params = params.symbolize_keys.select do |key, _value|
       allowed.include?(key)
     end
+
+    if new_params[:inactive_from].present?
+      new_params[:inactive_from] = Date.parse(new_params[:inactive_from])
+    end
+
+    new_params
   end
 
   def export_pdf(export_type, options = {})

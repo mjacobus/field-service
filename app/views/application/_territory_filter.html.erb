@@ -1,4 +1,4 @@
-<div id="js_filter" style="display: none">
+<div id="js_filter" style=" <%= 'display: none' unless @has_filterl_parameters %>">
   <%= form_tag(nil, method: :get) do  %>
     <fieldset class="row">
       <legend>Filtro</legend>

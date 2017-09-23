@@ -10,17 +10,22 @@ class ApplicationController < ActionController::Base
   end
 
   def search_params
+    @seaarch_params ||= filtered_search_params
+  end
+
+  def filtered_search_params
     allowed = %i[assigned_to_ids pending_return inactive_from]
 
-    new_params = params.symbolize_keys.select do |key, _value|
-      allowed.include?(key)
+    search_params = params.symbolize_keys.select do |key, value|
+      allowed.include?(key) && value.present?
     end
 
-    if new_params[:inactive_from].present?
-      new_params[:inactive_from] = Date.parse(new_params[:inactive_from])
+    if search_params[:inactive_from].present?
+      search_params[:inactive_from] = Date.parse(search_params[:inactive_from])
     end
 
-    new_params
+    @has_filterl_parameters = !search_params.empty?
+    search_params
   end
 
   def export_pdf(export_type, options = {})

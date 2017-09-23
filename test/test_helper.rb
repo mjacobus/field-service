@@ -1,31 +1,11 @@
-ENV['RAILS_ENV'] ||= 'test'
+require_relative '../spec/common'
 
-FIXTURES_PATH = File.expand_path('../fixtures/', __FILE__)
-
-if ENV['COVERAGE']
-  require 'simplecov'
-  require 'coveralls'
-
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-                                                                   SimpleCov::Formatter::HTMLFormatter,
-                                                                   Coveralls::SimpleCov::Formatter
-                                                                 ])
-
-  SimpleCov.start 'rails' do
-    add_filter 'app/channels/application_cable/channel.rb'
-    add_filter 'app/channels/application_cable/connection.rb'
-    add_filter 'app/jobs/application_job.rb'
-    add_filter 'app/mailers/application_mailer.rb'
-    add_group 'Decorators', 'app/decorators'
-  end
-end
-
-require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require File.expand_path(File.dirname(__FILE__) + '/blueprints')
 require 'object_comparator/minitest'
 require 'mocha/mini_test'
 require 'clearance/test_unit'
+
+require File.expand_path(File.dirname(__FILE__) + '/blueprints')
 
 class ActiveSupport::TestCase
   include ObjectComparator::Minitest

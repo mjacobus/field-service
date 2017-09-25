@@ -1,6 +1,6 @@
-require 'test_helper'
+require 'rails_helper'
 
-class TerritoryAssignmentsControllerTest < ActionDispatch::IntegrationTest
+RSpec.describe TerritoryAssignmentsController do
   it 'is authenticated controller' do
     assert subject.is_a?(AuthenticatedController)
   end

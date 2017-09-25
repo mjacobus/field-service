@@ -1,7 +1,6 @@
-require 'test_helper'
+require 'rails_helper'
 
-class HouseholderImporterTest < ActiveSupport::TestCase
-  subject { HouseholderImporter.new }
+RSpec.describe HouseholderImporter do
   let(:householder) { Householder.last }
   let(:territory) { Territory.last }
 
@@ -25,14 +24,17 @@ class HouseholderImporterTest < ActiveSupport::TestCase
       end
 
       it '#import creates a new record when no uuid' do
-        territory.name.must_equal 'T1'
-        householder.street_name.must_equal 'street name'
-        householder.house_number.must_equal 'house number'
-        householder.name.must_equal 'householder name'
-        householder.show?.must_equal false
-        assert_not_nil householder.uuid
-        assert_not_nil territory.uuid
-        territory.must_equal(householder.territory)
+        expect(territory.name).to eq('T1')
+
+        expect(householder.street_name).to eq('street name')
+        expect(householder.house_number).to eq('house number')
+        expect(householder.name).to eq('householder name')
+        expect(householder.show?).to be false
+
+        expect(householder.uuid).not_to be_nil
+        expect(territory.uuid).not_to be_nil
+
+        expect(householder.territory).to eq(territory)
       end
     end
 
@@ -74,7 +76,7 @@ class HouseholderImporterTest < ActiveSupport::TestCase
       end
 
       it 'imports "0" as false' do
-        import(show: "0")
+        import(show: '0')
 
         refute householder.show?
       end
@@ -84,25 +86,25 @@ class HouseholderImporterTest < ActiveSupport::TestCase
       it 'accepts date in the YYYY-mm-dd format' do
         import(do_not_visit_date: '2017-02-01')
 
-        householder.do_not_visit_date.must_equal Date.new(2017, 2, 1)
+        expect(householder.do_not_visit_date).to eq Date.new(2017, 2, 1)
       end
 
       it 'accepts date in th dd.mm.yy format' do
         import(do_not_visit_date: '01.02.17')
 
-        householder.do_not_visit_date.must_equal Date.new(2017, 2, 1)
+        expect(householder.do_not_visit_date).to eq Date.new(2017, 2, 1)
       end
 
       it 'accepts date in th d.m.yy format' do
         import(do_not_visit_date: '1.2.17')
 
-        householder.do_not_visit_date.must_equal Date.new(2017, 2, 1)
+        expect(householder.do_not_visit_date).to eq Date.new(2017, 2, 1)
       end
 
       it 'accepts date in the d.m.yyyy format' do
         import(do_not_visit_date: '1.2.2017')
 
-        householder.do_not_visit_date.must_equal Date.new(2017, 2, 1)
+        expect(householder.do_not_visit_date).to eq Date.new(2017, 2, 1)
       end
 
       it 'accepts Date' do
@@ -110,19 +112,19 @@ class HouseholderImporterTest < ActiveSupport::TestCase
 
         import(do_not_visit_date: date)
 
-        householder.do_not_visit_date.must_equal date
+        expect(householder.do_not_visit_date).to eq date
       end
 
       it 'accepts blank' do
         import(do_not_visit_date: '')
 
-        householder.do_not_visit_date.must_be_nil
+        expect(householder.do_not_visit_date).to be nil
       end
 
       it 'accepts nil' do
         import(do_not_visit_date: nil)
 
-        householder.do_not_visit_date.must_be_nil
+        expect(householder.do_not_visit_date).to be nil
       end
     end
 
@@ -133,7 +135,7 @@ class HouseholderImporterTest < ActiveSupport::TestCase
 
         householder = Householder.first
         assert_count(1, 1)
-        householder.name.must_equal 'other name'
+        expect(householder.name).to eq 'other name'
       end
     end
 
@@ -142,7 +144,7 @@ class HouseholderImporterTest < ActiveSupport::TestCase
         import(uuid: 'the-uuid', updated_at: '2001-02-03 01:02:03', territory_name: 'T1')
         import(uuid: 'the-uuid', updated_at: '2001-02-03 01:01:03', territory_name: 'T2')
 
-        householder.territory.name.must_equal 'T1'
+        expect(householder.territory.name).to eq 'T1'
       end
     end
 
@@ -150,7 +152,7 @@ class HouseholderImporterTest < ActiveSupport::TestCase
       import(uuid: 'the-uuid', updated_at: '2001-02-03 01:02:03', territory_name: 'T1')
       import(uuid: 'the-uuid', updated_at: '2001-03-03 01:01:03', territory_name: 'T2')
 
-      householder.territory.name.must_equal 'T2'
+      expect(householder.territory.name).to eq 'T2'
       assert_count(1, 2)
     end
   end
@@ -173,11 +175,9 @@ class HouseholderImporterTest < ActiveSupport::TestCase
         import_data.dup.merge(foo: :bar)
       ]
 
-      exception = assert_raise(RuntimeError) do
+      expect do
         subject.import_batch(collection)
-      end
-
-      exception.message.must_equal 'Line 3 : unknown keyword: foo'
+      end.to raise_error(RuntimeError, 'Line 3 : unknown keyword: foo')
 
       assert_count(0, 0)
     end
@@ -188,7 +188,7 @@ class HouseholderImporterTest < ActiveSupport::TestCase
   end
 
   def assert_count(householder, territory)
-    assert_equal householder, Householder.count
-    assert_equal territory, Territory.count
+    expect(Householder.count).to eq householder
+    expect(Territory.count).to eq territory
   end
 end

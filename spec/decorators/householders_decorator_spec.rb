@@ -1,9 +1,11 @@
-require 'test_helper'
+require 'rails_helper'
 
-class HouseholdersDecoratorTest < TestCase
-  def setup
-    @territory = stub(id: ':tid', name: 'T1')
-    @item = stub(id: 1)
+RSpec.describe HouseholdersDecorator do
+  let(:fake_view_helpers) { FakeViewHelpers.new }
+
+  before do
+    @territory = double(id: ':tid', name: 'T1')
+    @item = double(id: 1)
     @collection = [@item]
     @decorator ||= HouseholdersDecorator.new(@collection, @territory)
     @decorator = @decorator.with_view_helpers(fake_view_helpers)

@@ -1,6 +1,6 @@
-require 'test_helper'
+require 'rails_helper'
 
-class HouseholdersCsvExporterTest < TestCase
+RSpec.describe HouseholdersCsvExporter do
   subject { HouseholdersCsvExporter.new }
 
   let(:t1) do
@@ -48,7 +48,7 @@ território1,street 1,#1,name 1,,1,uuid1,#{h1.updated_at.utc.to_s(:db)}
 território2,street 2,#2,name 2,#{h2.do_not_visit_date.to_s(:db)},0,uuid2,#{h2.updated_at.utc.to_s(:db)}
 HASH
 
-        assert_equal expected, result.to_s
+        expect(result.to_s).to eq(expected)
       end
     end
   end

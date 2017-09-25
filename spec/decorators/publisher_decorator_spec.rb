@@ -1,8 +1,10 @@
-require 'test_helper'
+require 'rails_helper'
 
-class PublisherDecoratorTest < TestCase
-  def setup
-    @item = stub(
+RSpec.describe PublisherDecorator do
+  let(:fake_view_helpers) { FakeViewHelpers.new }
+
+  before do
+    @item = double(
       id: 1,
       to_param: 1,
       name: 'theName',
@@ -53,7 +55,8 @@ class PublisherDecoratorTest < TestCase
   end
 
   it '#breadcrumbs for new record' do
-    @item.stubs(id: nil)
+    allow(@item).to receive(:id) { nil }
+
     actual = @decorator.breadcrumbs
 
     expected = [
@@ -65,11 +68,12 @@ class PublisherDecoratorTest < TestCase
   end
 
   it '#html_classes returns classes' do
-    @item.stubs(congregation_member?: false)
+    allow(@item).to receive(:congregation_member?) { nil }
+
     classes = @decorator.html_classes
     assert_equal 'disabled', classes
 
-    @item.stubs(congregation_member?: true)
+    allow(@item).to receive(:congregation_member?) { true }
     classes = @decorator.html_classes
     assert_nil classes
   end

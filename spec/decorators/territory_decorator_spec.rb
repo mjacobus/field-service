@@ -1,8 +1,10 @@
-require 'test_helper'
+require 'rails_helper'
 
-class TerritoryDecoratorTest < TestCase
-  def setup
-    @item = stub(
+RSpec.describe TerritoryDecorator do
+  let(:fake_view_helpers) { FakeViewHelpers.new }
+
+  before do
+    @item = double(
       to_param: 1,
       uuid: 'theUuid',
       name: 'theName',
@@ -48,7 +50,7 @@ class TerritoryDecoratorTest < TestCase
   end
 
   it '#breadcrumbs returns correct collection for new record' do
-    @item.stubs(id: nil)
+    allow(@item).to receive(:id) { nil }
 
     expected = [
       ['t.titles.territories', '/territories'],
@@ -61,7 +63,7 @@ class TerritoryDecoratorTest < TestCase
   end
 
   it '#breadcrumbs returns correct collection for new record' do
-    @item.stubs(id: true)
+    allow(@item).to receive(:id) { true }
 
     expected = [
       ['t.titles.territories', '/territories'],
@@ -84,13 +86,13 @@ class TerritoryDecoratorTest < TestCase
 
   describe '#html_classes' do
     it 'returns "pending-return" if #need_to_be_returned? is true' do
-      @item.stubs(need_to_be_returned?: true)
+      allow(@item).to receive(:need_to_be_returned?) { true }
 
       assert_equal 'pending-return', @decorator.html_classes
     end
 
     it 'returns "" if #need_to_be_returned? is false' do
-      @item.stubs(need_to_be_returned?: false)
+      allow(@item).to receive(:need_to_be_returned?) { false }
 
       assert_equal '', @decorator.html_classes
     end

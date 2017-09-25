@@ -1,6 +1,6 @@
-require 'test_helper'
+require 'spec_helper'
 
-class DatePathTest < ActiveSupport::TestCase
+describe DatePath do
   subject do
     DatePath.new(
       prefix: 'the_prefix_',
@@ -11,7 +11,7 @@ class DatePathTest < ActiveSupport::TestCase
 
   describe '#to_s' do
     it 'returns a path with prefix, suffix and the time representation' do
-      assert_equal 'the_prefix_2001-02-03_04-05-06.csv', subject.to_s
+      expect(subject.to_s).to eq 'the_prefix_2001-02-03_04-05-06.csv'
     end
   end
 end

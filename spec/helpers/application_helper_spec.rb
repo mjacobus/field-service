@@ -1,6 +1,6 @@
-require 'test_helper'
+require 'rails_helper'
 
-class ApplicationHelperTest < HelperTestCase
+RSpec.describe ApplicationHelper do
   it '#breadcrumbs generates breadcumbs' do
     skip 'check this thingy'
 

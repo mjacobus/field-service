@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'rails_helper'
 
 class DummyItemDecoratorClass
   attr_accessor :view_helpers, :item
@@ -13,8 +13,8 @@ class DummyItemDecoratorClass
   end
 end
 
-class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
-  def setup
+RSpec.describe ActiveRecordCollectionDecorator do
+  before do
     klass = Class.new(ActiveRecordCollectionDecorator) do
       def index_url
         '/resource_name'
@@ -25,7 +25,7 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
       end
     end
 
-    @item = stub(id: 1)
+    @item = double(id: 1)
     @collection = [@item]
     @decorator ||= klass.new(@collection)
   end
@@ -59,7 +59,7 @@ class ActiveRecordCollectionDecoratorTest < ActiveSupport::TestCase
   end
 
   it 'each yields item view' do
-    view_helpers = stub(:helpers)
+    view_helpers = double(:helpers)
 
     @decorator.with_view_helpers(view_helpers)
     collected = []

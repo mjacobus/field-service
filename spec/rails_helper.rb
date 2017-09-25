@@ -3,6 +3,7 @@ require 'spec_helper'
 require 'common'
 
 require 'rspec/rails'
+require "clearance/rspec"
 
 require File.expand_path(File.dirname(__FILE__) + '/support/blueprints')
 
@@ -55,4 +56,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+
+def t(*args)
+  I18n.t(*args)
 end

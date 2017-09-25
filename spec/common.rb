@@ -21,7 +21,7 @@ if ENV['COVERAGE']
   end
 end
 
-FIXTURES_PATH = File.expand_path('../../test/fixtures/', __FILE__)
+FIXTURES_PATH = File.expand_path('../fixtures/', __FILE__)
 
 require File.expand_path('../../config/environment', __FILE__)
 

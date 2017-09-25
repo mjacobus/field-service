@@ -1,6 +1,6 @@
-require 'test_helper'
+require 'rails_helper'
 
-class ReturnTerritoryTest < TestCase
+RSpec.describe ReturnTerritory do
   let(:publisher) { Publisher.make! }
   let(:territory) { Territory.make! }
   let(:assignment1) { TerritoryAssignment.make!(territory: territory) }
@@ -8,7 +8,7 @@ class ReturnTerritoryTest < TestCase
   let(:assignment3) { TerritoryAssignment.make!(territory: territory) }
   let(:other_assignment) { TerritoryAssignment.make! }
 
-  def setup
+  before do
     assignment1
     assignment2
     assignment3
@@ -30,13 +30,13 @@ class ReturnTerritoryTest < TestCase
 
       perform
 
-      assignment1.returned?.must_equal(true)
-      assignment2.returned?.must_equal(true)
-      assignment3.returned?.must_equal(true)
+      expect(assignment1.returned?).to be true
+      expect(assignment2.returned?).to be true
+      expect(assignment3.returned?).to be true
 
-      assert_equal_objects(returned_date, assignment1.returned_at)
-      assert_equal_objects(returned_date, assignment2.returned_at)
-      assert_equal_objects(returned_date, assignment3.returned_at)
+      expect(returned_date).to be_equal_to(assignment1.returned_at)
+      expect(returned_date).to be_equal_to(assignment2.returned_at)
+      expect(returned_date).to be_equal_to(assignment3.returned_at)
     end
 
     it 'marks all as returned with custom date' do
@@ -44,13 +44,13 @@ class ReturnTerritoryTest < TestCase
 
       perform(returned_at: returned_date)
 
-      assignment1.returned?.must_equal(true)
-      assignment2.returned?.must_equal(true)
-      assignment3.returned?.must_equal(true)
+      expect(assignment1.returned?).to be true
+      expect(assignment2.returned?).to be true
+      expect(assignment3.returned?).to be true
 
-      assert_equal_objects(returned_date, assignment1.returned_at)
-      assert_equal_objects(returned_date, assignment2.returned_at)
-      assert_equal_objects(returned_date, assignment3.returned_at)
+      expect(returned_date).to be_equal_to(assignment1.returned_at)
+      expect(returned_date).to be_equal_to(assignment2.returned_at)
+      expect(returned_date).to be_equal_to(assignment3.returned_at)
     end
   end
 end

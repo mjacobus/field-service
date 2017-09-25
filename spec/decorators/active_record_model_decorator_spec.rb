@@ -1,14 +1,14 @@
-require 'test_helper'
+require 'rails_helper'
 
-class ActiveRecordModelDecoratorTest < ActiveSupport::TestCase
-  def setup
+RSpec.describe ActiveRecordModelDecorator do
+  before do
     @klass = Class.new(ActiveRecordModelDecorator) do
       def index_url
         '/resource_name'
       end
     end
 
-    @item = stub(
+    @item = double(
       to_param: 1,
       persisted?: true,
       name: 'theName',
@@ -44,6 +44,6 @@ class ActiveRecordModelDecoratorTest < ActiveSupport::TestCase
 
   it '#form_url returns correct form url' do
     assert_equal '/resource_name/1', @klass.new(@item).form_url
-    assert_equal '/resource_name', @klass.new(stub(persisted?: false)).form_url
+    assert_equal '/resource_name', @klass.new(double(persisted?: false)).form_url
   end
 end

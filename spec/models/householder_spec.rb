@@ -51,4 +51,89 @@ RSpec.describe Householder do
       expect(subject.normalized_street_name).to eq('norm')
     end
   end
+
+  describe '#validation' do
+    let(:valid_record) { Householder.make }
+
+    it 'valid record is considered valid' do
+      assert valid_record.valid?
+    end
+
+    it 'validates presence of #street_name' do
+      record = valid_record
+      record.street_name = nil
+
+      assert !record.valid?
+    end
+
+    it 'validates presence of #name' do
+      record = valid_record
+      record.name = nil
+
+      assert !record.valid?
+    end
+
+    it 'validates presence of #uuid' do
+      record = valid_record
+      record.uuid = nil
+
+      assert !record.valid?
+    end
+
+    it 'validates uniqueness of #uuid' do
+      record = Householder.make!
+      record.uuid = UniqueId.new('Foo')
+      record.save!
+
+      other = valid_record
+      other.uuid = 'foo'
+
+      assert record.valid?
+      assert !other.valid?
+    end
+
+    it '#uuid has default value' do
+      record = Householder.new
+      record.save!(validate: false)
+      record = Householder.find_by_uuid(record.uuid)
+
+      expect(record.uuid).not_to be_nil
+      assert_instance_of Householder, record
+      assert_instance_of Householder, Householder.find_by_uuid(record.uuid)
+    end
+
+    it 'validates presence of #house_number' do
+      record = valid_record
+      record.house_number = nil
+
+      assert !record.valid?
+    end
+  end
+
+  describe '#update_geolocation' do
+    it 'can update geocode' do
+      subject = Householder.new(street_name: 'the street', house_number: 'the number')
+
+      data = {
+        'results' => [
+          {
+            'geometry' => {
+              'location' => {
+                'lat' => 1.23,
+                'lng' => 3.21
+              }
+            }
+          }
+        ]
+      }
+
+      allow_any_instance_of(Koine::GoogleMapsClient).to receive(:geocode)
+        .with(address: 'the street the number').and_return(data)
+
+      subject.update_geolocation
+
+      expect(subject.lat).to eq 1.23
+      expect(subject.lon).to eq 3.21
+    end
+  end
 end

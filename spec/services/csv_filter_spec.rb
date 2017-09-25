@@ -1,8 +1,6 @@
-require 'test_helper'
+require 'rails_helper'
 
-class CsvFilterTest < ActiveSupport::TestCase
-  subject { CsvFilter.new }
-
+RSpec.describe CsvFilter do
   let(:input) do
     {
       street_name: 'street name',
@@ -32,7 +30,7 @@ class CsvFilterTest < ActiveSupport::TestCase
         updated_at: 'the updated at'
       }
 
-      assert_equal expected, subject.filter(input)
+      expect(subject.filter(input)).to eq(expected)
     end
   end
 end

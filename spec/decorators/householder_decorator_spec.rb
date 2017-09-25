@@ -1,11 +1,13 @@
-require 'test_helper'
+require 'rails_helper'
 
-class HouseholderDecoratorTest < TestCase
-  def setup
-    @territory = stub(id: 4)
-    @item = stub(
+RSpec.describe HouseholderDecorator do
+  let(:fake_view_helpers) { FakeViewHelpers.new }
+
+  before do
+    @territory = double(id: 4)
+    @item = double(
       id: 1,
-      territory: stub(
+      territory: double(
         name: 'T1'
       ),
       to_param: 1,
@@ -71,13 +73,13 @@ class HouseholderDecoratorTest < TestCase
   end
 
   it "#html_classes returns '' when visit is true" do
-    @decorator = HouseholderDecorator.new(stub(visit?: true))
+    @decorator = HouseholderDecorator.new(double(visit?: true))
 
     assert_equal '', @decorator.html_classes.to_s
   end
 
   it '#html_classes returns disabled when visit is false' do
-    @decorator = HouseholderDecorator.new(stub(visit?: false))
+    @decorator = HouseholderDecorator.new(double(visit?: false))
 
     assert_equal 'disabled', @decorator.html_classes.to_s
   end
@@ -96,7 +98,7 @@ class HouseholderDecoratorTest < TestCase
   end
 
   it '#breadcrumbs for new record' do
-    @item.stubs(id: nil)
+    allow(@item).to receive(:id) { nil }
     actual = @decorator.breadcrumbs
 
     expected = [

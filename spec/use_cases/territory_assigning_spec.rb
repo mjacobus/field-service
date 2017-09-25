@@ -1,12 +1,10 @@
-require 'test_helper'
+require 'rails_helper'
 
-class TerritoryAssigningTest < TestCase
+RSpec.describe TerritoryAssigning do
   let(:publisher) { Publisher.make! }
   let(:territory) { Territory.make! }
 
-  subject do
-    TerritoryAssigning.new
-  end
+  subject { TerritoryAssigning.new }
 
   def perform(attributes = {})
     subject.perform(
@@ -21,29 +19,29 @@ class TerritoryAssigningTest < TestCase
     it 'can assign territory to publisher' do
       perform
 
-      assert_equal 1, TerritoryAssignment.count
-      assert_equal publisher.id, TerritoryAssignment.last.publisher_id
-      assert_equal territory.id, TerritoryAssignment.last.territory_id
+      expect(TerritoryAssignment.count).to eq 1
+      expect(TerritoryAssignment.last.publisher_id).to eq publisher.id
+      expect(TerritoryAssignment.last.territory_id).to eq territory.id
     end
 
     it '#assignned_at defaults to current date' do
-      assert_equal_objects Date.today, perform.assigned_at.to_date
+      expect(perform.assigned_at).to eq Date.today
     end
 
     it '#assignned_at can be set to something else' do
       time = perform(assigned_at: '2001-02-03').assigned_at
 
-      assert_equal_objects Date.new(2001, 2, 3), time.to_date
+      expect(time.to_date).to eq Date.new(2001, 2, 3)
     end
 
     it '#returned defaults to false' do
-      refute perform.returned?
+      expect(perform).not_to be_returned
     end
 
     it '#return_date is 4 months after assigned_at' do
       date = perform.return_date.to_date
 
-      assert_equal_objects 4.months.from_now.to_date, date
+      expect(4.months.from_now.to_date).to eq date
     end
 
     it 'sets unreturned territories to returned' do
@@ -61,11 +59,12 @@ class TerritoryAssigningTest < TestCase
       other_territory_assignment.reload
       old_assignment.reload
 
-      refute other_territory_assignment.returned?
-      assert old_assignment.returned?
-      assert_equal_objects date.to_date, old_assignment.returned_at.to_date
+      expect(other_territory_assignment).not_to be_returned
+      expect(old_assignment).to be_returned
 
-      refute new_assignment.returned?
+      expect(old_assignment.returned_at.to_date).to eq(date.to_date)
+
+      expect(new_assignment).not_to be_returned
     end
   end
 end

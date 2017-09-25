@@ -1,7 +1,9 @@
-require 'test_helper'
+require 'rails_helper'
 
-class PublishersControllerTest < ControllerTestCase
-  setup do
+RSpec.describe PublishersController do
+  let(:current_user) { User.make! }
+
+  before do
     @publisher = Publisher.make!
     @decorator = PublisherDecorator.new(@publisher)
     @edit_url = @decorator.edit_url
@@ -9,7 +11,12 @@ class PublishersControllerTest < ControllerTestCase
     @index_url = @decorator.index_url
     @resource_url = @decorator.url
 
-    @publisher_params = { name: @publisher.name, email: @publisher.email, phone: @publisher.phone, congregation_member: 1 }
+    @publisher_params = {
+      name: @publisher.name,
+      email: @publisher.email,
+      phone: @publisher.phone,
+      congregation_member: 1
+    }
     sign_in_as(current_user)
   end
 
@@ -22,42 +29,56 @@ class PublishersControllerTest < ControllerTestCase
   end
 
   it 'should get index' do
-    get @index_url
+    get :index, params: { id: @publisher.id }
+
     assert_response :success
   end
 
   it 'should get new' do
-    get @new_url
+    get :new
+
     assert_response :success
   end
 
   it 'should create publisher' do
-    assert_difference('Publisher.count') do
-      post @index_url, params: { publisher: { email: @publisher.email, name: @publisher.name, phone: @publisher.phone } }
-    end
+    params = {
+      publisher: { email: @publisher.email, name: @publisher.name, phone: @publisher.phone }
+    }
+
+    expect do
+      post :create, params: params
+    end.to change { Publisher.count }.by(1)
 
     assert_redirected_to publisher_url(Publisher.last)
   end
 
   it 'should show publisher' do
-    get @resource_url
+    get :show, params: { id: @publisher.id }
+
     assert_response :success
   end
 
   it 'should get edit' do
-    get @edit_url
+    get :edit, params: { id: @publisher.id }
+
     assert_response :success
   end
 
   it 'should update publisher' do
-    patch @resource_url, params: { publisher: { email: @publisher.email, name: @publisher.name, phone: @publisher.phone } }
+    params = {
+      id: @publisher.id,
+      publisher: { email: @publisher.email, name: @publisher.name, phone: @publisher.phone }
+    }
+
+    patch :update, params: params
+
     assert_redirected_to @resource_url
   end
 
   it 'should destroy publisher' do
-    assert_difference('Publisher.count', -1) do
-      delete @resource_url
-    end
+    expect do
+      delete :destroy, params: { id: @publisher.id }
+    end.to change { Publisher.count }.by(-1)
 
     assert_redirected_to @index_url
   end

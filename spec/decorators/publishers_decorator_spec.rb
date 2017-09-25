@@ -1,8 +1,10 @@
-require 'test_helper'
+require 'rails_helper'
 
-class PublishersDecoratorTest < TestCase
-  def setup
-    @item = stub(id: 1)
+RSpec.describe PublishersDecorator do
+  let(:fake_view_helpers) { FakeViewHelpers.new }
+
+  before do
+    @item = double(id: 1)
     @collection = [@item]
     @decorator ||= PublishersDecorator.new(@collection).with_view_helpers(fake_view_helpers)
   end

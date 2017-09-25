@@ -1,12 +1,12 @@
-require 'test_helper'
+require 'rails_helper'
 
-class FileExportServiceTest < ActiveSupport::TestCase
+RSpec.describe FileExportService do
   subject { FileExportService.new('content') }
   let(:file) { '/tmp/file.txt' }
 
   describe '#to_s' do
     it 'returns the string version of the given content' do
-      assert_equal 'content', subject.to_s
+      expect(subject.to_s).to eq('content')
     end
   end
 
@@ -18,16 +18,16 @@ class FileExportServiceTest < ActiveSupport::TestCase
     it 'exports content to file' do
       subject.to_file(file)
 
-      assert File.exist?(file)
-      assert_equal "content\n", File.read(file)
+      expect(File.exist?(file)).to be true
+      expect(File.read(file)).to eq("content\n")
     end
 
     it 'raises an exception when file already exists' do
       subject.to_file(file)
 
-      assert_raise(StandardError) do
+      expect do
         subject.to_file(file)
-      end
+      end.to raise_error(StandardError)
     end
 
     it 'creates dir when they do not exist' do
@@ -38,11 +38,11 @@ class FileExportServiceTest < ActiveSupport::TestCase
       refute File.exist?(folder)
       refute File.exist?(file)
 
-      puts subject.to_file(file)
+      subject.to_file(file)
 
-      assert File.exist?(folder)
-      assert File.exist?(file)
-      assert_equal "content\n", File.read(file)
+      expect(File.exist?(folder)).to be true
+      expect(File.exist?(file)).to be true
+      expect(File.read(file)).to eq("content\n")
     end
   end
 end

@@ -1,8 +1,6 @@
-require 'test_helper'
+require 'rails_helper'
 
-class TerritoryAssignmentImporterTest < ActiveSupport::TestCase
-  subject { TerritoryAssignmentImporter.new }
-
+RSpec.describe TerritoryAssignmentImporter do
   let(:assignment) { TerritoryAssignment.last }
   let(:publisher) { Publisher.last }
 
@@ -22,17 +20,15 @@ class TerritoryAssignmentImporterTest < ActiveSupport::TestCase
 
     describe 'territory' do
       it 'raises an exception when territory was not created' do
-        exception = assert_raise(RuntimeError) do
+        expect do
           import(territory_name: 'Non Existing')
-        end
-
-        assert_equal "Territory 'Non Existing' not found", exception.message
+        end.to raise_error(RuntimeError, "Territory 'Non Existing' not found")
       end
 
       it 'creates assigns existing territory' do
         import
 
-        assert_equal 'T1', assignment.territory.name
+        expect(assignment.territory.name).to eq 'T1'
         assert_count(1, 1)
       end
     end
@@ -41,7 +37,7 @@ class TerritoryAssignmentImporterTest < ActiveSupport::TestCase
       it 'creates a new publisher when one does not exist' do
         import
 
-        assert_equal 'John Doe', assignment.publisher.name
+        expect(assignment.publisher.name). to eq 'John Doe'
         assert_count(1, 1)
       end
 
@@ -50,32 +46,30 @@ class TerritoryAssignmentImporterTest < ActiveSupport::TestCase
 
         import
 
-        assert_equal 'John Doe', assignment.publisher.name
+        expect(assignment.publisher.name). to eq 'John Doe'
         assert_count(1, 1)
       end
     end
 
     describe 'assigned_at' do
       it 'raises an exception when cannot parse date' do
-        exception = assert_raise(RuntimeError) do
+        expect do
           import(assigned_at: '')
-        end
-
-        assert_equal "Invalid date: ''", exception.message
+        end.to raise_error(RuntimeError, "Invalid date: ''")
       end
 
       it 'assigns the date when it is parseable' do
         import
 
-        assert_equal Date.new(2013, 11, 30), assignment.assigned_at
+        date = Date.new(2013, 11, 30)
+
+        expect(assignment.assigned_at).to eq date
       end
 
       it 'cannot be nil' do
-        exception = assert_raise(RuntimeError) do
+        expect do
           import(assigned_at: nil)
-        end
-
-        assert_equal "Invalid date: ''", exception.message
+        end.to raise_error RuntimeError, "Invalid date: ''"
       end
     end
 
@@ -83,13 +77,15 @@ class TerritoryAssignmentImporterTest < ActiveSupport::TestCase
       it 'assigns the date when it is parseable' do
         import(returned_at: '01.02.2004')
 
-        assert_equal Date.new(2004, 0o2, 0o1), assignment.returned_at
+        date = Date.new(2004, 0o2, 0o1)
+
+        expect(assignment.returned_at).to eq date
       end
 
       it 'can be nil' do
         import(returned_at: '')
 
-        assert_nil assignment.returned_at
+        expect(assignment.returned_at).to be nil
       end
     end
   end
@@ -99,7 +95,7 @@ class TerritoryAssignmentImporterTest < ActiveSupport::TestCase
   end
 
   def assert_count(territory, publisher)
-    assert_equal territory, Territory.count
-    assert_equal publisher, Publisher.count
+    expect(Territory.count). to eq territory
+    expect(Publisher.count). to eq publisher
   end
 end

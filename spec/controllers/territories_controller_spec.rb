@@ -1,7 +1,8 @@
-require 'test_helper'
+require 'rails_helper'
 
-class TerritoriesControllerTest < ControllerTestCase
-  setup do
+RSpec.describe TerritoriesController do
+  let(:current_user) { User.make! }
+  before do
     @territory = Territory.make!
     @decorator = TerritoryDecorator.new(@territory)
     @edit_url = @decorator.edit_url
@@ -22,13 +23,13 @@ class TerritoriesControllerTest < ControllerTestCase
   end
 
   it 'should get index' do
-    get @index_url
+    get :index
 
     assert_response :success
   end
 
   it 'should get new' do
-    get @new_url
+    get :new
 
     assert_response :success
   end
@@ -36,49 +37,49 @@ class TerritoriesControllerTest < ControllerTestCase
   it 'should create territory' do
     @territory = Territory.make
 
-    assert_difference('Territory.count') do
-      post @index_url, params: { territory: @territory_params.merge(name: @territory.name) }
-    end
+    expect do
+      post :create, params: { territory: @territory_params.merge(name: @territory.name) }
+    end.to change { Territory.count }.by(1)
 
     assert_redirected_to resource_url(Territory.last)
     assert_equal t('territories.created'), flash[:notice]
   end
 
   it 're-renders form on create error' do
-    post @index_url, params: { territory: @territory_params.merge(name: '') }
+    post :create, params: { territory: @territory_params.merge(name: '') }
 
     assert_template 'new'
   end
 
   it 'should show territory' do
-    get @resource_url
+    get :show, params: { id: @territory.id }
 
     assert_response :success
   end
 
   it 'should get edit' do
-    get @edit_url
+    get :edit, params: { id: @territory.id }
 
     assert_response :success
   end
 
   it 'should update territory' do
-    patch @resource_url, params: { territory: @territory_params }
+    patch :update, params: { id: @territory.id, territory: @territory_params }
 
     assert_redirected_to @resource_url
     assert_equal t('territories.updated'), flash[:notice]
   end
 
   it 're-renders form on update error' do
-    patch @resource_url, params: { territory: @territory_params.merge(name: '') }
+    patch :update, params: { id: @territory.id, territory: @territory_params.merge(name: '') }
 
     assert_template 'edit'
   end
 
   it 'should destroy territory' do
-    assert_difference('Territory.count', -1) do
-      delete @resource_url
-    end
+    expect do
+      delete :destroy, params: { id: @territory.id }
+    end.to change { Territory.count }.by(-1)
 
     assert_redirected_to @index_url
     assert_equal t('territories.destroyed'), flash[:notice]
@@ -87,7 +88,9 @@ class TerritoriesControllerTest < ControllerTestCase
   it 'displays error when cannot destroy a territory' do
     Householder.make!(territory: @territory)
 
-    delete @resource_url
+    expect do
+      delete :destroy, params: { id: @territory.id }
+    end.not_to change { Territory.count }
 
     assert_equal t('territories.cannot_destroy'), flash[:alert]
     assert_redirected_to @index_url

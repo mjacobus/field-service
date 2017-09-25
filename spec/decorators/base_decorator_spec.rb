@@ -1,9 +1,7 @@
-require 'test_helper'
+require 'rails_helper'
 
-class BaseDecoratorTest < ActiveSupport::TestCase
-  def subject
-    @subject ||= BaseDecorator.new(nil)
-  end
+RSpec.describe BaseDecorator do
+  subject { BaseDecorator.new(nil) }
 
   it 'can set helper' do
     helpers = []

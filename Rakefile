@@ -5,13 +5,12 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-namespace :test do
-  task :coverage do
-    ENV['COVERAGE'] = 'true'
-    Rake::Task['test'].invoke
-  end
+task :travis_ci do
+  ENV['COVERAGE'] = 'true'
 
-  task coveralls: ['test:coverage']
+  Rake::Task['db:create'].invoke
+  Rake::Task['db:migrate'].invoke
+  Rake::Task['spec'].invoke
 end
 
 namespace :csv do

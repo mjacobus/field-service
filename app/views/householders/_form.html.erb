@@ -5,6 +5,15 @@
 ) do |f| %>
 
   <div class="row">
+    <div class="small-12 large-6 columns">
+      <%= f.input :street_name, input_html: { class: 'js-street-name' } %>
+    </div>
+    <div class="small-12 large-6 columns">
+      <%= f.input :house_number, input_html: { class: 'js-house-number' } %>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="small-12 large-12 columns">
       <%= f.input :name %>
     </div>
@@ -13,15 +22,6 @@
     </div>
     <div class="small-12 large-12 columns">
       <%= f.input :do_not_visit_date, as: :string, placeholder: t('messages.date_format_hint') %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="small-12 large-6 columns">
-      <%= f.input :street_name, input_html: { class: 'js-street-name' } %>
-    </div>
-    <div class="small-12 large-6 columns">
-      <%= f.input :house_number, input_html: { class: 'js-house-number' } %>
     </div>
   </div>
 

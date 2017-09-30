@@ -17,7 +17,7 @@ pt-BR:
         house_number: Número da casa
         street_name: Nome da rua
         do_not_visit_date: Não visitar
-        show: Exibir
+        show: Fala o idioma
       publisher:
         name: Nome
         email: Email
@@ -31,6 +31,7 @@ pt-BR:
     new: Novo
     logout: Sair
     edit: Editar
+    save: Salvar
     destroy: Excluir
     show: Visualizar
     back: Voltar

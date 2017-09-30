@@ -48,7 +48,7 @@ class ActiveRecordModelDecorator < ActiveRecordBaseDecorator
 
   def save_button
     content_tag :button, class: 'button large success', title: t('save', default: 'Save') do
-      content_tag(:i, nil, class: 'fi-save')
+      t('links.save')
     end
   end
 

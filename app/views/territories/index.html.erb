@@ -29,9 +29,13 @@
       <% @territories_decorator.each do |territory| %>
         <a href="<%= territory.url  %>">
           <article class="row <%= territory.html_classes %>">
-            <div class="small-12 columns large-7">
+            <div class="small-12 columns large-3">
               <strong><%= territory.name %></strong>
               <small>(<%= territory.number_of_householders %>)</small>
+            </div>
+            <div class="small-12 columns large-4">
+              <%= territory.description %>
+              <small><%= territory.city %></small>
             </div>
             <div class="small-8 large-3 columns "><%= territory.current_assignee_name || '&nbsp;'.html_safe %></div>
             <div class="small-4 large-2 columns date text-right"><%= territory.return_date || '&nbsp;'.html_safe %></div>

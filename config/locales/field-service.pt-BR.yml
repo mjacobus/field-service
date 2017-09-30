@@ -6,6 +6,7 @@ pt-BR:
     attributes:
       territory:
         name: Nome
+        city: Cidade
         description: Descrição
         number_of_householders: Número de Moradores
         current_assignee: Designado para
@@ -56,6 +57,7 @@ pt-BR:
   assign: "Designar"
 
   messages:
+    geolocation_update_failed: As coordenadas de Geolocation não puderam ser atualizadas
     date_format_hint: Data, formato YYYY-MM-DD
     confirm_destroy: Tem certeza que deseja excuir este registro?
     dev_env_warning: Este é um sistema de teste. Use-o a vontade.

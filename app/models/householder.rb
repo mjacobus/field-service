@@ -26,9 +26,13 @@ class Householder < ApplicationRecord
   def update_geolocation
     data = Koine::GoogleMapsClient.new.geocode(address: address)
 
-    result = data['results'].first
+    if data['results'].empty?
+      self.lat = nil
+      self.lon = nil
+      return
+    end
 
-    return unless result
+    result = data['results'].first
 
     location = result['geometry']['location']
     self.lat =  location['lat']
@@ -53,7 +57,7 @@ class Householder < ApplicationRecord
   end
 
   def address
-    "#{normalized_street_name} #{house_number}"
+    "#{normalized_street_name} #{house_number}, #{city_name}"
   end
 
   def has_notes?
@@ -63,5 +67,9 @@ class Householder < ApplicationRecord
   def visit?
     return false unless show
     !do_not_visit_date?
+  end
+
+  def city_name
+    territory.city
   end
 end

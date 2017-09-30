@@ -4,6 +4,7 @@ require 'faker'
 Territory.blueprint do
   name { sn }
   uuid { UniqueId.new }
+  city { Faker::Address.city }
   description { "Description for #{sn}" }
 end
 

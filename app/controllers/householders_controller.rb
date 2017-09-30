@@ -35,7 +35,7 @@ class HouseholdersController < AuthenticatedController
     begin
       householder.update_geolocation
     rescue
-      nil
+      flash[:alert] = t('messages.geolocation_update_failed')
     end
 
     if householder.save
@@ -53,7 +53,7 @@ class HouseholdersController < AuthenticatedController
     begin
       householder.update_geolocation
     rescue
-      nil
+      flash[:alert] = t('messages.geolocation_update_failed')
     end
 
     if householder.update(householder_params)
@@ -84,7 +84,14 @@ class HouseholdersController < AuthenticatedController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def householder_params
-    params.require(:householder).permit(:street_name, :house_number, :name, :show, :notes, :do_not_visit_date)
+    params.require(:householder).permit(
+      :street_name,
+      :house_number,
+      :name,
+      :show,
+      :notes,
+      :do_not_visit_date
+    )
   end
 
   def to_csv(householders)

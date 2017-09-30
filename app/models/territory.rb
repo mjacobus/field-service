@@ -5,6 +5,7 @@ class Territory < ApplicationRecord
   has_many :assignments, class_name: 'TerritoryAssignment'
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uuid, presence: true, uniqueness: { case_sensitive: false }
+  validates :city, presence: true
 
   scope :sorted, -> { order(:name) }
 

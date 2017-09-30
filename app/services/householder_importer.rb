@@ -40,7 +40,7 @@ class HouseholderImporter < BaseImporter
 
   def assign_territory_by_name(householder, territory_name)
     territory = Territory.find_by_name(territory_name)
-    territory ||= Territory.create!(name: territory_name)
+    territory ||= Territory.create!(name: territory_name, city: '[CHANGE ME]')
 
     householder.territory = territory
   end

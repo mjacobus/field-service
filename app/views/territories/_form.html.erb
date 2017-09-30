@@ -1,5 +1,6 @@
 <%= simple_form_for(territory) do |f| %>
   <%= f.input :name %>
+  <%= f.input :city %>
   <%= f.input :description %>
   <%= territory_decorator.save_button %>
 <% end %>

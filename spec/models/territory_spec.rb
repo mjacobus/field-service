@@ -13,6 +13,13 @@ RSpec.describe Territory do
     assert !territory.valid?
   end
 
+  it 'validates presence of city' do
+    territory = valid_territory
+    territory.city = nil
+
+    expect(territory).not_to be_valid
+  end
+
   it 'validates uniqueness of name' do
     first = valid_territory
     first.name = 'theName'

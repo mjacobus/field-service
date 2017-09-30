@@ -111,29 +111,52 @@ RSpec.describe Householder do
   end
 
   describe '#update_geolocation' do
-    it 'can update geocode' do
-      subject = Householder.new(street_name: 'the street', house_number: 'the number')
+    let(:householder) do
+      Householder.new(
+        street_name: 'the street',
+        house_number: 'the number',
+        lat: 1,
+        lon: 2,
+        territory: Territory.new(city: 'city name')
+      )
+    end
 
-      data = {
-        'results' => [
-          {
-            'geometry' => {
-              'location' => {
-                'lat' => 1.23,
-                'lng' => 3.21
-              }
+    let(:results) do
+      [
+        {
+          'geometry' => {
+            'location' => {
+              'lat' => 1.23,
+              'lng' => 3.21
             }
           }
-        ]
-      }
+        }
+      ]
+    end
 
+    before do
       allow_any_instance_of(Koine::GoogleMapsClient).to receive(:geocode)
-        .with(address: 'the street the number').and_return(data)
+        .with(address: 'the street the number, city name').and_return('results' => results)
+    end
 
-      subject.update_geolocation
+    describe 'when there are results' do
+      it 'can update geocode' do
+        householder.update_geolocation
 
-      expect(subject.lat).to eq 1.23
-      expect(subject.lon).to eq 3.21
+        expect(householder.lat).to eq 1.23
+        expect(householder.lon).to eq 3.21
+      end
+    end
+
+    describe 'when there are no results' do
+      let(:results) { [] }
+
+      it 'can nilifies geolocaiton when result is empty' do
+        householder.update_geolocation
+
+        expect(householder.lat).to be_nil
+        expect(householder.lon).to be_nil
+      end
     end
   end
 end

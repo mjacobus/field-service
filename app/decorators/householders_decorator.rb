@@ -36,7 +36,7 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
     [].tap do |array|
       collection.select(&:show?).map do |householder|
         array << {
-          address: "#{householder.normalized_street_name}, #{householder.house_number}",
+          address: householder.address,
           name: householder.name,
           location: {
             lat: householder.lat,

@@ -10,7 +10,12 @@ RSpec.describe TerritoriesController do
     @index_url = @decorator.index_url
     @resource_url = @decorator.url
 
-    @territory_params = { description: @territory.description, name: @territory.name }
+    @territory_params = {
+      description: @territory.description,
+      name: @territory.name,
+      city: 'Novo Hamburgo'
+    }
+
     sign_in_as(current_user)
   end
 

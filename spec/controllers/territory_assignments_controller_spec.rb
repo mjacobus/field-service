@@ -1,15 +1,50 @@
 require 'rails_helper'
 
 RSpec.describe TerritoryAssignmentsController do
+  before do
+    sign_in_as(User.new)
+  end
+
   it 'is authenticated controller' do
     assert subject.is_a?(AuthenticatedController)
   end
 
-  describe '#destroy' do
-    let(:perform_request) do
-      sign_in_as(User.new)
-      territory = TerritoryAssignment.make!.territory
+  let(:last_assignment) { TerritoryAssignment.last }
 
+  describe '#create' do
+    let(:territory) { Territory.make! }
+    let(:publisher) { Publisher.make! }
+
+    let(:perform_request) do
+      request_params = {
+        territory_id: territory.id,
+        publisher_id: publisher.id,
+      }
+
+      post :create, params: { territory_id: territory.id, assignment: request_params }
+    end
+
+    it 'marks territory as returned' do
+      perform_request
+
+      expect(last_assignment).not_to be_returned
+      expect(last_assignment).not_to be_complete
+      expect(last_assignment.publisher_id).to eq publisher.id
+      expect(last_assignment.territory_id).to eq territory.id
+    end
+
+    it 'redirects to the territory url' do
+      perform_request
+
+      expect(response).to redirect_to(territory_url(territory.id))
+    end
+
+  end
+
+  describe '#destroy' do
+    let(:territory) { TerritoryAssignment.make!.territory }
+
+    let(:perform_request) do
       request_params = {
         territory_id: territory.id,
         return_date: '2001-02-03',
@@ -20,20 +55,20 @@ RSpec.describe TerritoryAssignmentsController do
       delete :destroy, params: request_params
     end
 
-    let(:assignment) { TerritoryAssignment.last }
+    let(:last_assignment) { TerritoryAssignment.last }
 
     it 'marks territory as returned' do
       perform_request
 
-      expect(assignment).to be_returned
-      expect(assignment).to be_complete
-      expect(assignment.returned_at).to eq Date.new(2001, 2, 3)
+      expect(last_assignment).to be_returned
+      expect(last_assignment).to be_complete
+      expect(last_assignment.returned_at).to eq Date.new(2001, 2, 3)
     end
 
-    it 'redirects to territories url' do
+    it 'redirects to the territory url' do
       perform_request
 
-      expect(response).to redirect_to(territories_url)
+      expect(response).to redirect_to(territory_url(territory.id))
     end
   end
 end

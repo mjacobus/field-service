@@ -14,12 +14,12 @@ class TerritoryAssignmentsController < AuthenticatedController
 
   def create
     payload = params.require(:assignment).symbolize_keys
+    territory_id = payload.fetch(:territory_id)
 
     TerritoryAssigning.new.perform(payload)
 
-    redirect_to territories_url, notice: t('territories.assigned')
+    redirect_to territory_url(territory_id), notice: t('territories.assigned')
   rescue
-    territory_id = payload.fetch(:territory_id)
     redirect_to territory_url(territory_id), alert: t('territories.assignment_error')
   end
 
@@ -32,7 +32,7 @@ class TerritoryAssignmentsController < AuthenticatedController
 
     ReturnTerritory.new.perform(payload)
 
-    redirect_to territories_url, notice: t('territories.returned')
+    redirect_to territory_url(payload[:territory_id]), notice: t('territories.returned')
   end
 
   private

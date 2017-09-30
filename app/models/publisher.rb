@@ -23,4 +23,8 @@ class Publisher < ApplicationRecord
   def has_children?
     !assignments.count.zero?
   end
+
+  def active_assignments
+    assignments.where(returned: false)
+  end
 end

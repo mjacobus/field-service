@@ -27,20 +27,28 @@
     <p> <%= t('number_of_results_found', number: @territories_decorator.count) %></p>
     <div class="articles">
       <% @territories_decorator.each do |territory| %>
-        <a href="<%= territory.url  %>">
           <article class="row <%= territory.html_classes %>">
-            <div class="small-12 columns large-3">
-              <strong><%= territory.name %></strong>
-              <small>(<%= territory.number_of_householders %>)</small>
+            <div class="small-12 columns large-2">
+              <a href="<%= territory.url  %>">
+                <strong><%= territory.name %></strong>
+                <small>(<%= territory.number_of_householders %>)</small>
+              </a>
             </div>
-            <div class="small-12 columns large-4">
-              <%= territory.description %>
-              <small><%= territory.city %></small>
+            <div class="small-12 columns large-5">
+              <a href="<%= territory.url  %>">
+                <%= territory.description %>
+                <small><%= territory.city %></small>
+              </a>
             </div>
-            <div class="small-8 large-3 columns "><%= territory.current_assignee_name || '&nbsp;'.html_safe %></div>
+            <div class="small-8 large-3 columns ">
+              <% if territory.assigned? %>
+                <%= link_to territory.current_assignee_name, publisher_url(territory.current_assignee_id) %>
+              <% else %>
+                &nbsp;
+              <% end %>
+            </div>
             <div class="small-4 large-2 columns date text-right"><%= territory.return_date || '&nbsp;'.html_safe %></div>
           </article>
-        </a>
         <hr>
       <% end %>
     </div>

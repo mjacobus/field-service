@@ -79,6 +79,10 @@ class TerritoryDecorator < ActiveRecordModelDecorator
     current_assignment.publisher.name if assigned?
   end
 
+  def current_assignee_id
+    current_assignment.publisher_id if assigned?
+  end
+
   def return_date
     l(current_assignment.return_date) if assigned?
   end

@@ -14,6 +14,14 @@
   </div>
 </div>
 
+<h2>Designações atuais</h2>
+
+<% @publisher_decorator.active_assignments.each do |assignment| %>
+  <%= render partial: 'territories/assignment_item', locals: { assignment: assignment, display: :territory_name } %>
+<% end %>
+
+<h2>Histórico de Designações</h2>
+
 <% @publisher_decorator.assignments.each do |assignment| %>
   <%= render partial: 'territories/assignment_item', locals: { assignment: assignment, display: :territory_name } %>
 <% end %>

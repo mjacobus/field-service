@@ -6,6 +6,8 @@
   <%= @householders_decorator.territory %>
 </p>
 
+<p><%= TerritoryDecorator.new(Territory.new).title_for(:number_of_householders) %>: <%= @householders_decorator.count %></p>
+
 <%= render partial: 'map_button', locals: { addresses: @householders_decorator.names_and_addresses } %>
 <%= render partial: 'map' %>
 

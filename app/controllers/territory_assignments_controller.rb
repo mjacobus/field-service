@@ -18,10 +18,17 @@ class TerritoryAssignmentsController < AuthenticatedController
     TerritoryAssigning.new.perform(payload)
 
     redirect_to territories_url, notice: t('territories.assigned')
+  rescue
+    territory_id = payload.fetch(:territory_id)
+    redirect_to territory_url(territory_id), alert: t('territories.assignment_error')
   end
 
   def destroy
-    payload = { territory_id: params[:territory_id] }
+    payload = {
+      territory_id: params[:territory_id],
+      complete: params[:complete],
+      returned_at: Date.parse(params[:return_date])
+    }
 
     ReturnTerritory.new.perform(payload)
 

@@ -1,0 +1,26 @@
+<a class="button expanded"
+  id="return_territory_button"
+  href="javascript:toggle(['#return_territory', '#return_territory_button', '#other_actions'])"
+  >
+  <i class="fi-refresh"></i>
+  <%= t('titles.return_territory') %>
+</a>
+
+<div id="return_territory" style="display: none">
+  <%= form_tag(url, method: :delete) do %>
+    <label> <%= t('fields.territory_complete') %> </label>
+    <label><input type="radio" class="text" value="1" name="complete"><%= t('yes') %></label>
+    <label><input type="radio" class="text" value="0" name="complete" checked><%= t('no') %></label>
+
+    <label>
+      <%= t('fields.return_date') %>
+      <%= text_field_tag(:return_date, Date.today.to_s(:db), placeholder: t('messages.date_format_hint')) %>
+    </label>
+
+    <button class="expanded button"> <%= t('links.confirm_return') %> </button>
+
+    <a class="button expanded danger" href="javascript:toggle(['#return_territory', '#return_territory_button', '#other_actions'])">
+      <%= t('links.cancel') %>
+    </a>
+  <% end %>
+</div>

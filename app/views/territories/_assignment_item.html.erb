@@ -11,7 +11,11 @@
   <div class="small-6 large-4 columns return-date text-right">
     <% if assignment.returned? %>
       <%= l(assignment.returned_at) %>
-      <span class="circle"><i class="fi-check"></i></span>
+      <% if assignment.complete? %>
+        <span class="circle"><i class="fi-check"></i></span>
+      <% else %>
+        <span class="circle yellow"><i class="fi-minus"></i></span>
+      <% end %>
     <% else %>
       <%= l assignment.return_date %>
       <% if assignment.pending_return? %>

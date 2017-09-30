@@ -20,48 +20,48 @@
 
   <div class="large-4 medium-4 small-12 columns right" data-sticky-container>
     <div class="sticky" data-sticky data-top-anchor="top_bar:bottom">
-      <a class="button expanded"
-        href="<%= @territory_decorator.return_url %>"
-        data-method="delete"
-        data-confirm="<%= t('confirm_territory_return', territory: @territory_decorator.name) %>">
-        <i class="fi-refresh"></i>
-        <%= t('titles.return_territory') %>
-      </a>
+      <% if @territory_decorator.assigned? %>
+        <%= render partial: 'territories/return_territory_button', locals: { url: @territory_decorator.return_url } %>
+      <% end %>
 
-      <a class="button expanded" href="<%= @territory_decorator.assign_url %>">
-        <i class="fi-arrow-up"></i>
-        <%= t('titles.assign_territory') %>
-      </a>
+      <div id="other_actions">
+        <% unless @territory_decorator.assigned? %>
+          <a class="button expanded" href="<%= @territory_decorator.assign_url %>">
+            <i class="fi-arrow-up"></i>
+            <%= t('titles.assign_territory') %>
+          </a>
+        <% end %>
 
-      <a class="button expanded" href="<%= @territory_decorator.householders_url %>">
-        <i class="fi-torsos-all"></i>
-        <%= t('titles.householders') %>
-      </a>
+        <a class="button expanded" href="<%= @territory_decorator.householders_url %>">
+          <i class="fi-torsos-all"></i>
+          <%= t('titles.householders') %>
+        </a>
 
-      <a class="button expanded" href="<%= @territory_decorator.url %>.pdf">
-        <i class="fi-page-export-pdf"></i>
-        <%= t('links.download_as_pdf') %>
-      </a>
+        <a class="button expanded" href="<%= @territory_decorator.url %>.pdf">
+          <i class="fi-page-export-pdf"></i>
+          <%= t('links.download_as_pdf') %>
+        </a>
 
-      <a class="button expanded" href="<%= @territory_decorator.edit_url %>">
-        <i class="fi-pencil"></i>
-        <%= t('links.edit') %>
-      </a>
+        <a class="button expanded" href="<%= @territory_decorator.edit_url %>">
+          <i class="fi-pencil"></i>
+          <%= t('links.edit') %>
+        </a>
 
-      <a class="button expanded"
-        href="<%= @territory_decorator.url %>"
-        data-method="delete"
-        data-confirm="<%= t('confirm_territory_destroy', territory: @territory_decorator.name) %>">
-        <i class="fi-x"></i>
-        <%= t('links.destroy') %>
-      </a>
+        <a class="button expanded"
+          href="<%= @territory_decorator.url %>"
+          data-method="delete"
+          data-confirm="<%= t('confirm_territory_destroy', territory: @territory_decorator.name) %>">
+          <i class="fi-x"></i>
+          <%= t('links.destroy') %>
+        </a>
 
-      <a class="button expanded" href="<%= @territory_decorator.index_url %>">
-        <i class="fi-arrow-left"></i>
-        <%= t('links.back') %>
-      </a>
+        <a class="button expanded" href="<%= @territory_decorator.index_url %>">
+          <i class="fi-arrow-left"></i>
+          <%= t('links.back') %>
+        </a>
 
-      <%= render partial: 'map_button', locals: { addresses: @territory_decorator.names_and_addresses } %>
+        <%= render partial: 'map_button', locals: { addresses: @territory_decorator.names_and_addresses } %>
+      </div>
     </div>
   </div>
 </div>

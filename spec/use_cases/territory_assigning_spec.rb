@@ -43,28 +43,5 @@ RSpec.describe TerritoryAssigning do
 
       expect(4.months.from_now.to_date).to eq date
     end
-
-    it 'sets unreturned territories to returned' do
-      date = 7.days.ago
-
-      other_territory_assignment = perform(
-        territory_id: Territory.make!.id,
-        publisher_id: Publisher.make!.id
-      )
-
-      old_assignment = perform
-
-      new_assignment = perform(assigned_at: date)
-
-      other_territory_assignment.reload
-      old_assignment.reload
-
-      expect(other_territory_assignment).not_to be_returned
-      expect(old_assignment).to be_returned
-
-      expect(old_assignment.returned_at.to_date).to eq(date.to_date)
-
-      expect(new_assignment).not_to be_returned
-    end
   end
 end

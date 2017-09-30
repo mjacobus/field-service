@@ -29,8 +29,14 @@ class TerritoryAssignmentImporter < BaseImporter
 
     returned_at = parse_date(returned_at)
 
-    if returned_at
-      ReturnTerritory.new.perform(territory_id: territory.id, returned_at: returned_at)
+    unless returned_at
+      return
     end
+
+    ReturnTerritory.new.perform(
+      territory_id: territory.id,
+      returned_at: returned_at,
+      complete: false
+    )
   end
 end

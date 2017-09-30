@@ -43,6 +43,7 @@ pt-BR:
     show_filter: Mostrar filtro
     hide_filter: Esconder filtro
     download_as_pdf: Download PDF
+    confirm_return: Confirmar devolução
 
   number_of_results_found: "%{number} registros encontrados."
   report_inactive_territories_found: "%{number} territórios não trabalhados desde %{from_date}."
@@ -74,6 +75,8 @@ pt-BR:
     reports_inactive_territories: Territórios não trabalhados
 
   fields:
+    return_date: Data de Retorno
+    territory_complete: Território completamente trabalhado?
     assigned_to: Designado para
     pending_return: Devolução atrasada
     from_date: A partir da data
@@ -86,6 +89,7 @@ pt-BR:
     destroyed: Território removido com sucesso!
     cannot_destroy: Território não pode ser removido. Certifique-se de que ele não possua moradores ou designações.
     assigned: Território designado com sucesso!
+    assignment_error: Território não pode ser designado. Verifique se ele não precisa ser devolvido primeiro.
     returned: Território devolvido com sucesso!
 
   householders:

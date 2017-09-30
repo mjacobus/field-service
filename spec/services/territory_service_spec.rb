@@ -73,7 +73,7 @@ RSpec.describe TerritoryService do
           assigned_at: 7.months.ago.to_date
         )
 
-        ReturnTerritory.new.perform(territory_id: territory3.id)
+        ReturnTerritory.new.perform(territory_id: territory3.id, complete: nil)
       end
 
       it 'returns only the ones with pending return' do
@@ -116,7 +116,7 @@ RSpec.describe TerritoryService do
       end
     end
 
-    def assign(territory, from:, to: nil)
+    def assign(territory, from:, to: nil, complete: nil)
       TerritoryAssigning.new.perform(
         territory_id: territory.id,
         publisher_id: publisher1.id,
@@ -124,7 +124,7 @@ RSpec.describe TerritoryService do
       )
 
       if to
-        ReturnTerritory.new.perform(territory_id: territory.id, returned_at: to)
+        ReturnTerritory.new.perform(territory_id: territory.id, returned_at: to, complete: complete)
       end
     end
   end

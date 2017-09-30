@@ -1,6 +1,6 @@
 class TerritoryAssigning
   def perform(territory_id:, publisher_id:, assigned_at: Date.today)
-    ReturnTerritory.new.perform(territory_id: territory_id, returned_at: assigned_at)
+    ReturnTerritory.new.perform(territory_id: territory_id, returned_at: assigned_at, complete: nil)
 
     assignment = TerritoryAssignment.new(
       territory_id: territory_id,
@@ -12,8 +12,4 @@ class TerritoryAssigning
     assignment.save!
     assignment
   end
-
-  private
-
-  def return_territory(territory_id, date); end
 end

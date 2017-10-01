@@ -62,9 +62,9 @@ RSpec.describe HouseholdersController, type: :controller do
       post :create, params: { territory_slug: territory.to_param }.merge(householder: householder_params)
     end.to change { territory.householders.count }.by(1)
 
-    resource_url = HouseholderDecorator.new(Householder.unscoped.last).url
+    index = HouseholderDecorator.new(Householder.unscoped.last).index_url
 
-    assert_redirected_to resource_url
+    assert_redirected_to index
     assert_equal t('householders.created'), flash[:notice]
   end
 
@@ -95,7 +95,7 @@ RSpec.describe HouseholdersController, type: :controller do
 
     patch :update, params: params
 
-    assert_redirected_to decorator.url
+    assert_redirected_to decorator.index_url
     assert_equal t('householders.updated'), flash[:notice]
   end
 

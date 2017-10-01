@@ -39,7 +39,7 @@ class HouseholdersController < AuthenticatedController
     end
 
     if householder.save
-      redirect_to @householder_decorator.url, notice: t('householders.created')
+      redirect_to @householder_decorator.index_url, notice: t('householders.created')
     else
       render :new
     end
@@ -57,7 +57,7 @@ class HouseholdersController < AuthenticatedController
     end
 
     if householder.update(householder_params)
-      redirect_to @householder_decorator.url, notice: t('householders.updated')
+      redirect_to @householder_decorator.index_url, notice: t('householders.updated')
     else
       render :edit
     end

@@ -13,31 +13,32 @@ class TerritoryAssignmentsController < AuthenticatedController
   end
 
   def create
-    payload = params.require(:assignment).symbolize_keys
-    territory_id = payload.fetch(:territory_id)
+    payload = params.require(:assignment).symbolize_keys.merge(
+      territory_id: territory.id
+    )
 
     TerritoryAssigning.new.perform(payload)
 
-    redirect_to territory_url(territory_id), notice: t('territories.assigned')
+    redirect_to territory_url(territory), notice: t('territories.assigned')
   rescue
-    redirect_to territory_url(territory_id), alert: t('territories.assignment_error')
+    redirect_to territory_url(territory), alert: t('territories.assignment_error')
   end
 
   def destroy
     payload = {
-      territory_id: params[:territory_id],
+      territory_id: territory.id,
       complete: params[:complete],
       returned_at: Date.parse(params[:return_date])
     }
 
     ReturnTerritory.new.perform(payload)
 
-    redirect_to territory_url(payload[:territory_id]), notice: t('territories.returned')
+    redirect_to territory_url(territory.to_param), notice: t('territories.returned')
   end
 
   private
 
   def territory
-    @_territory ||= Territory.find(params[:territory_id])
+    @_territory ||= Territory.find_by_slug(params[:territory_slug])
   end
 end

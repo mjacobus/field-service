@@ -74,7 +74,7 @@ class HouseholdersController < AuthenticatedController
   private
 
   def territory
-    @_territory ||= Territory.find(params[:territory_id])
+    @_territory ||= Territory.find_by_slug(params[:territory_slug])
   end
 
   # Use callbacks to share common setup or constraints between actions.

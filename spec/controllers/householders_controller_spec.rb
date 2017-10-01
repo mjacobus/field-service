@@ -33,14 +33,14 @@ RSpec.describe HouseholdersController, type: :controller do
   it 'should get index' do
     Householder.where(territory_id: territory.id).count
 
-    get :index, params: { territory_id: territory.id }
+    get :index, params: { territory_slug: territory.to_param }
 
     assert_response :success
     assert_equal 1, assigns(:householders_decorator).send(:collection).count
   end
 
   it 'should get index as csv' do
-    get :index, params: { territory_id: territory.id, format: :csv }
+    get :index, params: { territory_slug: territory.to_param, format: :csv }
 
     assert_response :success
     assert_equal 'text/csv; charset=utf-8', response.headers['Content-Type']
@@ -50,7 +50,7 @@ RSpec.describe HouseholdersController, type: :controller do
   end
 
   it 'should get new' do
-    get :new, params: { territory_id: territory.id }
+    get :new, params: { territory_slug: territory.to_param }
 
     assert_response :success
   end
@@ -59,7 +59,7 @@ RSpec.describe HouseholdersController, type: :controller do
     expect_any_instance_of(Householder).to receive(:update_geolocation)
 
     expect do
-      post :create, params: { territory_id: territory.id }.merge(householder: householder_params)
+      post :create, params: { territory_slug: territory.to_param }.merge(householder: householder_params)
     end.to change { territory.householders.count }.by(1)
 
     resource_url = HouseholderDecorator.new(Householder.unscoped.last).url
@@ -69,7 +69,7 @@ RSpec.describe HouseholdersController, type: :controller do
   end
 
   it 're-render form when create fails' do
-    params = { territory_id: territory.id }.merge(householder: householder_params.merge(name: ''))
+    params = { territory_slug: territory.to_param }.merge(householder: householder_params.merge(name: ''))
 
     post :create, params: params
 
@@ -77,13 +77,13 @@ RSpec.describe HouseholdersController, type: :controller do
   end
 
   it 'should show householder' do
-    get :show, params: { territory_id: territory.id, id: householder.id }
+    get :show, params: { territory_slug: territory.to_param, id: householder.id }
 
     assert_response :success
   end
 
   it 'should get edit' do
-    get :edit, params: { territory_id: territory.id, id: householder.id }
+    get :edit, params: { territory_slug: territory.to_param, id: householder.id }
 
     assert_response :success
   end
@@ -91,7 +91,7 @@ RSpec.describe HouseholdersController, type: :controller do
   it 'should update householder' do
     expect_any_instance_of(Householder).to receive(:update_geolocation)
 
-    params = { territory_id: territory.id, id: householder.id, householder: householder_params }
+    params = { territory_slug: territory.to_param, id: householder.id, householder: householder_params }
 
     patch :update, params: params
 
@@ -101,7 +101,7 @@ RSpec.describe HouseholdersController, type: :controller do
 
   it 're-render form when update fails' do
     params = {
-      territory_id: territory.id,
+      territory_slug: territory.to_param,
       id: householder.id,
       householder: householder_params.merge(name: '')
     }
@@ -113,7 +113,7 @@ RSpec.describe HouseholdersController, type: :controller do
 
   it 'should destroy householder' do
     expect do
-      delete :destroy, params: { territory_id: territory.id, id: householder.id }
+      delete :destroy, params: { territory_slug: territory.to_param, id: householder.id }
     end.to change { Householder.count }.by(-1)
 
     assert_redirected_to decorator.index_url

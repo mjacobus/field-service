@@ -57,33 +57,33 @@ RSpec.describe TerritoriesController do
   end
 
   it 'should show territory' do
-    get :show, params: { id: @territory.id }
+    get :show, params: { slug: @territory.to_param }
 
     assert_response :success
   end
 
   it 'should get edit' do
-    get :edit, params: { id: @territory.id }
+    get :edit, params: { slug: @territory.to_param }
 
     assert_response :success
   end
 
   it 'should update territory' do
-    patch :update, params: { id: @territory.id, territory: @territory_params }
+    patch :update, params: { slug: @territory.to_param, territory: @territory_params }
 
     assert_redirected_to @resource_url
     assert_equal t('territories.updated'), flash[:notice]
   end
 
   it 're-renders form on update error' do
-    patch :update, params: { id: @territory.id, territory: @territory_params.merge(name: '') }
+    patch :update, params: { slug: @territory.to_param, territory: @territory_params.merge(name: '') }
 
     assert_template 'edit'
   end
 
   it 'should destroy territory' do
     expect do
-      delete :destroy, params: { id: @territory.id }
+      delete :destroy, params: { slug: @territory.to_param }
     end.to change { Territory.count }.by(-1)
 
     assert_redirected_to @index_url
@@ -94,7 +94,7 @@ RSpec.describe TerritoriesController do
     Householder.make!(territory: @territory)
 
     expect do
-      delete :destroy, params: { id: @territory.id }
+      delete :destroy, params: { slug: @territory.to_param }
     end.not_to change { Territory.count }
 
     assert_equal t('territories.cannot_destroy'), flash[:alert]

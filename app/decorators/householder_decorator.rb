@@ -1,6 +1,6 @@
 class HouseholderDecorator < ActiveRecordModelDecorator
   def index_url
-    "/territories/#{territory_id}/householders"
+    "/territories/#{territory.to_param}/householders"
   end
 
   def html_classes
@@ -8,7 +8,7 @@ class HouseholderDecorator < ActiveRecordModelDecorator
   end
 
   def territory_url
-    "/territories/#{territory_id}"
+    "/territories/#{territory.to_param}"
   end
 
   def breadcrumbs

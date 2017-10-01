@@ -4,7 +4,7 @@ RSpec.describe HouseholdersDecorator do
   let(:fake_view_helpers) { FakeViewHelpers.new }
 
   before do
-    @territory = double(id: ':tid', name: 'T1')
+    @territory = double(:territory, id: ':t_param', name: 'T1', to_param: ':t_param')
     @item = double(id: 1)
     @collection = [@item]
     @decorator ||= HouseholdersDecorator.new(@collection, @territory)
@@ -20,11 +20,11 @@ RSpec.describe HouseholdersDecorator do
   end
 
   it 'can get index url' do
-    assert_equal '/territories/:tid/householders', @decorator.index_url
+    assert_equal '/territories/:t_param/householders', @decorator.index_url
   end
 
   it 'can get new url' do
-    assert_equal '/territories/:tid/householders/new', @decorator.new_url
+    assert_equal '/territories/:t_param/householders/new', @decorator.new_url
   end
 
   it 'each yields item view' do
@@ -55,7 +55,7 @@ RSpec.describe HouseholdersDecorator do
 
     expected = [
       ['t.titles.territories', '/territories'],
-      ['T1', '/territories/:tid'],
+      ['T1', '/territories/:t_param'],
       ['t.titles.householders']
     ]
 

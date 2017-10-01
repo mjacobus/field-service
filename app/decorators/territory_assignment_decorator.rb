@@ -4,11 +4,11 @@ class TerritoryAssignmentDecorator < ActiveRecordModelDecorator
   end
 
   def assignments_url
-    "/territories/#{id}/assignments"
+    "/territories/#{to_param}/assignments"
   end
 
   def search_url
-    "/territories/#{id}/assignments/new?q={#{encode(search_term)}}"
+    "/territories/#{to_param}/assignments/new?q={#{encode(search_term)}}"
   end
 
   def search_term

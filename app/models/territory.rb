@@ -43,6 +43,23 @@ class Territory < ApplicationRecord
     self.class.remove(self)
   end
 
+  def name=(value)
+    self.slug = nil
+    super(value)
+
+    unless value.nil?
+      self.slug = value.to_s.parameterize
+    end
+  end
+
+  def self.find_by_slug(slug)
+    find_by!(slug: slug)
+  end
+
+  def to_param
+    slug
+  end
+
   private
 
   def ensure_no_children

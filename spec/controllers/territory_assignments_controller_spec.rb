@@ -17,11 +17,10 @@ RSpec.describe TerritoryAssignmentsController do
 
     let(:perform_request) do
       request_params = {
-        territory_id: territory.id,
-        publisher_id: publisher.id,
+        publisher_id: publisher.id
       }
 
-      post :create, params: { territory_id: territory.id, assignment: request_params }
+      post :create, params: { territory_slug: territory.to_param, assignment: request_params }
     end
 
     it 'marks territory as returned' do
@@ -36,9 +35,8 @@ RSpec.describe TerritoryAssignmentsController do
     it 'redirects to the territory url' do
       perform_request
 
-      expect(response).to redirect_to(territory_url(territory.id))
+      expect(response).to redirect_to(territory_url(territory.to_param))
     end
-
   end
 
   describe '#destroy' do
@@ -46,7 +44,7 @@ RSpec.describe TerritoryAssignmentsController do
 
     let(:perform_request) do
       request_params = {
-        territory_id: territory.id,
+        territory_slug: territory.to_param,
         return_date: '2001-02-03',
         complete: 1,
         id: 'none'
@@ -68,7 +66,7 @@ RSpec.describe TerritoryAssignmentsController do
     it 'redirects to the territory url' do
       perform_request
 
-      expect(response).to redirect_to(territory_url(territory.id))
+      expect(response).to redirect_to(territory_url(territory.to_param))
     end
   end
 end

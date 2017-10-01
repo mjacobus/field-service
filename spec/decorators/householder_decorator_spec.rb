@@ -4,12 +4,10 @@ RSpec.describe HouseholderDecorator do
   let(:fake_view_helpers) { FakeViewHelpers.new }
 
   before do
-    @territory = double(id: 4)
+    @territory = double(:territory, id: 4, to_param: ':t_param', name: 'T1')
     @item = double(
+      :item,
       id: 1,
-      territory: double(
-        name: 'T1'
-      ),
       to_param: 1,
       address: 'theAddress',
       show: 'show',
@@ -21,6 +19,7 @@ RSpec.describe HouseholderDecorator do
       house_number: 'houseNumber',
       street_name: 'theStreet',
       do_not_visit_date?: false,
+      territory: @territory,
       territory_id: ':tid',
       description: 'theDescription'
     )
@@ -33,15 +32,15 @@ RSpec.describe HouseholderDecorator do
   end
 
   it '#edit_url returns correct url' do
-    assert_equal '/territories/:tid/householders/1/edit', @decorator.edit_url
+    assert_equal '/territories/:t_param/householders/1/edit', @decorator.edit_url
   end
 
   it '#url returns correct url' do
-    assert_equal '/territories/:tid/householders/1', @decorator.url
+    assert_equal '/territories/:t_param/householders/1', @decorator.url
   end
 
   it '#index_url returns correct url' do
-    assert_equal '/territories/:tid/householders', @decorator.index_url
+    assert_equal '/territories/:t_param/householders', @decorator.index_url
   end
 
   it 'delegates name' do
@@ -89,8 +88,8 @@ RSpec.describe HouseholderDecorator do
 
     expected = [
       ['t.titles.territories', '/territories'],
-      ['T1', '/territories/:tid'],
-      ['t.titles.householders', '/territories/:tid/householders'],
+      ['T1', '/territories/:t_param'],
+      ['t.titles.householders', '/territories/:t_param/householders'],
       ['theAddress (theName)']
     ]
 
@@ -103,8 +102,8 @@ RSpec.describe HouseholderDecorator do
 
     expected = [
       ['t.titles.territories', '/territories'],
-      ['T1', '/territories/:tid'],
-      ['t.titles.householders', '/territories/:tid/householders'],
+      ['T1', '/territories/:t_param'],
+      ['t.titles.householders', '/territories/:t_param/householders'],
       ['t.links.new']
     ]
 

@@ -9,7 +9,7 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
   end
 
   def territory_url
-    "/territories/#{territory.id}"
+    "/territories/#{territory.to_param}"
   end
 
   def item_decorator_class

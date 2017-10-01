@@ -21,4 +21,5 @@
 
 every 1.hours, roles: [:mysql_dump] do
   rake "mysql:dump"
+  rake "mysql:dump_latest"
 end

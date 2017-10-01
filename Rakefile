@@ -78,3 +78,8 @@ Koine::Tasks::RailsMysqlDump.new do |t|
   t.task_name = 'mysql:dump'
   t.output_file = 'bkp/mysql_{timestamp}.sql'
 end
+
+Koine::Tasks::RailsMysqlDump.new do |t|
+  t.task_name = 'mysql:dump_latest'
+  t.output_file = 'bkp/mysql_latest.sql'
+end

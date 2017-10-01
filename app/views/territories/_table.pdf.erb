@@ -28,7 +28,7 @@
   <tbody>
     <% territory.householders.each_with_index do |householder, index| %>
       <tr class="<%= householder.html_classes %> <%= odd_or_even(index) %>">
-        <td colspan="2"><%= householder.street_name %></td>
+        <td colspan="2"><%= householder.normalized_street_name %></td>
         <td class="text-center"><%= householder.house_number %></td>
         <td><%= householder.name %></td>
         <td><%= householder.do_not_visit_date %></td>

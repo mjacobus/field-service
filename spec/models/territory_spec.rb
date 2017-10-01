@@ -109,4 +109,42 @@ RSpec.describe Territory do
 
     assert_equal 1, Territory.count
   end
+
+  describe '#slug' do
+    let(:territory) { Territory.make!(name: '100 B') }
+
+    it 'can be created' do
+      territory.reload
+      expect(territory.slug).to eq('100-b')
+    end
+
+    it 'can be updated' do
+      territory.name = '101 C'
+      territory.save!
+
+      territory.reload
+
+      expect(territory.slug).to eq('101-c')
+    end
+
+    it 'is the param version of the territory' do
+      expect(territory.to_param).to eq(territory.slug)
+    end
+  end
+
+  describe '.find_by_slug' do
+    let(:territory) { Territory.make!(name: '100 B') }
+
+    it 'can be found by slug' do
+      t = Territory.find_by_slug(territory.slug)
+
+      expect(t.id).to eq(territory.id)
+    end
+
+    it 'raises error when not found' do
+      expect do
+        Territory.find_by_slug('unexisting')
+      end.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end

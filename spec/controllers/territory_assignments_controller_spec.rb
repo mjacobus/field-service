@@ -38,7 +38,6 @@ RSpec.describe TerritoryAssignmentsController do
 
       expect(response).to redirect_to(territory_url(territory.id))
     end
-
   end
 
   describe '#destroy' do

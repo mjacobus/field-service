@@ -36,7 +36,7 @@ class HouseholdersDecorator < ActiveRecordCollectionDecorator
     [].tap do |array|
       collection.select(&:show?).map do |householder|
         array << {
-          address: householder.address,
+          address: householder.address_for_geolocation,
           name: householder.name,
           location: {
             lat: householder.lat,

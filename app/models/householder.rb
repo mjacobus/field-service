@@ -24,7 +24,7 @@ class Householder < ApplicationRecord
   end
 
   def update_geolocation
-    data = Koine::GoogleMapsClient.new.geocode(address: address)
+    data = Koine::GoogleMapsClient.new.geocode(address: address_for_geolocation)
 
     if data['results'].empty?
       self.lat = nil
@@ -57,7 +57,11 @@ class Householder < ApplicationRecord
   end
 
   def address
-    "#{normalized_street_name} #{house_number}, #{city_name}"
+    "#{normalized_street_name} #{house_number}"
+  end
+
+  def address_for_geolocation
+    "#{address}, #{city_name}"
   end
 
   def has_notes?

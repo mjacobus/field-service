@@ -1,63 +1,34 @@
 'use strict';
 
 class HouseholdersMap {
-  constructor(container, householders, navigator) {
-    this._container = container;
-    this._householders = householders;
-    this._navigator = navigator;
-    this._map = new google.maps.Map(container, { zoom: 15 });
-    this._geocoder = new google.maps.Geocoder();
-    this._infoWindow = new google.maps.InfoWindow;
-  }
+  static draw(container, householders) {
+    const locations = this.getLogcationsFromHouseholders(householders);
+    const zoom = 16;
+    const map  = new OpenLayers.Map(container);
+    map.addLayer(new OpenLayers.Layer.OSM());
+    let lonLat = new OpenLayers.LonLat(locations[0].lon, locations[0].lat).transform(
+      new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+      map.getProjectionObject() // to Spherical Mercator Projection
+    );
+    const markers = new OpenLayers.Layer.Markers("Markers");
+    map.addLayer(markers);
+    markers.addMarker(new OpenLayers.Marker(lonLat));
 
-  draw() {
-    this._householders.forEach((householder, index)  => {
-      this.markHouseholder(householder, index == 0);
+    locations.forEach((location, index) => {
+      lonLat = new OpenLayers.LonLat(location.lon, location.lat).transform(
+        new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+        map.getProjectionObject() // to Spherical Mercator Projection
+      );
+      markers.addMarker(new OpenLayers.Marker(lonLat));
+      map.setCenter (lonLat, zoom);
     });
   }
 
-  handleLocationError(browserHasGeolocation) {
-    let pos = this._map.getCenter();
-    this._infoWindow.setPosition(pos);
-    this._infoWindow.setContent(browserHasGeolocation ?
-      'Error: The Geolocation service failed.' :
-      'Error: Your browser doesn\'t support geolocation.');
-    this._infoWindow.open(map);
-  }
-
-  markHouseholder(householder, center) {
-    let location = null;
-
-    if (householder.location.lat && householder.location.lon) {
-      location = { lat: householder.location.lat, lng: householder.location.lon };
-      return this.addMarker(householder, location, center);
-    }
-
-    const address = householder.address;
-    console.log('Could not find householder:', address, householder.name);
-
-    this._geocoder.geocode({'address': address},  (results, status)  => {
-      if (status == 'OK') {
-        location = results[0].geometry.location;
-        return this.addMarker(householder, location, center);
-
-      } else {
-        console.log('Geocode was not successful for the following reason: ' + status);
+  static getLogcationsFromHouseholders(householders) {
+    return householders.filter(
+      (householders) => {
+        return (householders.location.lat && householders.location.lon);
       }
-    });
-  }
-
-  addMarker(householder, location, center) {
-    if (center) {
-      this._map.setCenter(location);
-    }
-
-    new google.maps.Marker({
-      map: this._map,
-      position: location,
-      title: householder.address,
-      label: householder.name
-    });
+    ).map(householders => householders.location);
   }
 }
-

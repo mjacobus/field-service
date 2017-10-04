@@ -12,6 +12,21 @@ class TerritoryAssignmentsController < AuthenticatedController
     @territory = create_decorator(TerritoryAssignmentDecorator, territory)
   end
 
+  def edit
+    @territories = TerritoryService.new.search(search_params)
+  end
+
+  def update
+    payload = params.require(:territory_assignment).permit(:complete)
+    assignment = TerritoryAssignment.find(params[:id])
+
+    if assignment.update(payload)
+      return head(:ok)
+    end
+
+    return head(status: 422)
+  end
+
   def create
     payload = params.require(:assignment).symbolize_keys.merge(
       territory_id: territory.id

@@ -39,6 +39,30 @@ RSpec.describe TerritoryAssignmentsController do
     end
   end
 
+  describe '#update' do
+    let(:assignment) { TerritoryAssignment.make!(complete: false) }
+    context 'with valid data' do
+      it 'updates data' do
+        patch :update, params: { id: assignment.id, territory_assignment: { complete: '1' } }
+
+        assignment.reload
+
+        expect(assignment).to be_complete
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context 'with invalid data' do
+      it 'returns non 200' do
+        allow_any_instance_of(TerritoryAssignment).to receive(:update) { false }
+
+        patch :update, params: { id: assignment.id, territory_assignment: { returned_at: '' } }
+
+        expect(response.status).to eq(422)
+      end
+    end
+  end
+
   describe '#destroy' do
     let(:territory) { TerritoryAssignment.make!.territory }
 

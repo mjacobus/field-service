@@ -31,4 +31,15 @@ $(function(){
       map.draw();
     }
   });
+
+  $(document).on('click', '.change-assignment-completion-status', 'input[type=radio]', function () {
+    var el = $(this).find(':checked');
+    var payload = Object.assign({}, el.data('territoryAssignment'));
+    var id = payload.id;
+    delete payload.id;
+    var service = new TerritoryAssignmentService();
+    service.update(id, payload).fail(function () {
+      alert(['Failed for', id].join(' '))
+    });
+  });
 });

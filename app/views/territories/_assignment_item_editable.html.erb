@@ -1,0 +1,46 @@
+<% if display == :territory_name %>
+  <% display = assignment.territory.name %>
+<% else %>
+  <% display = assignment.publisher.name %>
+<% end %>
+
+<div class="row <%= 'pending-return' if assignment.pending_return? %>">
+  <div class="small-12 large-4 columns"> <strong> <%= display %> </strong></div>
+  <div class="small-4 large-2 columns"><%= l assignment.assigned_at %></div>
+  <div class="small-4 large-2 columns">
+    <%= l(assignment.returned_at || assignment.return_date) %>
+  </div>
+
+  <div class="small-4 large-1 columns return-date text-right">
+    <% if assignment.returned? %>
+      <% if assignment.complete? %>
+        <span class="circle"><i class="fi-check"></i></span>
+      <% else %>
+        <span class="circle yellow"><i class="fi-minus"></i></span>
+      <% end %>
+    <% else %>
+      <% if assignment.pending_return? %>
+        <span class="circle red"><i class="fi-torso-business"></i></span>
+      <% else %>
+        <span class="circle blue"><i class="fi-torso-business"></i></span>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="small-3 large-3 columns">
+    <% if assignment.returned? %>
+      <div class="change-assignment-completion-status">
+        <label>
+          <%= radio_button_tag("assignment-complete-#{assignment.id}", 1, assignment.complete?, data: { territory_assignment: { id: assignment.id, complete: 1 } }) %>
+          Yes
+        </label>&nbsp;
+        <label>
+          <%= radio_button_tag("assignment-complete-#{assignment.id}", 0, !assignment.complete?, data: { territory_assignment: { id: assignment.id, complete: 0 } }) %>
+          No
+        </label>
+      </div>
+    <% end %>
+  </div>
+</div>
+<hr>
+

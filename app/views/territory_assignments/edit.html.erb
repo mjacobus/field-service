@@ -1,0 +1,19 @@
+<div class="row">
+  <!-- left -->
+  <div class="small-12 large-4 medium-5 columns" data-sticky-container>
+    <div class="sticky" data-sticky data-top-anchor="top_bar:bottom">
+      <%= render partial: 'application/territory_filter' %>
+    </div>
+  </div>
+
+  <!-- right -->
+  <div class="small-12 medium-7 large-8 columns">
+    <p> <%= t('number_of_results_found', number: @territories.count) %></p>
+    <% @territories.each do |territory| %>
+      <h3> <%= territory.name %></h3>
+      <% territory.assignments.each do |assignment| %>
+        <%= render partial: 'territories/assignment_item_editable', locals: { assignment: assignment } %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

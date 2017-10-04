@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resources :publishers
 
-  resources :territory_assignments, only: [:index], as: :all_territory_assignments
+  resources :territory_assignments, only: [:index, :update], as: :all_territory_assignments do
+    collection do
+      get :edit
+    end
+  end
 
   namespace :reports do
     resources :inactive_territories, only: [:index]

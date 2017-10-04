@@ -27,8 +27,7 @@ $(function(){
       $('#' + map + '-container').show();
       var addresses = link.data('map-addresses');
       var container = document.getElementById(map);
-      var map = new HouseholdersMap(container, addresses, navigator);
-      map.draw();
+      HouseholdersMap.draw(map, addresses);
     }
   });
 

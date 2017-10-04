@@ -6,11 +6,10 @@
 
     <title><%= content_for?(:title) ? yield(:title) : t('titles.field_service') %></title>
 
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
 
-    <% key = 'AIzaSyCMFbHjf-I2rApFaatnmukLyfb1VIB8Jhk' %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= key %>"></script>
     <%= csrf_meta_tags %>
   </head>
 

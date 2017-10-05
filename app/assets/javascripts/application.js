@@ -23,11 +23,10 @@ $(function(){
 
     if (!link.data('mapShown')) {
       link.data('mapShown', true)
-      var map = link.data('map-container');
-      $('#' + map + '-container').show();
+      var mapContainerId = link.data('map-container');
+      $('#' + mapContainerId + '-container').show();
       var addresses = link.data('map-addresses');
-      var container = document.getElementById(map);
-      HouseholdersMap.draw(map, addresses);
+      HouseholdersMap.draw(mapContainerId, addresses);
     }
   });
 

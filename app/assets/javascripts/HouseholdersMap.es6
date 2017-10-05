@@ -1,10 +1,10 @@
 'use strict';
 
 class HouseholdersMap {
-  static draw(container, householders) {
+  static draw(mapContainerId, householders) {
     const locations = this.getLogcationsFromHouseholders(householders);
     const zoom = 16;
-    const map  = new OpenLayers.Map(container);
+    const map  = new OpenLayers.Map(mapContainerId);
     map.addLayer(new OpenLayers.Layer.OSM());
     let lonLat = new OpenLayers.LonLat(locations[0].lon, locations[0].lat).transform(
       new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984

@@ -13,7 +13,7 @@ gem 'koine-google_maps_client'
 gem 'koine-db_bkp', '~> 0.1.1'
 gem 'object_comparator'
 gem 'pg'
-gem 'simple_form'
+gem 'simple_form', '~> 3.5'
 gem 'sprockets'
 gem 'sprockets-es6'
 gem 'unicorn'
@@ -22,7 +22,7 @@ gem 'wkhtmltopdf-binpath'
 gem 'whenever', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'sqlite3'
@@ -43,7 +43,7 @@ gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -58,7 +58,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rubocop'
   gem 'reek'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.6'
   gem 'spring-commands-rspec'
 end
 
@@ -82,7 +82,7 @@ group :test do
   gem 'minitest-spec-rails'
   gem 'mocha'
   gem 'poltergeist'
-  gem 'rails-controller-testing'
+  gem 'rails-controller-testing', '~> 1.0.2'
   gem 'shoulda', '~>3.5'
   gem 'shoulda-context', '~>1.2'
   gem 'shoulda-matchers', '~> 2.0'

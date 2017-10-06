@@ -24,11 +24,11 @@ class TerritoryAssignmentsController < AuthenticatedController
       return head(:ok)
     end
 
-    return head(status: 422)
+    return head(422)
   end
 
   def create
-    payload = params.require(:assignment).symbolize_keys.merge(
+    payload = params_as_hash[:assignment].merge(
       territory_id: territory.id
     )
 

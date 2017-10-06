@@ -4,7 +4,7 @@
     <div class="sticky" data-sticky data-top-anchor="top_bar:bottom">
       <%= render partial: 'application/territory_filter' %>
 
-      <a class="button expanded" href="<%= all_territory_assignments_path(params.symbolize_keys.merge(format: :pdf)) %>">
+      <a class="button expanded" href="<%= all_territory_assignments_path(symbolized_params.merge(format: :pdf)) %>">
         <i class="fi-page-export-pdf"></i>
         <%= t('links.download_as_pdf') %>
       </a>

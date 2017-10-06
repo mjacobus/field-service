@@ -36,4 +36,8 @@ module ApplicationHelper
 
     'production-env'
   end
+
+  def symbolized_params
+    params.permit!.to_h.deep_symbolize_keys
+  end
 end

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def filtered_search_params
     allowed = %i[assigned_to_ids pending_return inactive_from]
 
-    search_params = params.symbolize_keys.select do |key, value|
+    search_params = params_as_hash.select do |key, value|
       allowed.include?(key) && value.present?
     end
 
@@ -41,5 +41,9 @@ class ApplicationController < ActionController::Base
     }
 
     render(default_options.merge(options))
+  end
+
+  def params_as_hash
+    params.permit!.to_hash.deep_symbolize_keys
   end
 end

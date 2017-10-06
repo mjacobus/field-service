@@ -11,7 +11,7 @@
         <%= t('links.new') %>
       </a>
 
-      <a class="button expanded" href="<%= territories_url(params.symbolize_keys.merge(format: :pdf)) %>">
+      <a class="button expanded" href="<%= territories_url(symbolized_params.merge(format: :pdf)) %>">
         <i class="fi-page-export-pdf"></i>
         <%= t('links.download_as_pdf') %>
       </a>

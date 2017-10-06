@@ -58,5 +58,18 @@ namespace :geolocation do
   end
 end
 
+namespace :log do
+  desc 'display log'
+  task :tail do
+    on roles(:app), in: :sequence, wait: 5 do
+      # TODO: Fix
+      # Your restart mechanism here, for example:
+      within(current_path) do
+        execute 'tail', '-f', 'log/production.log'
+      end
+    end
+  end
+end
+
 set :whenever_environment, -> { fetch(:stage) }
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }

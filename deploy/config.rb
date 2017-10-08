@@ -71,5 +71,14 @@ namespace :log do
   end
 end
 
+namespace :download do
+  desc 'Last mysql backup'
+  task :db do
+    on roles(:mysql_dump), in: :sequence, wait: 5 do
+      download! "#{shared_path}/bkp/mysql_latest.sql", "bkp/mysql_latest_#{fetch(:stage)}.sql"
+    end
+  end
+end
+
 set :whenever_environment, -> { fetch(:stage) }
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }

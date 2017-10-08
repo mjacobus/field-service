@@ -47,3 +47,7 @@ tr.even {
 .text-top {
   vertical-align: top;
 }
+
+#householders-table {
+  width: 75%;
+}

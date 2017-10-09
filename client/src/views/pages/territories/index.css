@@ -1,0 +1,14 @@
+.territoryList {
+  list-style: none;
+  padding: 0;
+}
+
+.assignmentReturnDate {
+  float: right;
+  vertical-align: bottom;
+}
+
+.territoryItem:after {
+  display: block;
+  clear: both;
+}

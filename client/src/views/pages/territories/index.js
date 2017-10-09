@@ -3,29 +3,9 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import Button from 'react-bootstrap/lib/Button';
 import style from './index.css';
 
-const testData = [
-  {
-    slug: 't1',
-    name: 'T1',
-    householders: [1,2],
-    city: 'Hamburg',
-    description: 'some description',
-    assignee: {
-      name: 'Marcelo',
-      returnDate: '2017-12-01'
-    }
-  },
-  {
-    slug: 't2',
-    name: 'T2',
-    householders: [1,2,3],
-    city: 'Berlin',
-    description: null,
-    assignee: null
-  }
-]
-
 class TerritoryList extends Component {
+  static defaultProps = { territories: [] };
+
   renderTerritoryList(territories) {
     return <ul className={ style.territoryList }>
       {
@@ -36,7 +16,7 @@ class TerritoryList extends Component {
 
   renderTerritory(territory) {
     return (
-      <li className={ style.itemRow }>
+      <li key={territory.slug} className={ style.itemRow }>
         <Row>
           <Col xs={12} md={2}>
             <span className={ style.territoryName }>
@@ -59,8 +39,8 @@ class TerritoryList extends Component {
           <Col xs={12} md={4}>
             { territory.assignee &&
                 <Row>
-                  <Col xs={6} className={ style.assigneeName }>{ territory.assignee.name }</Col>
-                  <Col xs={6} className={ style.returnDate }>{ territory.assignee.returnDate }</Col>
+                  <Col xs={7} className={ style.assigneeName }>{ territory.assignee.name }</Col>
+                  <Col xs={5} className={ style.returnDate }>{ territory.assignee.returnDate }</Col>
                 </Row>
             }
           </Col>
@@ -69,16 +49,20 @@ class TerritoryList extends Component {
     );
   }
 
+  componentWillMount() {
+    this.props.onInitialize();
+  }
+
   render() {
     return (
       <Grid>
         <Row>
-          <Col xs={12} md={4}>
+          <Col xs={12} md={2}>
             <Button href="/frontend/somethingels">Google</Button>
           </Col>
 
-          <Col xs={12} md={8}>
-            {this.renderTerritoryList(testData)}
+          <Col xs={12} md={10}>
+            {this.renderTerritoryList(this.props.territories)}
           </Col>
         </Row>
       </Grid>

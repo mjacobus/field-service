@@ -21,3 +21,5 @@ db/*.sqlite3
 db/schema.rb
 /csv
 /bkp
+/node_modules
+yarn-error.log

@@ -18,6 +18,7 @@
 }
 
 .territoryDescription {
+  font-size: 75%;
 }
 
 .territoryCity {
@@ -25,7 +26,9 @@
   margin-right: 4px;
 }
 
-.assigneeName {  }
+.assigneeName {
+  font-size: 75%;
+}
 
 .returnDate {
   text-align: right;

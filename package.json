@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "query-string": "^5.0.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

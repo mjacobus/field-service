@@ -20,6 +20,7 @@ gem 'unicorn'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binpath'
 gem 'whenever', require: false
+gem 'rack-cors', require: 'rack/cors'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1'

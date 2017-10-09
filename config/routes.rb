@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   namespace :reports do
     resources :inactive_territories, only: [:index]
   end
+
+  namespace :api, defaults: { format: :json } do
+    resources :territories
+  end
 end

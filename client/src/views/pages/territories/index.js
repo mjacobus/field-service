@@ -27,7 +27,7 @@ const testData = [
 
 class TerritoryList extends Component {
   renderTerritoryList(territories) {
-    return <ul className="territoryList">
+    return <ul className={ style.territoryList }>
       {
         territories.map((territory) => (this.renderTerritory(territory)))
       }
@@ -36,31 +36,31 @@ class TerritoryList extends Component {
 
   renderTerritory(territory) {
     return (
-      <li className="territoryItem">
+      <li className={ style.itemRow }>
         <Row>
           <Col xs={12} md={2}>
-            <span className="territoryName">
+            <span className={ style.territoryName }>
               { territory.name }
             </span>
-            <span className="territoryHouseholderCount">
+            <span className={ style.householderCount }>
               ({ territory.householders.length })
             </span>
           </Col>
 
           <Col xs={12} md={6}>
-            <span className="territoryDescription">
-              { territory.description }
-            </span>
-            <span className="territoryCity">
+            <span className={ style.territoryCity }>
               { territory.city }
+            </span>
+            <span className={ style.territoryDescription }>
+              { territory.description }
             </span>
           </Col>
 
           <Col xs={12} md={4}>
             { territory.assignee &&
                 <Row>
-                  <Col xs={6} className="assigneeName">{ territory.assignee.name }</Col>
-                  <Col xs={6} className="assignmentReturnDate">{ territory.assignee.returnDate }</Col>
+                  <Col xs={6} className={ style.assigneeName }>{ territory.assignee.name }</Col>
+                  <Col xs={6} className={ style.returnDate }>{ territory.assignee.returnDate }</Col>
                 </Row>
             }
           </Col>

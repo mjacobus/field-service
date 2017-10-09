@@ -3,12 +3,35 @@
   padding: 0;
 }
 
-.assignmentReturnDate {
+.returnDate {
   float: right;
   vertical-align: bottom;
 }
 
-.territoryItem:after {
-  display: block;
-  clear: both;
+.territoryName {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.householderCount {
+  font-size: 75%;
+}
+
+.territoryDescription {
+}
+
+.territoryCity {
+  font-size: 75%;
+  margin-right: 4px;
+}
+
+.assigneeName {  }
+
+.returnDate {
+  text-align: right;
+}
+
+.itemRow {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
 }

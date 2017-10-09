@@ -21,3 +21,6 @@ db/*.sqlite3
 db/schema.rb
 /csv
 /bkp
+/public/packs
+/public/packs-test
+/node_modules

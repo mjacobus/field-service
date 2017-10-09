@@ -29,3 +29,8 @@ rake csv:householders:export_all # will export to csv/exports
 - `show` - (yes|no) required
 - `uuid`
 - `updated_at`
+
+
+## Resources
+
+- [react-bootstrap](https://react-bootstrap.github.io/getting-started.html)

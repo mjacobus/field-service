@@ -13,6 +13,19 @@ My personal field service helper
 
 Copy .env.example to .env and change accordingly.
 
+```
+./bin/setup
+```
+
+## Running
+
+```
+yarn run start
+```
+
+- [Api](http://localhost:3000)
+- [Client](http://localhost:3001)
+
 ## Importing/exporting
 
 ```bash

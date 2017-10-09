@@ -2,5 +2,10 @@
   "dependencies": {
     "query-string": "^5.0.0",
     "whatwg-fetch": "^2.0.3"
+  },
+  "scripts": {
+    "start": "./bin/bundle exec foreman start -f Procfile",
+    "build": "cd client && node scripts/build.js",
+    "test": "cd client && node scripts/test.js --env=jsdom"
   }
 }

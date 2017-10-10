@@ -15,7 +15,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
           ...state.list,
           loading: true
         }
-      }
+      };
 
     case TERRITORIES_UPDATE_ITEMS:
       return {

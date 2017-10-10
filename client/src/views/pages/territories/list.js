@@ -3,35 +3,38 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import Button from 'react-bootstrap/lib/Button';
 import style from './list.css';
 import LoaderOrContent from '../../components/loader-or-content';
+import AsyncButton from '../../components/async-button';
 
 class SearchForm extends Component {
   static defaultProps = { fetchTerritories: ()  => {}, loading: true };
 
-  render() {
-    return (
-      <Button onClick={ () => this.handleClick() }>Refresh</Button>
-    );
-  }
-
   handleClick() {
     this.props.fetchTerritories();
+  }
+
+  render() {
+    return (
+      <AsyncButton
+        asyncAction={ this.handleClick.bind(this) }
+        loading={ this.props.loading }
+        loadingText="Loading..." >Refresh
+      </AsyncButton>
+    );
   }
 }
 
 class TerritoryList extends Component {
   static defaultProps = { territories: [], loading: true };
 
+  componentWillMount() {
+    this.props.onInitialize();
+  }
+
   renderTerritoryList(territories) {
-    const props = this.props;
-
     return (
-      <div>
-        <SearchForm fetchTerritories={this.props.onInitialize} />
-
-        <ul className={ style.territoryList }>
-          { territories.map((territory) => (this.renderTerritory(territory))) }
-        </ul>
-      </div>
+      <ul className={ style.territoryList }>
+        { territories.map((territory) => (this.renderTerritory(territory))) }
+      </ul>
     );
   }
 
@@ -70,10 +73,6 @@ class TerritoryList extends Component {
     );
   }
 
-  componentWillMount() {
-    this.props.onInitialize();
-  }
-
   render() {
     return (
       <Grid>
@@ -83,6 +82,7 @@ class TerritoryList extends Component {
           </Col>
 
           <Col xs={12} md={10}>
+            <SearchForm fetchTerritories={this.props.onInitialize} loading={ this.props.loading } />
             <LoaderOrContent loading={ this.props.loading }>
               { this.renderTerritoryList(this.props.territories) }
             </LoaderOrContent>

@@ -4,7 +4,8 @@ import { fetchTerritories } from '../../../actions/territory-actions';
 
 function mapStateToProps(state) {
   return {
-    territories: state.territories.list
+    territories: state.territories.list.items,
+    loading: state.territories.list.loading
   };
 }
 

@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TerritoryListContainer from './containers/pages/territories/index';
+import TerritoryListContainer from './containers/pages/territories/list-container';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';

@@ -22,5 +22,5 @@ Rails.application.routes.draw do
     resources :territories
   end
 
-  match '*path', to: 'frontend#index', via: :all
+  match 'frontend/*path', to: 'frontend#index', via: :all
 end

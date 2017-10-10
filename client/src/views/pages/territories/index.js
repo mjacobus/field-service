@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import Button from 'react-bootstrap/lib/Button';
 import style from './index.css';
+import LoaderOrContent from '../../components/loader-or-content';
 
 class TerritoryList extends Component {
-  static defaultProps = { territories: [] };
+  static defaultProps = { territories: [], loading: true };
 
   renderTerritoryList(territories) {
     return <ul className={ style.territoryList }>
@@ -62,7 +63,9 @@ class TerritoryList extends Component {
           </Col>
 
           <Col xs={12} md={10}>
-            {this.renderTerritoryList(this.props.territories)}
+            <LoaderOrContent loading={ this.props.loading }>
+              { this.renderTerritoryList(this.props.territories) }
+            </LoaderOrContent>
           </Col>
         </Row>
       </Grid>

@@ -7,7 +7,12 @@ const DEFAULT_STATE = {
 export function territoriesReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case UPDATE_TERRITORIES:
-      return { list: action.territories };
+      return {
+        list: {
+          items: action.territories,
+          loading: false
+        }
+      };
     default:
       return state;
   }

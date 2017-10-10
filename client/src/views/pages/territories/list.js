@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import Button from 'react-bootstrap/lib/Button';
-import style from './index.css';
+import style from './list.css';
 import LoaderOrContent from '../../components/loader-or-content';
 
 class SearchForm extends Component {

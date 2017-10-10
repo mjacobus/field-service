@@ -11,6 +11,8 @@ task :travis_ci do
   Rake::Task['db:create'].invoke
   Rake::Task['db:migrate'].invoke
   Rake::Task['spec'].invoke
+
+  exec 'yarn run test'
 end
 
 namespace :csv do

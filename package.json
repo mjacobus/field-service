@@ -6,6 +6,7 @@
   "scripts": {
     "start": "./bin/bundle exec foreman start -f Procfile",
     "build": "cd client && node scripts/build.js",
-    "test": "cd client && node scripts/test.js --env=jsdom"
+    "testWatch": "cd client && node scripts/test.js --env=jsdom --watch",
+    "test": "cd client && node scripts/test.js --env=jsdom --coverage"
   }
 }

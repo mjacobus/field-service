@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
-import Button from 'react-bootstrap/lib/Button';
 import style from './list.css';
 import LoaderOrContent from '../../components/loader-or-content';
 import AsyncButton from '../../components/async-button';
+import PublishersSelector from '../../components/publishers-selector';
 
 class SearchForm extends Component {
   static defaultProps = { fetchTerritories: ()  => {}, loading: true };
 
-  handleClick() {
-    this.props.fetchTerritories();
+  handleSubmit() {
+    this.props.fetchTerritories({
+      assigned_to_ids: this.publisherIds
+    });
+  }
+
+  setPublisherIds(values) {
+    this.publisherIds = values;
   }
 
   render() {
     return (
-      <AsyncButton
-        asyncAction={ this.handleClick.bind(this) }
-        loading={ this.props.loading }
-        loadingText="Loading..." >Refresh
-      </AsyncButton>
+      <fieldset>
+        <PublishersSelector
+          onCollectionChange={ this.setPublisherIds.bind(this) }
+          multiple={ true }
+        />
+
+        <AsyncButton
+          asyncAction={ this.handleSubmit.bind(this) }
+          loading={ this.props.loading }
+          loadingText="Loading..." >Refresh
+        </AsyncButton>
+      </fieldset>
     );
   }
 }
@@ -78,11 +91,10 @@ class TerritoryList extends Component {
       <Grid>
         <Row>
           <Col xs={12} md={2}>
-            <Button href="/frontend/somethingels">Google</Button>
+            <SearchForm fetchTerritories={this.props.onInitialize} loading={ this.props.loading } />
           </Col>
 
           <Col xs={12} md={10}>
-            <SearchForm fetchTerritories={this.props.onInitialize} loading={ this.props.loading } />
             <LoaderOrContent loading={ this.props.loading }>
               { this.renderTerritoryList(this.props.territories) }
             </LoaderOrContent>

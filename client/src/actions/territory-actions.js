@@ -11,13 +11,14 @@ export function updateTerritoriesResult(territories) {
   };
 };
 
-export function fetchTerritories() {
+export function fetchTerritories(params) {
   return dispatch => {
     dispatch({
       type: TERRITORIES_FETCH_REQUEST
     });
 
-    const url = routes.territories.list();
+    const url = routes.territories.list(params);
+    console.log(url);
 
     Ajax.getJson(url).then(response => {
       dispatch(updateTerritoriesResult(response.data));

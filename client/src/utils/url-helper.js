@@ -6,7 +6,7 @@ export default class UrlHelper {
       arrayFormat: 'bracket'
     });
 
-    if (q != '') {
+    if (q !== '') {
       return url + '?' + q;
     }
 

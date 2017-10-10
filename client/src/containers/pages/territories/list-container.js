@@ -11,8 +11,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onInitialize: () => {
-      dispatch(fetchTerritories());
+    onInitialize: (params) => {
+      dispatch(fetchTerritories(params));
     }
   };
 }

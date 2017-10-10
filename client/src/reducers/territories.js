@@ -1,4 +1,4 @@
-import {FETCH_TERRITORIES} from '../actions/territory-actions';
+import {UPDATE_TERRITORIES} from '../actions/territory-actions';
 
 const DEFAULT_STATE = {
   list: []
@@ -6,7 +6,7 @@ const DEFAULT_STATE = {
 
 export function territoriesReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
-    case FETCH_TERRITORIES:
+    case UPDATE_TERRITORIES:
       return { list: action.territories };
     default:
       return state;

@@ -1,10 +1,10 @@
 import Ajax from '../utils/ajax-helper';
 
-export const FETCH_TERRITORIES = 'FETCH_TERRITORIES';
+export const UPDATE_TERRITORIES = 'UPDATE_TERRITORIES';
 
 export function updateTerritoriesResult(territories) {
   return {
-    type: FETCH_TERRITORIES,
+    type: UPDATE_TERRITORIES,
     territories
   };
 };

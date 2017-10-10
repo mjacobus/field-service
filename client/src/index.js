@@ -15,9 +15,9 @@ const reducers = combineReducers({ territories });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 let store = createStore(reducers, undefined, composeEnhancers(applyMiddleware(thunk)));
 
-const app =  <Provider store={store}>
+const app = <Provider store={store}>
     <BrowserRouter>
-      <Route path="/" component={TerritoryListContainer}/>
+      <Route path="/frontend/territories" component={TerritoryListContainer}/>
     </BrowserRouter>
   </Provider>;
 

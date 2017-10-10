@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :territories
+    resources :publishers
   end
 
   match 'frontend/*path', to: 'frontend#index', via: :all

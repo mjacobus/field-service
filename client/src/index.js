@@ -7,9 +7,13 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import {territories} from './reducers/territories';
+import {territoriesReducer} from './reducers/territories';
 
-const reducers = combineReducers({ territories });
+const reducers = combineReducers(
+  {
+    territories: territoriesReducer
+  }
+);
 
 // This is necessary for making the the redux store available on the browser's dev tools pannel
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

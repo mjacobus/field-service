@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
   list: []
 };
 
-export function territories(state = DEFAULT_STATE, action) {
+export function territoriesReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_TERRITORIES:
       return { list: action.territories };

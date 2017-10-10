@@ -12,7 +12,7 @@ module ApiResponse
           end
         end
 
-        { data: data }
+        { count: data.count, data: data }
       end
 
       private
@@ -42,7 +42,7 @@ module ApiResponse
       end
 
       def territory_householders(territory)
-        territory.householders.map(&:id)
+        territory.householders.select(:id).map {|h| h[:id] }
       end
     end
   end

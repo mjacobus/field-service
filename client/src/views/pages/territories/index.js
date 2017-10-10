@@ -37,10 +37,10 @@ class TerritoryList extends Component {
           </Col>
 
           <Col xs={12} md={4}>
-            { territory.assignee &&
+            { territory.currentAssignment &&
                 <Row>
-                  <Col xs={7} className={ style.assigneeName }>{ territory.assignee.name }</Col>
-                  <Col xs={5} className={ style.returnDate }>{ territory.assignee.returnDate }</Col>
+                  <Col xs={7} className={ style.assigneeName }>{ territory.currentAssignment.assigneeName }</Col>
+                  <Col xs={5} className={ style.returnDate }>{ territory.currentAssignment.returnDate }</Col>
                 </Row>
             }
           </Col>

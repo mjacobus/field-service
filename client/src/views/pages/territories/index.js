@@ -4,15 +4,35 @@ import Button from 'react-bootstrap/lib/Button';
 import style from './index.css';
 import LoaderOrContent from '../../components/loader-or-content';
 
+class SearchForm extends Component {
+  static defaultProps = { fetchTerritories: ()  => {}, loading: true };
+
+  render() {
+    return (
+      <Button onClick={ () => this.handleClick() }>Refresh</Button>
+    );
+  }
+
+  handleClick() {
+    this.props.fetchTerritories();
+  }
+}
+
 class TerritoryList extends Component {
   static defaultProps = { territories: [], loading: true };
 
   renderTerritoryList(territories) {
-    return <ul className={ style.territoryList }>
-      {
-        territories.map((territory) => (this.renderTerritory(territory)))
-      }
-      </ul>;
+    const props = this.props;
+
+    return (
+      <div>
+        <SearchForm fetchTerritories={this.props.onInitialize} />
+
+        <ul className={ style.territoryList }>
+          { territories.map((territory) => (this.renderTerritory(territory))) }
+        </ul>
+      </div>
+    );
   }
 
   renderTerritory(territory) {

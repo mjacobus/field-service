@@ -5,8 +5,7 @@ const defaultOptions = {
   })
 };
 
-class Ajax {
-
+export default class {
   static getJson(path, queryParams = null) {
     return this.fetch(path, defaultOptions).then(this.parseResponse);
   }
@@ -19,5 +18,3 @@ class Ajax {
     return response.json();
   }
 }
-
-export default Ajax;

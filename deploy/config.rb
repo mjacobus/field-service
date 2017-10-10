@@ -80,39 +80,28 @@ namespace :download do
   end
 end
 
-set :whenever_environment, -> { fetch(:stage) }
-set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
+# When the asset build is run in the server there is a memory error
+# This is why the frontend assets need to be generated beforehand
+# and then updloaded
+desc 'generate the client javascripts'
+task :generate_client_assets do
+  run_locally do
+    execute 'yarn run build'
+  end
 
-namespace :deploy do
-  namespace :assets do
-    Rake::Task['deploy:assets:precompile'].clear_actions
+  on roles(:app), in: :sequence, wait: 5 do
+    files = {
+      './client/build/static/js/main.js'   => 'app/assets/javascripts/fs_client.js',
+      './client/build/static/css/main.css' => 'app/assets/stylesheets/fs_client.css'
+    }
 
-    desc "Precompile assets on local machine and upload them to the server."
-    task :precompile do
-      run_locally do
-        execute 'cd client; yarn run build; cd -'
-        execute 'rm -f app/assets/javascripts/fs_client.js'
-        execute 'rm -f app/assets/stylesheets/fs_client.css'
-        execute 'cp client/build/static/js/main.js app/assets/javascripts/fs_client.js'
-        execute 'cp client/build/static/css/main.css app/assets/stylesheets/fs_client.css'
-      end
-
-      run_locally do
-        execute 'RAILS_ENV=production bundle exec rake assets:precompile'
-      end
-
-      on roles(:web) do
-        within release_path do
-          asset_full_path = "#{release_path}/public/#{fetch(:assets_prefix)}"
-          asset_parent_path = File.dirname(asset_full_path)
-          execute "mkdir -p #{asset_full_path}"
-          upload! "./public/#{fetch(:assets_prefix)}", asset_parent_path, recursive: true
-        end
-      end
-
-      run_locally do
-        execute "rm -r ./public/#{fetch(:assets_prefix)}"
-      end
+    files.each do |key, value|
+      upload! key, "#{release_path}/#{value}"
     end
   end
 end
+
+before 'deploy:assets:precompile', :generate_client_assets
+
+set :whenever_environment, -> { fetch(:stage) }
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }

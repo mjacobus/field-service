@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import style from './list.css';
 import LoaderOrContent from '../../components/loader-or-content';
+import Label from '../../components/label';
 import AsyncButton from '../../components/async-button';
 import PublishersSelector from '../../components/publishers-selector';
 
@@ -29,6 +30,7 @@ class SearchForm extends Component {
       <fieldset>
         <Row>
           <Col xs={12}>
+            <Label>Assigned To</Label>
             <PublishersSelector
               className={style.wide}
               onCollectionChange={ this.setPublisherIds }

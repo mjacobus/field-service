@@ -85,9 +85,13 @@ end
 # and then updloaded
 desc 'generate the client javascripts'
 task :generate_client_assets do
+  media_files = []
   run_locally do
     execute 'yarn run build'
+
+    media_files = Dir['client/build/static/media/**/*']
   end
+
 
   on roles(:app), in: :sequence, wait: 5 do
     files = {
@@ -97,6 +101,11 @@ task :generate_client_assets do
 
     files.each do |key, value|
       upload! key, "#{release_path}/#{value}"
+    end
+
+    media_files.each do |file|
+      p file.inspect
+      upload! file, "#{release_path}/app/assets/images/#{File.basename(file)}"
     end
   end
 end

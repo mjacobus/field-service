@@ -23,8 +23,10 @@ export default class extends Component {
   }
 
   render() {
+    const props = this.props;
     return (
       <Button
+        {...props}
         bsStyle={ this.props.bsStyle }
         disabled={ this.props.loading }
         onClick={ event => this.dispatchIfNotLoading(event) }

@@ -27,15 +27,23 @@ class SearchForm extends Component {
   render() {
     return (
       <fieldset>
-        <PublishersSelector
-          onCollectionChange={ this.setPublisherIds }
-          multiple={ true }
-        />
+        <Row>
+          <Col xs={12}>
+            <PublishersSelector
+              className={style.wide}
+              onCollectionChange={ this.setPublisherIds }
+              multiple={ true }
+            />
+          </Col>
 
-        <AsyncButton
-          asyncAction={ this.handleSubmit }
-          loading={ this.props.loading }
-          loadingText="Loading..." >Search</AsyncButton>
+          <Col xs={12}>
+            <AsyncButton
+              className={style.wide}
+              asyncAction={ this.handleSubmit }
+              loading={ this.props.loading }
+              loadingText="Loading..." >Search</AsyncButton>
+          </Col>
+        </Row>
       </fieldset>
     );
   }
@@ -84,8 +92,8 @@ class TerritoryList extends Component {
           <Col xs={12} md={4}>
             { territory.currentAssignment &&
                 <Row>
-                  <Col xs={7} className={ style.assigneeName }>{ territory.currentAssignment.assigneeName }</Col>
-                  <Col xs={5} className={ style.returnDate }>{ territory.currentAssignment.returnDate }</Col>
+                  <Col xs={6} className={ style.assigneeName }>{ territory.currentAssignment.assigneeName }</Col>
+                  <Col xs={6} className={ style.returnDate }>{ territory.currentAssignment.returnDate }</Col>
                 </Row>
             }
           </Col>
@@ -98,11 +106,11 @@ class TerritoryList extends Component {
     return (
       <Grid>
         <Row>
-          <Col xs={12} md={2}>
+          <Col xs={12} md={3}>
             <SearchForm fetchTerritories={this.props.onInitialize} loading={ this.props.loading } />
           </Col>
 
-          <Col xs={12} md={10}>
+          <Col xs={12} md={9}>
             <LoaderOrContent loading={ this.props.loading }>
               { this.renderTerritoryList(this.props.territories) }
             </LoaderOrContent>

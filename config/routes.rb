@@ -23,5 +23,5 @@ Rails.application.routes.draw do
     resources :publishers
   end
 
-  match 'frontend/*path', to: 'frontend#index', via: :all
+  match 'app/*path', to: 'frontend#index', via: :all
 end

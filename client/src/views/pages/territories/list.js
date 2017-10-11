@@ -8,6 +8,12 @@ import PublishersSelector from '../../components/publishers-selector';
 class SearchForm extends Component {
   static defaultProps = { fetchTerritories: ()  => {}, loading: true };
 
+  constructor(props) {
+    super(props);
+    this.setPublisherIds = this.setPublisherIds.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   handleSubmit() {
     this.props.fetchTerritories({
       assigned_to_ids: this.publisherIds
@@ -22,12 +28,12 @@ class SearchForm extends Component {
     return (
       <fieldset>
         <PublishersSelector
-          onCollectionChange={ this.setPublisherIds.bind(this) }
+          onCollectionChange={ this.setPublisherIds }
           multiple={ true }
         />
 
         <AsyncButton
-          asyncAction={ this.handleSubmit.bind(this) }
+          asyncAction={ this.handleSubmit }
           loading={ this.props.loading }
           loadingText="Loading..." >Search</AsyncButton>
       </fieldset>

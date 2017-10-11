@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   end
 
   match 'app/*path', to: 'frontend#index', via: :all
+  get 'static/media/*asset', to: 'frontend#redirect_to_asset'
 end

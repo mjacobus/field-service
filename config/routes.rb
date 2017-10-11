@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    resources :territories
+    resources :territories, param: :slug
     resources :publishers
   end
 

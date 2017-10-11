@@ -1,0 +1,20 @@
+.wide {
+  width: 100%;
+}
+
+.fullLine {
+  clear: both;
+  display: block;
+}
+
+.decolapse {
+  margin: 10px 0;
+}
+
+.decolapseDown {
+  margin: 0 0 10px 0;
+}
+
+.decolapseUp {
+  margin: 10px 0 0 0;
+}

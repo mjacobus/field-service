@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Loader from './loader';
 
-export default class extends Component {
-  static defaultProps = { loading: true };
+export default ({loading, children}) => {
+  let classNames = ['loader'];
 
-  render() {
-    let classNames = ['loader'];
-
-    if (this.props.loading) {
-      classNames.push('loading')
-    }
-
-    return (
-      <div className={ classNames.join(' ') }>
-        { this.props.loading ? <Loader /> : this.props.children}
-      </div>
-    );
+  if (loading) {
+    classNames.push('loading')
   }
-}
+
+  return <div className={ classNames.join(' ') }> { loading ? <Loader /> : children} </div>
+};

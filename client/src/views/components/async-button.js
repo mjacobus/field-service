@@ -1,38 +1,33 @@
-import React, { Component } from 'react';
-import Button from 'react-bootstrap/lib/Button';
+import React from 'react';
+import Button from './button';
 
-export default class extends Component {
-  static defaultProps = {
-    bsStyle: 'primary',
-    loading: true,
-    loadingText: null,
-    asyncAction: () => { console.log('no action given')  }
-  };
+const defaultAction = () => { console.log('no action given')  };
 
-  text() {
-    if (this.props.loading && this.props.loadingText) {
-      return this.props.loadingText;
+export default (
+  {
+    children,
+    bsStyle     = 'primary',
+    loading     = true,
+    loadingText = null,
+    asyncAction = defaultAction,
+    ...otherProps
+  }
+) => {
+  let text = null;
+
+  if (loading && loadingText) {
+    text = loadingText;
+  } else {
+    text = children;
+  }
+
+  const dispatchIfNotLoading = (event) => {
+    if (!loading) {
+      asyncAction(event);
     }
-
-    return this.props.children;
   }
 
-  dispatchIfNotLoading(event) {
-    if (!this.props.loading) {
-      this.props.asyncAction(event);
-    }
-  }
+  const props = {...otherProps, bsStyle};
 
-  render() {
-    const { loadingText, loading, asyncAction, ...otherProps } = this.props;
-
-    return (
-      <Button
-        {...otherProps}
-        bsStyle={ this.props.bsStyle }
-        disabled={ this.props.loading }
-        onClick={ event => this.dispatchIfNotLoading(event) }
-      > {this.text()} </Button>
-    );
-  }
-}
+  return <Button {...props} disabled={ loading } onClick={ dispatchIfNotLoading }>{text}</Button>;
+};

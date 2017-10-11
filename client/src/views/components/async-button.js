@@ -5,6 +5,7 @@ export default class extends Component {
   static defaultProps = {
     bsStyle: 'primary',
     loading: true,
+    loadingText: null,
     asyncAction: () => { console.log('no action given')  }
   };
 
@@ -23,10 +24,11 @@ export default class extends Component {
   }
 
   render() {
-    const props = this.props;
+    const { loadingText, loading, asyncAction, ...otherProps } = this.props;
+
     return (
       <Button
-        {...props}
+        {...otherProps}
         bsStyle={ this.props.bsStyle }
         disabled={ this.props.loading }
         onClick={ event => this.dispatchIfNotLoading(event) }

@@ -57,7 +57,7 @@ class TerritoryList extends Component {
   }
 
   renderTerritoryList(territories) {
-    if (territories.length == 0) {
+    if (territories.length === 0) {
       return <p>No territories found</p>;
     }
     return (

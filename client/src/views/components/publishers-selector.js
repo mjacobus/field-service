@@ -49,11 +49,11 @@ export default class extends Component {
       this.props.onCollectionChange(selectedValues);
     };
 
-    const props = this.props;
+    const {onCollectionChange, ...otherProps} = this.props;
 
     return (
       <select
-        {...props}
+        {...otherProps}
         size={this.size()}
         name={ this.props.name }
         onChange={ toggle }

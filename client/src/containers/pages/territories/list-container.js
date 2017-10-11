@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import TerritoryList from '../../../views/pages/territories/list';
+import TerritoryList from '../../../views/pages/territories/territory-list';
 import { fetchTerritories } from '../../../actions/territory-actions';
 
 function mapStateToProps(state) {

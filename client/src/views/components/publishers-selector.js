@@ -5,6 +5,7 @@ import hashToArray from '../../utils/hash-to-array';
 
 export default class extends Component {
   static defaultProps = {
+    size: 10,
     multiple: true,
     onCollectionChange: () => { console.log('no onCollectionChange given') },
     name: 'publisher_ids[]'
@@ -32,6 +33,14 @@ export default class extends Component {
     return <option key={ option.id } value={ option.id } >{ option.name }</option>;
   }
 
+  size() {
+    if (this.props.multiple) {
+      return this.props.size;
+    }
+
+    return 1;
+  }
+
   render() {
     const toggle = (event)  => {
       const selectedValues = hashToArray(event.target.options)
@@ -42,6 +51,7 @@ export default class extends Component {
 
     return (
       <select
+        size={this.size()}
         name={ this.props.name }
         onChange={ toggle }
         multiple={ this.props.multiple }

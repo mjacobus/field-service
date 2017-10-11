@@ -1,0 +1,43 @@
+.container {
+}
+
+.boxedContainer {
+}
+
+.containerOpen {
+  /* border-bottom: 1px solid #ddd; */
+}
+
+.buttonContainer {
+  padding: 10px 0;
+}
+
+.buttonContainerOpen {
+  /* border-bottom: 1px solid #ddd; */
+}
+
+.button, .button:hover, button:active {
+  width: 100% !important;
+  background-color: white;
+  border-color: #ddd;
+  box-shadow: none;
+}
+
+.boxedContentContainer {
+  border: 1px solid #ddd;
+  padding: 0 10px;
+  display:block;
+  margin-top: -10px;
+}
+
+.contentContainerOpen {
+  padding: 10px 10px;
+}
+
+.text {
+  float: left;
+}
+
+.icon {
+  float: right;
+}

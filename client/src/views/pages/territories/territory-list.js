@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 import style from './list.css';
 import LoaderOrContent from '../../components/loader-or-content';
 import Label from '../../components/label';
 import AsyncButton from '../../components/async-button';
+import LeftRightFrame from '../../components/left-right-frame';
 import PublishersSelector from '../../components/publishers-selector';
+import {Link} from 'react-router-dom';
+import routes from '../../../app-routes';
+
+const territoryRoutes = routes.territories;
 
 class SearchForm extends Component {
   static defaultProps = { fetchTerritories: ()  => {}, loading: true };
@@ -30,11 +35,12 @@ class SearchForm extends Component {
       <fieldset>
         <Row>
           <Col xs={12}>
-            <Label>Assigned To</Label>
+            <Label>Assigned to</Label>
             <PublishersSelector
               className={style.wide}
               onCollectionChange={ this.setPublisherIds }
               multiple={ true }
+              size={ 10 }
             />
           </Col>
 
@@ -51,7 +57,7 @@ class SearchForm extends Component {
   }
 }
 
-class TerritoryList extends Component {
+export default class TerritoryList extends Component {
   static defaultProps = { territories: [], loading: true };
 
   componentWillMount() {
@@ -59,13 +65,13 @@ class TerritoryList extends Component {
   }
 
   renderTerritoryList(territories) {
-    if (territories.length === 0) {
-      return <p>No territories found</p>;
-    }
     return (
-      <ul className={ style.territoryList }>
-        { territories.map((territory) => (this.renderTerritory(territory))) }
-      </ul>
+      <div>
+        <p>Found { territories.length } territories.</p>
+        <ul className={ style.territoryList }>
+          { territories.map((territory) => (this.renderTerritory(territory))) }
+        </ul>
+      </div>
     );
   }
 
@@ -75,7 +81,9 @@ class TerritoryList extends Component {
         <Row>
           <Col xs={12} md={2}>
             <span className={ style.territoryName }>
-              { territory.name }
+              <Link to={ territoryRoutes.show(territory.slug) }>
+                { territory.name }
+              </Link>
             </span>
             <span className={ style.householderCount }>
               ({ territory.householders.length })
@@ -93,10 +101,10 @@ class TerritoryList extends Component {
 
           <Col xs={12} md={4}>
             { territory.currentAssignment &&
-                <Row>
-                  <Col xs={6} className={ style.assigneeName }>{ territory.currentAssignment.assigneeName }</Col>
-                  <Col xs={6} className={ style.returnDate }>{ territory.currentAssignment.returnDate }</Col>
-                </Row>
+              <Row>
+                <Col xs={6} className={ style.assigneeName }>{ territory.currentAssignment.assigneeName }</Col>
+                <Col xs={6} className={ style.returnDate }>{ territory.currentAssignment.returnDate }</Col>
+              </Row>
             }
           </Col>
         </Row>
@@ -105,22 +113,13 @@ class TerritoryList extends Component {
   }
 
   render() {
-    return (
-      <Grid>
-        <Row>
-          <Col xs={12} md={3}>
-            <SearchForm fetchTerritories={this.props.onInitialize} loading={ this.props.loading } />
-          </Col>
-
-          <Col xs={12} md={9}>
-            <LoaderOrContent loading={ this.props.loading }>
-              { this.renderTerritoryList(this.props.territories) }
-            </LoaderOrContent>
-          </Col>
-        </Row>
-      </Grid>
+    const left = <SearchForm fetchTerritories={this.props.onInitialize} loading={ this.props.loading } />;
+    const right = (
+      <LoaderOrContent loading={ this.props.loading }>
+        { this.renderTerritoryList(this.props.territories) }
+      </LoaderOrContent>
     );
+
+    return <LeftRightFrame leftComponent={left} rightComponent={right}/>;
   }
 }
-
-export default TerritoryList;

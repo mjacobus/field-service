@@ -1,0 +1,17 @@
+.topMenu {
+  background-color: #4a6da7;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.topMenu .row {
+  min-height: 50px;
+}
+
+.topMenu a {
+  margin-top: 10px;
+  color: white;
+  text-align: middle;
+  margin-top: 50%;
+}

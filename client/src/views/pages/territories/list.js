@@ -44,6 +44,9 @@ class TerritoryList extends Component {
   }
 
   renderTerritoryList(territories) {
+    if (territories.length == 0) {
+      return <p>No territories found</p>;
+    }
     return (
       <ul className={ style.territoryList }>
         { territories.map((territory) => (this.renderTerritory(territory))) }

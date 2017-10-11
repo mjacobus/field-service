@@ -1,0 +1,9 @@
+.envAlert {
+  line-height: 50px;
+  width: 100%;
+  text-align: center;
+  background: #e3e9f3;
+  color: #CC0000;
+  margin-bottom: 20px;
+  margin-top: -20px;
+}

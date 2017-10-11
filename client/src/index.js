@@ -21,7 +21,7 @@ let store = createStore(reducers, undefined, composeEnhancers(applyMiddleware(th
 
 const app = <Provider store={store}>
     <BrowserRouter>
-      <Route path="/frontend/territories" component={TerritoryListContainer}/>
+      <Route path="/app/territories" component={TerritoryListContainer}/>
     </BrowserRouter>
   </Provider>;
 

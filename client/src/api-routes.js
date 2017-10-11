@@ -2,7 +2,6 @@ import UrlHelper from './utils/url-helper';
 
 const territoriesRoutes = {
   list: (params = {}) => {
-    console.log('params', params);
     return UrlHelper.create('/api/territories', params);
   }
 }

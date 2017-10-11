@@ -29,8 +29,7 @@ class SearchForm extends Component {
         <AsyncButton
           asyncAction={ this.handleSubmit.bind(this) }
           loading={ this.props.loading }
-          loadingText="Loading..." >Refresh
-        </AsyncButton>
+          loadingText="Loading..." >Search</AsyncButton>
       </fieldset>
     );
   }

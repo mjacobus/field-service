@@ -2,13 +2,17 @@ import UrlHelper from './utils/url-helper';
 
 const fixUrl = (path) => {
   if (window.location.href.match(/3001/)) {
-    return `http://localhost:3000/${path}`
+    return `http://localhost:3000${path}`
   }
 
   return path;
 }
 
 const territoriesRoutes = {
+  legacyList: (params = {}) => {
+    return fixUrl(UrlHelper.create('/territories', params));
+  },
+
   list: (params = {}) => {
     return UrlHelper.create('/app/territories', params);
   },

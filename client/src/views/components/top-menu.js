@@ -2,6 +2,7 @@ import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import style from './top-menu.css';
+import routes from '../../app-routes';
 
 export default () => {
   return (
@@ -18,7 +19,7 @@ export default () => {
             <Link to="/app/territory_assignments">Territories</Link>
           </Col>
           <Col xs={12} md={3}>
-            <Link to="/app/sign_out">Sign out</Link>
+            <a href={ routes.territories.legacyList() }>Legacy</a>
           </Col>
         </Row>
       </Grid>

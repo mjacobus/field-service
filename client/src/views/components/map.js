@@ -1,67 +1,56 @@
+// http://openlayers.org/en/latest/examples/full-screen-source.html
+
 import React from 'react';
 
 import Icon from './icon';
 
 import Map from 'ol/map';
 import View from 'ol/view';
-import TitleLayer from 'ol/layer/tile';
-import Osm from 'ol/layer/osm';
-import XYZ from 'ol/source/xyz';
+import control from 'ol/control';
+import FullScreen from 'ol/control/fullscreen';
+import Tile from 'ol/layer/tile';
+import OSM from 'ol/source/osm';
+import Feature from 'ol/feature';
+import Point from 'ol/geom/point';
 import proj from 'ol/proj';
-import Overlay from 'ol/overlay';
 
 const draw = ({ id, markerId, markers }) => {
-  const icon = document.createElement('div');
-  icon.innerHTML = 'X';
+  console.log("faaaa");
 
-  const layer = new TitleLayer({
-    source: new OSM()
+  var rome = new Feature({
+    geometry: new Point(proj.fromLonLat([12.5, 41.9]))
   });
 
-  const map = new Map({
-    layers: [layer],
-    target: id,
-    view: new View({
-      center: [0, 0],
-      zoom: 2
-    })
+  var view = new View({
+    // center: [-9101767, 2822912],
+    center: proj.fromLonLat([12.5, 41.9]),
+    // center: [12.5, 41.9],
+    zoom: 14
   });
 
-  const pos = proj.fromLonLat([16.3725, 48.208889]);
-
-  // Vienna marker
-  let marker = new Overlay({
-    position: pos,
-    positioning: 'center-center',
-    element: document.getElementById(markerId),
-    stopEvent: false
+  var map = new Map({
+    // controls: control.defaults().extend([
+    //   new FullScreen({
+    //     source: 'fullscreen'
+    //   })
+    // ]),
+    layers: [
+      new Tile({
+        source: new OSM()
+      })
+    ],
+    target: 'map',
+    view: view
   });
-  map.addOverlay(marker);
-
-  // Vienna label
-  let vienna = new Overlay({
-    position: pos,
-    element: icon,
-  });
-
-  map.addOverlay(vienna);
-
-  // // Popup showing the position the user clicked
-  // let popup = new ol.Overlay({
-  //   element: document.getElementById('popup')
-  // });
-  //
-  // map.addOverlay(popup);
 };
 
 export default ({ markers }) => {
-  const id = 'the-map-id';
+  const id = 'map';
   const markerId = `${id}-marker`;
 
   setTimeout(() => {
-    console.log('drawwing');
     draw({ id, markers, markerId });
   }, 100);
 
-  return <div id={ id }><div id={ markerId }></div></div>;
+  return <div><div id={ id }><div id={ markerId }></div></div></div>;
 };

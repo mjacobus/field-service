@@ -47,3 +47,4 @@ rake csv:householders:export_all # will export to csv/exports
 ## Resources
 
 - [react-bootstrap](https://react-bootstrap.github.io/getting-started.html)
+- [Open Street Maps Workshow](https://openlayers.org/workshop/en/)

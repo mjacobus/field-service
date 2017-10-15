@@ -13,19 +13,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require_tree .
+//= require_tree ./legacy
 
 $(function(){
   $(document).foundation();
 
-  $(document).on('click', 'a', 'data[show-map]', function () {
+  $('body').on('click', '#js-show-map',  function () {
     var link = $(this);
 
     if (!link.data('mapShown')) {
       link.data('mapShown', true)
       var mapContainerId = link.data('map-container');
       $('#' + mapContainerId + '-container').show();
-      var addresses = link.data('map-addresses');
+      var addresses = link.data().mapAddresses;
       HouseholdersMap.draw(mapContainerId, addresses);
     }
   });

@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+
 import LeftRightFrame from '../../components/left-right-frame';
-import ContentToggler from '../../components/content-toggler';
-import routes from '../../../api-routes';
-import appRoutes from '../../../app-routes';
-import Ajax from '../../../utils/ajax-helper';
-import LoaderOrContent from '../../components/loader-or-content';
-import Item from '../../components/property-value-label';
 import Button from '../../components/button';
+import ContentToggler from '../../components/content-toggler';
+import Item from '../../components/property-value-label';
+import LoaderOrContent from '../../components/loader-or-content';
+import Map from '../../components/map';
+
+import Ajax from '../../../utils/ajax-helper';
 import HouseholderItem from '../shared/householder-item';
 import TerritoryAssignments from '../shared/territory-assignments';
+import appRoutes from '../../../app-routes';
+import routes from '../../../api-routes';
 import { withRouter } from 'react-router-dom'
 
 import styles from '../../../global.css';
@@ -63,11 +66,26 @@ const renderTerritoryView = ({ territory }) =>  {
     }
   </ContentToggler>;
 
+  const markers = territory.householders
+    .filter((householder) => householder.geolocation.present)
+    .map((householder) => {
+      return {
+        title: householder.name,
+        lat: householder.geolocation.lat,
+        lon: householder.geolocation.lon,
+      };
+    });
+
+  const mapToggler = <ContentToggler openText="Hide Map" closedText="Show Map" open={ !false }>
+    <Map markers={ markers } />
+  </ContentToggler>;
+
   return (
     <div>
       <div> { main }</div>
-      { assignmentsToggler }
+      { mapToggler }
       { householdersToggler }
+      { assignmentsToggler }
     </div>
   );
 };

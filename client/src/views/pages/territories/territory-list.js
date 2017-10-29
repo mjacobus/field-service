@@ -7,6 +7,7 @@ import AsyncButton from '../../components/async-button';
 import LeftRightFrame from '../../components/left-right-frame';
 import PublishersSelector from '../../components/publishers-selector';
 import CheckBox from '../../components/check-box';
+import ReturnDate from '../shared/territory-return-date';
 import {Link} from 'react-router-dom';
 import routes from '../../../app-routes';
 
@@ -118,7 +119,9 @@ export default class TerritoryList extends Component {
             { territory.currentAssignment &&
               <Row>
                 <Col xs={6} className={ style.assigneeName }>{ territory.currentAssignment.assigneeName }</Col>
-                <Col xs={6} className={ style.returnDate }>{ territory.currentAssignment.returnDate }</Col>
+                <Col xs={6} className={ style.returnDate }>
+                  <ReturnDate assignment={ territory.currentAssignment } />
+                </Col>
               </Row>
             }
           </Col>

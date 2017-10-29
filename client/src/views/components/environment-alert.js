@@ -1,7 +1,9 @@
 import React from 'react';
 import style from './environment-alert.css';
 
-const defaultMessage = 'This is a test environment. Uset it as you wish.';
+import t from '../../translations';
+
+const defaultMessage = t.testSystemMessage;
 
 const isDevelopmentMode = ()  => {
   return !!window.location.href.match(/localhost|staging/);

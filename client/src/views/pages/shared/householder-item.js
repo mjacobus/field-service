@@ -4,6 +4,8 @@ import {Row, Col} from 'react-bootstrap';
 import Item from '../../components/property-value-label';
 import Separator from '../../components/separator';
 
+import t from '../../../translations';
+
 import styles from './householder-item.css';
 
 export default ({ householder, separator = true }) => {
@@ -17,13 +19,13 @@ export default ({ householder, separator = true }) => {
     <div className={classNames.join(' ')}>
       <Row>
         <Col xs={12} md={4}>
-          <Item description='Address' separator={ false }>{ householder.address }</Item>
+          <Item description={ t.address } separator={ false }>{ householder.address }</Item>
         </Col>
         <Col xs={12} md={4}>
-          <Item description='Name' separator={ false }>{ householder.name }</Item>
+          <Item description={ t.name } separator={ false }>{ householder.name }</Item>
         </Col>
         <Col xs={12} md={4}>
-          { householder.doNotVisitDate && <Item description='Do Not Visit' separator={ false }>{ householder.doNotVisitDate }</Item> }
+          { householder.doNotVisitDate && <Item description={ t.doNotVisit } separator={ false }>{ householder.doNotVisitDate }</Item> }
         </Col>
       </Row>
 

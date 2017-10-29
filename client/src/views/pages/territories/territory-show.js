@@ -11,6 +11,8 @@ import HouseholderItem from '../shared/householder-item';
 import TerritoryAssignments from '../shared/territory-assignments';
 import { withRouter } from 'react-router-dom'
 
+import t from '../../../translations';
+
 import styles from '../../../global.css';
 
 const fetchTerritory = (slug, callback) => {
@@ -34,26 +36,26 @@ const renderActions = withRouter(({ territory, history }) => {
 
   return (
     <div>
-      <Button className={classes} onClick={ goBack } >Go Back</Button>
-      <Button className={classes} onClick={ openPdf } >Download PDF</Button>
+      <Button className={classes} onClick={ goBack } >{ t.back }</Button>
+      <Button className={classes} onClick={ openPdf } >{ t.downloadPdf }</Button>
     </div>
   );
 });
 
 const renderTerritoryView = ({ territory }) =>  {
   const main = [
-    <Item key={1} description="Name">{ territory.name }</Item>,
-    <Item key={2} description="City">{ territory.city }</Item>,
-    <Item key={3} description="Description">{ territory.description }</Item>,
+    <Item key={1} description={ t.name }>{ territory.name }</Item>,
+    <Item key={2} description={ t.city }>{ territory.city }</Item>,
+    <Item key={3} description={ t.description }>{ territory.description }</Item>,
   ];
 
-  const assignmentsToggler = <ContentToggler openText="Hide Assignments" closedText="Show Assignments" open={ false }>
+  const assignmentsToggler = <ContentToggler openText={ t.hideAssignments } closedText={ t.showAssignments } open={ false }>
     <TerritoryAssignments assignments={territory.assignments} />
   </ContentToggler>;
 
   const last = territory.householders.length - 1;
 
-  const householdersToggler = <ContentToggler openText="Hide Householders" closedText="Show Householders" open={ false }>
+  const householdersToggler = <ContentToggler openText={ t.hideHouseholders } closedText={ t.showHouseholders } open={ false }>
     {
       territory.householders.map((householder, index) => {
         let separator = index !== last;

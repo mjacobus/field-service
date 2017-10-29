@@ -3,6 +3,7 @@ import {Row, Col} from 'react-bootstrap';
 
 import Item from '../../components/property-value-label';
 import Separator from '../../components/separator';
+import Date from '../../components/date';
 
 import t from '../../../translations';
 
@@ -25,7 +26,10 @@ export default ({ householder, separator = true }) => {
           <Item description={ t.name } separator={ false }>{ householder.name }</Item>
         </Col>
         <Col xs={12} md={4}>
-          { householder.doNotVisitDate && <Item description={ t.doNotVisit } separator={ false }>{ householder.doNotVisitDate }</Item> }
+          {
+            householder.doNotVisitDate &&
+            <Item description={ t.doNotVisit } separator={ false }><Date>{ householder.doNotVisitDate }</Date></Item>
+          }
         </Col>
       </Row>
 

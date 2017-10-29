@@ -4,6 +4,7 @@ import {Row, Col} from 'react-bootstrap';
 import Item from '../../components/property-value-label';
 import Separator from '../../components/separator';
 import Icon from '../../components/icon';
+import Date from '../../components/date';
 
 import t from '../../../translations';
 
@@ -57,10 +58,14 @@ export default ({ item, children, separator = true }) => {
       <Row>
         <Col xs={12} md={3}> { children } </Col>
         <Col xs={12} md={3}>
-          <Item description={ t.assignedAt } separator={ false }>{ item.assignedAt }</Item>
+          <Item description={ t.assignedAt } separator={ false }>
+            <Date>{ item.assignedAt }</Date>
+          </Item>
         </Col>
         <Col xs={12} md={3}>
-          <Item className={ classNameForDate(item) } description={ returnDateText(item) } separator={ false }>{ returnDate(item) }</Item>
+          <Item className={ classNameForDate(item) } description={ returnDateText(item) } separator={ false }>
+            <Date>{ returnDate(item) }</Date>
+          </Item>
         </Col>
         <Col xs={12} md={3}>{ iconsForItem(item) } </Col>
       </Row>

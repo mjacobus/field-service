@@ -1,13 +1,15 @@
 import React from 'react';
 
+import Date from '../../components/date';
+
 import styles from './territory-return-date.css';
 
 const pendingReturn = (date) => {
-  return <div className={ styles.pendingReturn }>{ date }</div>;
+  return <Date className={ styles.pendingReturn }>{ date }</Date>;
 }
 
 const futureReturn = (date) => {
-  return <div>{ date }</div>;
+  return <Date>{ date }</Date>;
 }
 
 export default ({ assignment }) => {

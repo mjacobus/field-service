@@ -6,8 +6,11 @@ import Label from '../../components/label';
 import AsyncButton from '../../components/async-button';
 import LeftRightFrame from '../../components/left-right-frame';
 import PublishersSelector from '../../components/publishers-selector';
+import CheckBox from '../../components/check-box';
+import ReturnDate from '../shared/territory-return-date';
 import {Link} from 'react-router-dom';
 import routes from '../../../app-routes';
+
 import t from '../../../translations';
 
 const territoryRoutes = routes.territories;
@@ -19,12 +22,21 @@ class SearchForm extends Component {
     super(props);
     this.setPublisherIds = this.setPublisherIds.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setPendingReturn = this.setPendingReturn.bind(this);
   }
 
   handleSubmit() {
-    this.props.fetchTerritories({
-      assigned_to_ids: this.publisherIds
-    });
+    let params = { assignedToIds: this.publisherIds };
+
+    if (this.pendingReturn) {
+      params.pendingReturn = true;
+    }
+
+    this.props.fetchTerritories(params);
+  }
+
+  setPendingReturn(checked) {
+    this.pendingReturn = checked;
   }
 
   setPublisherIds(values) {
@@ -35,6 +47,9 @@ class SearchForm extends Component {
     return (
       <fieldset>
         <Row>
+          <Col xs={12}>
+            <Label><CheckBox onChange= { this.setPendingReturn } /> &nbsp; { t.pendingReturn }</Label>
+          </Col>
           <Col xs={12}>
             <Label>{ t.assignedTo }</Label>
             <PublishersSelector
@@ -104,7 +119,9 @@ export default class TerritoryList extends Component {
             { territory.currentAssignment &&
               <Row>
                 <Col xs={6} className={ style.assigneeName }>{ territory.currentAssignment.assigneeName }</Col>
-                <Col xs={6} className={ style.returnDate }>{ territory.currentAssignment.returnDate }</Col>
+                <Col xs={6} className={ style.returnDate }>
+                  <ReturnDate assignment={ territory.currentAssignment } />
+                </Col>
               </Row>
             }
           </Col>

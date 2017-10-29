@@ -34,5 +34,13 @@
         <td><%= householder.do_not_visit_date %></td>
       </tr>
     <% end %>
+    <% expand_to(42, territory.householders.count).each do |index|  %>
+      <tr class="<%= odd_or_even(index + 1) %>">
+        <td colspan="2">&nbsp;</td>
+        <td class="text-center">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

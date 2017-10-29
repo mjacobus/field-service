@@ -8,6 +8,7 @@ import LeftRightFrame from '../../components/left-right-frame';
 import PublishersSelector from '../../components/publishers-selector';
 import {Link} from 'react-router-dom';
 import routes from '../../../app-routes';
+import t from '../../../translations';
 
 const territoryRoutes = routes.territories;
 
@@ -35,7 +36,7 @@ class SearchForm extends Component {
       <fieldset>
         <Row>
           <Col xs={12}>
-            <Label>Assigned to</Label>
+            <Label>{ t.assignedTo }</Label>
             <PublishersSelector
               className={style.wide}
               onCollectionChange={ this.setPublisherIds }
@@ -49,7 +50,7 @@ class SearchForm extends Component {
               className={style.wide}
               asyncAction={ this.handleSubmit }
               loading={ this.props.loading }
-              loadingText="Loading..." >Search</AsyncButton>
+              loadingText={ t.loading }>{ t.search }</AsyncButton>
           </Col>
         </Row>
       </fieldset>
@@ -67,7 +68,7 @@ export default class TerritoryList extends Component {
   renderTerritoryList(territories) {
     return (
       <div>
-        <p>Found { territories.length } territories.</p>
+        <p>{ t.territoriesFound(territories.length) }</p>
         <ul className={ style.territoryList }>
           { territories.map((territory) => (this.renderTerritory(territory))) }
         </ul>

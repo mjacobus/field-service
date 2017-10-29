@@ -4,19 +4,21 @@ import {Link} from 'react-router-dom';
 import style from './top-menu.css';
 import routes from '../../app-routes';
 
+import t from '../../translations';
+
 export default () => {
   return (
     <div className={style.topMenu}>
       <Grid>
         <Row>
           <Col xs={12} md={3}>
-            <Link to="/app/territories">Territories</Link>
+            <Link to="/app/territories">{ t.territories }</Link>
           </Col>
           <Col xs={12} md={3}>
-            <Link to="/app/publishers">Publishers</Link>
+            <Link to="/app/publishers">{ t.publishers }</Link>
           </Col>
           <Col xs={12} md={3}>
-            <Link to="/app/territory_assignments">Territories</Link>
+            <Link to="/app/territory_assignments"> { t.territoryAssignments }</Link>
           </Col>
           <Col xs={12} md={3}>
             <a href={ routes.territories.legacyList() }>Legacy</a>

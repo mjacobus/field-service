@@ -13,6 +13,7 @@ const translations = {
   loading: 'Carregando...',
   name: 'Nome',
   publishers: 'Publicadores',
+  pendingReturn: 'Devolução pendente',
   returnedAt: 'Retornado em',
   search: 'Pesquisar',
   showAssignments: 'Mostrar Designações',

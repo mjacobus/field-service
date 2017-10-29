@@ -15,6 +15,7 @@ const translations = {
   loading: translate('loading'),
   name: translate('name'),
   publishers: translate('publishers'),
+  pendingReturn: translate('pendingReturn'),
   returnedAt: translate('returnedAt'),
   search: translate('search'),
   showAssignments: translate('showAssignments'),

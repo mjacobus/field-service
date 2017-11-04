@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import LeftRightFrame from '../../components/left-right-frame';
 import ContentToggler from '../../components/content-toggler';
+import Date from '../../components/date';
 import routes from '../../../api-routes';
 import appRoutes from '../../../app-routes';
 import Ajax from '../../../utils/ajax-helper';
@@ -47,11 +48,17 @@ const renderTerritoryView = ({ territory }) =>  {
   const newHouseholderLink = appRoutes.householders.add({ territory });
   const addHouseholder = () => window.location.href = newHouseholderLink;
 
-  const main = [
+  let main = [
     <Item key={1} description={ t.name }>{ territory.name }</Item>,
     <Item key={2} description={ t.city }>{ territory.city }</Item>,
     <Item key={3} description={ t.description }>{ territory.description }</Item>,
+    <Item key={4} description={ t.numberOfHouseholders }>{ territory.householders.length  }</Item>,
   ];
+
+  if (territory.currentAssignment) {
+    main.push(<Item key={4} description={ t.currentAssignee }>{ territory.currentAssignment.assigneeName  }</Item>);
+    main.push(<Item key={5} description={ t.dueDate }><Date>{ territory.currentAssignment.returnDate  }</Date></Item>);
+  }
 
   const assignmentsToggler = <ContentToggler openText={ t.hideAssignments } closedText={ t.showAssignments } open={ false }>
     <TerritoryAssignments assignments={territory.assignments} />

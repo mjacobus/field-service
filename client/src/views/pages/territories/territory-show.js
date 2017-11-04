@@ -25,6 +25,13 @@ const fetchTerritory = (slug, callback) => {
   });
 };
 
+const newHouseholderButton = ({ territory, classes }) => {
+  return <Button
+    className={ classes }
+    href={ appRoutes.householders.add({ territory }) }
+  >{ t.addHouseholder }</Button>
+};
+
 const renderActions = withRouter(({ territory, history }) => {
   const openPdf = ((event) => {
     window.open(appRoutes.territories.pdf(territory.slug), '_blank');
@@ -40,13 +47,12 @@ const renderActions = withRouter(({ territory, history }) => {
     <div>
       <Button className={classes} onClick={ goBack } >{ t.back }</Button>
       <Button className={classes} onClick={ openPdf } >{ t.downloadPdf }</Button>
+      { newHouseholderButton({ territory, classes }) }
     </div>
   );
 });
 
 const renderTerritoryView = ({ territory }) =>  {
-  const newHouseholderLink = appRoutes.householders.add({ territory });
-  const addHouseholder = () => window.location.href = newHouseholderLink;
 
   let main = [
     <Item key={1} description={ t.name }>{ territory.name }</Item>,
@@ -69,7 +75,7 @@ const renderTerritoryView = ({ territory }) =>  {
   const householdersToggler = <ContentToggler openText={ t.hideHouseholders } closedText={ t.showHouseholders } open={ true }>
     <Row>
       <Col xs= { 12 }>
-        <Button className={ styles.floatRight } onClick={ addHouseholder } >{ t.addHouseholder }</Button>
+        { newHouseholderButton({ territory, classes: styles.floatRight }) }
       </Col>
     </Row>
 

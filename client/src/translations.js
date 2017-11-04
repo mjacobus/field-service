@@ -1,12 +1,18 @@
 import translate from './helpers/translate';
 
 const translations = {
+  no: translate('no'),
+  yes: translate('yes'),
+  dateFormatPlaceholder: translate('dateFormatPlaceholder'),
   addHouseholder: translate('addHouseholder'),
   address: translate('address'),
   assignedAt: translate('assignedAt'),
+  assignTerritory: translate('assignTerritory'),
   assignedTo: translate('assignedTo'),
   back: translate('back'),
+  cancel: translate('cancel'),
   city: translate('city'),
+  confirmReturn: translate('confirmReturn'),
   currentAssignee: translate('currentAssignee'),
   description: translate('description'),
   doNotVisit: translate('doNotVisit'),
@@ -20,6 +26,7 @@ const translations = {
   publishers: translate('publishers'),
   pendingReturn: translate('pendingReturn'),
   returnedAt: translate('returnedAt'),
+  returnTerritory: translate('returnTerritory'),
   search: translate('search'),
   showAssignments: translate('showAssignments'),
   showHouseholders: translate('showHouseholders'),

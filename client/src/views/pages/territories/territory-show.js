@@ -11,6 +11,7 @@ import Item from '../../components/property-value-label';
 import Button from '../../components/button';
 import HouseholderItem from '../shared/householder-item';
 import TerritoryAssignments from '../shared/territory-assignments';
+import ReturnTerritoryButton from '../shared/territory-return-button';
 import { withRouter } from 'react-router-dom'
 
 import t from '../../../translations';
@@ -34,12 +35,20 @@ const newHouseholderButton = ({ territory, classes }) => {
 
 const renderActions = withRouter(({ territory, history }) => {
   const classes = [styles.wide, styles.fullLine, styles.decolapseDown];
+  let assignmentButton = null;
+
+  if (territory.links.return) {
+    assignmentButton = <ReturnTerritoryButton className={ classes } territory={ territory } />;
+  } else {
+    assignmentButton = <Button className={ classes } href={ territory.links.assign }>{ t.assignTerritory }</Button>;
+  }
 
   return (
     <div>
       <Button className={classes} href={ appRoutes.territories.index() } >{ t.back }</Button>
       <Button className={classes} target="_blank" href={ appRoutes.territories.pdf(territory.slug) } >{ t.downloadPdf }</Button>
       { newHouseholderButton({ territory, classes }) }
+      { assignmentButton }
     </div>
   );
 });
@@ -54,8 +63,8 @@ const renderTerritoryView = ({ territory }) =>  {
   ];
 
   if (territory.currentAssignment) {
-    main.push(<Item key={4} description={ t.currentAssignee }>{ territory.currentAssignment.assigneeName  }</Item>);
-    main.push(<Item key={5} description={ t.dueDate }><Date>{ territory.currentAssignment.returnDate  }</Date></Item>);
+    main.push(<Item key={5} description={ t.currentAssignee }>{ territory.currentAssignment.assigneeName  }</Item>);
+    main.push(<Item key={6} description={ t.dueDate }><Date>{ territory.currentAssignment.returnDate  }</Date></Item>);
   }
 
   const assignmentsToggler = <ContentToggler openText={ t.hideAssignments } closedText={ t.showAssignments } open={ false }>

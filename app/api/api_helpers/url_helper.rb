@@ -12,6 +12,14 @@ module ApiHelpers
       frontend_path('/app/territories')
     end
 
+    def territory_return_path(territory)
+      backend_path("/territories/#{territory.to_param}/assignments/delete")
+    end
+
+    def territory_assign_path(territory)
+      backend_path("/territories/#{territory.to_param}/assignments/new")
+    end
+
     private
 
     def backend_path(path)

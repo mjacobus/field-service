@@ -1,6 +1,7 @@
 import translate from './helpers/translate';
 
 const translations = {
+  addHouseholder: translate('addHouseholder'),
   address: translate('address'),
   assignedAt: translate('assignedAt'),
   assignedTo: translate('assignedTo'),

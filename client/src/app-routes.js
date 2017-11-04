@@ -29,10 +29,17 @@ const territoriesRoutes = {
 const publishersRoutes = {
   list: (params = {}) => {
     return UrlHelper.create('/app/publishers', params);
+  },
+}
+
+const householdersRoutes = {
+  add: ({ territory }) => {
+    return fixUrl(UrlHelper.create(`/territories/${territory.slug}/householders/new`));
   }
 }
 
 export default {
   territories: territoriesRoutes,
+  householders: householdersRoutes,
   publishers: publishersRoutes
 }

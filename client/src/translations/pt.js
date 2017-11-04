@@ -1,4 +1,5 @@
 const translations = {
+  addHouseholder: 'Adicionar Morador',
   address: 'Endereço',
   assignedAt: 'Designado em',
   assignedTo: 'Designado para',

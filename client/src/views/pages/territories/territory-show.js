@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Row, Col} from 'react-bootstrap';
 import LeftRightFrame from '../../components/left-right-frame';
 import ContentToggler from '../../components/content-toggler';
 import routes from '../../../api-routes';
@@ -43,6 +44,9 @@ const renderActions = withRouter(({ territory, history }) => {
 });
 
 const renderTerritoryView = ({ territory }) =>  {
+  const newHouseholderLink = appRoutes.householders.add({ territory });
+  const addHouseholder = () => window.location.href = newHouseholderLink;
+
   const main = [
     <Item key={1} description={ t.name }>{ territory.name }</Item>,
     <Item key={2} description={ t.city }>{ territory.city }</Item>,
@@ -56,11 +60,17 @@ const renderTerritoryView = ({ territory }) =>  {
   const last = territory.householders.length - 1;
 
   const householdersToggler = <ContentToggler openText={ t.hideHouseholders } closedText={ t.showHouseholders } open={ true }>
+    <Row>
+      <Col xs= { 12 }>
+        <Button className={ styles.floatRight } onClick={ addHouseholder } >{ t.addHouseholder }</Button>
+      </Col>
+    </Row>
+
     {
       territory.householders.map((householder, index) => {
         let separator = index !== last;
 
-        return <HouseholderItem key={householder.id} householder={ householder } separator={ separator }/>
+        return <HouseholderItem key={ householder.id } householder={ householder } separator={ separator }/>;
       })
     }
   </ContentToggler>;

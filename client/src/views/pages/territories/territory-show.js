@@ -33,20 +33,12 @@ const newHouseholderButton = ({ territory, classes }) => {
 };
 
 const renderActions = withRouter(({ territory, history }) => {
-  const openPdf = ((event) => {
-    window.open(appRoutes.territories.pdf(territory.slug), '_blank');
-  });
-
-  const goBack = ((event) => {
-    history.push(appRoutes.territories.list())
-  });
-
   const classes = [styles.wide, styles.fullLine, styles.decolapseDown];
 
   return (
     <div>
-      <Button className={classes} onClick={ goBack } >{ t.back }</Button>
-      <Button className={classes} onClick={ openPdf } >{ t.downloadPdf }</Button>
+      <Button className={classes} href={ appRoutes.territories.index() } >{ t.back }</Button>
+      <Button className={classes} target="_blank" href={ appRoutes.territories.pdf(territory.slug) } >{ t.downloadPdf }</Button>
       { newHouseholderButton({ territory, classes }) }
     </div>
   );

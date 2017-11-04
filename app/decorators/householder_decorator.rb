@@ -8,7 +8,7 @@ class HouseholderDecorator < ActiveRecordModelDecorator
   end
 
   def territory_url
-    urls.territory_index_path(territory)
+    urls.territory_show_path(territory)
   end
 
   def url

@@ -17,7 +17,7 @@ export function fetchTerritories(params) {
       type: TERRITORIES_FETCH_REQUEST
     });
 
-    const url = routes.territories.list(params);
+    const url = routes.territories.index(params);
 
     Ajax.getJson(url).then(response => {
       dispatch(updateTerritoriesResult(response.data));

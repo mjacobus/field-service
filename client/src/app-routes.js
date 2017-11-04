@@ -13,7 +13,7 @@ const territoriesRoutes = {
     return fixUrl(UrlHelper.create('/territories', params));
   },
 
-  list: (params = {}) => {
+  index: (params = {}) => {
     return UrlHelper.create('/app/territories', params);
   },
 
@@ -28,7 +28,12 @@ const territoriesRoutes = {
 
 const publishersRoutes = {
   list: (params = {}) => {
-    return UrlHelper.create('/app/publishers', params);
+    console.log('depracated: use index');
+    return fixUrl(UrlHelper.create('/publishers', params));
+  },
+
+  index: (params = {}) => {
+    return fixUrl(UrlHelper.create('/publishers', params));
   },
 }
 
@@ -38,8 +43,15 @@ const householdersRoutes = {
   }
 }
 
+const assignmentRoutes = {
+  index: () => {
+    return fixUrl(UrlHelper.create('/territory_assignments'));
+  }
+}
+
 export default {
   territories: territoriesRoutes,
   householders: householdersRoutes,
+  assignments: assignmentRoutes,
   publishers: publishersRoutes
 }

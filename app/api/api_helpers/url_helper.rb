@@ -4,8 +4,12 @@ module ApiHelpers
       backend_path("/territories/#{householder.territory.slug}/householders/#{householder.to_param}/edit")
     end
 
-    def territory_index_path(territory)
+    def territory_show_path(territory)
       frontend_path("/app/territories/#{territory.to_param}")
+    end
+
+    def territory_index_path
+      frontend_path('/app/territories')
     end
 
     private

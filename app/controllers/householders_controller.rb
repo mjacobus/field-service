@@ -39,7 +39,7 @@ class HouseholdersController < AuthenticatedController
     end
 
     if householder.save
-      redirect_to urls.territory_index_path(territory)
+      redirect_to urls.territory_show_path(territory)
     else
       render :new
     end
@@ -57,7 +57,7 @@ class HouseholdersController < AuthenticatedController
     end
 
     if householder.update(householder_params)
-      redirect_to urls.territory_index_path(territory)
+      redirect_to urls.territory_show_path(territory)
     else
       render :edit
     end

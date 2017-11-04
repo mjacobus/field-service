@@ -37,7 +37,7 @@ const app = <IntlProvider locale="en" messages={translations}>
           <Row>
             <Col xs={12}>
               <div>
-                <Route exact path={ routes.territories.list() } component={TerritoryListContainer}/>
+                <Route exact path={ routes.territories.index() } component={TerritoryListContainer}/>
                 <Route path={ routes.territories.show(':slug') }  component={TerritoryShow}/>
               </div>
             </Col>

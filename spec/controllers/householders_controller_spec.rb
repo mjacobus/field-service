@@ -95,8 +95,7 @@ RSpec.describe HouseholdersController, type: :controller do
 
     patch :update, params: params
 
-    assert_redirected_to decorator.index_url
-    assert_equal t('householders.updated'), flash[:notice]
+    assert_redirected_to "/app/territories/#{householder.territory.to_param}"
   end
 
   it 're-render form when update fails' do

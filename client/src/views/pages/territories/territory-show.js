@@ -55,7 +55,7 @@ const renderTerritoryView = ({ territory }) =>  {
 
   const last = territory.householders.length - 1;
 
-  const householdersToggler = <ContentToggler openText={ t.hideHouseholders } closedText={ t.showHouseholders } open={ false }>
+  const householdersToggler = <ContentToggler openText={ t.hideHouseholders } closedText={ t.showHouseholders } open={ true }>
     {
       territory.householders.map((householder, index) => {
         let separator = index !== last;

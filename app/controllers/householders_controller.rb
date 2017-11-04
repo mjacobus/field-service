@@ -57,7 +57,7 @@ class HouseholdersController < AuthenticatedController
     end
 
     if householder.update(householder_params)
-      redirect_to @householder_decorator.index_url, notice: t('householders.updated')
+      redirect_to urls.territory_index_path(householder.territory)
     else
       render :edit
     end

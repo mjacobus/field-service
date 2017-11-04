@@ -1,6 +1,6 @@
 module ApiResponse
   module Territories
-    class Show
+    class Show < BaseResponse
       def initialize(territory)
         @territory = territory
       end
@@ -60,6 +60,9 @@ module ApiResponse
             present: householder.has_geolocation?,
             lat: householder.lat,
             lon: householder.lon
+          },
+          links: {
+            edit: urls.householder_edit_path(householder),
           }
         }
       end

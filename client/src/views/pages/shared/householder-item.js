@@ -16,14 +16,18 @@ export default ({ householder, separator = true }) => {
     classNames.push(styles.doNotVisit);
   }
 
+  const householderEditLink = (content) => {
+    return <a href={ householder.links.edit }>{content}</a>;
+  };
+
   return (
     <div className={classNames.join(' ')}>
       <Row>
         <Col xs={12} md={4}>
-          <Item description={ t.address } separator={ false }>{ householder.address }</Item>
+          <Item description={ t.address } separator={ false }>{ householderEditLink(householder.address) }</Item>
         </Col>
         <Col xs={12} md={4}>
-          <Item description={ t.name } separator={ false }>{ householder.name }</Item>
+          <Item description={ t.name } separator={ false }>{ householderEditLink(householder.name) }</Item>
         </Col>
         <Col xs={12} md={4}>
           {

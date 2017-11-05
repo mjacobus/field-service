@@ -1,6 +1,8 @@
 const translations = {
   no: 'Não',
   yes: 'Sim',
+  delete: 'Excluir',
+  confirmDelete: 'Tem certeza de que deseja excluir "{item}"?',
   dateFormatPlaceholder: "Data, formato YYYY-MM-DD",
   addHouseholder: 'Adicionar Morador',
   address: 'Endereço',

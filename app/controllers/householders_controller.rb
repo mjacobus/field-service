@@ -66,9 +66,10 @@ class HouseholdersController < AuthenticatedController
   def destroy
     householder = find_householder
     householder.destroy
-    @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
-    redirect_to @householder_decorator.index_url, notice: t('householders.destroyed')
+    render json: { status: :ok }
+  rescue ActiveRecord::RecordNotFound
+    render json: { status: :not_found }, status: 404
   end
 
   private

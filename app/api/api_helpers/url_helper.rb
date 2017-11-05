@@ -20,6 +20,10 @@ module ApiHelpers
       backend_path("/territories/#{territory.to_param}/assignments/new")
     end
 
+    def householder_destroy_path(householder)
+      backend_path("/territories/#{householder.territory.to_param}/householders/#{householder.to_param}")
+    end
+
     private
 
     def backend_path(path)

@@ -2,3 +2,7 @@
   color: red;
   text-decoration: line-through !important;
 }
+
+.deleteButton {
+  float: right;
+}

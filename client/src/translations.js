@@ -1,8 +1,15 @@
-import translate from './helpers/translate';
+import t from './helpers/translate';
+
+const translate = t.html;
+const text = t.text;
 
 const translations = {
   no: translate('no'),
   yes: translate('yes'),
+  delete: translate('delete'),
+  confirmDelete: (item) => {
+    return text('confirmDelete', { values: { item }});
+  },
   dateFormatPlaceholder: translate('dateFormatPlaceholder'),
   addHouseholder: translate('addHouseholder'),
   address: translate('address'),

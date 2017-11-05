@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import LeftRightFrame from '../../components/left-right-frame';
 import ContentToggler from '../../components/content-toggler';
+import Separator from '../../components/separator';
 import Date from '../../components/date';
 import routes from '../../../api-routes';
 import appRoutes from '../../../app-routes';
@@ -53,7 +54,7 @@ const renderActions = withRouter(({ territory, history }) => {
   );
 });
 
-const renderTerritoryView = ({ territory }) =>  {
+const renderTerritoryView = ({ territory, householderDeleteCallback }) =>  {
 
   let main = [
     <Item key={1} description={ t.name }>{ territory.name }</Item>,
@@ -78,13 +79,14 @@ const renderTerritoryView = ({ territory }) =>  {
       <Col xs= { 12 }>
         { newHouseholderButton({ territory, classes: styles.floatRight }) }
       </Col>
+      <Col xs= { 12 }> <Separator /> </Col>
     </Row>
 
     {
       territory.householders.map((householder, index) => {
         let separator = index !== last;
 
-        return <HouseholderItem key={ householder.id } householder={ householder } separator={ separator }/>;
+        return <HouseholderItem key={ householder.id } householder={ householder } separator={ separator } onDelete={ householderDeleteCallback }/>;
       })
     }
   </ContentToggler>;
@@ -103,9 +105,14 @@ export default class TerritoryShow extends Component {
     super(props);
     this.state = { territory: null, loading: true }
     this.slug = this.props.match.params.slug;
+    this.reload = this.reload.bind(this);
   }
 
   componentWillMount() {
+    this.reload();
+  }
+
+  reload() {
     fetchTerritory(this.slug, (territory) => {
       this.setState({territory, loading: false});
     });
@@ -118,8 +125,9 @@ export default class TerritoryShow extends Component {
       return <div></div>;
     }
 
-    const left  = renderActions({ territory })
-    const right = renderTerritoryView({ territory });
+    const householderDeleteCallback = this.reload;
+    const left  = renderActions({ territory });
+    const right = renderTerritoryView({ territory, householderDeleteCallback });
 
     return <LoaderOrContent loading={ this.state.loading }>
         <LeftRightFrame leftComponent={ left } rightComponent={ right }/>

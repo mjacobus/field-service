@@ -64,6 +64,7 @@ module ApiResponse
           },
           links: {
             edit: urls.householder_edit_path(householder),
+            destroy: urls.householder_destroy_path(householder),
           }
         }
       end

@@ -52,7 +52,7 @@ module ApiResponse
         {
           id: householder.id,
           name: householder.name,
-          streetNname: householder.normalized_street_name,
+          streetName: householder.normalized_street_name,
           address: householder.address,
           visit: householder.visit?,
           show: householder.show?,

@@ -111,8 +111,5 @@ RSpec.describe HouseholdersController, type: :controller do
     expect do
       delete :destroy, params: { territory_slug: territory.to_param, id: householder.id }
     end.to change { Householder.count }.by(-1)
-
-    assert_redirected_to decorator.index_url
-    assert_equal t('householders.destroyed'), flash[:notice]
   end
 end

@@ -30,23 +30,23 @@ export default ({ householder, onDelete = noop, separator = true }) => {
       <Row>
         <Col xs={8}>
           <Row>
-            <Col xs={12} md={7}>
+            <Col xs={12} sm={7}>
               <Item description={ t.address } separator={ false }>{ householderEditLink(householder.address) }</Item>
             </Col>
-            <Col xs={12} md={5}>
+            <Col xs={12} sm={5}>
               <Item description={ t.name } separator={ false }>{ householderEditLink(householder.name) }</Item>
             </Col>
           </Row>
         </Col>
         <Col xs={4}>
           <Row>
-            <Col xs={12} md={6}>
+            <Col xs={12} sm={6}>
               {
                 householder.doNotVisitDate &&
                 <Item className={ styles.floatRight } description={ t.doNotVisit } separator={ false }><Date>{ householder.doNotVisitDate }</Date></Item>
               }
             </Col>
-            <Col xs={12} md={6}>
+            <Col xs={12} sm={6}>
               <DeleteHouseholderButton householder={ householder } onDelete={ onDelete } className={ styles.deleteButton } />
             </Col>
           </Row>

@@ -1,4 +1,4 @@
-.doNotVisit {
+.doNotVisit, .doNotVisit a {
   color: red;
   text-decoration: line-through !important;
 }

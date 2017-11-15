@@ -95,5 +95,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.1.1"
   }
 }

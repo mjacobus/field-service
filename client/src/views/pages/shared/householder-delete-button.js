@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Button from './button';
+import Button from '../../components/button';
 
-import t from '../../translations';
-import ajax from '../../utils/ajax-helper';
+import t from '../../../translations';
+import ajax from '../../../utils/ajax-helper';
 
 const noop = (response) => { console.log('No onDelete provided:', response) };
 

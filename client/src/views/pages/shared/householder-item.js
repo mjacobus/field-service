@@ -4,7 +4,7 @@ import {Row, Col} from 'react-bootstrap';
 import Item from '../../components/property-value-label';
 import Separator from '../../components/separator';
 import Date from '../../components/date';
-import DeleteHouseholderButton from '../../components/householder-delete-button';
+import DeleteHouseholderButton from '../../pages/shared/householder-delete-button';
 
 import t from '../../../translations';
 

@@ -1,19 +1,32 @@
+/* 3rd party */
+
 import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TerritoryListContainer from './containers/pages/territories/index';
-import TerritoryShow from './views/pages/territories/show';
-import TopMenu from './views/components/top-menu';
-import EnvironmentAlert from './views/components/environment-alert';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
 import thunk from 'redux-thunk';
+
+/* containers */
+import TerritoryListContainer from './containers/pages/territories/index';
+import TerritoryShowContainer from './containers/pages/territories/show';
+
+/* components */
+import TopMenu from './views/components/top-menu';
+import EnvironmentAlert from './views/components/environment-alert';
+
+/* reducers */
 import {territoriesReducer} from './reducers/territories';
+
+/* utils */
+
 import routes from './app-routes';
 import {IntlProvider} from 'react-intl';
 import translations from './translations/pt'
+
+/* styles */
 
 import './index.css';
 
@@ -38,7 +51,7 @@ const app = <IntlProvider locale="en" messages={translations}>
             <Col xs={12}>
               <div>
                 <Route exact path={ routes.territories.index() } component={TerritoryListContainer}/>
-                <Route path={ routes.territories.show(':slug') }  component={TerritoryShow}/>
+                <Route path={ routes.territories.show(':slug') }  component={TerritoryShowContainer}/>
               </div>
             </Col>
           </Row>

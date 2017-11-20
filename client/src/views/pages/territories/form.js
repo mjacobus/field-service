@@ -46,6 +46,7 @@ export default class TerritoryEdit extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.state = { territory: {} };
     this.slug = this.props.match.params.slug;
+    this.changed = false;
   }
 
   componentWillMount() {
@@ -54,17 +55,37 @@ export default class TerritoryEdit extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.props.submitValues(this.state.territory);
+
+    if (!this.changed) {
+      console.log('nothing changed');
+      return;
+    }
+
+    this.props.submitValues(this.slug, this.getValues());
+  }
+
+  getValues() {
+    const values =  Object.assign({}, this.props.territory, this.state.territory);
+
+    const { slug } = this;
+
+    return {
+      slug: slug,
+      name: values.name,
+      city: values.city,
+      description: values.description,
+    }
   }
 
   setAttribute(attribute, value) {
     const newTerritory = Object.assign({}, this.state.territory, { [attribute] : value });
     this.setState({ territory: newTerritory })
+    this.changed = true;
   }
 
   render() {
     const onAttributeChange = this.setAttribute;
-    const territory = this.props.territory;
+    const territory = this.getValues();
     const errors = this.props.errors;
 
     return <LoaderOrContent loading={ this.props.loading }>

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import TerritoryForm from '../../../views/pages/territories/form';
-import { fetchTerritoryForForm } from '../../../actions/territory-actions';
+import { fetchTerritoryForForm, updateTerritory } from '../../../actions/territory-actions';
 
 function mapStateToProps(state) {
   return {
@@ -15,9 +15,8 @@ function mapDispatchToProps(dispatch) {
       dispatch(fetchTerritoryForForm(slug));
     },
 
-    submitValues: (values) => {
-      console.log(values);
-      // dispatch(fetchTerritories(params));
+    submitValues: (slug, values) => {
+      dispatch(updateTerritory(slug, values));
     }
   };
 }

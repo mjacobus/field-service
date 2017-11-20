@@ -1,15 +1,21 @@
 import Ajax from '../utils/ajax-helper';
 import routes from '../api-routes';
 
-export const TERRITORIES_UPDATE_ITEMS = 'TERRITORIES_UPDATE_ITEMS';
-export const TERRITORIES_FETCH_REQUEST = 'TERRITORIES_FETCH_REQUEST';
+/* index */
+export const TERRITORY_INDEX_UPDATE_ITEMS = 'TERRITORY_INDEX_UPDATE_ITEMS';
+export const TERRITORIES_INDEX_FETCH_REQUEST = 'TERRITORIES_INDEX_FETCH_REQUEST';
+
+/* edit */
+export const TERRITORY_EDIT_POST_REQUEST = 'TERRITORY_EDIT_POST_REQUEST';
 export const TERRITORY_EDIT_FETCH_REQUEST = 'TERRITORY_EDIT_FETCH_REQUEST';
 export const TERRITORY_EDIT_POPULATE_FORM = 'TERRITORY_EDIT_POPULATE_FORM';
+export const TERRITORY_EDIT_SHOW_ERRORS = 'TERRITORY_EDIT_SHOW_ERRORS';
+
 
 /* index */
 export function updateTerritoriesResult(territories) {
   return {
-    type: TERRITORIES_UPDATE_ITEMS,
+    type: TERRITORY_INDEX_UPDATE_ITEMS,
     territories
   };
 };
@@ -17,7 +23,7 @@ export function updateTerritoriesResult(territories) {
 export function fetchTerritories(params) {
   return dispatch => {
     dispatch({
-      type: TERRITORIES_FETCH_REQUEST
+      type: TERRITORIES_INDEX_FETCH_REQUEST
     });
 
     const url = routes.territories.index(params);
@@ -46,6 +52,25 @@ export function fetchTerritoryForForm(slug) {
 
     Ajax.getJson(url).then(response => {
       dispatch(udpateTerritoryForm(response.data));
+    });
+  };
+};
+
+export function showEditErrors(errors) {
+  return {
+    type: TERRITORY_EDIT_SHOW_ERRORS,
+    errors
+  }
+}
+
+export function updateTerritory(slug, values) {
+  return dispatch => {
+    const url = routes.territories.show(slug);
+
+    Ajax.patch(url, { territory: values }).then(response => {
+      if (response.errors) {
+        dispatch(showEditErrors(response.errors));
+      }
     });
   };
 };

@@ -1,7 +1,7 @@
 import UrlHelper from './utils/url-helper';
 
 const territoriesRoutes = {
-  list: (params = {}) => {
+  index: (params = {}) => {
     if (params.assignedToIds) {
       params.assigned_to_ids = params.assignedToIds;
     }
@@ -21,11 +21,15 @@ const territoriesRoutes = {
   }
 }
 
+territoriesRoutes.list = territoriesRoutes.index;
+
 const publishersRoutes = {
-  list: (params = {}) => {
+  index: (params = {}) => {
     return UrlHelper.create('/api/publishers', params);
   }
 }
+
+territoriesRoutes.list = publishersRoutes.index;
 
 export default {
   territories: territoriesRoutes,

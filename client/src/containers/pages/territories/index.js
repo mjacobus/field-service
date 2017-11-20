@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import TerritoryList from '../../../views/pages/territories/territory-list';
+import TerritoryIndex from '../../../views/pages/territories/index';
 import { fetchTerritories } from '../../../actions/territory-actions';
 
 function mapStateToProps(state) {
@@ -17,6 +17,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const TerritoryListContainer = connect(mapStateToProps, mapDispatchToProps)(TerritoryList);
+const TerritoryIndexContainer = connect(mapStateToProps, mapDispatchToProps)(TerritoryIndex);
 
-export default TerritoryListContainer;
+export default TerritoryIndexContainer;

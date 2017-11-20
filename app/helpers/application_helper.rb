@@ -40,4 +40,8 @@ module ApplicationHelper
   def symbolized_params
     params.permit!.to_h.deep_symbolize_keys
   end
+
+  def urls
+    @urls ||= ApiHelpers::UrlHelper.new
+  end
 end

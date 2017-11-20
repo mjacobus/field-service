@@ -1,6 +1,6 @@
 class HouseholderDecorator < ActiveRecordModelDecorator
   def index_url
-    "/territories/#{territory.to_param}/householders"
+    territory_url
   end
 
   def html_classes
@@ -8,7 +8,19 @@ class HouseholderDecorator < ActiveRecordModelDecorator
   end
 
   def territory_url
-    "/territories/#{territory.to_param}"
+    urls.territory_show_path(territory)
+  end
+
+  def url
+    "/territories/#{territory.to_param}/householders/#{item.to_param}"
+  end
+
+  def form_url
+    item.persisted? ? url : create_householder_url
+  end
+
+  def create_householder_url(*args)
+    "/territories/#{territory.to_param}/householders"
   end
 
   def breadcrumbs

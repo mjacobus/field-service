@@ -15,13 +15,12 @@ export default () => {
             <Link to="/app/territories">{ t.territories }</Link>
           </Col>
           <Col xs={12} md={3}>
-            <Link to="/app/publishers">{ t.publishers }</Link>
+            <a href={ routes.publishers.index() }>{ t.publishers }</a>
           </Col>
           <Col xs={12} md={3}>
-            <Link to="/app/territory_assignments"> { t.territoryAssignments }</Link>
+            <a href={ routes.assignments.index() }>{ t.territoryAssignments }</a>
           </Col>
           <Col xs={12} md={3}>
-            <a href={ routes.territories.legacyList() }>Legacy</a>
           </Col>
         </Row>
       </Grid>

@@ -35,7 +35,7 @@ RSpec.describe TerritoryAssignmentsController do
     it 'redirects to the territory url' do
       perform_request
 
-      expect(response).to redirect_to(territory_url(territory.to_param))
+      expect(response).to redirect_to("/app/territories/#{territory.to_param}")
     end
   end
 
@@ -90,7 +90,7 @@ RSpec.describe TerritoryAssignmentsController do
     it 'redirects to the territory url' do
       perform_request
 
-      expect(response).to redirect_to(territory_url(territory.to_param))
+      expect(response).to redirect_to("/app/territories/#{territory.to_param}")
     end
   end
 end

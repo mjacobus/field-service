@@ -28,6 +28,10 @@ class Territory < ApplicationRecord
     @current_assignment ||= assignments.where(returned: false).last
   end
 
+  def assigned?
+    @assigned ||= current_assignment.present?
+  end
+
   def need_to_be_returned?
     assignment = current_assignment
 

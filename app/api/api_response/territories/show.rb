@@ -1,6 +1,6 @@
 module ApiResponse
   module Territories
-    class Show
+    class Show < BaseResponse
       def initialize(territory)
         @territory = territory
       end
@@ -20,10 +20,11 @@ module ApiResponse
           name: territory.name,
           city: territory.city,
           description: territory.description,
-          householders: territory_householders(territory),
           assigned: current_assignment.present?,
           currentAssignment: current_assignment,
-          assignments: assignments(territory)
+          links: links(territory),
+          assignments: assignments(territory),
+          householders: territory_householders(territory),
         }
       end
 
@@ -51,7 +52,7 @@ module ApiResponse
         {
           id: householder.id,
           name: householder.name,
-          streetNname: householder.normalized_street_name,
+          streetName: householder.normalized_street_name,
           address: householder.address,
           visit: householder.visit?,
           show: householder.show?,
@@ -60,6 +61,10 @@ module ApiResponse
             present: householder.has_geolocation?,
             lat: householder.lat,
             lon: householder.lon
+          },
+          links: {
+            edit: urls.householder_edit_path(householder),
+            destroy: urls.householder_destroy_path(householder),
           }
         }
       end
@@ -82,6 +87,20 @@ module ApiResponse
             name: publisher.name
           }
         }
+      end
+
+      def links(territory)
+        values = {}
+
+        if territory.assigned?
+          values[:return] = urls.territory_return_path(territory)
+        end
+
+        unless territory.assigned?
+          values[:assign] = urls.territory_assign_path(territory)
+        end
+
+        values
       end
     end
   end

@@ -3,6 +3,10 @@ class ActiveRecordBaseDecorator < BaseDecorator
     item.class.human_attribute_name(attribute_name)
   end
 
+  def urls
+    @urls ||= ApiHelpers::UrlHelper.new
+  end
+
   protected
 
   # http://zurb.com/playground/foundation-icon-fonts-3

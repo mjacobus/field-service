@@ -62,10 +62,7 @@ RSpec.describe HouseholdersController, type: :controller do
       post :create, params: { territory_slug: territory.to_param }.merge(householder: householder_params)
     end.to change { territory.householders.count }.by(1)
 
-    index = HouseholderDecorator.new(Householder.unscoped.last).index_url
-
-    assert_redirected_to index
-    assert_equal t('householders.created'), flash[:notice]
+    assert_redirected_to "/app/territories/#{householder.territory.to_param}"
   end
 
   it 're-render form when create fails' do
@@ -95,8 +92,7 @@ RSpec.describe HouseholdersController, type: :controller do
 
     patch :update, params: params
 
-    assert_redirected_to decorator.index_url
-    assert_equal t('householders.updated'), flash[:notice]
+    assert_redirected_to "/app/territories/#{householder.territory.to_param}"
   end
 
   it 're-render form when update fails' do
@@ -115,8 +111,5 @@ RSpec.describe HouseholdersController, type: :controller do
     expect do
       delete :destroy, params: { territory_slug: territory.to_param, id: householder.id }
     end.to change { Householder.count }.by(-1)
-
-    assert_redirected_to decorator.index_url
-    assert_equal t('householders.destroyed'), flash[:notice]
   end
 end

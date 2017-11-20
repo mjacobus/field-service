@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import routes from '../../api-routes';
-import Ajax from '../../utils/ajax-helper';
-import Select from './select';
+import routes from '../../../api-routes';
+import Ajax from '../../../utils/ajax-helper';
+import Select from '../../components/select';
 
 const fetchOptions = (callback) => {
-  const url = routes.publishers.list();
+  const url = routes.publishers.index();
 
   Ajax.getJson(url).then((response) => {
     const options = response.data.map((options) => {

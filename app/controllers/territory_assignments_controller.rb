@@ -34,7 +34,7 @@ class TerritoryAssignmentsController < AuthenticatedController
 
     TerritoryAssigning.new.perform(payload)
 
-    redirect_to territory_url(territory), notice: t('territories.assigned')
+    redirect_to urls.territory_show_path(territory)
   rescue
     redirect_to territory_url(territory), alert: t('territories.assignment_error')
   end
@@ -48,7 +48,7 @@ class TerritoryAssignmentsController < AuthenticatedController
 
     ReturnTerritory.new.perform(payload)
 
-    redirect_to territory_url(territory.to_param), notice: t('territories.returned')
+    redirect_to urls.territory_show_path(territory)
   end
 
   private

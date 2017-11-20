@@ -39,7 +39,7 @@ class HouseholdersController < AuthenticatedController
     end
 
     if householder.save
-      redirect_to @householder_decorator.index_url, notice: t('householders.created')
+      redirect_to urls.territory_show_path(territory)
     else
       render :new
     end
@@ -57,7 +57,7 @@ class HouseholdersController < AuthenticatedController
     end
 
     if householder.update(householder_params)
-      redirect_to @householder_decorator.index_url, notice: t('householders.updated')
+      redirect_to urls.territory_show_path(territory)
     else
       render :edit
     end
@@ -66,9 +66,10 @@ class HouseholdersController < AuthenticatedController
   def destroy
     householder = find_householder
     householder.destroy
-    @householder_decorator = create_decorator(HouseholderDecorator, householder)
 
-    redirect_to @householder_decorator.index_url, notice: t('householders.destroyed')
+    render json: { status: :ok }
+  rescue ActiveRecord::RecordNotFound
+    render json: { status: :not_found }, status: 404
   end
 
   private

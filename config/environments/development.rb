@@ -64,7 +64,7 @@ Rails.application.configure do
   config.middleware.insert_before 0, Rack::Cors do
     allow do
       origins 'localhost:3001'
-      resource '*', headers: :any, methods: [:get, :post, :options], credentials: true
+      resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options], credentials: true
     end
   end
 end

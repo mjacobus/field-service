@@ -1,4 +1,4 @@
-# README
+# Field Service
 
 My personal field service helper
 
@@ -9,7 +9,9 @@ My personal field service helper
 [![Coverage Status](https://coveralls.io/repos/github/mjacobus/field-service/badge.svg)](https://coveralls.io/github/mjacobus/field-service)
 [![Dependency Status](https://gemnasium.com/badges/github.com/mjacobus/field-service.svg)](https://gemnasium.com/github.com/mjacobus/field-service)
 
-## Installing
+## Notes to self
+
+### Installing
 
 Copy .env.example to .env and change accordingly.
 
@@ -17,7 +19,7 @@ Copy .env.example to .env and change accordingly.
 ./bin/setup
 ```
 
-## Running
+### Running
 
 ```
 yarn run start
@@ -26,14 +28,14 @@ yarn run start
 - [Api](http://localhost:3000)
 - [Client](http://localhost:3001)
 
-## Importing/exporting
+### Importing/exporting
 
 ```bash
 rake csv:householders:import     # will import CSVs inside csv/to_import prefixed with householders_
 rake csv:householders:export_all # will export to csv/exports
 ```
 
-### CSV columns:
+#### CSV columns:
 
 - `territory_name` - required
 - `street_name` - required
@@ -43,7 +45,21 @@ rake csv:householders:export_all # will export to csv/exports
 - `uuid`
 - `updated_at`
 
+### React Frontend
 
-## Resources
+#### The current structure of this project
+
+- actions
+- containers/pages/
+- helpers - utils that may be business dependent
+- seletors - God knows ;-)
+- translations
+- utils - utils that are business agnostic
+- views/components/ - components that are business agnostic
+- views/pages/shared/ - components that are business dependent
+- views/pages/{resource}/{action} - rails like naming for views - I.E. territories/show.js
+
+
+### Resources
 
 - [react-bootstrap](https://react-bootstrap.github.io/getting-started.html)

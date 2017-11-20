@@ -12,6 +12,10 @@ const classNames = [
   globalStyle.spaceAbove,
 ];
 
+const filterInput = (value) => {
+  return value || '';
+};
+
 const TerritoryForm = ({ onSubmit, territory = {}, onAttributeChange, errors }) => {
   const setValue = (attributeName) => {
     return (event) => {
@@ -21,27 +25,34 @@ const TerritoryForm = ({ onSubmit, territory = {}, onAttributeChange, errors }) 
   }
 
   return <form onSubmit={ onSubmit }>
-    <InputText label={ t.name } name="name" value={ territory.name } onChange={ setValue("name") } errors={ errors.name }/>
-    <InputText label={ t.city } name="city" value={ territory.city } onChange={ setValue("city") } errors={ errors.city }/>
-    <InputText label={ t.description } name="description" value={territory.description} onChange={ setValue("description") } errors={ errors.description } />
+    <InputText label={ t.name } name="name" value={ filterInput(territory.name) } onChange={ setValue("name") } errors={ errors.name }/>
+    <InputText label={ t.city } name="city" value={ filterInput(territory.city) } onChange={ setValue("city") } errors={ errors.city }/>
+    <InputText label={ t.description } name="description" value={ filterInput(territory.description) } onChange={ setValue("description") } errors={ errors.description } />
 
     <Button type="submit" className={ classNames }>{ t.save }</Button>
   </form>
 };
 
 export default class TerritoryEdit extends Component {
+  static defaultProps = {
+    territory: {
+      name: '',
+      city: '',
+      description: '',
+    },
+    errors: {},
+  }
+
   constructor(props) {
     super(props);
     this.setAttribute = this.setAttribute.bind(this);
-
-    const territory = {
-      name: 't1',
-      city: 'city',
-      description: 'city',
-    };
-
-    this.state = { territory, errors: [] };
     this.onSubmit = this.onSubmit.bind(this);
+    this.state = { territory: {} };
+    this.slug = this.props.match.params.slug;
+  }
+
+  componentWillMount() {
+    this.props.fetchTerritory(this.slug);
   }
 
   onSubmit(event) {
@@ -56,8 +67,8 @@ export default class TerritoryEdit extends Component {
 
   render() {
     const onAttributeChange = this.setAttribute;
-    const territory = this.state.territory;
-    const errors = this.state.errors;
+    const territory = this.props.territory;
+    const errors = this.props.errors;
 
     return <TerritoryForm onSubmit={ this.onSubmit } territory={ territory } onAttributeChange={ onAttributeChange } errors={errors} />
   }

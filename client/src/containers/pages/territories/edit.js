@@ -1,16 +1,20 @@
 import {connect} from 'react-redux';
 import TerritoryForm from '../../../views/pages/territories/form';
-// import { fetchTerritories } from '../../../actions/territory-actions';
+import { fetchTerritoryForForm } from '../../../actions/territory-actions';
 
 function mapStateToProps(state) {
   return {
-    // territories: state.territories.list.items,
-    // loading: state.territories.list.loading
+    ...state.territories.edit,
+    territory: state.territories.edit.territory,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    fetchTerritory: (slug) => {
+      dispatch(fetchTerritoryForForm(slug));
+    },
+
     submitValues: (values) => {
       console.log(values);
       // dispatch(fetchTerritories(params));

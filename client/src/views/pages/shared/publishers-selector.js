@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import routes from '../../api-routes';
-import Ajax from '../../utils/ajax-helper';
-import Select from './select';
+import routes from '../../../api-routes';
+import Ajax from '../../../utils/ajax-helper';
+import Select from '../../components/select';
 
 const fetchOptions = (callback) => {
   const url = routes.publishers.index();

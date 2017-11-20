@@ -7,6 +7,7 @@ const translations = {
   no: translate('no'),
   yes: translate('yes'),
   delete: translate('delete'),
+  save: translate('save'),
   confirmDelete: (item) => {
     return text('confirmDelete', { values: { item }});
   },

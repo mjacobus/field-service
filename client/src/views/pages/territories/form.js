@@ -4,6 +4,7 @@ import t from '../../../translations';
 
 import InputText from '../../components/input-text';
 import Button from '../../components/button';
+import LoaderOrContent from '../../components/loader-or-content';
 
 import globalStyle from '../../../global.css';
 
@@ -35,11 +36,7 @@ const TerritoryForm = ({ onSubmit, territory = {}, onAttributeChange, errors }) 
 
 export default class TerritoryEdit extends Component {
   static defaultProps = {
-    territory: {
-      name: '',
-      city: '',
-      description: '',
-    },
+    territory: {},
     errors: {},
   }
 
@@ -70,6 +67,8 @@ export default class TerritoryEdit extends Component {
     const territory = this.props.territory;
     const errors = this.props.errors;
 
-    return <TerritoryForm onSubmit={ this.onSubmit } territory={ territory } onAttributeChange={ onAttributeChange } errors={errors} />
+    return <LoaderOrContent loading={ this.props.loading }>
+      { <TerritoryForm onSubmit={ this.onSubmit } territory={ territory } onAttributeChange={ onAttributeChange } errors={errors} /> }
+    </LoaderOrContent>
   }
 }

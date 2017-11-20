@@ -10,7 +10,7 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import thunk from 'redux-thunk';
 
 /* containers */
-import TerritoryListContainer from './containers/pages/territories/index';
+import TerritoryIndexContainer from './containers/pages/territories/index';
 import TerritoryShowContainer from './containers/pages/territories/show';
 
 /* components */
@@ -50,7 +50,7 @@ const app = <IntlProvider locale="en" messages={translations}>
           <Row>
             <Col xs={12}>
               <div>
-                <Route exact path={ routes.territories.index() } component={TerritoryListContainer}/>
+                <Route exact path={ routes.territories.index() } component={TerritoryIndexContainer}/>
                 <Route path={ routes.territories.show(':slug') }  component={TerritoryShowContainer}/>
               </div>
             </Col>

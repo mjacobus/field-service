@@ -73,7 +73,7 @@ class SearchForm extends Component {
   }
 }
 
-export default class TerritoryList extends Component {
+export default class TerritoryIndex extends Component {
   static defaultProps = { territories: [], loading: true };
 
   componentWillMount() {

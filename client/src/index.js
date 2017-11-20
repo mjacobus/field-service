@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TerritoryListContainer from './containers/pages/territories/index';
-import TerritoryShow from './views/pages/territories/territory-show';
+import TerritoryShow from './views/pages/territories/show';
 import TopMenu from './views/components/top-menu';
 import EnvironmentAlert from './views/components/environment-alert';
 import {BrowserRouter, Route} from 'react-router-dom';

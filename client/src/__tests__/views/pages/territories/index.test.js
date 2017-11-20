@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {IntlProvider} from 'react-intl';
 
-import TerritoryIndex from '../../../../views/pages/territories/territory-list.js'
+import TerritoryIndex from '../../../../views/pages/territories/index'
 
 test.skip('can be created', () => {
   const props = {

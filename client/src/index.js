@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TerritoryListContainer from './containers/pages/territories/list-container';
+import TerritoryListContainer from './containers/pages/territories/index';
 import TerritoryShow from './views/pages/territories/territory-show';
 import TopMenu from './views/components/top-menu';
 import EnvironmentAlert from './views/components/environment-alert';

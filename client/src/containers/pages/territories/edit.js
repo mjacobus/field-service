@@ -6,6 +6,7 @@ function mapStateToProps(state) {
   return {
     ...state.territories.edit,
     territory: state.territories.edit.territory,
+    persisted: state.territories.edit.persisted
   };
 }
 

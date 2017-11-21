@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import t from '../../../translations';
+import routes from '../../../app-routes';
 
 import InputText from '../../components/input-text';
 import Button from '../../components/button';
 import LoaderOrContent from '../../components/loader-or-content';
+
 
 import globalStyle from '../../../global.css';
 
@@ -36,6 +39,7 @@ const TerritoryForm = ({ onSubmit, territory = {}, onAttributeChange, errors }) 
 
 export default class TerritoryEdit extends Component {
   static defaultProps = {
+    persisted: false,
     territory: {},
     errors: {},
   }
@@ -84,6 +88,10 @@ export default class TerritoryEdit extends Component {
   }
 
   render() {
+    if (this.props.persisted) {
+      return <Redirect to={ routes.territories.index() } />
+    }
+
     const onAttributeChange = this.setAttribute;
     const territory = this.getValues();
     const errors = this.props.errors;

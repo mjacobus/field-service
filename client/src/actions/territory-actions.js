@@ -10,6 +10,7 @@ export const TERRITORY_EDIT_POST_REQUEST = 'TERRITORY_EDIT_POST_REQUEST';
 export const TERRITORY_EDIT_FETCH_REQUEST = 'TERRITORY_EDIT_FETCH_REQUEST';
 export const TERRITORY_EDIT_POPULATE_FORM = 'TERRITORY_EDIT_POPULATE_FORM';
 export const TERRITORY_EDIT_SHOW_ERRORS = 'TERRITORY_EDIT_SHOW_ERRORS';
+export const TERRITORY_SAVED = 'TERRITORY_SAVED';
 
 
 /* index */
@@ -63,14 +64,23 @@ export function showEditErrors(errors) {
   }
 }
 
+function territorySaved(territory) {
+  return {
+    type: TERRITORY_SAVED,
+    territory
+  }
+}
+
 export function updateTerritory(slug, values) {
   return dispatch => {
     const url = routes.territories.show(slug);
 
     Ajax.patch(url, { territory: values }).then(response => {
       if (response.errors) {
-        dispatch(showEditErrors(response.errors));
+        return dispatch(showEditErrors(response.errors));
       }
+
+      dispatch(territorySaved(response.data))
     });
   };
 };

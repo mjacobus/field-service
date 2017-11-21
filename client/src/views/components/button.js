@@ -9,6 +9,5 @@ const defaultStyle = {
 };
 
 export default ({ bsStyle = 'primary', style = defaultStyle, ...otherProps }) => {
-  const props = { bsStyle, ...otherProps }
-  return <Button style={ style } {...props} />;
+  return <Button style={ style } {...otherProps} />;
 };

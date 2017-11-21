@@ -71,6 +71,10 @@ function territorySaved(territory) {
   }
 }
 
+function requestTerritoryUpdate() {
+  return { type: UPDATE_TERRITORY }
+}
+
 export function updateTerritory(slug, values) {
   return (dispatch, getState) => {
     const url = routes.territories.show(slug);
@@ -81,6 +85,8 @@ export function updateTerritory(slug, values) {
       || oldTerritory.description !== values.description
     );
 
+
+    dispatch(requestTerritoryUpdate());
 
     if (!changed) {
       dispatch(territorySaved(oldTerritory));

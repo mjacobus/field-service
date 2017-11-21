@@ -20,7 +20,8 @@ const filterInput = (value) => {
   return value || '';
 };
 
-const TerritoryForm = withRouter(({ onSubmit, territory = {}, onAttributeChange, errors, history }) => {
+const TerritoryForm = withRouter(({ onSubmit, posting, territory = {}, onAttributeChange, errors, history }) => {
+  console.log(posting)
   const setValue = (event) => {
     event.preventDefault();
     return onAttributeChange(event.target.name, event.target.value);
@@ -31,7 +32,7 @@ const TerritoryForm = withRouter(({ onSubmit, territory = {}, onAttributeChange,
     <InputText label={ t.city } name="city" value={ filterInput(territory.city) } onChange={ setValue } errors={ errors.city }/>
     <InputText label={ t.description } name="description" value={ filterInput(territory.description) } onChange={ setValue } errors={ errors.description } />
 
-    <Button type="submit" className={ classNames }>{ t.save }</Button>
+    <Button type="submit" disabled={ posting } className={ classNames }>{ t.save }</Button>
     <Button type="submit" className={ classNames } onClick={ () => history.push(routes.territories.index()) }>{ t.back }</Button>
   </form>
 });
@@ -93,9 +94,13 @@ export default class TerritoryEdit extends Component {
     const onAttributeChange = this.setAttribute;
     const territory = this.getValues();
     const errors = this.props.errors;
+    const onSubmit = this.onSubmit;
+    const posting = this.props.posting;
+    console.log('posting', posting);
+    const props = { territory, errors, onAttributeChange, onSubmit, posting };
 
     return <LoaderOrContent loading={ this.props.loading }>
-      { <TerritoryForm onSubmit={ this.onSubmit } territory={ territory } onAttributeChange={ onAttributeChange } errors={errors} /> }
+      { <TerritoryForm {...props} /> }
     </LoaderOrContent>
   }
 }

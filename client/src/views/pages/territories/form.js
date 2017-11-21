@@ -21,7 +21,6 @@ const filterInput = (value) => {
 };
 
 const TerritoryForm = withRouter(({ onSubmit, posting, territory = {}, onAttributeChange, errors, history }) => {
-  console.log(posting)
   const setValue = (event) => {
     event.preventDefault();
     return onAttributeChange(event.target.name, event.target.value);
@@ -96,7 +95,6 @@ export default class TerritoryEdit extends Component {
     const errors = this.props.errors;
     const onSubmit = this.onSubmit;
     const posting = this.props.posting;
-    console.log('posting', posting);
     const props = { territory, errors, onAttributeChange, onSubmit, posting };
 
     return <LoaderOrContent loading={ this.props.loading }>

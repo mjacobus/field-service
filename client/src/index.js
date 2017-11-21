@@ -19,7 +19,7 @@ import TopMenu from './views/components/top-menu';
 import EnvironmentAlert from './views/components/environment-alert';
 
 /* reducers */
-import {territoriesReducer} from './reducers/territories';
+import {territoriesReducer} from './reducers/territories-reducer';
 
 /* utils */
 

@@ -1,12 +1,12 @@
 import {
-  TERRITORY_INDEX_UPDATE_ITEMS,
-  TERRITORIES_INDEX_FETCH_REQUEST,
-  TERRITORY_EDIT_FETCH_REQUEST,
-  TERRITORY_EDIT_POPULATE_FORM,
-  TERRITORY_EDIT_POST_REQUEST,
-  TERRITORY_SAVED,
+  TERRITORIES_FETCHED,
+  FETCH_TERRITORIES,
+  FETCH_TERRITORY,
+  TERRITORY_FETCHED,
+  UPDATE_TERRITORY,
+  TERRITORY_UPDATED,
   RESET_PERSISTED,
-  TERRITORY_EDIT_SHOW_ERRORS
+  SHOW_FORM_ERRORS
 } from '../actions/territory-actions';
 
 const DEFAULT_STATE = {
@@ -24,7 +24,7 @@ const DEFAULT_STATE = {
 
 export function territoriesReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
-    case TERRITORIES_INDEX_FETCH_REQUEST:
+    case FETCH_TERRITORIES:
       return {
         ...state,
         list: {
@@ -33,7 +33,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORY_INDEX_UPDATE_ITEMS:
+    case TERRITORIES_FETCHED:
       return {
         ...state,
         list: {
@@ -42,7 +42,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORY_EDIT_FETCH_REQUEST:
+    case FETCH_TERRITORY:
       return {
         ...state,
         edit: {
@@ -52,7 +52,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORY_EDIT_POPULATE_FORM:
+    case TERRITORY_FETCHED:
       return {
         ...state,
         edit: {
@@ -61,7 +61,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORY_EDIT_POST_REQUEST:
+    case UPDATE_TERRITORY:
       return {
         ...state,
         edit: {
@@ -70,7 +70,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORY_EDIT_SHOW_ERRORS:
+    case SHOW_FORM_ERRORS:
       return {
         ...state,
         edit: {
@@ -80,7 +80,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORY_SAVED:
+    case TERRITORY_UPDATED:
       return {
         ...state,
         edit: {

@@ -1,23 +1,23 @@
 import Ajax from '../utils/ajax-helper';
 import routes from '../api-routes';
 
-/* index */
-export const TERRITORY_INDEX_UPDATE_ITEMS = 'TERRITORY_INDEX_UPDATE_ITEMS';
-export const TERRITORIES_INDEX_FETCH_REQUEST = 'TERRITORIES_INDEX_FETCH_REQUEST';
+export const FETCH_TERRITORIES = 'FETCH_TERRITORIES';
+export const TERRITORIES_FETCHED = 'TERRITORIES_FETCHED';
 
-/* edit */
-export const TERRITORY_EDIT_POST_REQUEST = 'TERRITORY_EDIT_POST_REQUEST';
-export const TERRITORY_EDIT_FETCH_REQUEST = 'TERRITORY_EDIT_FETCH_REQUEST';
-export const TERRITORY_EDIT_POPULATE_FORM = 'TERRITORY_EDIT_POPULATE_FORM';
-export const TERRITORY_EDIT_SHOW_ERRORS = 'TERRITORY_EDIT_SHOW_ERRORS';
-export const TERRITORY_SAVED = 'TERRITORY_SAVED';
+export const FETCH_TERRITORY = 'FETCH_TERRITORY';
+export const TERRITORY_FETCHED = 'TERRITORY_FETCHED';
+
 export const RESET_PERSISTED = 'RESET_PERSISTED';
+
+export const SHOW_FORM_ERRORS = 'SHOW_FORM_ERRORS';
+export const TERRITORY_UPDATED = 'TERRITORY_UPDATED';
+export const UPDATE_TERRITORY = 'UPDATE_TERRITORY';
 
 
 /* index */
 export function updateTerritoriesResult(territories) {
   return {
-    type: TERRITORY_INDEX_UPDATE_ITEMS,
+    type: TERRITORIES_FETCHED,
     territories
   };
 };
@@ -25,7 +25,7 @@ export function updateTerritoriesResult(territories) {
 export function fetchTerritories(params) {
   return dispatch => {
     dispatch({
-      type: TERRITORIES_INDEX_FETCH_REQUEST
+      type: FETCH_TERRITORIES
     });
 
     const url = routes.territories.index(params);
@@ -39,7 +39,7 @@ export function fetchTerritories(params) {
 /* edit */
 export function udpateTerritoryForm(territory) {
   return {
-    type: TERRITORY_EDIT_POPULATE_FORM,
+    type: TERRITORY_FETCHED,
     territory
   };
 };
@@ -47,7 +47,7 @@ export function udpateTerritoryForm(territory) {
 export function fetchTerritoryForForm(slug) {
   return dispatch => {
     dispatch({
-      type: TERRITORY_EDIT_FETCH_REQUEST
+      type: FETCH_TERRITORY
     });
 
     const url = routes.territories.show(slug);
@@ -60,7 +60,7 @@ export function fetchTerritoryForForm(slug) {
 
 export function showEditErrors(errors) {
   return {
-    type: TERRITORY_EDIT_SHOW_ERRORS,
+    type: SHOW_FORM_ERRORS,
     errors
   }
 }

@@ -13,7 +13,6 @@ module Api
     end
 
     def update
-      sleep(1)
       territory = Territory.find_by_slug(params[:slug])
 
       if territory.update(territory_params)

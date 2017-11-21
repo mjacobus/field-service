@@ -35,6 +35,7 @@ require 'rspec/rails'
 require "clearance/rspec"
 
 require File.expand_path(File.dirname(__FILE__) + '/support/blueprints')
+require File.expand_path(File.dirname(__FILE__) + '/support/api/controller_spec_helper')
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -43,6 +44,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include Api::ControllerSpecHelper, type: :controller
 end
 
 def t(*args)

@@ -21,17 +21,15 @@ const filterInput = (value) => {
 };
 
 const TerritoryForm = withRouter(({ onSubmit, territory = {}, onAttributeChange, errors, history }) => {
-  const setValue = (attributeName) => {
-    return (event) => {
-      event.preventDefault();
-      return onAttributeChange(attributeName, event.target.value);
-    }
+  const setValue = (event) => {
+    event.preventDefault();
+    return onAttributeChange(event.target.name, event.target.value);
   }
 
   return <form onSubmit={ onSubmit }>
-    <InputText label={ t.name } name="name" value={ filterInput(territory.name) } onChange={ setValue("name") } errors={ errors.name }/>
-    <InputText label={ t.city } name="city" value={ filterInput(territory.city) } onChange={ setValue("city") } errors={ errors.city }/>
-    <InputText label={ t.description } name="description" value={ filterInput(territory.description) } onChange={ setValue("description") } errors={ errors.description } />
+    <InputText label={ t.name } name="name" value={ filterInput(territory.name) } onChange={ setValue } errors={ errors.name }/>
+    <InputText label={ t.city } name="city" value={ filterInput(territory.city) } onChange={ setValue } errors={ errors.city }/>
+    <InputText label={ t.description } name="description" value={ filterInput(territory.description) } onChange={ setValue } errors={ errors.description } />
 
     <Button type="submit" className={ classNames }>{ t.save }</Button>
     <Button type="submit" className={ classNames } onClick={ () => history.push(routes.territories.index()) }>{ t.back }</Button>

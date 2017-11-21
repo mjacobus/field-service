@@ -48,6 +48,7 @@ const renderActions = withRouter(({ territory, history }) => {
     <div>
       <Button className={classes} onClick={ () => history.push(appRoutes.territories.index()) } >{ t.back }</Button>
       <Button className={classes} target="_blank" href={ appRoutes.territories.pdf(territory.slug) } >{ t.downloadPdf }</Button>
+      <Button className={classes} onClick={ () => history.push(appRoutes.territories.edit(territory.slug)) } >{ t.edit }</Button>
       { newHouseholderButton({ territory, classes }) }
       { assignmentButton }
     </div>

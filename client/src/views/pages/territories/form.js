@@ -57,13 +57,12 @@ export default class TerritoryEdit extends Component {
     this.props.fetchTerritory(this.slug);
   }
 
+  componentWillUnmount() {
+    this.props.resetPersisted();
+  }
+
   onSubmit(event) {
     event.preventDefault();
-
-    if (!this.changed) {
-      console.log('nothing changed');
-      return;
-    }
 
     this.props.submitValues(this.slug, this.getValues());
   }

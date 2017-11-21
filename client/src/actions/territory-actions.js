@@ -11,6 +11,7 @@ export const TERRITORY_EDIT_FETCH_REQUEST = 'TERRITORY_EDIT_FETCH_REQUEST';
 export const TERRITORY_EDIT_POPULATE_FORM = 'TERRITORY_EDIT_POPULATE_FORM';
 export const TERRITORY_EDIT_SHOW_ERRORS = 'TERRITORY_EDIT_SHOW_ERRORS';
 export const TERRITORY_SAVED = 'TERRITORY_SAVED';
+export const RESET_PERSISTED = 'RESET_PERSISTED';
 
 
 /* index */
@@ -72,15 +73,34 @@ function territorySaved(territory) {
 }
 
 export function updateTerritory(slug, values) {
-  return dispatch => {
+  return (dispatch, getState) => {
     const url = routes.territories.show(slug);
+    const oldTerritory = getState().territories.edit.territory;
+
+    const changed = (oldTerritory.name !== values.name
+      || oldTerritory.city !== values.city
+      || oldTerritory.description !== values.description
+    );
+
+
+    if (!changed) {
+      dispatch(territorySaved(oldTerritory));
+      return;
+    }
 
     Ajax.patch(url, { territory: values }).then(response => {
       if (response.errors) {
-        return dispatch(showEditErrors(response.errors));
+        dispatch(showEditErrors(response.errors));
+        return;
       }
 
       dispatch(territorySaved(response.data))
     });
   };
 };
+
+export function resetPersisted() {
+  return {
+    type: RESET_PERSISTED
+  }
+}

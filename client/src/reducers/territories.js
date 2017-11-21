@@ -5,6 +5,7 @@ import {
   TERRITORY_EDIT_POPULATE_FORM,
   TERRITORY_EDIT_POST_REQUEST,
   TERRITORY_SAVED,
+  RESET_PERSISTED,
   TERRITORY_EDIT_SHOW_ERRORS
 } from '../actions/territory-actions';
 
@@ -46,6 +47,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         ...state,
         edit: {
           ...state.edit,
+          persisted: false,
           loading: true
         }
       };
@@ -84,6 +86,15 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         edit: {
           ...state.edit,
           persisted: true,
+        }
+      };
+
+    case RESET_PERSISTED:
+      return {
+        ...state,
+        edit: {
+          ...state.edit,
+          persisted: false,
         }
       };
 

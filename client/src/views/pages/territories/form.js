@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import t from '../../../translations';
 import routes from '../../../app-routes';
@@ -20,7 +20,7 @@ const filterInput = (value) => {
   return value || '';
 };
 
-const TerritoryForm = ({ onSubmit, territory = {}, onAttributeChange, errors }) => {
+const TerritoryForm = withRouter(({ onSubmit, territory = {}, onAttributeChange, errors, history }) => {
   const setValue = (attributeName) => {
     return (event) => {
       event.preventDefault();
@@ -34,8 +34,9 @@ const TerritoryForm = ({ onSubmit, territory = {}, onAttributeChange, errors }) 
     <InputText label={ t.description } name="description" value={ filterInput(territory.description) } onChange={ setValue("description") } errors={ errors.description } />
 
     <Button type="submit" className={ classNames }>{ t.save }</Button>
+    <Button type="submit" className={ classNames } onClick={ () => history.push(routes.territories.index()) }>{ t.back }</Button>
   </form>
-};
+});
 
 export default class TerritoryEdit extends Component {
   static defaultProps = {

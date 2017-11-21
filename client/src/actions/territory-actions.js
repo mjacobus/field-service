@@ -13,9 +13,8 @@ export const SHOW_FORM_ERRORS = 'SHOW_FORM_ERRORS';
 export const TERRITORY_UPDATED = 'TERRITORY_UPDATED';
 export const UPDATE_TERRITORY = 'UPDATE_TERRITORY';
 
-
 /* index */
-export function updateTerritoriesResult(territories) {
+function updateTerritoriesResult(territories) {
   return {
     type: TERRITORIES_FETCHED,
     territories
@@ -37,7 +36,7 @@ export function fetchTerritories(params) {
 };
 
 /* edit */
-export function udpateTerritoryForm(territory) {
+function udpateTerritoryForm(territory) {
   return {
     type: TERRITORY_FETCHED,
     territory
@@ -58,7 +57,7 @@ export function fetchTerritoryForForm(slug) {
   };
 };
 
-export function showEditErrors(errors) {
+function showEditErrors(errors) {
   return {
     type: SHOW_FORM_ERRORS,
     errors
@@ -67,7 +66,7 @@ export function showEditErrors(errors) {
 
 function territorySaved(territory) {
   return {
-    type: TERRITORY_SAVED,
+    type: TERRITORY_UPDATED,
     territory
   }
 }

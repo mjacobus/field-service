@@ -1,13 +1,4 @@
-import {
-  TERRITORIES_FETCHED,
-  FETCH_TERRITORIES,
-  FETCH_TERRITORY,
-  TERRITORY_FETCHED,
-  UPDATE_TERRITORY,
-  TERRITORY_UPDATED,
-  RESET_PERSISTED,
-  SHOW_FORM_ERRORS
-} from '../actions/territory-actions';
+import * as actions from '../actions/territory-actions';
 
 const DEFAULT_STATE = {
   list: {
@@ -24,7 +15,7 @@ const DEFAULT_STATE = {
 
 export function territoriesReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
-    case FETCH_TERRITORIES:
+    case actions.FETCH_TERRITORIES:
       return {
         ...state,
         list: {
@@ -33,7 +24,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORIES_FETCHED:
+    case actions.TERRITORIES_FETCHED:
       return {
         ...state,
         list: {
@@ -42,7 +33,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case FETCH_TERRITORY:
+    case actions.FETCH_TERRITORY:
       return {
         ...state,
         edit: {
@@ -52,7 +43,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORY_FETCHED:
+    case actions.TERRITORY_FETCHED:
       return {
         ...state,
         edit: {
@@ -61,7 +52,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case UPDATE_TERRITORY:
+    case actions.UPDATE_TERRITORY:
       return {
         ...state,
         edit: {
@@ -70,7 +61,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case SHOW_FORM_ERRORS:
+    case actions.SHOW_FORM_ERRORS:
       return {
         ...state,
         edit: {
@@ -80,7 +71,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case TERRITORY_UPDATED:
+    case actions.TERRITORY_UPDATED:
       return {
         ...state,
         edit: {
@@ -89,7 +80,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case RESET_PERSISTED:
+    case actions.RESET_PERSISTED:
       return {
         ...state,
         edit: {

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import TerritoryForm from '../../../views/pages/territories/form';
-import { resetPersisted, fetchTerritoryForForm, updateTerritory } from '../../../actions/territory-actions';
+import { resetPersisted, fetchTerritory, updateTerritory } from '../../../actions/territory-actions';
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchTerritory: (slug) => {
-      dispatch(fetchTerritoryForForm(slug));
+      dispatch(fetchTerritory(slug));
     },
 
     submitValues: (slug, values) => {

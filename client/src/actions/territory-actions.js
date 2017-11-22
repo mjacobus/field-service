@@ -36,19 +36,19 @@ export function fetchTerritories(params) {
 };
 
 /* edit */
-function udpateTerritoryForm(territory) {
+function setCurrentTerritory(territory) {
   return {
     type: TERRITORY_FETCHED,
     territory
   };
 };
 
-export function fetchTerritoryForForm(slug) {
+export function fetchTerritory(slug) {
   return (dispatch, getState) => {
     const currentTerritory = getState().territories.currentTerritory;
 
     if (currentTerritory && currentTerritory.slug === slug) {
-      dispatch(udpateTerritoryForm(currentTerritory));
+      dispatch(setCurrentTerritory(currentTerritory));
       return;
     }
 
@@ -57,7 +57,7 @@ export function fetchTerritoryForForm(slug) {
     const url = routes.territories.show(slug);
 
     Ajax.getJson(url).then(response => {
-      dispatch(udpateTerritoryForm(response.data));
+      dispatch(setCurrentTerritory(response.data));
     });
   };
 };

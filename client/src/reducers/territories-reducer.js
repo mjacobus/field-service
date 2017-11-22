@@ -74,6 +74,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
     case actions.TERRITORY_UPDATED:
       return {
         ...state,
+        currentTerritory: action.territory,
         meta: {
           ...state.edit,
           persisted: true,

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import TerritoryShow from '../../../views/pages/territories/show';
-import { fetchTerritoryForForm } from '../../../actions/territory-actions';
+import { fetchTerritory } from '../../../actions/territory-actions';
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchTerritory: (slug) => {
-      dispatch(fetchTerritoryForForm(slug));
+      dispatch(fetchTerritory(slug));
     }
   };
 }

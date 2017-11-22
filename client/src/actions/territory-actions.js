@@ -36,23 +36,28 @@ export function fetchTerritories(params) {
 };
 
 /* edit */
-function udpateTerritoryForm(territory) {
+function setCurrentTerritory(territory) {
   return {
     type: TERRITORY_FETCHED,
     territory
   };
 };
 
-export function fetchTerritoryForForm(slug) {
-  return dispatch => {
-    dispatch({
-      type: FETCH_TERRITORY
-    });
+export function fetchTerritory(slug) {
+  return (dispatch, getState) => {
+    const currentTerritory = getState().territories.currentTerritory;
+
+    if (currentTerritory && currentTerritory.slug === slug) {
+      dispatch(setCurrentTerritory(currentTerritory));
+      return;
+    }
+
+    dispatch({ type: FETCH_TERRITORY });
 
     const url = routes.territories.show(slug);
 
     Ajax.getJson(url).then(response => {
-      dispatch(udpateTerritoryForm(response.data));
+      dispatch(setCurrentTerritory(response.data));
     });
   };
 };

@@ -7,7 +7,7 @@ const DEFAULT_META = {
 };
 
 const DEFAULT_STATE = {
-  currentTerritory: {},
+  currentTerritory: null,
   territories: [],
   meta: DEFAULT_META,
 };
@@ -74,6 +74,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
     case actions.TERRITORY_UPDATED:
       return {
         ...state,
+        currentTerritory: action.territory,
         meta: {
           ...state.edit,
           persisted: true,

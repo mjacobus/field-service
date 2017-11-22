@@ -4,9 +4,7 @@ import LeftRightFrame from '../../components/left-right-frame';
 import ContentToggler from '../../components/content-toggler';
 import Separator from '../../components/separator';
 import Date from '../../components/date';
-import routes from '../../../api-routes';
 import appRoutes from '../../../app-routes';
-import Ajax from '../../../utils/ajax-helper';
 import LoaderOrContent from '../../components/loader-or-content';
 import Item from '../../components/property-value-label';
 import Button from '../../components/button';
@@ -18,14 +16,6 @@ import { withRouter } from 'react-router-dom'
 import t from '../../../translations';
 
 import styles from '../../../global.css';
-
-const fetchTerritory = (slug, callback) => {
-  const url = routes.territories.show(slug);
-
-  Ajax.getJson(url).then((response) => {
-    callback(response.data);
-  });
-};
 
 const newHouseholderButton = ({ territory, classes }) => {
   return <Button
@@ -104,7 +94,6 @@ const renderTerritoryView = ({ territory, householderDeleteCallback }) =>  {
 export default class TerritoryShow extends Component {
   constructor(props) {
     super(props);
-    this.state = { territory: null, loading: true }
     this.slug = this.props.match.params.slug;
     this.reload = this.reload.bind(this);
   }
@@ -114,13 +103,11 @@ export default class TerritoryShow extends Component {
   }
 
   reload() {
-    fetchTerritory(this.slug, (territory) => {
-      this.setState({territory, loading: false});
-    });
+    this.props.fetchTerritory(this.slug);
   }
 
   render() {
-    const territory = this.state.territory;
+    const territory = this.props.territory;
 
     if (!territory) {
       return <div></div>;
@@ -130,7 +117,7 @@ export default class TerritoryShow extends Component {
     const left  = renderActions({ territory });
     const right = renderTerritoryView({ territory, householderDeleteCallback });
 
-    return <LoaderOrContent loading={ this.state.loading }>
+    return <LoaderOrContent loading={ this.props.loading }>
         <LeftRightFrame leftComponent={ left } rightComponent={ right }/>
       </LoaderOrContent>;
   }

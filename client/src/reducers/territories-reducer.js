@@ -7,7 +7,7 @@ const DEFAULT_META = {
 };
 
 const DEFAULT_STATE = {
-  currentTerritory: {},
+  currentTerritory: null,
   territories: [],
   meta: DEFAULT_META,
 };

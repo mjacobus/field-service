@@ -1,12 +1,12 @@
 import * as actions from '../actions/territory-actions';
 
 const DEFAULT_STATE = {
+  currentTerritory: {},
   list: {
     items: []
   },
   edit: {
     errors: null,
-    territory: {},
     loading: true,
     posting: false,
     persisted: false,
@@ -46,8 +46,8 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
     case actions.TERRITORY_FETCHED:
       return {
         ...state,
+        currentTerritory: action.territory,
         edit: {
-          territory: action.territory,
           loading: false
         }
       };

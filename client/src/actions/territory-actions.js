@@ -1,5 +1,6 @@
 import Ajax from '../utils/ajax-helper';
 import routes from '../api-routes';
+import comparator from '../utils/comparator';
 
 export const FETCH_TERRITORIES = 'FETCH_TERRITORIES';
 export const TERRITORIES_FETCHED = 'TERRITORIES_FETCHED';
@@ -22,9 +23,11 @@ function updateTerritoriesResult(territories) {
 };
 
 export function fetchTerritories(params) {
-  return dispatch => {
+  return (dispatch, getState) => {
+
     dispatch({
-      type: FETCH_TERRITORIES
+      type: FETCH_TERRITORIES,
+      params: params,
     });
 
     const url = routes.territories.index(params);

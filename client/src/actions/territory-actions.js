@@ -7,7 +7,7 @@ export const TERRITORIES_FETCHED = 'TERRITORIES_FETCHED';
 export const FETCH_TERRITORY = 'FETCH_TERRITORY';
 export const TERRITORY_FETCHED = 'TERRITORY_FETCHED';
 
-export const RESET_PERSISTED = 'RESET_PERSISTED';
+export const RESET_METADATA = 'RESET_METADATA';
 
 export const SHOW_FORM_ERRORS = 'SHOW_FORM_ERRORS';
 export const TERRITORY_UPDATED = 'TERRITORY_UPDATED';
@@ -106,6 +106,6 @@ export function updateTerritory(slug, values) {
 
 export function resetPersisted() {
   return {
-    type: RESET_PERSISTED
+    type: RESET_METADATA
   }
 }

@@ -4,9 +4,8 @@ import { resetPersisted, fetchTerritoryForForm, updateTerritory } from '../../..
 
 function mapStateToProps(state) {
   return {
-    ...state.territories.edit,
+    ...state.territories.meta,
     territory: state.territories.currentTerritory,
-    persisted: state.territories.edit.persisted
   };
 }
 

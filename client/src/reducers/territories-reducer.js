@@ -1,16 +1,17 @@
 import * as actions from '../actions/territory-actions';
+const DEFAULT_META = {
+  errors: {},
+  loading: true,
+  posting: false,
+  persisted: false,
+};
 
 const DEFAULT_STATE = {
   currentTerritory: {},
   list: {
     items: []
   },
-  edit: {
-    errors: null,
-    loading: true,
-    posting: false,
-    persisted: false,
-  },
+  meta: DEFAULT_META,
 };
 
 export function territoriesReducer(state = DEFAULT_STATE, action) {
@@ -36,7 +37,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
     case actions.FETCH_TERRITORY:
       return {
         ...state,
-        edit: {
+        meta: {
           ...state.edit,
           persisted: false,
           loading: true
@@ -47,7 +48,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         currentTerritory: action.territory,
-        edit: {
+        meta: {
           loading: false
         }
       };
@@ -55,7 +56,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
     case actions.UPDATE_TERRITORY:
       return {
         ...state,
-        edit: {
+        meta: {
           ...state.edit,
           posting: true
         }
@@ -64,7 +65,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
     case actions.SHOW_FORM_ERRORS:
       return {
         ...state,
-        edit: {
+        meta: {
           ...state.edit,
           errors: action.errors,
           posting: false
@@ -74,19 +75,16 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
     case actions.TERRITORY_UPDATED:
       return {
         ...state,
-        edit: {
+        meta: {
           ...state.edit,
           persisted: true,
         }
       };
 
-    case actions.RESET_PERSISTED:
+    case actions.RESET_METADATA:
       return {
         ...state,
-        edit: {
-          ...state.edit,
-          persisted: false,
-        }
+        meta: DEFAULT_META
       };
 
     default:

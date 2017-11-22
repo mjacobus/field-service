@@ -12,13 +12,14 @@ import thunk from 'redux-thunk';
 /* containers */
 import TerritoryIndexContainer from './containers/pages/territories/index';
 import TerritoryShowContainer from './containers/pages/territories/show';
+import TerritoryEditContainer from './containers/pages/territories/edit';
 
 /* components */
 import TopMenu from './views/components/top-menu';
 import EnvironmentAlert from './views/components/environment-alert';
 
 /* reducers */
-import {territoriesReducer} from './reducers/territories';
+import {territoriesReducer} from './reducers/territories-reducer';
 
 /* utils */
 
@@ -51,7 +52,8 @@ const app = <IntlProvider locale="en" messages={translations}>
             <Col xs={12}>
               <div>
                 <Route exact path={ routes.territories.index() } component={TerritoryIndexContainer}/>
-                <Route path={ routes.territories.show(':slug') }  component={TerritoryShowContainer}/>
+                <Route exact path={ routes.territories.show(':slug') }  component={TerritoryShowContainer}/>
+                <Route exact path={ routes.territories.edit(':slug') }  component={TerritoryEditContainer}/>
               </div>
             </Col>
           </Row>

@@ -1,15 +1,21 @@
 module Api
-  class TerritoriesController < AuthenticatedController
+  class TerritoriesController < ApiController
     def index
-      territories = TerritoryService.new.search(search_params)
-      response = ApiResponse::Territories::Index.new(territories)
-      render json: response.to_h
+      perform_with(search_params)
     end
 
     def show
-      territory = Territory.find_by_slug(params[:slug])
-      response = ApiResponse::Territories::Show.new(territory)
-      render json: response.to_h
+      perform_with(slug: params[:slug])
+    end
+
+    def update
+      perform_with(slug: params[:slug], attributes: territory_params)
+    end
+
+    private
+
+    def territory_params
+      params.require(:territory).permit(:name, :description, :city).to_h.symbolize_keys
     end
   end
 end

@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+.spaceAbove {
+  margin-top: 10px;
+}
+
 .fullLine {
   clear: both;
   display: block;
@@ -21,4 +25,20 @@
 
 .floatRight {
   float: right;
+}
+
+input,
+select,
+textarea,
+button,
+a,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }

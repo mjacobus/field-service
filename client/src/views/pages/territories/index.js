@@ -77,7 +77,7 @@ export default class TerritoryIndex extends Component {
   static defaultProps = { territories: [], loading: true };
 
   componentWillMount() {
-    this.props.onInitialize();
+    this.props.fetchTerritories();
   }
 
   renderTerritoryList(territories) {

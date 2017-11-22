@@ -9,16 +9,16 @@ const fixUrl = (path) => {
 }
 
 const territoriesRoutes = {
-  legacyList: (params = {}) => {
-    return fixUrl(UrlHelper.create('/territories', params));
-  },
-
   index: (params = {}) => {
     return UrlHelper.create('/app/territories', params);
   },
 
   show: (slug, params = {})  => {
     return UrlHelper.create(`/app/territories/${slug}`, params);
+  },
+
+  edit: (slug, params = {})  => {
+    return UrlHelper.create(`/app/territories/${slug}/edit`, params);
   },
 
   pdf: (slug)  => {

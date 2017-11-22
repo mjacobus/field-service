@@ -1,6 +1,6 @@
 module ApiResponse
   module Territories
-    class Index
+    class Index < BaseResponse
       def initialize(territories)
         @territories = territories
       end

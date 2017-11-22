@@ -33,9 +33,15 @@ describe('app routes', () => {
   });
 
   it('returns the correct url for territories.show()', () => {
-    const url = api.territories.show('slug', {foo: 'bar'});
+    const url = app.territories.show('slug', {foo: 'bar'});
 
-    expect(url).toEqual('/api/territories/slug?foo=bar');
+    expect(url).toEqual('/app/territories/slug?foo=bar');
+  });
+
+  it('returns the correct url for territories.edit()', () => {
+    const url = app.territories.edit('slug');
+
+    expect(url).toEqual('/app/territories/slug/edit');
   });
 
   // publishers

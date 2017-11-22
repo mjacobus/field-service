@@ -1,0 +1,10 @@
+.inputErrorContainer {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.inputError {
+  color: #CC0000;
+  display: block;
+  margin-left: 10px;
+}

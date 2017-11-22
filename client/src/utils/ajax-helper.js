@@ -4,6 +4,7 @@ const defaultOptions = () => ({
   credentials: 'include',
   headers: new Headers({
     'Accept': 'application/json',
+    'Content-Type': 'application/json',
     'X-CSRF-Token': cookies.getFormToken(),
   })
 });
@@ -21,16 +22,20 @@ export default class {
     return this.apiRequest(path, 'delete', data);
   }
 
+  static patch(path, data = {}) {
+    return this.apiRequest(path, 'put', data);
+  }
+
   static apiRequest(path, method, data) {
     let options = Object.assign({}, defaultOptions(), {
       method,
       body: JSON.stringify(data)
     });
 
-    return this.fetch(path, options).then(this.parseResponse).catch(this.parseResponse);
+    return this.fetch(path, options).then(this.parseResponse);
   }
 
-  static parseResponse(response) {
+  static parseResponse(response, b, c) {
     return response.json();
   }
 }

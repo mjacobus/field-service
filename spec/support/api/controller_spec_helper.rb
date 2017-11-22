@@ -8,7 +8,7 @@ module Api
           allow_any_instance_of(Api::ApiController).to receive(:current_user) { current_user }
         end
 
-        let(:current_user) { double(:current_user) }
+        let(:current_user) { User.new }
       end
     end
 
@@ -29,6 +29,7 @@ module Api
     end
 
     def expect_controller_to_perform_with(*args)
+      sign_in_as(current_user)
       mock_controller_rendering
       expect_any_instance_of(Api::ApiController).to receive(:perform_with).with(*args)
     end

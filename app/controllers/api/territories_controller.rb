@@ -15,7 +15,7 @@ module Api
     private
 
     def territory_params
-      params.require(:territory).permit(:name, :description, :city)
+      params.require(:territory).permit(:name, :description, :city).to_h.symbolize_keys
     end
   end
 end

@@ -44,10 +44,15 @@ function udpateTerritoryForm(territory) {
 };
 
 export function fetchTerritoryForForm(slug) {
-  return dispatch => {
-    dispatch({
-      type: FETCH_TERRITORY
-    });
+  return (dispatch, getState) => {
+    const currentTerritory = getState().territories.currentTerritory;
+
+    if (currentTerritory && currentTerritory.slug === slug) {
+      dispatch(udpateTerritoryForm(currentTerritory));
+      return;
+    }
+
+    dispatch({ type: FETCH_TERRITORY });
 
     const url = routes.territories.show(slug);
 

@@ -8,9 +8,7 @@ const DEFAULT_META = {
 
 const DEFAULT_STATE = {
   currentTerritory: {},
-  list: {
-    items: []
-  },
+  territories: [],
   meta: DEFAULT_META,
 };
 
@@ -19,19 +17,20 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
     case actions.FETCH_TERRITORIES:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true
-        }
+        meta: {
+          ...state.meta,
+          loading: true,
+        },
       };
 
     case actions.TERRITORIES_FETCHED:
       return {
         ...state,
-        list: {
-          items: action.territories,
-          loading: false
-        }
+        territories: action.territories,
+        meta: {
+          ...state.meta,
+          loading: false,
+        },
       };
 
     case actions.FETCH_TERRITORY:

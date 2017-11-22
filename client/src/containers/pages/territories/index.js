@@ -4,14 +4,14 @@ import { fetchTerritories } from '../../../actions/territory-actions';
 
 function mapStateToProps(state) {
   return {
-    territories: state.territories.list.items,
-    loading: state.territories.list.loading
+    ...state.territories.meta,
+    territories: state.territories.territories,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onInitialize: (params) => {
+    fetchTerritories: (params) => {
       dispatch(fetchTerritories(params));
     }
   };

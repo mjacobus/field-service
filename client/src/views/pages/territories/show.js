@@ -8,9 +8,9 @@ import appRoutes from '../../../app-routes';
 import LoaderOrContent from '../../components/loader-or-content';
 import Item from '../../components/property-value-label';
 import Button from '../../components/button';
-import HouseholderItem from '../shared/householder-item';
 import TerritoryAssignments from '../shared/territory-assignments';
 import ReturnTerritoryButton from '../shared/territory-return-button';
+import Householders from './householders';
 import { withRouter } from 'react-router-dom'
 
 import t from '../../../translations';
@@ -63,7 +63,11 @@ const renderTerritoryView = ({ territory, householderDeleteCallback }) =>  {
     <TerritoryAssignments assignments={territory.assignments} />
   </ContentToggler>;
 
-  const last = territory.householders.length - 1;
+  const householderProps = {
+    householders: territory.householders,
+    onDelete: householderDeleteCallback
+  };
+
 
   const householdersToggler = <ContentToggler openText={ t.hideHouseholders } closedText={ t.showHouseholders } open={ true }>
     <Row>
@@ -73,13 +77,7 @@ const renderTerritoryView = ({ territory, householderDeleteCallback }) =>  {
       <Col xs= { 12 }> <Separator /> </Col>
     </Row>
 
-    {
-      territory.householders.map((householder, index) => {
-        let separator = index !== last;
-
-        return <HouseholderItem key={ householder.id } householder={ householder } separator={ separator } onDelete={ householderDeleteCallback }/>;
-      })
-    }
+    <Householders {...householderProps} />
   </ContentToggler>;
 
   return (
@@ -96,6 +94,7 @@ export default class TerritoryShow extends Component {
     super(props);
     this.slug = this.props.match.params.slug;
     this.reload = this.reload.bind(this);
+    this.onHouseholderDelete = this.onHouseholderDelete.bind(this);
   }
 
   componentWillMount() {
@@ -106,6 +105,10 @@ export default class TerritoryShow extends Component {
     this.props.fetchTerritory(this.slug);
   }
 
+  onHouseholderDelete() {
+    this.props.fetchTerritory(this.slug, { cache: false });
+  }
+
   render() {
     const territory = this.props.territory;
 
@@ -113,7 +116,7 @@ export default class TerritoryShow extends Component {
       return <div></div>;
     }
 
-    const householderDeleteCallback = this.reload;
+    const householderDeleteCallback = this.onHouseholderDelete;
     const left  = renderActions({ territory });
     const right = renderTerritoryView({ territory, householderDeleteCallback });
 

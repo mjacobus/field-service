@@ -11,8 +11,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchTerritory: (slug) => {
-      dispatch(fetchTerritory(slug));
+    fetchTerritory: (slug, options) => {
+      dispatch(fetchTerritory(slug, options));
     }
   };
 }

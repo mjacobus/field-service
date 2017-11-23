@@ -1,6 +1,6 @@
 module ApiResponse
   module Householders
-    class Show < Show
+    class Show < BaseResponse
       def initialize(householder)
         @householder = householder
       end

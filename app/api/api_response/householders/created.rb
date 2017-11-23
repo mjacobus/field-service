@@ -1,6 +1,6 @@
 module ApiResponse
   module Householders
-    class Updated < Show
+    class Created < Show
     end
   end
 end

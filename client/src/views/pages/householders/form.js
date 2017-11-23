@@ -10,6 +10,7 @@ import LoaderOrContent from '../../components/loader-or-content';
 import { Form } from '../../components/form';
 
 const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}}) => {
+  console.log('errors', errors);
   const buttons = [
     { type: "submit", disabled: posting, label: t.save },
     { linkTo: routes.territories.index(), label: t.back },
@@ -65,10 +66,10 @@ class HouseholderForm extends Component {
     const onSubmit = this.onSubmit;
     const onChange = this.onChange.bind(this);
     const householder = this.values;
-    const errors = this.errors;
+    const errors = this.props.errors;
     const props = { onChange, onSubmit, householder, errors };
 
-    if (this.state.persisted) {
+    if (this.props.persisted) {
       const territoryUrl = routes.territories.show(this.territorySlug);
       return <Redirect to={ territoryUrl } />
     }

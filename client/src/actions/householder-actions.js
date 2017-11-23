@@ -72,7 +72,6 @@ function prepareFormErrors(errors) {
   newErrors = hash.renameProperty('show', 'speakTheLanguage', newErrors);
   newErrors = hash.renameProperty('do_not_visit_date', 'doNotVisitDate', newErrors);
 
-  console.log('prepared errors', newErrors)
   return newErrors;
 }
 

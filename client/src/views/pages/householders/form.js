@@ -7,7 +7,7 @@ import routes from '../../../app-routes';
 
 import InputText from '../../components/input-text';
 import LoaderOrContent from '../../components/loader-or-content';
-import { Form } from '../../components/form';
+import { Form, RadioButtons } from '../../components/form';
 
 const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}}) => {
   const buttons = [
@@ -31,7 +31,9 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
     </Row>
     <Row>
       <Col xs={12} sm={8}>{ renderInputText('name') }</Col>
-      <Col xs={12} sm={4}>{ renderInputText('speakTheLanguage') }</Col>
+      <Col xs={12} sm={4}>
+        <RadioButtons label={ t.speakTheLanguage } options={ [[1, t.yes ], [ 0, t.no ]] } name="speakTheLanguage" onChange={ onChange } defaultValue={1} />
+      </Col>
     </Row>
     <Row>
       <Col xs={12} sm={4} smOffset={8}>{ renderInputText('doNotVisitDate') } </Col>

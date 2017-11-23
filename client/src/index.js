@@ -13,6 +13,7 @@ import thunk from 'redux-thunk';
 import TerritoryIndexContainer from './containers/pages/territories/index';
 import TerritoryShowContainer from './containers/pages/territories/show';
 import TerritoryEditContainer from './containers/pages/territories/edit';
+import EditHouseholder from './containers/pages/householders/edit';
 
 /* components */
 import TopMenu from './views/components/top-menu';
@@ -52,8 +53,9 @@ const app = <IntlProvider locale="en" messages={translations}>
             <Col xs={12}>
               <div>
                 <Route exact path={ routes.territories.index() } component={TerritoryIndexContainer}/>
-                <Route exact path={ routes.territories.show(':slug') }  component={TerritoryShowContainer}/>
-                <Route exact path={ routes.territories.edit(':slug') }  component={TerritoryEditContainer}/>
+                <Route exact path={ routes.territories.show(':slug') } component={TerritoryShowContainer}/>
+                <Route exact path={ routes.territories.edit(':slug') } component={TerritoryEditContainer}/>
+                <Route exact path={ routes.householders.new(':slug') } component={EditHouseholder}/>
               </div>
             </Col>
           </Row>

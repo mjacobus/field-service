@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import {Row, Col} from 'react-bootstrap';
 import LeftRightFrame from '../../components/left-right-frame';
 import ContentToggler from '../../components/content-toggler';
-import Separator from '../../components/separator';
 import Date from '../../components/date';
 import appRoutes from '../../../app-routes';
 import LoaderOrContent from '../../components/loader-or-content';
@@ -16,13 +14,6 @@ import { withRouter } from 'react-router-dom'
 import t from '../../../translations';
 
 import styles from '../../../global.css';
-
-const newHouseholderButton = ({ territory, classes }) => {
-  return <Button
-    className={ classes }
-    href={ appRoutes.householders.add({ territory }) }
-  >{ t.addHouseholder }</Button>
-};
 
 const renderActions = withRouter(({ territory, history }) => {
   const classes = [styles.wide, styles.fullLine, styles.decolapseDown];
@@ -39,7 +30,6 @@ const renderActions = withRouter(({ territory, history }) => {
       <Button className={classes} onClick={ () => history.push(appRoutes.territories.index()) } >{ t.back }</Button>
       <Button className={classes} target="_blank" href={ appRoutes.territories.pdf(territory.slug) } >{ t.downloadPdf }</Button>
       <Button className={classes} onClick={ () => history.push(appRoutes.territories.edit(territory.slug)) } >{ t.edit }</Button>
-      { newHouseholderButton({ territory, classes }) }
       { assignmentButton }
     </div>
   );
@@ -64,19 +54,11 @@ const renderTerritoryView = ({ territory, householderDeleteCallback }) =>  {
   </ContentToggler>;
 
   const householderProps = {
-    householders: territory.householders,
+    territory: territory,
     onDelete: householderDeleteCallback
   };
 
-
   const householdersToggler = <ContentToggler openText={ t.hideHouseholders } closedText={ t.showHouseholders } open={ true }>
-    <Row>
-      <Col xs= { 12 }>
-        { newHouseholderButton({ territory, classes: styles.floatRight }) }
-      </Col>
-      <Col xs= { 12 }> <Separator /> </Col>
-    </Row>
-
     <Householders {...householderProps} />
   </ContentToggler>;
 

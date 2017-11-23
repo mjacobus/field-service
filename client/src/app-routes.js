@@ -39,6 +39,10 @@ const publishersRoutes = {
 
 const householdersRoutes = {
   add: ({ territory }) => {
+    return UrlHelper.create(`/app/territories/${territory.slug}/householders/new`);
+  },
+
+  legacyAdd: ({ territory }) => {
     return fixUrl(UrlHelper.create(`/territories/${territory.slug}/householders/new`));
   }
 }

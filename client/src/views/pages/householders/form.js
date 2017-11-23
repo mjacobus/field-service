@@ -52,6 +52,10 @@ class HouseholderForm extends Component {
     this.territorySlug = this.props.match.params.territorySlug;
   }
 
+  componentWillUnmount() {
+    this.props.onUnmount();
+  }
+
   onChange(event) {
     this.values[event.target.name] = event.target.value;
   }

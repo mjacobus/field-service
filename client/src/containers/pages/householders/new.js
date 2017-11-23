@@ -1,6 +1,9 @@
 import {connect} from 'react-redux';
 import Form from '../../../views/pages/householders/form';
-import { createHouseholder } from '../../../actions/householder-actions';
+import {
+  afterHouseholderCreated,
+  createHouseholder
+} from '../../../actions/householder-actions';
 
 function mapStateToProps(state) {
   return {
@@ -12,6 +15,10 @@ function mapDispatchToProps(dispatch) {
   return {
     saveTerritory: (territorySlug, attributes) => {
       dispatch(createHouseholder(territorySlug, attributes));
+    },
+
+    onUnmount: () => {
+      dispatch(afterHouseholderCreated());
     },
 
     submitValues: (territorySlug, values) => {

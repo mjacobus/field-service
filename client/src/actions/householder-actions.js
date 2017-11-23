@@ -16,6 +16,7 @@ export const HOUSEHOLDER_UPDATED = 'HOUSEHOLDER_UPDATED';
 export const CREATE_HOUSEHOLDER = 'CREATE_HOUSEHOLDER';
 export const HOUSEHOLDER_CREATED = 'HOUSEHOLDER_CREATED';
 export const DISPLAY_FORM_ERRORS = 'DISPLAY_FORM_ERRORS';
+export const AFTER_HOUSEHOLDER_CREATED = 'AFTER_HOUSEHOLDER_CREATED';
 
 function fetchHouseholder(territorySlug, id) {
   return {
@@ -91,9 +92,15 @@ function createHouseholder(territorySlug, attributes) {
         return;
       }
 
-      dispatch(householderCreated(null))
+      dispatch(householderCreated(response.data));
     });
   }
+}
+
+function afterHouseholderCreated() {
+  return {
+    type: AFTER_HOUSEHOLDER_CREATED
+  };
 }
 
 export default function () {};
@@ -101,4 +108,5 @@ export default function () {};
 export {
   fetchHouseholder,
   createHouseholder,
+  afterHouseholderCreated,
 }

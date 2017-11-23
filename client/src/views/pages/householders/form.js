@@ -24,7 +24,6 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
     />
   );
 
-  console.log('errors -> ', errors)
   return <Form onSubmit={ onSubmit } buttons={ buttons }>
     <Row>
       <Col xs={12} sm={8}>{ renderInputText('streetName') }</Col>

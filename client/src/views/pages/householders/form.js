@@ -9,18 +9,21 @@ import InputText from '../../components/input-text';
 import LoaderOrContent from '../../components/loader-or-content';
 import { Form, RadioButtons } from '../../components/form';
 
+import styles from './form.css';
+
 const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}}) => {
   const buttons = [
     { type: "submit", disabled: posting, label: t.save },
     { linkTo: routes.territories.index(), label: t.back },
   ];
 
-  const renderInputText = (name) => (
+  const renderInputText = (name, otherOptions = {}) => (
     <InputText label={ t[name] }
       name={ name }
       value={ householder[name] }
       onChange={ onChange }
       errors={ errors[name] }
+      {...otherOptions}
     />
   );
 
@@ -32,11 +35,14 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
     <Row>
       <Col xs={12} sm={8}>{ renderInputText('name') }</Col>
       <Col xs={12} sm={4}>
-        <RadioButtons label={ t.speakTheLanguage } options={ [[1, t.yes ], [ 0, t.no ]] } name="speakTheLanguage" onChange={ onChange } defaultValue={1} />
+        <RadioButtons label={ t.speakTheLanguage } options={ [[1, t.yes ], [ 0, t.no ]] }
+          name="speakTheLanguage" onChange={ onChange } defaultValue={1}
+          className={ styles.yesNo }
+        />
       </Col>
     </Row>
     <Row>
-      <Col xs={12} sm={4} smOffset={8}>{ renderInputText('doNotVisitDate') } </Col>
+      <Col xs={12} sm={4} smOffset={8}>{ renderInputText('doNotVisitDate', { placeholder: 'Date YYYY-MM-DD' }) } </Col>
     </Row>
   </Form>;
 };

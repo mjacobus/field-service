@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { /* Redirect ,*/ withRouter } from 'react-router-dom';
+import { Col, Row } from 'react-bootstrap';
 
 import t from '../../../translations';
 import routes from '../../../app-routes';
@@ -8,7 +9,7 @@ import InputText from '../../components/input-text';
 import LoaderOrContent from '../../components/loader-or-content';
 import { Form } from '../../components/form';
 
-const renderForm = withRouter(({ onSubmit, posting, territory = {}, onAttributeChange, errors, history }) => {
+const renderForm = withRouter(({ onSubmit, posting, householder = {}, onAttributeChange, errors = {}, history }) => {
   const setValue = (event) => {
     event.preventDefault();
     return onAttributeChange(event.target.name, event.target.value);
@@ -20,74 +21,35 @@ const renderForm = withRouter(({ onSubmit, posting, territory = {}, onAttributeC
   ];
 
   return <Form onSubmit={ onSubmit } buttons={ buttons }>
-    <InputText label={ t.name } name="name" value={ null } onChange={ setValue } errors={ errors.name }/>
-    <InputText label={ t.city } name="city" value={ territory.city } onChange={ setValue } errors={ errors.city }/>
-    <InputText label={ t.description } name="description" value={ territory.description } onChange={ setValue } errors={ errors.description } />
+    <Row>
+      <Col xs={12} sm={8}>
+        <InputText label={ t.streetName } name="streetName" value={ householder.streetName } onChange={ setValue } errors={ errors.streetName }/>
+      </Col>
+      <Col xs={12} sm={4}>
+        <InputText label={ t.streetNumber } name="streetNumber" value={ householder.streetNumber } onChange={ setValue } errors={ errors.streetNumber }/>
+      </Col>
+    </Row>
+
+    <Row>
+      <Col xs={12} sm={8}>
+        <InputText label={ t.name } name="name" value={ householder.name } onChange={ setValue } errors={ errors.name }/>
+      </Col>
+      <Col xs={12} sm={4}>
+        <InputText label={ t.speakTheLanguage } name="speakTheLanguage" value={ householder.speakTheLanguage } onChange={ setValue } errors={ errors.speakTheLanguage }/>
+      </Col>
+    </Row>
+    <Row>
+      <Col xs={12} sm={4} smOffset={8}>
+        <InputText label={ t.doNotVisitDate } name="doNotVisitDate" value={ householder.doNotVisitDate } onChange={ setValue } errors={ errors.doNotVisitDate }/>
+      </Col>
+    </Row>
   </Form>;
 });
 
-export default class TerritoryEdit extends Component {
-  static defaultProps = {
-    persisted: false,
-    territory: {},
-    errors: {},
-  }
-
-  constructor(props) {
-    super(props);
-    this.setAttribute = this.setAttribute.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.state = { territory: {} };
-    this.slug = this.props.match.params.slug;
-    this.changed = false;
-  }
-
-  componentWillMount() {
-    this.props.fetchTerritory(this.slug);
-  }
-
-  componentWillUnmount() {
-    this.props.resetPersisted();
-  }
-
-  onSubmit(event) {
-    event.preventDefault();
-
-    this.props.submitValues(this.slug, this.getValues());
-  }
-
-  getValues() {
-    const values =  Object.assign({}, this.props.territory, this.state.territory);
-
-    const { slug } = this;
-
-    return {
-      slug: slug,
-      name: values.name,
-      city: values.city,
-      description: values.description,
-    }
-  }
-
-  setAttribute(attribute, value) {
-    const newTerritory = Object.assign({}, this.state.territory, { [attribute] : value });
-    this.setState({ territory: newTerritory })
-    this.changed = true;
-  }
-
+export default class HouseholderForm extends Component {
   render() {
-    if (this.props.persisted) {
-      return <Redirect to={ routes.territories.index() } />
-    }
-
-    const onAttributeChange = this.setAttribute;
-    const territory = this.getValues();
-    const errors = this.props.errors;
-    const onSubmit = this.onSubmit;
-    const posting = this.props.posting;
-    const props = { territory, errors, onAttributeChange, onSubmit, posting };
-
-    return <LoaderOrContent loading={ this.props.loading }>{ renderForm(props) }</LoaderOrContent>
+    const props = { };
+    const loading = false;
+    return <LoaderOrContent loading={ loading }>{ renderForm(props) }</LoaderOrContent>
   }
 }
-

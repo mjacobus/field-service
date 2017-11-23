@@ -20,12 +20,6 @@ function mapDispatchToProps(dispatch) {
     onUnmount: () => {
       dispatch(afterHouseholderCreated());
     },
-
-    submitValues: (territorySlug, values) => {
-    },
-
-    resetPersisted: () => {
-    }
   };
 }
 

@@ -38,7 +38,6 @@ function householderCreated(householder) {
 }
 
 function displayFormErrors(errors) {
-  console.log(errors);
   return {
     type: DISPLAY_FORM_ERRORS,
     errors: errors
@@ -46,8 +45,6 @@ function displayFormErrors(errors) {
 }
 
 function prepareFormAttributes(attributes) {
-  console.log(attributes);
-
   const defaultValues = {
       streetName: '',
       houseNumber: '',
@@ -75,6 +72,7 @@ function prepareFormErrors(errors) {
   newErrors = hash.renameProperty('show', 'speakTheLanguage', newErrors);
   newErrors = hash.renameProperty('do_not_visit_date', 'doNotVisitDate', newErrors);
 
+  console.log('prepared errors', newErrors)
   return newErrors;
 }
 

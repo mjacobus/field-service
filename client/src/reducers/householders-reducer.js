@@ -38,25 +38,26 @@ function householdersReducer(state = DEFAULT_STATE, action) {
         }
       };
 
-    case actions.AFTER_HOUSEHOLDER_CREATED:
+    case actions.DISPLAY_FORM_ERRORS:
       return {
         ...state,
         meta: {
           create: {
             ...state.meta.create,
             loading: false,
-            persisted: false,
+            errors: action.errors,
           }
         }
       };
 
-    case actions.DISPLAY_FORM_ERRORS:
+    case actions.AFTER_HOUSEHOLDER_CREATED:
       return {
         ...state,
         meta: {
           create: DEFAULT_META_CREATE
         }
       };
+
 
     default: return state;
   }

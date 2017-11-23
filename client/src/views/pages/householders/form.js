@@ -10,7 +10,6 @@ import LoaderOrContent from '../../components/loader-or-content';
 import { Form } from '../../components/form';
 
 const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}}) => {
-  console.log('errors', errors);
   const buttons = [
     { type: "submit", disabled: posting, label: t.save },
     { linkTo: routes.territories.index(), label: t.back },
@@ -25,6 +24,7 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
     />
   );
 
+  console.log('errors -> ', errors)
   return <Form onSubmit={ onSubmit } buttons={ buttons }>
     <Row>
       <Col xs={12} sm={8}>{ renderInputText('streetName') }</Col>

@@ -9,7 +9,7 @@ const translations = {
   addHouseholder: 'Adicionar Morador',
   address: 'Endereço',
   streetName: 'Rua',
-  streetNumber: 'Número',
+  houseNumber: 'Número',
   speakTheLanguage: 'Fala Portugês',
   assignedAt: 'Designado em',
   assignTerritory: 'Designar território',

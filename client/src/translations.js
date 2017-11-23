@@ -16,7 +16,7 @@ const translations = {
   addHouseholder: translate('addHouseholder'),
   address: translate('address'),
   streetName: translate('streetName'),
-  streetNumber: translate('streetNumber'),
+  houseNumber: translate('houseNumber'),
   speakTheLanguage: translate('speakTheLanguage'),
   assignedAt: translate('assignedAt'),
   assignTerritory: translate('assignTerritory'),

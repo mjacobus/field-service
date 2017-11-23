@@ -27,6 +27,7 @@ export default class {
   }
 
   static post(path, data = {}) {
+    console.log('poooooooooooosint', data);
     return this.apiRequest(path, 'post', data);
   }
 

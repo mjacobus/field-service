@@ -1,5 +1,7 @@
 import Ajax from '../utils/ajax-helper';
 import routes from '../api-routes';
+import hash from '../utils/hash-utils';
+
 // import comparator from '../utils/comparator';
 
 export const FETCH_HOUSEHOLDER = 'FETCH_HOUSEHOLDER';
@@ -13,6 +15,7 @@ export const HOUSEHOLDER_UPDATED = 'HOUSEHOLDER_UPDATED';
 
 export const CREATE_HOUSEHOLDER = 'CREATE_HOUSEHOLDER';
 export const HOUSEHOLDER_CREATED = 'HOUSEHOLDER_CREATED';
+export const DISPLAY_FORM_ERRORS = 'DISPLAY_FORM_ERRORS';
 
 function fetchHouseholder(territorySlug, id) {
   return {
@@ -33,16 +36,45 @@ function householderCreated(householder) {
   };
 }
 
-function prepareFormAttributes(attributes) {
+function displayFormErrors(errors) {
+  console.log(errors);
   return {
-    householder: {
-      street_name: attributes.streetName,
-      house_number: attributes.houseNumber,
-      name: attributes.name,
-      show: attributes.speakTheLanguage,
-      do_not_visit_date: attributes.doNotVisitDate,
-    }
-  }
+    type: DISPLAY_FORM_ERRORS,
+    errors: errors
+  };
+}
+
+function prepareFormAttributes(attributes) {
+  console.log(attributes);
+
+  const defaultValues = {
+      streetName: '',
+      houseNumber: '',
+      name: '',
+      speakTheLanguage: '',
+      doNotVisitDate: '',
+  };
+
+  const newValues = {
+    street_name: attributes.streetName,
+    house_number: attributes.houseNumber,
+    name: attributes.name,
+    show: attributes.speakTheLanguage,
+    do_not_visit_date: attributes.doNotVisitDate,
+  };
+
+  return { householder: Object.assign(defaultValues, newValues) };
+}
+
+function prepareFormErrors(errors) {
+  let newErrors = Object.assign({}, errors);
+
+  newErrors = hash.renameProperty('street_name', 'streetName', newErrors);
+  newErrors = hash.renameProperty('house_number', 'houseNumber', newErrors);
+  newErrors = hash.renameProperty('show', 'speakTheLanguage', newErrors);
+  newErrors = hash.renameProperty('do_not_visit_date', 'doNotVisitDate', newErrors);
+
+  return newErrors;
 }
 
 function createHouseholder(territorySlug, attributes) {
@@ -53,9 +85,9 @@ function createHouseholder(territorySlug, attributes) {
 
     const url = routes.householders.create(territorySlug);
 
-    Ajax.post(url).then(response => {
+    Ajax.post(url, attributes).then(response => {
       if (response.errors) {
-        dispatch(householderCreated(null))
+        dispatch(displayFormErrors(prepareFormErrors(response.errors)))
         return;
       }
 

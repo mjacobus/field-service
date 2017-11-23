@@ -89,11 +89,9 @@ export function updateTerritory(slug, values) {
     const url = routes.territories.show(slug);
     const oldTerritory = getState().territories.currentTerritory;
 
-    const changed = (oldTerritory.name !== values.name
-      || oldTerritory.city !== values.city
-      || oldTerritory.description !== values.description
+    const changed = !comparator.hash.equal(
+      oldTerritory, values, { only: [ 'name', 'city', 'description']}
     );
-
 
     dispatch(requestTerritoryUpdate());
 

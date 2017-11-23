@@ -53,10 +53,7 @@ const renderTerritoryView = ({ territory, householderDeleteCallback }) =>  {
     <TerritoryAssignments assignments={territory.assignments} />
   </ContentToggler>;
 
-  const householderProps = {
-    territory: territory,
-    onDelete: householderDeleteCallback
-  };
+  const householderProps = { territory, onDelete: householderDeleteCallback };
 
   const householdersToggler = <ContentToggler openText={ t.hideHouseholders } closedText={ t.showHouseholders } open={ true }>
     <Householders {...householderProps} />

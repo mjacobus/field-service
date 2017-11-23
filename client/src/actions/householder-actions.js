@@ -2,8 +2,6 @@ import Ajax from '../utils/ajax-helper';
 import routes from '../api-routes';
 import hash from '../utils/hash-utils';
 
-// import comparator from '../utils/comparator';
-
 export const FETCH_HOUSEHOLDER = 'FETCH_HOUSEHOLDER';
 export const HOUSEHOLDER_FETCHED = 'HOUSEHOLDER_FETCHED';
 

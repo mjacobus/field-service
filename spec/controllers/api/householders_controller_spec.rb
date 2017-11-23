@@ -22,4 +22,3 @@ RSpec.describe Api::HouseholdersController, type: :controller do
     end
   end
 end
-

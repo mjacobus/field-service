@@ -11,4 +11,3 @@ module ApiResponse
     end
   end
 end
-

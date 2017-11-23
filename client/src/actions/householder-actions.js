@@ -1,5 +1,5 @@
-// import Ajax from '../utils/ajax-helper';
-// import routes from '../api-routes';
+import Ajax from '../utils/ajax-helper';
+import routes from '../api-routes';
 // import comparator from '../utils/comparator';
 
 export const FETCH_HOUSEHOLDER = 'FETCH_HOUSEHOLDER';
@@ -33,14 +33,34 @@ function householderCreated(householder) {
   };
 }
 
+function prepareFormAttributes(attributes) {
+  return {
+    householder: {
+      street_name: attributes.streetName,
+      house_number: attributes.houseNumber,
+      name: attributes.name,
+      show: attributes.speakTheLanguage,
+      do_not_visit_date: attributes.doNotVisitDate,
+    }
+  }
+}
+
 function createHouseholder(territorySlug, attributes) {
   return (dispatch, getState) => {
-      console.log('creating...');
+    attributes = prepareFormAttributes(attributes);
+
     dispatch(requestCreateHouseholder());
 
-    setTimeout(() => {
+    const url = routes.householders.create(territorySlug);
+
+    Ajax.post(url).then(response => {
+      if (response.errors) {
+        dispatch(householderCreated(null))
+        return;
+      }
+
       dispatch(householderCreated(null))
-    }, 1000);
+    });
   }
 }
 

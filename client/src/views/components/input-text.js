@@ -7,7 +7,7 @@ import Block from './input-block';
 
 /* it complains when it is undefined or null */
 // const defaultValueFilter = (value) => value || '';
-const defaultValueFilter = (value) => value || '';
+const defaultValueFilter = (value) => value;
 
 export default function ({ name = null, label = null, errors = null, valueFilter = defaultValueFilter, ...otherProps }) {
   const elements = [];

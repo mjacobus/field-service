@@ -51,6 +51,7 @@ class HouseholderForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     console.log(this.state.persisted);
     if (nextProps.persisted) {
       this.setState({ persisted: true })

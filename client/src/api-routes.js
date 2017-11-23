@@ -31,7 +31,16 @@ const publishersRoutes = {
 
 territoriesRoutes.list = publishersRoutes.index;
 
+
+const householdersRoutes = {
+  create: (territorySlug) => {
+    return UrlHelper.create(`/app/territories/${territorySlug}/householders`);
+  }
+}
+
+
 export default {
   territories: territoriesRoutes,
+  householders: householdersRoutes,
   publishers: publishersRoutes
 }

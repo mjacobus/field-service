@@ -38,6 +38,7 @@ const publishersRoutes = {
 }
 
 const householdersRoutes = {
+  /* TODO: remove */
   add: ({ territory }) => {
     return UrlHelper.create(`/app/territories/${territory.slug}/householders/new`);
   },

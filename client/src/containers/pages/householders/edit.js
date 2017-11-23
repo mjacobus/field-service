@@ -4,15 +4,13 @@ import { createHouseholder } from '../../../actions/householder-actions';
 
 function mapStateToProps(state) {
   return {
-    ...state.territories.meta.create,
-    territory: state.territories.currentTerritory,
+    ...state.householders.meta.create,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     saveTerritory: (territorySlug, attributes) => {
-      console.log('saveTerritory')
       dispatch(createHouseholder(territorySlug, attributes));
     },
 

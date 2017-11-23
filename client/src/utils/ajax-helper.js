@@ -26,6 +26,10 @@ export default class {
     return this.apiRequest(path, 'put', data);
   }
 
+  static post(path, data = {}) {
+    return this.apiRequest(path, 'post', data);
+  }
+
   static apiRequest(path, method, data) {
     let options = Object.assign({}, defaultOptions(), {
       method,

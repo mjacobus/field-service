@@ -1,26 +1,25 @@
 import {connect} from 'react-redux';
 import Form from '../../../views/pages/householders/form';
-import { resetPersisted, fetchTerritory, updateTerritory } from '../../../actions/territory-actions';
+import { createHouseholder } from '../../../actions/householder-actions';
 
 function mapStateToProps(state) {
   return {
-    ...state.territories.meta,
+    ...state.territories.meta.create,
     territory: state.territories.currentTerritory,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchTerritory: (slug) => {
-      dispatch(fetchTerritory(slug));
+    saveTerritory: (territorySlug, attributes) => {
+      console.log('saveTerritory')
+      dispatch(createHouseholder(territorySlug, attributes));
     },
 
-    submitValues: (slug, values) => {
-      dispatch(updateTerritory(slug, values));
+    submitValues: (territorySlug, values) => {
     },
 
     resetPersisted: () => {
-      dispatch(resetPersisted());
     }
   };
 }

@@ -1,4 +1,5 @@
 import * as actions from '../actions/territory-actions';
+
 const DEFAULT_META = {
   errors: {},
   loading: true,

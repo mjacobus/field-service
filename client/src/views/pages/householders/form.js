@@ -7,7 +7,7 @@ import routes from '../../../app-routes';
 
 import InputText from '../../components/input-text';
 import LoaderOrContent from '../../components/loader-or-content';
-import { Form, RadioButtons } from '../../components/form';
+import { Form, RadioButtons, DateInput } from '../../components/form';
 
 import styles from './form.css';
 
@@ -28,6 +28,7 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
   );
 
   return <Form onSubmit={ onSubmit } buttons={ buttons }>
+    <DateInput name="myDate" label={ t.doNotVisitDate } onChange={ onChange }/>
     <Row>
       <Col xs={12} sm={8}>{ renderInputText('streetName') }</Col>
       <Col xs={12} sm={4}>{ renderInputText('houseNumber') }</Col>
@@ -65,6 +66,7 @@ class HouseholderForm extends Component {
 
   onChange(event) {
     this.values[event.target.name] = event.target.value;
+    console.log(this.values);
   }
 
   onSubmit(e) {

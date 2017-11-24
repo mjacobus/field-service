@@ -28,7 +28,6 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
   );
 
   return <Form onSubmit={ onSubmit } buttons={ buttons }>
-    <DateInput name="myDate" label={ t.doNotVisitDate } onChange={ onChange }/>
     <Row>
       <Col xs={12} sm={8}>{ renderInputText('streetName') }</Col>
       <Col xs={12} sm={4}>{ renderInputText('houseNumber') }</Col>
@@ -43,7 +42,9 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
       </Col>
     </Row>
     <Row>
-      <Col xs={12} sm={4} smOffset={8}>{ renderInputText('doNotVisitDate', { placeholder: 'Date YYYY-MM-DD' }) } </Col>
+      <Col xs={12} sm={4} smOffset={8}>
+        <DateInput name="doNotVisitDate" label={ t.doNotVisitDate } onChange={ onChange }/>
+      </Col>
     </Row>
   </Form>;
 };
@@ -66,7 +67,6 @@ class HouseholderForm extends Component {
 
   onChange(event) {
     this.values[event.target.name] = event.target.value;
-    console.log(this.values);
   }
 
   onSubmit(e) {

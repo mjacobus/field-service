@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {FormControl} from 'react-bootstrap';
 import Block from '../input-block';
 import Label from '../label';
 import Errors from '../input-errors';
@@ -10,7 +9,6 @@ import {
   ToggleButtonGroup,
   ToggleButton
 } from 'react-bootstrap';
-
 
 const onChangeWrapper = ({ name, onChange }) => value => (
   onChange({ target: { name, value } })

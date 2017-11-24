@@ -2,19 +2,11 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-import {FormControl} from 'react-bootstrap';
 import Block from '../input-block';
 import Label from '../label';
 import Errors from '../input-errors';
 
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
-
-import {
-  ButtonToolbar,
-  ToggleButtonGroup,
-  ToggleButton
-} from 'react-bootstrap';
 
 export default class DateInput extends Component {
   static defaultProps = {
@@ -22,10 +14,9 @@ export default class DateInput extends Component {
     dateFormat: "DD/MM/YYYY"
   };
 
-
   constructor(props) {
     super(props)
-    this.state = { startDate: moment() };
+    this.state = { startDate: null };
     this.handleChange = this.handleChange.bind(this);
     this.onChange = this.props.onChange.bind(this);
     this.handleOnBlur = this.handleOnBlur.bind(this);
@@ -52,7 +43,7 @@ export default class DateInput extends Component {
   }
 
   render() {
-    const { errors, name, onChange, label } = this.props;
+    const { errors, name, label } = this.props;
 
     let input = <DatePicker
       name={ name }

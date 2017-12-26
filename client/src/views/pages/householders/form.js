@@ -62,7 +62,7 @@ class HouseholderForm extends Component {
   }
 
   componentWillUnmount() {
-    this.props.onUnmount();
+    this.props.onUnmount(this.territorySlug);
   }
 
   onChange(event) {

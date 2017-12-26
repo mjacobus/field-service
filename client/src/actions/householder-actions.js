@@ -44,19 +44,19 @@ function displayFormErrors(errors) {
 
 function prepareFormAttributes(attributes) {
   const defaultValues = {
-      streetName: '',
-      houseNumber: '',
+      street_name: '',
+      house_number: '',
       name: '',
-      speakTheLanguage: '',
-      doNotVisitDate: '',
+      show: '1',
+      do_not_visit_date: '',
   };
 
   const newValues = {
-    street_name: attributes.streetName,
-    house_number: attributes.houseNumber,
-    name: attributes.name,
-    show: attributes.speakTheLanguage,
-    do_not_visit_date: attributes.doNotVisitDate,
+    street_name: attributes.streetName || defaultValues.street_name,
+    house_number: attributes.houseNumber || defaultValues.house_number,
+    name: attributes.name || defaultValues.name,
+    show: attributes.speakTheLanguage || defaultValues.show,
+    do_not_visit_date: attributes.doNotVisitDate || defaultValues.do_not_visit_date,
   };
 
   return { householder: Object.assign(defaultValues, newValues) };

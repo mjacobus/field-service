@@ -5,6 +5,10 @@ import {
   createHouseholder
 } from '../../../actions/householder-actions';
 
+import {
+  fetchTerritory,
+} from '../../../actions/territory-actions';
+
 function mapStateToProps(state) {
   return {
     ...state.householders.meta.create,
@@ -17,8 +21,9 @@ function mapDispatchToProps(dispatch) {
       dispatch(createHouseholder(territorySlug, attributes));
     },
 
-    onUnmount: () => {
+    onUnmount: (territorySlug) => {
       dispatch(afterHouseholderCreated());
+      dispatch(fetchTerritory(territorySlug, { cache: false }));
     },
   };
 }

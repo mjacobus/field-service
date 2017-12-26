@@ -46,7 +46,7 @@ function setCurrentTerritory(territory) {
   };
 };
 
-export function fetchTerritory(slug, options = { cache: true }, third) {
+export function fetchTerritory(slug, options = { cache: true }) {
   return (dispatch, getState) => {
     const currentTerritory = getState().territories.currentTerritory;
     const useCache = (options.cache && currentTerritory && currentTerritory.slug === slug);

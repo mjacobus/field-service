@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 
 import Button from '../../components/button';
-import Form from '../../components/form';
+import Form from '../../components/rails-form';
 import Label from '../../components/label';
 import Fieldset from '../../components/fieldset';
 

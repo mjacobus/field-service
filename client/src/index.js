@@ -13,6 +13,7 @@ import thunk from 'redux-thunk';
 import TerritoryIndexContainer from './containers/pages/territories/index';
 import TerritoryShowContainer from './containers/pages/territories/show';
 import TerritoryEditContainer from './containers/pages/territories/edit';
+import NewHouseholder from './containers/pages/householders/new';
 
 /* components */
 import TopMenu from './views/components/top-menu';
@@ -20,6 +21,7 @@ import EnvironmentAlert from './views/components/environment-alert';
 
 /* reducers */
 import {territoriesReducer} from './reducers/territories-reducer';
+import {householdersReducer} from './reducers/householders-reducer';
 
 /* utils */
 
@@ -33,7 +35,8 @@ import './index.css';
 
 const reducers = combineReducers(
   {
-    territories: territoriesReducer
+    territories: territoriesReducer,
+    householders: householdersReducer,
   }
 );
 
@@ -52,8 +55,9 @@ const app = <IntlProvider locale="en" messages={translations}>
             <Col xs={12}>
               <div>
                 <Route exact path={ routes.territories.index() } component={TerritoryIndexContainer}/>
-                <Route exact path={ routes.territories.show(':slug') }  component={TerritoryShowContainer}/>
-                <Route exact path={ routes.territories.edit(':slug') }  component={TerritoryEditContainer}/>
+                <Route exact path={ routes.territories.show(':slug') } component={TerritoryShowContainer}/>
+                <Route exact path={ routes.territories.edit(':slug') } component={TerritoryEditContainer}/>
+                <Route exact path={ routes.householders.new(':territorySlug') } component={NewHouseholder}/>
               </div>
             </Col>
           </Row>

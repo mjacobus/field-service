@@ -5,7 +5,9 @@ import Label from './label';
 import Errors from './input-errors';
 import Block from './input-block';
 
-export default function ({ name = null, label = null, errors = null, ...otherProps }) {
+const defaultValueFilter = (value) => value;
+
+export default function ({ name = null, label = null, errors = null, valueFilter = defaultValueFilter, ...otherProps }) {
   const elements = [];
 
   if (label) {

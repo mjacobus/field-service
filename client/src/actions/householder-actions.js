@@ -43,23 +43,17 @@ function displayFormErrors(errors) {
 }
 
 function prepareFormAttributes(attributes) {
-  const defaultValues = {
-      street_name: '',
-      house_number: '',
-      name: '',
-      show: '1',
-      do_not_visit_date: '',
-  };
+  attributes.streetName = attributes.streetName || '';
+  attributes.houseNumber = attributes.houseNumber || '';
+  attributes.speakTheLanguage = attributes.speakTheLanguage || '1';
+  attributes.doNotVisitDate = attributes.doNotVisitDate || '';
 
-  const newValues = {
-    street_name: attributes.streetName || defaultValues.street_name,
-    house_number: attributes.houseNumber || defaultValues.house_number,
-    name: attributes.name || defaultValues.name,
-    show: attributes.speakTheLanguage || defaultValues.show,
-    do_not_visit_date: attributes.doNotVisitDate || defaultValues.do_not_visit_date,
-  };
+  attributes = hash.renameProperty('streetName', 'street_name', attributes);
+  attributes = hash.renameProperty('houseNumber', 'house_number', attributes);
+  attributes = hash.renameProperty('speakTheLanguage', 'show', attributes);
+  attributes = hash.renameProperty('doNotVisitDate', 'do_not_visit_date', attributes);
 
-  return { householder: Object.assign(defaultValues, newValues) };
+  return { householder: attributes };
 }
 
 function prepareFormErrors(errors) {

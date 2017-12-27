@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :publishers
 
-  resources :territory_assignments, only: [:index, :update], as: :all_territory_assignments do
+  resources :territory_assignments, only: %i[index update], as: :all_territory_assignments do
     collection do
       get :edit
     end
@@ -28,4 +28,8 @@ Rails.application.routes.draw do
 
   match 'app/*path', to: 'frontend#index', via: :all
   get 'static/media/*asset', to: 'frontend#redirect_to_asset'
+
+  if Rails.env.test?
+    get 'test', to: 'authenticated#test'
+  end
 end

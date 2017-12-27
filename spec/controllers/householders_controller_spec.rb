@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HouseholdersController, type: :controller do
-  let(:current_user) { User.make!(password: 'admin') }
+  let(:current_user) { User.new(admin: true) }
   let(:territory) { Territory.make! }
   let(:householder) { Householder.make!(territory: territory) }
   let(:decorator) { HouseholderDecorator.new(householder) }

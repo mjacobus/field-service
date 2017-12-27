@@ -1,4 +1,4 @@
-class FrontendController < ApplicationController
+class FrontendController < AuthenticatedController
   layout 'frontend'
 
   def index

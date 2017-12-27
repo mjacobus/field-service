@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::HouseholdersController, type: :controller do
+  before { sign_in_as(User.new(admin: true)) }
+
   describe '#create' do
     it 'delegates to the correct endpoint' do
       householder = {

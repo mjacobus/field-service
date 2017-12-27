@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe FrontendController, type: :controller do
+  before { sign_in_as(User.new(admin: true)) }
+
+  it 'is authenticated controller' do
+    expect(subject).to be_a(AuthenticatedController)
+  end
+
   describe '#redirect_to_asset' do
     it 'redirects to asset' do
       expected_asset_name = 'foo.bar.gif'

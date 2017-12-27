@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TerritoryAssignmentsController do
-  before do
-    sign_in_as(User.new)
-  end
+  before { sign_in_as(User.new(admin: true)) }
 
   it 'is authenticated controller' do
     assert subject.is_a?(AuthenticatedController)

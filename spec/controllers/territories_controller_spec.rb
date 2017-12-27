@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TerritoriesController do
-  let(:current_user) { User.make! }
+  let(:current_user) { User.new(admin: true) }
   before do
     @territory = Territory.make!
     @decorator = TerritoryDecorator.new(@territory)

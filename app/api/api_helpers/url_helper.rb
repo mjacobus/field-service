@@ -24,6 +24,10 @@ module ApiHelpers
       backend_path("/territories/#{householder.territory.to_param}/householders/#{householder.to_param}")
     end
 
+    def login_path
+      backend_path('/sign_in')
+    end
+
     private
 
     def backend_path(path)

@@ -15,6 +15,12 @@ task :travis_ci do
   exec 'yarn run test'
 end
 
+task 'spec:coverage' do
+  ENV['COVERAGE'] = 'true'
+
+  Rake::Task['spec'].invoke
+end
+
 namespace :csv do
   namespace :householders do
     desc 'import csv files from csv/to_import/householders_*.csv'

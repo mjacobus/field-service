@@ -1,6 +1,10 @@
 class TerritoryService
+  def initialize(user: User.new(admin: true))
+    @initial_query = TerritoryQuery.new
+  end
+
   def search(assigned_to_ids: nil, pending_return: nil, inactive_from: nil)
-    query = TerritoryQuery.new
+    query = create_query
 
     if inactive_from
       query = query.inactive(from: inactive_from)
@@ -18,11 +22,17 @@ class TerritoryService
   end
 
   def inactive(from:)
-    TerritoryQuery.new.inactive(from: from)
+    create_query.inactive(from: from)
   end
 
   def worked(from:)
-    TerritoryQuery.new.worked(from: from)
+    create_query.worked(from: from)
+  end
+
+  private
+
+  def create_query
+    @initial_query.dup
   end
 end
 

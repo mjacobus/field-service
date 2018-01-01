@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe TerritoryService do
+  let(:user) { User.new(admin: true) }
+  subject { described_class.new(user: user) }
+
   let(:territory1) { Territory.make! }
   let(:territory2) { Territory.make! }
   let(:territory3) { Territory.make! }
 
   let(:publisher1) { Publisher.make! }
   let(:publisher2) { Publisher.make! }
+  let(:publisher3) { Publisher.make! }
 
   describe '#search' do
     describe 'with no parameters' do
@@ -19,6 +23,13 @@ RSpec.describe TerritoryService do
 
         expect(results.count).to eq(1)
         expect(results.to_a).to eq([territory1])
+      end
+
+      describe 'when user is not admin' do
+        let(:user) { User.new }
+
+        it 'returns only the user assigned territories' do
+        end
       end
     end
 

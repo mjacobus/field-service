@@ -28,4 +28,8 @@ Rails.application.routes.draw do
 
   match 'app/*path', to: 'frontend#index', via: :all
   get 'static/media/*asset', to: 'frontend#redirect_to_asset'
+
+  unless Rails.env.staging?
+    get '/error', to: ->(env){ raise("Test Exception!") }
+  end
 end

@@ -1,3 +1,3 @@
 Raven.configure do |config|
-  config.dsn = ENV['RAVEN_DSN']
+  config.dsn = ENV.fetch('RAVEN_DSN')
 end

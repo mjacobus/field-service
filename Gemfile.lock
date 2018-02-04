@@ -148,7 +148,7 @@ GEM
     json (2.0.2)
     kgio (2.10.0)
     koine-csv (0.2.1)
-    koine-db_bkp (0.1.1)
+    koine-db_bkp (0.1.2)
       addressable
     koine-google_maps_client (0.1.0)
       rest-client (~> 2.0)
@@ -379,7 +379,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   koine-csv (~> 0.2.1)
-  koine-db_bkp (~> 0.1.1)
+  koine-db_bkp (~> 0.1.2)
   koine-google_maps_client
   listen (~> 3.0.5)
   machinist (~> 2.0)
@@ -422,4 +422,4 @@ DEPENDENCIES
   wkhtmltopdf-binpath
 
 BUNDLED WITH
-   1.15.4
+   1.16.1

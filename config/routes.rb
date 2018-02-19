@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'territories#index'
 
   resources :territories, param: :slug do
+    resource :map
     resources :householders
     resources :assignments, controller: 'territory_assignments'
   end

@@ -1,6 +1,5 @@
-class MapsController < ApplicationController
-  layout false
+class MapsController < AuthenticatedController
+  layout 'google_maps'
 
-  def show
-  end
+  def show; end
 end

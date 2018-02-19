@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe GoogleMapsHelper, type: :helper do
   let(:key) { 'AIzaSyCMFbHjf-I2rApFaatnmukLyfb1VIB8Jhk' }
-  # <script src="https://maps.googleapis.com/maps/api/js?key=<%= key %>"></script>
 
   describe '#google_maps' do
     it 'returns a singleton instance of GoogleMapsHelperObject' do

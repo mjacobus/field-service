@@ -1,7 +1,7 @@
 module ApiHelpers
   class UrlHelper
     def householder_edit_path(householder)
-      backend_path("/territories/#{householder.territory.slug}/householders/#{householder.to_param}/edit")
+      frontend_path("/territories/#{householder.territory.slug}/householders/#{householder.to_param}/edit")
     end
 
     def territory_show_path(territory)

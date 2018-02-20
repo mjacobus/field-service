@@ -1,5 +1,7 @@
 import React from 'react';
 import {Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import appRoutes from '../../../app-routes';
 
 import Item from '../../components/property-value-label';
 import Separator from '../../components/separator';
@@ -14,7 +16,7 @@ const noop = () => {
   console.log('No on delete provided for Item')
 };
 
-export default ({ householder, onDelete = noop, separator = true }) => {
+export default ({ householder, territory, onDelete = noop, separator = true }) => {
   let classNames = [styles.housholderItemContainer];
 
   if (!householder.visit) {
@@ -22,7 +24,8 @@ export default ({ householder, onDelete = noop, separator = true }) => {
   }
 
   const householderEditLink = (content) => {
-    return <a href={ householder.links.edit }>{content}</a>;
+    console.log(householder);
+    return <Link to={ appRoutes.householders.edit({ territory, householder }) }>{content}</Link>;
   };
 
   return (
@@ -34,8 +37,8 @@ export default ({ householder, onDelete = noop, separator = true }) => {
               <Item description={ t.address } separator={ false }>{ householderEditLink(householder.address) }</Item>
             </Col>
             <Col xs={12} sm={5}>
-              <Item description={ t.name } separator={ false }>{ householderEditLink(householder.name) }</Item>
-            </Col>
+    <Item description={ t.name } separator={ false }>{ householderEditLink(householder.name) }</Item>
+    </Col>
           </Row>
         </Col>
         <Col xs={4}>

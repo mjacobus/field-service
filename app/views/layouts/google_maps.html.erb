@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Custom Markers</title>
+    <title>Map - <%= params[:territory_slug] %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <%= javascript_include_tag "google_maps" %>
+    <script type="text/javascript">
+      var Icons = {
+        pin: "<%= image_url('map_pin.png') %>",
+        flag: "<%= image_url('flag.png') %>",
+        sheep1: "<%= image_url('sheep1.png') %>",
+        sheep2: "<%= image_url('sheep2.png') %>",
+        sheep3: "<%= image_url('sheep3.png') %>",
+      };
+
+      Icons.mapPin = Icons.pin;
+
+      <% if params[:icon] %>
+        Icons.mapPin = Icons["<%= params[:icon] %>"];
+      <% end %>
+    </script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 90%;
+        height: 92%;
+        padding-top: 2%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -17,11 +33,18 @@
         margin: 0;
         padding: 0;
       }
+
+      h1 {
+        font-size: 13pt;
+        text-align: center;
+        width: auto;
+      }
+
     </style>
   </head>
   <body>
-    <div id="map"></div>
     <%= yield %>
+    <div id="map"></div>
     <%= content_for(:scripts) %>
   </body>
 </html>

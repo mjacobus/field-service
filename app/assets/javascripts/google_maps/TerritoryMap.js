@@ -19,11 +19,13 @@ class TerritoryMap {
     this.markers.forEach((marker) => {
       new google.maps.Marker({
         position: new google.maps.LatLng(marker.position.lat, marker.position.lon),
-        // icon: 'https://maps.google.com/mapfiles/kml/shapes/library_maps.png',
+        icon: Icons.mapPin,
         map: map,
         title: marker.title
       });
     });
+
+    this._drawPolygon(map);
   }
 
   _getCenter() {
@@ -52,5 +54,24 @@ class TerritoryMap {
         }
       };
     });
+  }
+
+  _drawPolygon(map) {
+    const drawingManager = new google.maps.drawing.DrawingManager({
+      drawingControl: true,
+      drawingControlOptions: {
+        position: google.maps.ControlPosition.TOP_CENTER,
+        drawingModes: ['polygon']
+      },
+      circleOptions: {
+        fillColor: null,
+        fillOpacity: 0,
+        strokeWeight: 5,
+        clickable: false,
+        editable: true,
+        zIndex: 1
+      }
+    });
+    drawingManager.setMap(map);
   }
 }

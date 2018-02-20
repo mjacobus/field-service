@@ -1,21 +1,30 @@
 import {connect} from 'react-redux';
 import Form from '../../../views/pages/householders/form';
+import hash from '../../../utils/hash-utils';
+
 import {
-  afterHouseholderCreated,
   updateHouseholder,
   fetchHouseholder
 } from '../../../actions/householder-actions';
 
+const normalizeHouseholderKeys = (object) => {
+  if (!object) {
+    return null;
+  }
+
+  return hash.snakeToCamel(object);
+};
+
 function mapStateToProps(state) {
   return {
-    ...state.householders.meta.create,
+    ...state.householders.meta.update,
+    values: normalizeHouseholderKeys(state.householders.currentHouseholder)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchHouseholder: (territorySlug, id) => {
-      console.log(territorySlug);
       dispatch(fetchHouseholder(territorySlug, id));
     },
 

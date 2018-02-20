@@ -11,7 +11,7 @@ import { Form, RadioButtons, DateInput } from '../../components/form';
 
 import styles from './form.css';
 
-const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}}) => {
+const renderForm = ({ onSubmit, onChange, posting, values = {}, errors = {}}) => {
   const buttons = [
     { type: "submit", disabled: posting, label: t.save },
     { linkTo: routes.territories.index(), label: t.back },
@@ -20,6 +20,7 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
   const renderInputText = (name, otherOptions = {}) => (
     <InputText label={ t[name] }
       name={ name }
+      value={ values[name] }
       onChange={ onChange }
       errors={ errors[name] }
       {...otherOptions}
@@ -49,8 +50,6 @@ const renderForm = ({ onSubmit, onChange, posting, householder = {}, errors = {}
 };
 
 class HouseholderForm extends Component {
-  state = {}
-
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
@@ -82,9 +81,9 @@ class HouseholderForm extends Component {
     const loading = false;
     const onSubmit = this.onSubmit;
     const onChange = this.onChange.bind(this);
-    const householder = this.values;
+    const values = this.props.values || this.values;
     const errors = this.props.errors;
-    const props = { onChange, onSubmit, householder, errors };
+    const props = { onChange, onSubmit, values, errors };
 
     if (this.props.persisted) {
       const territoryUrl = routes.territories.show(this.territorySlug);

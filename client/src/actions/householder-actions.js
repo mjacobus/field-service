@@ -25,9 +25,6 @@ function setCurrentHouseholder(householder) {
 
 export function fetchHouseholder(territorySlug, id) {
   return (dispatch, getState) => {
-    const currentHouseholder = getState().householders.householders.currentHouseholder;
-    console.log(currentHouseholder);
-
     dispatch({ type: FETCH_HOUSEHOLDER });
 
     const url = routes.householders.show(territorySlug, id);

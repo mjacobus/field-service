@@ -11,8 +11,11 @@
 <% url = ApiHelpers::ApiUrls.new.territory_url(params[:territory_slug]) %>
 
 <script type="text/javascript" charset="utf-8">
+  var App = {};
+
   function initMap() {
-    loadTerritoryMap({
+    territoryMap = loadTerritoryMap({
+      app: App,
       containerId: "map",
       territoryUrl: "<%= url %>"
     });

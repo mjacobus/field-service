@@ -1,12 +1,13 @@
 'use strict';
 
-const loadTerritoryMap = ({ territoryUrl, containerId }) => {
+const loadTerritoryMap = ({ app, territoryUrl, containerId }) => {
   jQuery.ajax({
     url: territoryUrl,
     success: (jsonResponse) => {
-      const territory = jsonResponse.data;
-      const map = new TerritoryMap({ territory });
-      map.drawIn(document.getElementById(containerId));
+      app.map = TerritoryMap.draw({
+        territory: jsonResponse.data,
+        container: document.getElementById(containerId)
+      });
     }
   })
 }

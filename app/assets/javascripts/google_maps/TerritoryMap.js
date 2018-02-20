@@ -4,6 +4,12 @@
 // https://developers.google.com/maps/documentation/javascript/examples/polygon-arrays
 
 class TerritoryMap {
+  static draw({ container, territory }) {
+    const map = new TerritoryMap({ territory });
+    map.drawIn(container);
+    return map;
+  }
+
   constructor({ territory }) {
     this.territory = territory;
     this.getMarkers = this._getMarkers.bind(this);

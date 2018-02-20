@@ -4,7 +4,7 @@ const hasKey = (key, object) => {
 };
 
 const renameProperty = (source, target, object) => {
-  if (source == target) {
+  if (source === target) {
     return object;
   }
 

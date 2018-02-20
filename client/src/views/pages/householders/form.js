@@ -11,6 +11,16 @@ import { Form, RadioButtons, DateInput } from '../../components/form';
 
 import styles from './form.css';
 
+const formValue = (key, values) => {
+  let value = values[key];
+
+  if (!value) {
+    return '';
+  }
+
+  return value;
+};
+
 const renderForm = ({ onSubmit, onChange, posting, values = {}, errors = {}}) => {
   const buttons = [
     { type: "submit", disabled: posting, label: t.save },
@@ -20,7 +30,7 @@ const renderForm = ({ onSubmit, onChange, posting, values = {}, errors = {}}) =>
   const renderInputText = (name, otherOptions = {}) => (
     <InputText label={ t[name] }
       name={ name }
-      value={ values[name] }
+      value={ formValue(name, values) }
       onChange={ onChange }
       errors={ errors[name] }
       {...otherOptions}
@@ -43,7 +53,8 @@ const renderForm = ({ onSubmit, onChange, posting, values = {}, errors = {}}) =>
     </Row>
     <Row>
       <Col xs={12} sm={4} smOffset={8}>
-        <DateInput name="doNotVisitDate" label={ t.doNotVisitDate } onChange={ onChange }/>
+        {/* TODO: Set proper date as initial value for editing */}
+        <DateInput name="doNotVisitDate" label={ t.doNotVisitDate } onChange={ onChange } value={ formValue('doNotVisitDate', values) }/>
       </Col>
     </Row>
   </Form>;

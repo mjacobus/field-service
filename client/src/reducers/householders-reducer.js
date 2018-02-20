@@ -26,6 +26,29 @@ function householdersReducer(state = DEFAULT_STATE, action) {
         }
       };
 
+    case actions.UPDATE_HOUSEHOLDER:
+      return {
+        ...state,
+        meta: {
+          update: {
+            ...state.meta.update,
+            loading: true,
+          }
+        }
+      };
+
+    case actions.HOUSEHOLDER_FETCHED:
+      return {
+        ...state,
+        currentHouseholder: action.householder,
+        meta: {
+          update: {
+            ...state.meta.update,
+            loading: false,
+          }
+        }
+      };
+
     case actions.HOUSEHOLDER_CREATED:
       return {
         ...state,

@@ -20,7 +20,7 @@ export default function ({ territory, onDelete }) {
 
   const list = territory.householders.map((householder, index) => {
     const separator = index !== last;
-    return <HouseholderItem key={ householder.id } householder={ householder } separator={ separator } onDelete={ onDelete }/>
+    return <HouseholderItem key={ householder.id } territory={territory} householder={ householder } separator={ separator } onDelete={ onDelete }/>
   });
 
   return <div> { header } { list } </div>

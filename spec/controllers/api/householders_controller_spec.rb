@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Api::HouseholdersController, type: :controller do
+  describe '#show' do
+    it 'delegates to the correct endpoint' do
+      expect_controller_to_perform_with(
+        territory_slug: 'foo',
+        id: '1'
+      )
+
+      post :show, xhr: true, params: { territory_slug: 'foo', id: 1 }
+
+      expect(response).to be_success
+    end
+  end
   describe '#create' do
     it 'delegates to the correct endpoint' do
       householder = {

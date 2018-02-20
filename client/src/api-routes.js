@@ -34,6 +34,10 @@ territoriesRoutes.list = publishersRoutes.index;
 const householdersRoutes = {
   create: (territorySlug) => {
     return UrlHelper.create(`/api/territories/${territorySlug}/householders`);
+  },
+  
+  show: (territorySlug, id) => {
+    return UrlHelper.create(`/api/territories/${territorySlug}/householders/${id}`);
   }
 }
 

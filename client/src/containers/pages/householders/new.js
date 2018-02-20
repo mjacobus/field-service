@@ -17,9 +17,12 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    /* TODO: check function name */
     saveTerritory: (territorySlug, attributes) => {
       dispatch(createHouseholder(territorySlug, attributes));
     },
+
+    fetchHouseholder: () => { },
 
     onUnmount: (territorySlug) => {
       dispatch(afterHouseholderCreated());

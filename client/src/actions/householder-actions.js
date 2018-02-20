@@ -16,23 +16,45 @@ export const HOUSEHOLDER_CREATED = 'HOUSEHOLDER_CREATED';
 export const DISPLAY_FORM_ERRORS = 'DISPLAY_FORM_ERRORS';
 export const AFTER_HOUSEHOLDER_CREATED = 'AFTER_HOUSEHOLDER_CREATED';
 
-function fetchHouseholder(territorySlug, id) {
+function setCurrentHouseholder(householder) {
   return {
-    type: FETCH_HOUSEHOLDER,
-    territorySlug,
-    id
+    type: HOUSEHOLDER_FETCHED,
+    householder
   }
 }
+
+export function fetchHouseholder(territorySlug, id) {
+  return (dispatch, getState) => {
+    dispatch({ type: FETCH_HOUSEHOLDER });
+
+    const url = routes.householders.show(territorySlug, id);
+
+    Ajax.getJson(url).then(response =>  {
+      dispatch(setCurrentHouseholder(response.data));
+    });
+  };
+};
 
 function requestCreateHouseholder() {
   return { type: CREATE_HOUSEHOLDER };
 }
 
+function requestUpdateHouseholder() {
+  return { type: UPDATE_HOUSEHOLDER };
+}
+
 function householderCreated(householder) {
   return {
     type: HOUSEHOLDER_CREATED,
-    householer: householder
+    householder
   };
+}
+
+function householderUpdated(householder) {
+  return {
+    type: HOUSEHOLDER_UPDATED,
+    householder
+  }
 }
 
 function displayFormErrors(errors) {
@@ -86,6 +108,25 @@ function createHouseholder(territorySlug, attributes) {
   }
 }
 
+function updateHouseholder(territorySlug, householder, attributes) {
+  return (dispatch, getState) => {
+    attributes = prepareFormAttributes(attributes);
+
+    dispatch(requestUpdateHouseholder());
+
+    const url = routes.householders.update({ territorySlug, householder });
+
+    Ajax.put(url, attributes).then(response => {
+      if(response.errors) {
+        dispatch(displayFormErrors(prepareFormErrors(response.errors)))
+        return;
+      }
+
+      dispatch(householderUpdated(response.data));
+    });
+  }
+}
+
 function afterHouseholderCreated() {
   return {
     type: AFTER_HOUSEHOLDER_CREATED
@@ -95,7 +136,7 @@ function afterHouseholderCreated() {
 export default function () {};
 
 export {
-  fetchHouseholder,
   createHouseholder,
+  updateHouseholder,
   afterHouseholderCreated,
 }

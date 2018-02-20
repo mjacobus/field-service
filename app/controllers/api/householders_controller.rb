@@ -1,5 +1,9 @@
 module Api
   class HouseholdersController < ApiController
+    def show
+      perform_with(territory_slug: params[:territory_slug], id: params[:id])
+    end
+
     def create
       perform_with(territory_slug: params[:territory_slug], attributes: new_attributes)
     end

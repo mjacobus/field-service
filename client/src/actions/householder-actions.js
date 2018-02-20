@@ -28,11 +28,22 @@ function requestCreateHouseholder() {
   return { type: CREATE_HOUSEHOLDER };
 }
 
+function requestUpdateHouseholder() {
+  return { type: UPDATE_HOUSEHOLDER };
+}
+
 function householderCreated(householder) {
   return {
     type: HOUSEHOLDER_CREATED,
-    householer: householder
+    householder
   };
+}
+
+function householderUpdated(householder) {
+  return {
+    type: HOUSEHOLDER_UPDATED,
+    householder
+  }
 }
 
 function displayFormErrors(errors) {
@@ -86,6 +97,25 @@ function createHouseholder(territorySlug, attributes) {
   }
 }
 
+function updateHouseholder(territorySlug, householder, attributes) {
+  return (dispatch, getState) => {
+    attributes = prepareFormAttributes(attributes);
+
+    dispatch(requestUpdateHouseholder());
+
+    const url = routes.householders.update({ territorySlug, householder });
+
+    Ajax.put(url, attributes).then(response => {
+      if(response.errors) {
+        dispatch(displayFormErrors(prepareFormErrors(response.errors)))
+        return;
+      }
+
+      dispatch(householderUpdated(response.data));
+    });
+  }
+}
+
 function afterHouseholderCreated() {
   return {
     type: AFTER_HOUSEHOLDER_CREATED
@@ -97,5 +127,6 @@ export default function () {};
 export {
   fetchHouseholder,
   createHouseholder,
+  updateHouseholder,
   afterHouseholderCreated,
 }

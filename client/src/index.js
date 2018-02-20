@@ -14,6 +14,7 @@ import TerritoryIndexContainer from './containers/pages/territories/index';
 import TerritoryShowContainer from './containers/pages/territories/show';
 import TerritoryEditContainer from './containers/pages/territories/edit';
 import NewHouseholder from './containers/pages/householders/new';
+import EditHouseholder from './containers/pages/householders/edit';
 
 /* components */
 import TopMenu from './views/components/top-menu';
@@ -58,6 +59,7 @@ const app = <IntlProvider locale="en" messages={translations}>
                 <Route exact path={ routes.territories.show(':slug') } component={TerritoryShowContainer}/>
                 <Route exact path={ routes.territories.edit(':slug') } component={TerritoryEditContainer}/>
                 <Route exact path={ routes.householders.new(':territorySlug') } component={NewHouseholder}/>
+                <Route exact path="/app/territories/:territorySlug/householders/:id/edit" component={EditHouseholder}/>
               </div>
             </Col>
           </Row>

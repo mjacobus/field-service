@@ -24,7 +24,6 @@ export default ({ householder, territory, onDelete = noop, separator = true }) =
   }
 
   const householderEditLink = (content) => {
-    console.log(householder);
     return <Link to={ appRoutes.householders.edit({ territory, householder }) }>{content}</Link>;
   };
 

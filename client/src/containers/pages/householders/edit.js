@@ -7,12 +7,14 @@ import {
   fetchHouseholder
 } from '../../../actions/householder-actions';
 
+// TODO: should this be a selector?
 const normalizeHouseholderKeys = (object) => {
   if (!object) {
     return null;
   }
 
-  return hash.snakeToCamel(object);
+  object = hash.snakeToCamel(object);
+  return hash.renameProperty('show', 'speakTheLanguage', object);
 };
 
 function mapStateToProps(state) {

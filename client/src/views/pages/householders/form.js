@@ -46,7 +46,7 @@ const renderForm = ({ onSubmit, onChange, posting, values = {}, errors = {}}) =>
       <Col xs={12} sm={8}>{ renderInputText('name') }</Col>
       <Col xs={12} sm={4}>
         <RadioButtons label={ t.speakTheLanguage } options={ [['1', t.yes ], [ '0', t.no ]] }
-          name="speakTheLanguage" onChange={ onChange } defaultValue={1}
+          name="speakTheLanguage" onChange={ onChange } value={ formValue('speakTheLanguage', values) ? '1' : '0' } defaultValue={1}
           className={ styles.yesNo }
         />
       </Col>

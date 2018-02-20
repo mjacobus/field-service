@@ -1,5 +1,8 @@
 'use strict';
 
+// https://developers.google.com/maps/documentation/javascript/examples/polygon-hole
+// https://developers.google.com/maps/documentation/javascript/examples/polygon-arrays
+
 class TerritoryMap {
   constructor({ territory }) {
     this.territory = territory;
@@ -72,6 +75,38 @@ class TerritoryMap {
         zIndex: 1
       }
     });
+
     drawingManager.setMap(map);
+
+    google.maps.event.addListener(drawingManager, 'polygoncomplete', (poly) => {
+      const coordinates = [];
+      poly.getPath().forEach((loc) => coordinates.push({ lat: loc.lat(), lng: loc.lng() }));
+      console.log(coordinates);
+    });
+
+    // Define the LatLng coordinates for the polygon.
+    const coordenates = this._savedMap();
+
+    // Construct the polygon.
+    const savedTerritory = new google.maps.Polygon({
+      paths: coordenates,
+      editable: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 3,
+      fillColor: '#FF0000',
+      fillOpacity: 0
+    });
+    savedTerritory.setMap(map);
   }
+
+  _savedMap() {
+    return [
+      { lat: 53.55050557090095, lng: 9.994030470886173 },
+      { lat: 53.54823631218663, lng: 9.995489592590275 },
+      { lat: 53.54917972665483, lng: 10.003171439208927 },
+      { lat: 53.55065855025642, lng: 10.00209855560297 }
+    ];
+  }
+
 }

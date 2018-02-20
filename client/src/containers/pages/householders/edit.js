@@ -15,6 +15,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchHouseholder: (territorySlug, id) => {
+      console.log(territorySlug);
       dispatch(fetchHouseholder(territorySlug, id));
     },
 

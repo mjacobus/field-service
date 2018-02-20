@@ -58,10 +58,15 @@ class HouseholderForm extends Component {
     this.values = {};
 
     this.territorySlug = this.props.match.params.territorySlug;
+    this.householderId = this.props.match.params.id;
   }
 
   componentWillUnmount() {
     this.props.onUnmount(this.territorySlug);
+  }
+
+  componentWillMount() {
+    this.props.fetchHouseholder(this.territorySlug, this.householderId);
   }
 
   onChange(event) {

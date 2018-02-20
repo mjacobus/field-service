@@ -16,13 +16,27 @@ export const HOUSEHOLDER_CREATED = 'HOUSEHOLDER_CREATED';
 export const DISPLAY_FORM_ERRORS = 'DISPLAY_FORM_ERRORS';
 export const AFTER_HOUSEHOLDER_CREATED = 'AFTER_HOUSEHOLDER_CREATED';
 
-function fetchHouseholder(territorySlug, id) {
+function setCurrentHouseholder(householder) {
   return {
-    type: FETCH_HOUSEHOLDER,
-    territorySlug,
-    id
+    type: HOUSEHOLDER_FETCHED,
+    householder
   }
 }
+
+export function fetchHouseholder(territorySlug, id) {
+  return (dispatch, getState) => {
+    const currentHouseholder = getState().householders.householders.currentHouseholder;
+    console.log(currentHouseholder);
+
+    dispatch({ type: FETCH_HOUSEHOLDER });
+
+    const url = routes.householders.show(territorySlug, id);
+
+    Ajax.getJson(url).then(response =>  {
+      dispatch(setCurrentHouseholder(response.data));
+    });
+  };
+};
 
 function requestCreateHouseholder() {
   return { type: CREATE_HOUSEHOLDER };
@@ -125,7 +139,6 @@ function afterHouseholderCreated() {
 export default function () {};
 
 export {
-  fetchHouseholder,
   createHouseholder,
   updateHouseholder,
   afterHouseholderCreated,

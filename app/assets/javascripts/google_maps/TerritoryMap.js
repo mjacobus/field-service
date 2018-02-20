@@ -5,25 +5,45 @@
 
 class TerritoryMap {
   static draw({ container, territory }) {
-    const map = new TerritoryMap({ territory });
-    map.drawIn(container);
-    return map;
+    const map = new google.maps.Map(container, {
+      zoom: 15,
+      mapTypeId: 'terrain'
+    });
+
+    const territoryMap = new TerritoryMap({ territory, map });
+    territoryMap.draw(map);
+    return territoryMap;
   }
 
-  constructor({ territory }) {
-    this.territory = territory;
+  constructor({ territory, container, map }) {
     this.getMarkers = this._getMarkers.bind(this);
+    this.centralize = this.centralize.bind(this);
+
+    this.map = map;
+    this.territory = territory;
     this.markers = this._getMarkers();
   }
 
-  drawIn(container) {
-    const center = this._getCenter();
+  centralize() {
+    // sum of lat/lon
+    const sum = this.markers.reduce((accumulator, marker) => {
+      accumulator.lat += marker.position.lat;
+      accumulator.lng += marker.position.lon;
 
-    const map = new google.maps.Map(container, {
-      zoom: 15,
-      center,
-      mapTypeId: 'terrain'
-    });
+      return accumulator;
+    }, { lat: 0, lng: 0 });
+
+    // average of lat/lon
+    const length = this.markers.length;
+    const average = { lat: sum.lat/length, lng: sum.lng/length };
+
+    this.map.setCenter(average);
+  }
+
+  draw() {
+    this.centralize();
+
+    const map = this.map;
 
     this.markers.forEach((marker) => {
       new google.maps.Marker({
@@ -34,19 +54,7 @@ class TerritoryMap {
       });
     });
 
-    this._drawPolygon(map);
-  }
-
-  _getCenter() {
-    const length = this.markers.length;
-    const sum = this.markers.reduce((accumulator, marker) => {
-      accumulator.lat += marker.position.lat;
-      accumulator.lng += marker.position.lon;
-
-      return accumulator;
-    }, { lat: 0, lng: 0 });
-
-    return { lat: sum.lat/length, lng: sum.lng/length }
+    this._drawPolygon();
   }
 
   _getMarkers() {
@@ -65,7 +73,7 @@ class TerritoryMap {
     });
   }
 
-  _drawPolygon(map) {
+  _drawPolygon() {
     const drawingManager = new google.maps.drawing.DrawingManager({
       drawingControl: true,
       drawingControlOptions: {
@@ -82,7 +90,7 @@ class TerritoryMap {
       }
     });
 
-    drawingManager.setMap(map);
+    drawingManager.setMap(this.map);
 
     google.maps.event.addListener(drawingManager, 'polygoncomplete', (poly) => {
       const coordinates = [];
@@ -103,7 +111,7 @@ class TerritoryMap {
       fillColor: '#FF0000',
       fillOpacity: 0
     });
-    savedTerritory.setMap(map);
+    savedTerritory.setMap(this.map);
   }
 
   _savedMap() {

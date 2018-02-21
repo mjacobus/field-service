@@ -16,7 +16,8 @@
       app: App,
       action: "<%= params['action'] %>",
       containerId: "map",
-      territoryUrl: "<%= api_urls.territory_url(@territory) %>"
+      territoryUrl: "<%= api_urls.territory_url(@territory) %>",
+      mapUrl: "<%= urls.territory_map_path(@territory) %>"
     });
   }
 </script>

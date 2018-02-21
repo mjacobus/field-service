@@ -9,11 +9,10 @@ const getCoordinates = (polygon) => {
     coordinates.push({ lat: loc.lat(), lng: loc.lng() })
   });
 
-  // console.log(coordinates);
   return coordinates;
 };
 
-const saveTerritory = (endpoint, ajax) => {
+const saveTerritory = ({ endpoint, ajax, redirectTo }) => {
   return (polygon) => {
     const map_coordinates = getCoordinates(polygon);
 
@@ -21,7 +20,7 @@ const saveTerritory = (endpoint, ajax) => {
       url: endpoint,
       type: 'PATCH',
       data: { territory: { map_coordinates } }
-    }).then(() => alert('uhu'));
+    }).then(() => window.location.href = redirectTo);
   };
 };
 
@@ -50,10 +49,13 @@ class TerritoryMapNew extends TerritoryMapShow {
 
     drawingManager.setMap(this.map);
 
+    const { endpoint, ajax } = this;
+    const redirectTo = this.mapUrl;
+
     google.maps.event.addListener(
       drawingManager,
       'polygoncomplete',
-      saveTerritory(this.endpoint, this.ajax)
+      saveTerritory({ endpoint, ajax, redirectTo })
     );
   }
 }

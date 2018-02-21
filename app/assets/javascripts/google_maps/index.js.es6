@@ -12,7 +12,7 @@ const fetch = (url) => jQuery.ajax({ url });
 //   }
 // });
 
-const loadTerritoryMap = ({ app, territoryUrl, containerId, action }) => {
+const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) => {
   const className = {
     show: TerritoryMapShow,
     new: TerritoryMapNew,
@@ -29,6 +29,7 @@ const loadTerritoryMap = ({ app, territoryUrl, containerId, action }) => {
       ajax,
       territory: jsonResponse.data,
       endpoint: territoryUrl,
+      mapUrl,
       container: document.getElementById(containerId)
     });
   });

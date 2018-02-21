@@ -3,13 +3,14 @@
 /** global: google */
 
 class TerritoryMapShow {
-  constructor({ container, map, config, endpoint, ajax }) {
+  constructor({ container, map, config, endpoint, ajax, mapUrl }) {
     this.config = config;
     this.addMarkers = this.addMarkers.bind(this);
     this.drawBorders = this.drawBorders.bind(this);
     this.map = map;
     this.ajax = ajax;
     this.endpoint = endpoint;
+    this.mapUrl = mapUrl;
     this.draw();
   }
 

@@ -18,7 +18,7 @@ const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) =>
     app.map = TerritoryMapFactory.create({
       className,
       ajax,
-      territory: jsonResponse.data,
+      config: jsonResponse.data.map,
       endpoint: territoryUrl,
       mapUrl,
       container: document.getElementById(containerId)

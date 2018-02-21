@@ -1,5 +1,7 @@
 'use strict';
 
+/** global: google */
+
 // https://developers.google.com/maps/documentation/javascript/examples/polygon-hole
 // https://developers.google.com/maps/documentation/javascript/examples/polygon-arrays
 

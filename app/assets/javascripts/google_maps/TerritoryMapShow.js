@@ -44,7 +44,14 @@ class TerritoryMapShow {
 
   draw() {
     this.addMarkers();
-    this.map.setCenter(this.config.center);
+
+    if (this.config.center.present) {
+      this.map.setCenter(this.config.center);
+    } else {
+      const hamburg = { lat: 53.5535103, lng: 9.9899721 };
+      this.map.setCenter(hamburg);
+    }
+
     this.drawBorders();
   }
 

@@ -25,6 +25,7 @@ module ApiResponse
           links: links(territory),
           assignments: assignments(territory),
           householders: territory_householders(territory),
+          map: territory_map(territory)
         }
       end
 
@@ -64,7 +65,7 @@ module ApiResponse
           },
           links: {
             edit: urls.householder_edit_path(householder),
-            destroy: urls.householder_destroy_path(householder),
+            destroy: urls.householder_destroy_path(householder)
           }
         }
       end
@@ -101,6 +102,16 @@ module ApiResponse
         end
 
         values
+      end
+
+      def territory_map(territory)
+        coordinates = territory.map_coordinates
+
+        unless coordinates
+          return { coordinates: [] }
+        end
+
+        { coordinates: coordinates }
       end
     end
   end

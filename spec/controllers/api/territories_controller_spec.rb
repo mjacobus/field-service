@@ -21,7 +21,7 @@ RSpec.describe Api::TerritoriesController, type: :controller do
 
   describe '#update' do
     it 'delegates to the correct endpoint' do
-      territory = { name: 'the-name', description: 'the-description', city: 'the-city' }
+      territory = { name: 'the-name', description: 'the-description', city: 'the-city', map_coordinates: ['foo'] }
 
       expect_controller_to_perform_with(
         slug: 'foo',

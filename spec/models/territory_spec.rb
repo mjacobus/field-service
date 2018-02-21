@@ -147,4 +147,28 @@ RSpec.describe Territory do
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe '#map_coordinates' do
+    let(:coordinates) { [{ 'lat' => 1, 'lon' => 2 }] }
+
+    it 'defaults to nil' do
+      expect(Territory.new.map_coordinates).to be_nil
+    end
+
+    it 'can save a array of hashes' do
+      territory = Territory.make!(map_coordinates: coordinates)
+
+      territory.reload
+
+      expect(territory.map_coordinates).to eq coordinates
+    end
+
+    it 'saves strings as strings' do
+      territory = Territory.make!(map_coordinates: coordinates.to_json)
+
+      territory.reload
+
+      expect(territory.map_coordinates).to eq coordinates.to_json
+    end
+  end
 end

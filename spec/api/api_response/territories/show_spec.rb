@@ -10,9 +10,9 @@ RSpec.describe Api::ApiResponse::Territories::Show do
     end
 
     it 'returns the coordinates when present' do
-      territory.map_coordinates = ['foo']
+      territory.map_coordinates = [{ 'foo' => 'bar' }]
 
-      expect(subject.to_h[:data][:map][:coordinates]).to eq ['foo']
+      expect(subject.to_h[:data][:map][:coordinates]).to eq [{ 'foo' => 'bar' }]
     end
   end
 end

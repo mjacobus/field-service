@@ -1,3 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require_tree ./google_maps
+//= require ./google_maps/index
+//= require ./google_maps/TerritoryMapFactory
+//= require ./google_maps/TerritoryMapShow
+//= require ./google_maps/TerritoryMapNew

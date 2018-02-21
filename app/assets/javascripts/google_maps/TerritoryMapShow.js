@@ -16,6 +16,7 @@ class TerritoryMapShow {
 
   constructor({ container, map, config }) {
     this.config = config;
+    this.afterDrawing = this.afterDrawing.bind(this);
     this.addMarkers = this.addMarkers.bind(this);
     this.drawBorders = this.drawBorders.bind(this);
     this.map = map;
@@ -37,21 +38,25 @@ class TerritoryMapShow {
 
   draw() {
     this.addMarkers();
+    this.drawBorders();
+    this.centralize();
+    this.afterDrawing();
+  }
 
+  centralize() {
     if (this.config.center.present) {
       this.map.setCenter(this.config.center);
-    } else {
-      const hamburg = { lat: 53.5535103, lng: 9.9899721 };
-      this.map.setCenter(hamburg);
+      return;
     }
 
-    this.drawBorders();
+    const hamburg = { lat: 53.5535103, lng: 9.9899721 };
+    this.map.setCenter(hamburg);
   }
 
   drawBorders() {
     const coordinates = this.config.coordinates;
 
-    const boundaries = new google.maps.Polygon({
+    this.borders = new google.maps.Polygon({
       paths: coordinates,
       editable: false,
       strokeColor: 'black',
@@ -61,6 +66,9 @@ class TerritoryMapShow {
       fillOpacity: 0
     });
 
-    boundaries.setMap(this.map);
+    this.borders.setMap(this.map);
+  }
+
+  afterDrawing() {
   }
 }

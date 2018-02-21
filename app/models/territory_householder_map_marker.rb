@@ -13,7 +13,11 @@ class TerritoryHouseholderMapMarker
   end
 
   def icon
-    @asset_helper.image_url('map_pin.png')
+    if @householder.visit?
+      return @asset_helper.image_url('map_pin.png')
+    end
+
+    @asset_helper.image_url('map_pin_do_not_visit.png')
   end
 
   def to_h

@@ -42,5 +42,11 @@ RSpec.describe TerritoryHouseholderMapMarker do
     it 'returns pin icon when householder should be visited' do
       expect(hash[:icon]).to match(/map_pin.*.png/)
     end
+
+    it 'returns do_not_visit pin icon when householder should not be visited' do
+      householder.show = false
+
+      expect(hash[:icon]).to match(/map_pin_do_not_visit.*.png/)
+    end
   end
 end

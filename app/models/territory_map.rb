@@ -3,7 +3,8 @@ class TerritoryMap
   attr_reader :average_latitude
   attr_reader :average_longitude
 
-  def initialize(coordinates:)
+  def initialize(coordinates:, markers: [])
+    @markers = markers || []
     @coordinates = coordinates || []
 
     if @coordinates.length > 1
@@ -17,7 +18,7 @@ class TerritoryMap
   end
 
   def to_h
-    { coordinates: coordinates, center: center }
+    { coordinates: coordinates, center: center, markers: @markers.to_h }
   end
 
   private

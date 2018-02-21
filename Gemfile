@@ -9,19 +9,19 @@ gem 'dotenv-rails'
 gem 'foundation-icons-sass-rails'
 gem 'foundation-rails'
 gem 'koine-csv', '~> 0.2.1'
-gem 'koine-google_maps_client'
 gem 'koine-db_bkp', '~> 0.1.2'
-gem 'object_comparator'
+gem 'koine-google_maps_client'
+gem 'object_comparator', '~> 0.1.3'
 gem 'pg'
+gem 'rack-cors', require: 'rack/cors'
 gem 'sentry-raven'
 gem 'simple_form', '~> 3.5'
 gem 'sprockets'
 gem 'sprockets-es6'
 gem 'unicorn'
+gem 'whenever', require: false
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binpath'
-gem 'whenever', require: false
-gem 'rack-cors', require: 'rack/cors'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1'
@@ -59,9 +59,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'awesome_print'
   gem 'byebug', platform: :mri
-  gem 'rubocop'
   gem 'reek'
   gem 'rspec-rails', '~> 3.6'
+  gem 'rubocop'
   gem 'spring-commands-rspec'
 end
 

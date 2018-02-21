@@ -5,7 +5,13 @@ RSpec.describe TerritoryMap do
     [{ 'lat' => 1, 'lng' => 2 }, { 'lat' => 1, 'lng' => 2 }]
   end
 
-  let(:map) { TerritoryMap.new(coordinates: coordinates) }
+  let(:markers) { instance_double(TerritoryHouseholderMapMarkers) }
+
+  let(:map) { TerritoryMap.new(coordinates: coordinates, markers: markers) }
+
+  before do
+    allow(markers).to receive(:to_h).and_return(['marker'])
+  end
 
   describe '#coordinates' do
     it 'has coordinates' do
@@ -31,8 +37,8 @@ RSpec.describe TerritoryMap do
     end
 
     it 'returns the center of all the combinations' do
-      expect(map.center[:lat]).to eq -3
-      expect(map.center[:lng]).to eq 5
+      expect(map.center[:lat]).to eq(-3)
+      expect(map.center[:lng]).to eq(5)
     end
   end
 
@@ -40,7 +46,8 @@ RSpec.describe TerritoryMap do
     it 'converts to hash' do
       expected_hash = {
         coordinates: coordinates,
-        center: { lat: 1, lng: 2 }
+        center: { lat: 1, lng: 2 },
+        markers: ['marker']
       }
 
       expect(map.to_h).to eq expected_hash

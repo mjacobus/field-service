@@ -21,50 +21,36 @@ class TerritoryMapShow {
 
   constructor({ territory, container, map, config }) {
     this.config = config;
-    this.getMarkers = this._getMarkers.bind(this);
+    this.addMarkers = this.addMarkers.bind(this);
     this.drawBorders = this.drawBorders.bind(this);
 
     this.map = map;
     this.territory = territory;
-    this.markers = this._getMarkers();
   }
 
-  draw() {
-    this.map.setCenter(this.config.center);
-    const map = this.map;
+  addMarkers() {
+    const withGeolocation = this.config.markers.filter(marker => marker.geolocation.present);
+    const map = this.map
 
-    this.getMarkers().forEach((marker) => {
+    withGeolocation.forEach((marker) => {
       new google.maps.Marker({
-        position: new google.maps.LatLng(marker.position.lat, marker.position.lon),
-        icon: Icons.mapPin,
+        position: new google.maps.LatLng(marker.geolocation.lat, marker.geolocation.lng),
+        icon: marker.icon,
         map: map,
         title: marker.title
       });
     });
-
-    this.drawBorders();
   }
 
-  _getMarkers() {
-    const householders = this.territory.householders.filter(
-      (householder) => householder.geolocation.present
-    );
-
-    return householders.map((householder) => {
-      return {
-        title: [householder.address, householder.name].join("\n"),
-        position: {
-          lat: householder.geolocation.lat,
-          lon: householder.geolocation.lon
-        }
-      };
-    });
+  draw() {
+    this.addMarkers();
+    this.map.setCenter(this.config.center);
+    this.drawBorders();
   }
 
   drawBorders() {
     const coordinates = this.config.coordinates;
 
-    // Construct the polygon.
     const boundaries = new google.maps.Polygon({
       paths: coordinates,
       editable: false,

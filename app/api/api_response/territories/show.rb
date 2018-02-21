@@ -25,7 +25,7 @@ module ApiResponse
           links: links(territory),
           assignments: assignments(territory),
           householders: territory_householders(territory),
-          map: territory_map(territory)
+          map: TerritoryMap.new(coordinates: territory.map_coordinates).to_h
         }
       end
 
@@ -102,16 +102,6 @@ module ApiResponse
         end
 
         values
-      end
-
-      def territory_map(territory)
-        coordinates = territory.map_coordinates
-
-        unless coordinates
-          return { coordinates: [] }
-        end
-
-        { coordinates: coordinates }
       end
     end
   end

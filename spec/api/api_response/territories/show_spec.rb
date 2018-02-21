@@ -4,12 +4,12 @@ RSpec.describe Api::ApiResponse::Territories::Show do
   let(:territory) { Territory.new }
   subject  { described_class.new(territory) }
 
-  describe '#map_coordinates' do
-    it 'is empty when none is saved' do
+  describe '#to_h' do
+    it 'returns empty coordinates when not present' do
       expect(subject.to_h[:data][:map][:coordinates]).to eq []
     end
 
-    it 'is empty when none is saved' do
+    it 'returns the coordinates when present' do
       territory.map_coordinates = ['foo']
 
       expect(subject.to_h[:data][:map][:coordinates]).to eq ['foo']

@@ -3,15 +3,13 @@
 /** global: google */
 
 class TerritoryMapFactory {
-  static create({ container, territory, className }) {
+  static create({ container, territory, className, endpoint, ajax }) {
     const map = new google.maps.Map(container, {
       zoom: 15,
       mapTypeId: 'terrain'
     });
 
-    const territoryMap = new className({ map, config: territory.map });
-    territoryMap.draw();
-    return territoryMap;
+    return new className({ map, config: territory.map, endpoint, ajax });
   }
 }
 

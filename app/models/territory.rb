@@ -64,6 +64,28 @@ class Territory < ApplicationRecord
     slug
   end
 
+  # make sure it saves an array of hashes instead of hash of hashes
+  # Also, makes sure it saves numbers instead of strings
+  def map_coordinates=(coordinates)
+    unless coordinates.is_a?(Hash)
+      return super(coordinates)
+    end
+
+    new_values = coordinates.values.map do |value|
+      if value['lat']
+        value['lat'] = Float(value['lat'])
+      end
+
+      if value['lng']
+        value['lng'] = Float(value['lng'])
+      end
+
+      value
+    end
+
+    super(new_values)
+  end
+
   private
 
   def ensure_no_children

@@ -21,14 +21,24 @@ RSpec.describe Api::TerritoriesController, type: :controller do
 
   describe '#update' do
     it 'delegates to the correct endpoint' do
-      territory = { name: 'the-name', description: 'the-description', city: 'the-city', map_coordinates: ['foo'] }
+      unnormalized_coordinates = { '1' => { 'foo' => '1.2' } }
+
+      territory = {
+        name: 'the-name',
+        description: 'the-description',
+        city: 'the-city',
+        map_coordinates: unnormalized_coordinates
+      }
 
       expect_controller_to_perform_with(
         slug: 'foo',
         attributes: territory
       )
 
-      put :update, xhr: true, params: { slug: 'foo', territory: territory.merge(other: true) }
+      put :update, xhr: true, params: {
+        slug: 'foo',
+        territory: territory.merge(other: true)
+      }
 
       expect(response).to be_success
     end

@@ -1,6 +1,16 @@
 'use strict';
 
+const ajax = jQuery.ajax;
 const fetch = (url) => jQuery.ajax({ url });
+
+// const token = () => jQuery('meta[name="csrf-token"]').attr('content');
+//
+// jQuery.ajaxSetup({
+//   beforeSend: (xhr) => {
+//     console.log(token())
+//     return xhr.setRequestHeader('X-CSRF-Token', token());
+//   }
+// });
 
 const loadTerritoryMap = ({ app, territoryUrl, containerId, action }) => {
   const className = {
@@ -16,7 +26,9 @@ const loadTerritoryMap = ({ app, territoryUrl, containerId, action }) => {
   fetch(territoryUrl).then((jsonResponse) => {
     app.map = TerritoryMapFactory.create({
       className,
+      ajax,
       territory: jsonResponse.data,
+      endpoint: territoryUrl,
       container: document.getElementById(containerId)
     });
   });

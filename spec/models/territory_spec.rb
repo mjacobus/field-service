@@ -155,6 +155,26 @@ RSpec.describe Territory do
       expect(Territory.new.map_coordinates).to be_nil
     end
 
+    context 'when coordinates are given in hash' do
+      it 'converts hash to array' do
+        coordinates = {
+          '1' => { 'lat' => '1.2', 'lng' => '2.1' },
+          '2' => { 'lat' => nil, 'lng' => nil }
+        }
+
+        territory = Territory.make!(map_coordinates: coordinates)
+
+        territory.reload
+
+        expected = [
+          { 'lat' => 1.2, 'lng' => 2.1 },
+          { 'lat' => nil, 'lng' => nil }
+        ]
+
+        expect(territory.map_coordinates).to eq(expected)
+      end
+    end
+
     it 'can save a array of hashes' do
       territory = Territory.make!(map_coordinates: coordinates)
 

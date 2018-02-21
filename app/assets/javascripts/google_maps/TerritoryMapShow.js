@@ -3,23 +3,14 @@
 /** global: google */
 
 class TerritoryMapShow {
-  static draw({ container, territory }) {
-    const map = new google.maps.Map(container, {
-      zoom: 15,
-      mapTypeId: 'terrain'
-    });
-
-    const territoryMap = new TerritoryMapShow({ map, config: territory.map });
-    territoryMap.draw();
-    return territoryMap;
-  }
-
-  constructor({ container, map, config }) {
+  constructor({ container, map, config, endpoint, ajax }) {
     this.config = config;
-    this.afterDrawing = this.afterDrawing.bind(this);
     this.addMarkers = this.addMarkers.bind(this);
     this.drawBorders = this.drawBorders.bind(this);
     this.map = map;
+    this.ajax = ajax;
+    this.endpoint = endpoint;
+    this.draw();
   }
 
   addMarkers() {
@@ -40,7 +31,6 @@ class TerritoryMapShow {
     this.addMarkers();
     this.drawBorders();
     this.centralize();
-    this.afterDrawing();
   }
 
   centralize() {
@@ -67,8 +57,5 @@ class TerritoryMapShow {
     });
 
     this.borders.setMap(this.map);
-  }
-
-  afterDrawing() {
   }
 }

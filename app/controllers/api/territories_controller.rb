@@ -19,7 +19,7 @@ module Api
         :name,
         :description,
         :city,
-        map_coordinates: []
+        map_coordinates: {}
       ).to_h.symbolize_keys
     end
   end

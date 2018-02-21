@@ -2,31 +2,10 @@
 
 /** global: google */
 
-const getCoordinates = (polygon) => {
-  const coordinates = [];
-
-  polygon.getPath().forEach((loc) => {
-    coordinates.push({ lat: loc.lat(), lng: loc.lng() })
-  });
-
-  return coordinates;
-};
-
-const saveTerritory = ({ endpoint, ajax, redirectTo }) => {
-  return (polygon) => {
-    const map_coordinates = getCoordinates(polygon);
-
-    ajax({
-      url: endpoint,
-      type: 'PATCH',
-      data: { territory: { map_coordinates } }
-    }).then(() => window.location.href = redirectTo);
-  };
-};
-
 class TerritoryMapNew extends TerritoryMapShow {
-  constructor(params) {
-    super(params);
+  constructor(props) {
+    super(props);
+    this.saveTerritoryBoundaries = props.saveTerritoryBoundaries.bind(this);
     this.drawEditor();
   }
 
@@ -55,7 +34,7 @@ class TerritoryMapNew extends TerritoryMapShow {
     google.maps.event.addListener(
       drawingManager,
       'polygoncomplete',
-      saveTerritory({ endpoint, ajax, redirectTo })
+      this.saveTerritoryBoundaries({ endpoint, ajax, redirectTo })
     );
   }
 }

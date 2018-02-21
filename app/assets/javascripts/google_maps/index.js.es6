@@ -3,6 +3,28 @@
 const ajax = jQuery.ajax;
 const fetch = (url) => jQuery.ajax({ url });
 
+const getCoordinates = (polygon) => {
+  const coordinates = [];
+
+  polygon.getPath().forEach((loc) => {
+    coordinates.push({ lat: loc.lat(), lng: loc.lng() })
+  });
+
+  return coordinates;
+};
+
+const saveTerritoryBoundaries = ({ endpoint, ajax, redirectTo }) => {
+  return (polygon) => {
+    const map_coordinates = getCoordinates(polygon);
+
+    ajax({
+      url: endpoint,
+      type: 'PATCH',
+      data: { territory: { map_coordinates } }
+    }).then(() => window.location.href = redirectTo);
+  };
+};
+
 const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) => {
   const className = {
     show: TerritoryMapShow,
@@ -21,6 +43,7 @@ const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) =>
       config: jsonResponse.data.map,
       endpoint: territoryUrl,
       mapUrl,
+      saveTerritoryBoundaries,
       container: document.getElementById(containerId)
     });
   });

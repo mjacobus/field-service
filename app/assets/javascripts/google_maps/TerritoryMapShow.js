@@ -2,11 +2,6 @@
 
 /** global: google */
 
-// https://developers.google.com/maps/documentation/javascript/examples/polygon-hole
-// https://developers.google.com/maps/documentation/javascript/examples/polygon-arrays
-// https://developers.google.com/maps/documentation/javascript/examples/control-custom
-// https://gist.github.com/christophercliff/1380958
-
 class TerritoryMapShow {
   static draw({ container, territory }) {
     const map = new google.maps.Map(container, {
@@ -14,18 +9,16 @@ class TerritoryMapShow {
       mapTypeId: 'terrain'
     });
 
-    const territoryMap = new TerritoryMapShow({ territory, map, config: territory.map });
+    const territoryMap = new TerritoryMapShow({ map, config: territory.map });
     territoryMap.draw();
     return territoryMap;
   }
 
-  constructor({ territory, container, map, config }) {
+  constructor({ container, map, config }) {
     this.config = config;
     this.addMarkers = this.addMarkers.bind(this);
     this.drawBorders = this.drawBorders.bind(this);
-
     this.map = map;
-    this.territory = territory;
   }
 
   addMarkers() {

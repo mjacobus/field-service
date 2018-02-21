@@ -14,10 +14,14 @@ const loadTerritoryMap = ({ app, territoryUrl, containerId, action }) => {
     return;
   }
 
-  // fetch(territoryUrl).then((jsonResponse) => {
-  //     app.map = TerritoryMap.draw({
-  //       territory: jsonResponse.data,
-  //       container: document.getElementById(containerId)
-  //     });
-  // });
+  if (action == 'new') {
+    fetch(territoryUrl).then((jsonResponse) => {
+        app.map = TerritoryMapNew.draw({
+          territory: jsonResponse.data,
+          container: document.getElementById(containerId)
+        });
+    });
+
+    return;
+  }
 }

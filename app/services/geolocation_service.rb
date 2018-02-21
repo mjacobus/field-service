@@ -7,8 +7,8 @@ class GeolocationService
     end
 
     numbers = geolocations.each_with_object(lat: [], lng: []) do |item, data|
-      data[:lat].push(item[:lat])
-      data[:lng].push(item[:lng])
+      data[:lat].push(Float(item[:lat]))
+      data[:lng].push(Float(item[:lng]))
     end
 
     lat = geolocation_center(numbers[:lat])

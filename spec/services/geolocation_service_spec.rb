@@ -33,5 +33,13 @@ RSpec.describe GeolocationService do
         expect(center).to eq(lat: nil, lng: nil, present: false)
       end
     end
+
+    describe 'when geolocations are not numbers' do
+      let(:locations) { [{ lat: '1.8', lng: '2.8' }, { lat: '1.2', lng: '2.2' }] }
+
+      it 'converts it to floats' do
+        expect(center).to eq(lat: 1.5, lng: 2.5, present: true)
+      end
+    end
   end
 end

@@ -81,7 +81,7 @@ class TerritoryMap {
       }
     });
 
-    // drawingManager.setMap(this.map);
+    drawingManager.setMap(this.map);
 
 
     google.maps.event.addListener(drawingManager, 'polygoncomplete', this.logCoordenates);

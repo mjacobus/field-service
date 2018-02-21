@@ -44,4 +44,8 @@ module ApplicationHelper
   def urls
     @urls ||= ApiHelpers::UrlHelper.new
   end
+
+  def api_urls
+    @api_urls ||= ApiHelpers::ApiUrls.new
+  end
 end

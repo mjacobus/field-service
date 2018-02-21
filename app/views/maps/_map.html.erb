@@ -1,5 +1,5 @@
-<a href=" <%= ApiHelpers::UrlHelper.new.territory_show_path(params[:territory_slug]) %>">
-  <h1 id="title"><%= params[:territory_slug] %></h1>
+<a href=" <%= urls.territory_path(@territory) %>">
+  <h1 id="title"><%= @territory.name %></h1>
 </a>
 
 <% content_for(:scripts) do %>
@@ -7,8 +7,6 @@
   <% javascript_url = google_maps.js_source(libraries: 'drawing', callback: 'initMap') %>
   <script async defer src="<%= javascript_url %>"> </script>
 <% end %>
-
-<% url = ApiHelpers::ApiUrls.new.territory_url(params[:territory_slug]) %>
 
 <script type="text/javascript" charset="utf-8">
   var App = {};
@@ -18,7 +16,7 @@
       app: App,
       action: "<%= params['action'] %>",
       containerId: "map",
-      territoryUrl: "<%= url %>"
+      territoryUrl: "<%= api_urls.territory_url(@territory) %>"
     });
   }
 </script>

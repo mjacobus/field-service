@@ -13,6 +13,10 @@ module ApiHelpers
     end
 
     def territory_show_path(territory)
+      territory_path(territory)
+    end
+
+    def territory_path(territory)
       frontend_path("/app/territories/#{territory.to_param}")
     end
 

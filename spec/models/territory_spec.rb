@@ -192,23 +192,23 @@ RSpec.describe Territory do
     end
   end
 
-  describe '#has_borders?' do
+  describe '#mapped?' do
     it 'returns true when there are borders' do
       territory = Territory.make!(map_coordinates: [{ 'lat' => 1, 'lng' => 1 }])
 
-      expect(territory.has_borders?).to be true
+      expect(territory.mapped?).to be true
     end
 
     it 'returns false when there are no borders' do
       territory = Territory.make!(map_coordinates: nil)
 
-      expect(territory.has_borders?).to be false
+      expect(territory.mapped?).to be false
     end
 
     it 'returns false when borders are blank' do
       territory = Territory.make!(map_coordinates: '')
 
-      expect(territory.has_borders?).to be false
+      expect(territory.mapped?).to be false
     end
   end
 end

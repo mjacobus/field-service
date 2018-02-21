@@ -86,7 +86,7 @@ class Territory < ApplicationRecord
     super(new_values)
   end
 
-  def has_borders?
+  def mapped?
     map_coordinates.present?
   end
 

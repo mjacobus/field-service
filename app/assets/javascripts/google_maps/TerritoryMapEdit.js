@@ -15,7 +15,6 @@ class TerritoryMapEdit extends TerritoryMapShow {
     this.removeBorders = props.removeBorders.bind(this);
     this.borders.setEditable(true);
     this.addControlls();
-
   }
 
   addControlls() {

@@ -46,4 +46,8 @@ class ApplicationController < ActionController::Base
   def params_as_hash
     params.permit!.to_hash.deep_symbolize_keys
   end
+
+  def url_helpers
+    @url_helpers ||= ApiHelpers::UrlHelper.new
+  end
 end

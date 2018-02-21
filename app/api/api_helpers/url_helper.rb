@@ -1,7 +1,15 @@
 module ApiHelpers
   class UrlHelper
     def householder_edit_path(householder)
-      backend_path("/territories/#{householder.territory.slug}/householders/#{householder.to_param}/edit")
+      backend_path(
+        "/territories/#{householder.territory.slug}/householders/#{householder.to_param}/edit"
+      )
+    end
+
+    def householder_destroy_path(householder)
+      backend_path(
+        "/territories/#{householder.territory.to_param}/householders/#{householder.to_param}"
+      )
     end
 
     def territory_show_path(territory)
@@ -20,8 +28,16 @@ module ApiHelpers
       backend_path("/territories/#{territory.to_param}/assignments/new")
     end
 
-    def householder_destroy_path(householder)
-      backend_path("/territories/#{householder.territory.to_param}/householders/#{householder.to_param}")
+    def territory_map_path(territory)
+      backend_path("/territories/#{territory.to_param}/map")
+    end
+
+    def edit_territory_map_path(territory)
+      backend_path("/territories/#{territory.to_param}/map/edit")
+    end
+
+    def new_territory_map_path(territory)
+      backend_path("/territories/#{territory.to_param}/map/new")
     end
 
     private

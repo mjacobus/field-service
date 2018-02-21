@@ -12,4 +12,3 @@ class TerritoryMapFactory {
     return new className(otherOptions);
   }
 }
-

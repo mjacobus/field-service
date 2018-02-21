@@ -13,7 +13,7 @@ const getCoordinates = (polygon) => {
   return coordinates;
 };
 
-const saveTerritoryBorders = ({ endpoint, redirectTo }) => {
+const saveBorders = ({ endpoint, redirectTo }) => {
   return (polygon) => {
     const map_coordinates = getCoordinates(polygon);
 
@@ -53,7 +53,7 @@ const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) =>
       endpoint: territoryUrl,
       getCoordinates,
       mapUrl,
-      saveTerritoryBorders,
+      saveBorders,
       removeBorders,
       container: document.getElementById(containerId)
     });

@@ -5,7 +5,7 @@
 class TerritoryMapNew extends TerritoryMapShow {
   constructor(props) {
     super(props);
-    this.saveTerritoryBorders = props.saveTerritoryBorders.bind(this);
+    this.saveBorders = props.saveBorders.bind(this);
     this.drawEditor();
   }
 
@@ -34,7 +34,7 @@ class TerritoryMapNew extends TerritoryMapShow {
     google.maps.event.addListener(
       drawingManager,
       'polygoncomplete',
-      this.saveTerritoryBorders({ endpoint, ajax, redirectTo })
+      this.saveBorders({ endpoint, ajax, redirectTo })
     );
   }
 }

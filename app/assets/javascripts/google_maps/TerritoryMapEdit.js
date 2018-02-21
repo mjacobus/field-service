@@ -2,21 +2,26 @@
 
 /** global: google */
 
+const messages = {
+  confirmSave: 'Tem certeza que deseja salvar as bordas do mapa?',
+  confirmDelete: 'Tem certeza de que deseja excluir as bordas do mapa?'
+};
+
 class TerritoryMapEdit extends TerritoryMapShow {
   constructor(props) {
     super(props);
-    this.saveTerritoryBorders = props.saveTerritoryBorders.bind(this);
+    this.saveBorders = props.saveBorders.bind(this);
     this.getCoordinates = props.getCoordinates.bind(this);
     this.removeBorders = props.removeBorders.bind(this);
     this.borders.setEditable(true);
     this.addControlls();
+
   }
 
   addControlls() {
     const { map, borders, endpoint, mapUrl } = this;
 
     const controlDiv = document.createElement('div');
-    // const centerControl = new CenterControl(centerControlDiv, map);
 
     controlDiv.index = 1;
     map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(controlDiv);
@@ -32,7 +37,6 @@ class TerritoryMapEdit extends TerritoryMapShow {
     controlUI.title = 'Click to recenter the map';
     controlDiv.appendChild(controlUI);
 
-    // Set CSS for the control interior.
     const saveButton = document.createElement('div');
     saveButton.style.backgroundColor = 'green';
     saveButton.style.color = 'white';
@@ -57,13 +61,13 @@ class TerritoryMapEdit extends TerritoryMapShow {
     controlUI.appendChild(deleteButton);
 
     saveButton.addEventListener('click', () => {
-      if (confirm('Tem certeza de que deseja salvar as bordas do  mapa?')) {
-        this.saveTerritoryBorders({ endpoint, redirectTo: mapUrl })(borders);
+      if (confirm(messages.confirmSave)) {
+        this.saveBorders({ endpoint, redirectTo: mapUrl })(borders);
       }
     });
 
     deleteButton.addEventListener('click', () => {
-      if (confirm('Tem certeza de que deseja excluir as bordas do mapa?')) {
+      if (confirm(messages.confirmDelete)) {
         this.removeBorders({ endpoint, redirectTo: mapUrl });
       }
     });

@@ -25,25 +25,53 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 92%;
-        padding-top: 2%;
+        height: 100%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
+        font-family: 'Roboto,Arial,sans-serif';
       }
 
       h1 {
         font-size: 13pt;
         text-align: center;
         width: auto;
+        margin: 0;
+      }
+
+      .topParButtons {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+
+      .topParButtons a, a {
+        color: white;
+        text-decoration: none;
+        margin-top: 5px;
+      }
+
+      #header {
+        padding: none;
+        margin: none;
+        background: rgb(74, 109, 167);
+        padding: 10px;;
       }
 
     </style>
   </head>
   <body>
+
+    <div id="header">
+      <a href=" <%= urls.territory_path(@territory) %>">
+        <h1 id="title"><%= @territory.name %></h1>
+      </a>
+    </div>
+
+    <%= content_for(:header) if content_for?(:header) %>
     <%= yield %>
     <div id="map"></div>
     <%= content_for(:scripts) %>

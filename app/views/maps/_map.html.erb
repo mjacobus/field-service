@@ -1,7 +1,3 @@
-<a href=" <%= urls.territory_path(@territory) %>">
-  <h1 id="title"><%= @territory.name %></h1>
-</a>
-
 <% content_for(:scripts) do %>
   <!-- https://developers.google.com/maps/documentation/javascript/examples/polygon-simple -->
   <% javascript_url = google_maps.js_source(libraries: 'drawing', callback: 'initMap') %>

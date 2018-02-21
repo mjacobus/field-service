@@ -2,7 +2,7 @@
 
 /** global: google */
 
-class TerritoryMapNew extends TerritoryMapShow {
+class TerritoryMapEdit extends TerritoryMapShow {
   constructor(props) {
     super(props);
     this.saveTerritoryBorders = props.saveTerritoryBorders.bind(this);
@@ -38,3 +38,4 @@ class TerritoryMapNew extends TerritoryMapShow {
     );
   }
 }
+

@@ -13,7 +13,7 @@ const getCoordinates = (polygon) => {
   return coordinates;
 };
 
-const saveTerritoryBoundaries = ({ endpoint, ajax, redirectTo }) => {
+const saveTerritoryBorders = ({ endpoint, ajax, redirectTo }) => {
   return (polygon) => {
     const map_coordinates = getCoordinates(polygon);
 
@@ -29,6 +29,7 @@ const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) =>
   const className = {
     show: TerritoryMapShow,
     new: TerritoryMapNew,
+    edit: TerritoryMapEdit,
   }[action];
 
   if (!className) {
@@ -43,7 +44,7 @@ const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) =>
       config: jsonResponse.data.map,
       endpoint: territoryUrl,
       mapUrl,
-      saveTerritoryBoundaries,
+      saveTerritoryBorders,
       container: document.getElementById(containerId)
     });
   });

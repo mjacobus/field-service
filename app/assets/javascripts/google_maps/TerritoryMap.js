@@ -4,6 +4,7 @@
 
 // https://developers.google.com/maps/documentation/javascript/examples/polygon-hole
 // https://developers.google.com/maps/documentation/javascript/examples/polygon-arrays
+// https://developers.google.com/maps/documentation/javascript/examples/control-custom
 
 class TerritoryMap {
   static draw({ container, territory }) {

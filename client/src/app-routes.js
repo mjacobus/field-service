@@ -17,6 +17,10 @@ const territoriesRoutes = {
     return UrlHelper.create(`/app/territories/${slug}`, params);
   },
 
+  map: (slug)  => {
+    return fixUrl(UrlHelper.create(`/territories/${slug}/map`));
+  },
+
   edit: (slug, params = {})  => {
     return UrlHelper.create(`/app/territories/${slug}/edit`, params);
   },

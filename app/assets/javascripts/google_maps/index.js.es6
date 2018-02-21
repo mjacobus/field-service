@@ -3,15 +3,6 @@
 const ajax = jQuery.ajax;
 const fetch = (url) => jQuery.ajax({ url });
 
-// const token = () => jQuery('meta[name="csrf-token"]').attr('content');
-//
-// jQuery.ajaxSetup({
-//   beforeSend: (xhr) => {
-//     console.log(token())
-//     return xhr.setRequestHeader('X-CSRF-Token', token());
-//   }
-// });
-
 const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) => {
   const className = {
     show: TerritoryMapShow,

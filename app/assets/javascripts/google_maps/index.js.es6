@@ -13,7 +13,7 @@ const getCoordinates = (polygon) => {
   return coordinates;
 };
 
-const saveTerritoryBorders = ({ endpoint, ajax, redirectTo }) => {
+const saveTerritoryBorders = ({ endpoint, redirectTo }) => {
   return (polygon) => {
     const map_coordinates = getCoordinates(polygon);
 
@@ -23,6 +23,14 @@ const saveTerritoryBorders = ({ endpoint, ajax, redirectTo }) => {
       data: { territory: { map_coordinates } }
     }).then(() => window.location.href = redirectTo);
   };
+};
+
+const removeBorders = ({ endpoint, redirectTo }) => {
+  return ajax({
+    url: endpoint,
+    type: 'PATCH',
+    data: { territory: { map_coordinates: '' }}
+  }).then(() => window.location.href = redirectTo);
 };
 
 const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) => {
@@ -43,8 +51,10 @@ const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) =>
       ajax,
       config: jsonResponse.data.map,
       endpoint: territoryUrl,
+      getCoordinates,
       mapUrl,
       saveTerritoryBorders,
+      removeBorders,
       container: document.getElementById(containerId)
     });
   });

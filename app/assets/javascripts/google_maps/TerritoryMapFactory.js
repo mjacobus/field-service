@@ -5,7 +5,7 @@
 class TerritoryMapFactory {
   static create({ container, className, ...otherOptions }) {
     otherOptions.map = new google.maps.Map(container, {
-      zoom: 15,
+      zoom: 14.9,
       mapTypeId: 'terrain'
     });
 

@@ -40,13 +40,19 @@ RSpec.describe TerritoryMap do
       expect(map.center[:lat]).to eq(-3)
       expect(map.center[:lng]).to eq(5)
     end
+
+    it 'returns the center of the householders when map has no borders' do
+      map = TerritoryMap.new(coordinates: nil, markers: double(:markers, center: { the: :center }))
+
+      expect(map.center).to eq(the: :center)
+    end
   end
 
   describe '#to_h' do
     it 'converts to hash' do
       expected_hash = {
         coordinates: coordinates,
-        center: { lat: 1, lng: 2 },
+        center: { lat: 1, lng: 2, present: true },
         markers: ['marker']
       }
 

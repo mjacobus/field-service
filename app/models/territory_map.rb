@@ -3,9 +3,10 @@ class TerritoryMap
   attr_reader :average_latitude
   attr_reader :average_longitude
 
-  def initialize(coordinates:, markers: [])
+  def initialize(coordinates:, markers: [], geolocation_service: GeolocationService.new)
     @markers = markers || []
     @coordinates = coordinates || []
+    @geolocation_service = geolocation_service
 
     if @coordinates.length > 1
       @average_latitude = coordinates_average('lat')
@@ -14,7 +15,11 @@ class TerritoryMap
   end
 
   def center
-    { lat: average_latitude, lng: average_longitude }
+    if @coordinates.empty?
+      return @markers.center
+    end
+
+    @geolocation_service.center_of(@coordinates)
   end
 
   def to_h

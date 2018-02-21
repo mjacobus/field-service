@@ -5,7 +5,11 @@ class TerritoryHouseholderMapMarker
   end
 
   def geolocation
-    { lat: householder.lat, lng: householder.lon, present: householder.has_geolocation? }
+    { lat: householder.lat, lng: householder.lon, present: has_geolocation? }
+  end
+
+  def has_geolocation?
+    householder.has_geolocation?
   end
 
   def title

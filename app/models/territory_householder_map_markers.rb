@@ -1,5 +1,7 @@
 class TerritoryHouseholderMapMarkers
-  def initialize(householders)
+  def initialize(householders, geolocation_service: GeolocationService.new)
+    @geolocation_service = geolocation_service
+
     @markers = householders.map do |householder|
       if householder.is_a?(TerritoryHouseholderMapMarker)
         next householder
@@ -7,6 +9,10 @@ class TerritoryHouseholderMapMarkers
 
       TerritoryHouseholderMapMarker.new(householder)
     end
+  end
+
+  def center
+    @geolocation_service.center_of(@markers.map(&:geolocation))
   end
 
   def to_h

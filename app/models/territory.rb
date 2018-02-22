@@ -90,6 +90,13 @@ class Territory < ApplicationRecord
     map_coordinates.present?
   end
 
+  def map
+    TerritoryMap.new(
+      coordinates: map_coordinates,
+      markers: TerritoryHouseholderMapMarkers.new(householders)
+    )
+  end
+
   private
 
   def ensure_no_children

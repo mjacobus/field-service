@@ -25,15 +25,8 @@ module ApiResponse
           links: links(territory),
           assignments: assignments(territory),
           householders: territory_householders(territory),
-          map: territory_map(territory)
+          map: territory.map.to_h
         }
-      end
-
-      def territory_map(territory)
-        TerritoryMap.new(
-          coordinates: territory.map_coordinates,
-          markers: TerritoryHouseholderMapMarkers.new(territory.householders)
-        ).to_h
       end
 
       def territory_assignment(territory)
@@ -49,52 +42,15 @@ module ApiResponse
       end
 
       def assignments(territory)
-        territory.assignments.map { |assignment| assignment(assignment) }
+        territory.assignments.map do |assignment|
+          Assignments::Show.new(assignment).to_h[:data]
+        end
       end
 
       def territory_householders(territory)
-        territory.householders.map { |householder| householder(householder) }
-      end
-
-      def householder(householder)
-        {
-          id: householder.id,
-          name: householder.name,
-          streetName: householder.normalized_street_name,
-          address: householder.address,
-          visit: householder.visit?,
-          show: householder.show?,
-          doNotVisitDate: householder.do_not_visit_date,
-          geolocation: {
-            present: householder.has_geolocation?,
-            lat: householder.lat,
-            lon: householder.lon
-          },
-          links: {
-            edit: urls.householder_edit_path(householder),
-            destroy: urls.householder_destroy_path(householder)
-          }
-        }
-      end
-
-      def assignment(assignment)
-        publisher = assignment.publisher
-
-        {
-          id: assignment.id,
-          territoryId: assignment.territory_id,
-          publisherId: assignment.publisher_id,
-          complete: assignment.complete,
-          pendingReturn: assignment.pending_return?,
-          returned: assignment.returned?,
-          assignedAt: assignment.assigned_at,
-          returnDate: assignment.return_date,
-          returnedAt: assignment.returned_at,
-          assignee: {
-            id: publisher.id,
-            name: publisher.name
-          }
-        }
+        territory.householders.map do |householder|
+          Householders::Show.new(householder).to_h[:data]
+        end
       end
 
       def links(territory)

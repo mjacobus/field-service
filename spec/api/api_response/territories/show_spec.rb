@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::ApiResponse::Territories::Show do
+RSpec.describe ApiResponse::Territories::Show do
   let(:territory) { Territory.new }
   subject  { described_class.new(territory) }
 

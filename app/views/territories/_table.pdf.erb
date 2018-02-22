@@ -1,13 +1,7 @@
 <% householder = HouseholderDecorator.new(Householder.new) %>
 
-<img
-width="100%"
-src="https://image.maps.cit.api.here.com/mia/1.6/route?r0=52.5338,13.2966,52.538361,13.325329,52.540867,13.262444,52.536691,13.264561,52.529172,13.268337,52.528337,13.273144,52.52583,13.27898,52.518728,13.279667&m0=52.5338%2C13.2966%2C52.538361%2C13.325329&m1=52.540867%2C13.262444%2C52.518728%2C13.279667&lc0=00ff00&sc0=000000&lw0=6&lc1=ff0000&sc1=0000ff&lw1=3&w=2048&h=2048&app_id=8WUzpwpuWJa7qfsxgz7k&app_code=VmqCt7ujz2YZzNAZA0oi8A" 
-alt="Map Image" />
-<%= page_break %>
-
 <% if territory.mapped? %>
-  <img src="<%= google_maps.image_url(territory, params) %>" alt="Map Image">
+  <img width="100%" src="<%= here_maps.image_url(territory, params) %>" alt="Map Image">
   <%= page_break %>
 <% end %>
 

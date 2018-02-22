@@ -63,3 +63,10 @@ rake csv:householders:export_all # will export to csv/exports
 ### Resources
 
 - [react-bootstrap](https://react-bootstrap.github.io/getting-started.html)
+- https://htmlpdfapi.com/blog/export_google_map_to_pdf
+- Maps
+  - https://developers.google.com/maps/documentation/static-maps/usage-limits
+  - https://developers.google.com/maps/documentation/javascript/examples/polygon-hole
+  - https://developers.google.com/maps/documentation/javascript/examples/polygon-arrays
+  - https://developers.google.com/maps/documentation/javascript/examples/control-custom
+  - https://gist.github.com/christophercliff/1380958

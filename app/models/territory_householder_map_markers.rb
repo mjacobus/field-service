@@ -15,6 +15,17 @@ class TerritoryHouseholderMapMarkers
     @geolocation_service.center_of(@markers.map(&:geolocation))
   end
 
+  def with_geolocation
+    self.class.new(
+      @markers.select(&:has_geolocation?),
+      geolocation_service: @geolocation_service
+    )
+  end
+
+  def map(&block)
+    @markers.map(&block)
+  end
+
   def to_h
     @markers.map(&:to_h)
   end

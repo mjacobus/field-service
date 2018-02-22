@@ -3,6 +3,10 @@ class MapsController < AuthenticatedController
 
   def show
     territory
+
+    if params[:print].present?
+      render :print, layout: false
+    end
   end
 
   def new

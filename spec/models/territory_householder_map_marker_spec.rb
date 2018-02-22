@@ -7,17 +7,18 @@ RSpec.describe TerritoryHouseholderMapMarker do
 
   describe '#geolocation' do
     it 'returns the geolocation hash when present' do
+      householder.show = true
       householder.lat = 1
       householder.lon = 2
 
-      expect(marker.geolocation).to eq(lat: 1, lng: 2, present: true)
+      expect(marker.geolocation).to eq(lat: 1.0, lng: 2.0, present: true, visit: true)
     end
 
     it 'returns empty values when not present' do
       householder.lat = nil
       householder.lon = nil
 
-      expect(marker.geolocation).to eq(lat: nil, lng: nil, present: false)
+      expect(marker.geolocation).to eq(lat: nil, lng: nil, present: false, visit: false)
     end
   end
 

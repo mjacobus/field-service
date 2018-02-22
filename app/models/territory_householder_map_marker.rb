@@ -5,7 +5,12 @@ class TerritoryHouseholderMapMarker
   end
 
   def geolocation
-    { lat: householder.lat, lng: householder.lon, present: has_geolocation? }
+    {
+      lat: householder.lat,
+      lng: householder.lon,
+      visit: householder.visit?,
+      present: has_geolocation?
+    }
   end
 
   def has_geolocation?
@@ -17,11 +22,11 @@ class TerritoryHouseholderMapMarker
   end
 
   def icon
-    if @householder.visit?
-      return @asset_helper.image_url('map_pin.png')
+    if householder.visit?
+      return asset_helper.image_url('map_pin.png')
     end
 
-    @asset_helper.image_url('map_pin_do_not_visit.png')
+    asset_helper.image_url('map_pin_do_not_visit.png')
   end
 
   def to_h

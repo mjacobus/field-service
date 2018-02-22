@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Api::ApiResponse::Territories::Show do
-  let(:territory) { Territory.new }
+RSpec.describe ApiResponse::Territories::Show do
+  let(:householder) { Householder.make! }
+  let(:territory) { householder.territory }
   subject  { described_class.new(territory) }
 
   describe '#to_h' do

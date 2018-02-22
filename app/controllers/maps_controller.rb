@@ -5,7 +5,7 @@ class MapsController < AuthenticatedController
     territory
 
     if params[:print].present?
-      render :print, layout: false
+      render :print
     end
   end
 

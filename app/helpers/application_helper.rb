@@ -41,6 +41,13 @@ module ApplicationHelper
     params.permit!.to_h.deep_symbolize_keys
   end
 
+  def query_string_params
+    @query_string_params ||= begin
+                               query_values = Addressable::URI.parse(request.url).query_values
+                               (query_values || {}).symbolize_keys
+                             end
+  end
+
   def urls
     @urls ||= ApiHelpers::UrlHelper.new
   end

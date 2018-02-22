@@ -41,7 +41,7 @@ RSpec.describe MapsController, type: :controller do
 
         get :edit, params: { territory_slug: territory.to_param }
 
-        expect(response).to redirect_to(new_territory_path(territory))
+        expect(response).to redirect_to(new_territory_map_path(territory.to_param))
       end
     end
   end

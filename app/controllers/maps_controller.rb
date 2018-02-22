@@ -15,7 +15,7 @@ class MapsController < AuthenticatedController
 
   def edit
     unless territory.mapped?
-      redirect_to url_helpers.new_territory_map_path(territory)
+      redirect_to url_helpers.new_territory_map(territory)
     end
   end
 

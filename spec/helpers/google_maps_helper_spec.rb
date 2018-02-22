@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe GoogleMapsHelper, type: :helper do
   let(:key) { 'AIzaSyCMFbHjf-I2rApFaatnmukLyfb1VIB8Jhk' }
 
+  before do
+    ENV['GOOGLE_MAPS_STATIC_API_KEY']
+  end
+
   describe '#google_maps' do
     it 'returns a singleton instance of GoogleMapsHelperObject' do
       expect(helper.google_maps).to be_a(GoogleMapsHelper::GoogleMapsHelperObject)
@@ -11,7 +15,7 @@ RSpec.describe GoogleMapsHelper, type: :helper do
   end
 
   describe GoogleMapsHelper::GoogleMapsHelperObject do
-    let(:subject) { GoogleMapsHelper::GoogleMapsHelperObject.new(helper) }
+    let(:subject) { GoogleMapsHelper::GoogleMapsHelperObject.new(static_api_key: 'some-key') }
 
     describe '#js_source' do
       it 'returns the js_source with key' do

@@ -2,7 +2,9 @@ require 'addressable/template'
 
 module GoogleMapsHelper
   def google_maps
-    @_google_maps ||= GoogleMapsHelperObject.new(self, static_api_key: ENV.to_h.fetch('GOOGLE_MAPS_STATIC_API_KEY'))
+    @_google_maps ||= GoogleMapsHelperObject.new(
+      static_api_key: ENV.to_h.fetch('GOOGLE_MAPS_STATIC_API_KEY')
+    )
   end
 
   class GoogleMapsHelperObject
@@ -10,11 +12,8 @@ module GoogleMapsHelper
     STATIC_MAP_URL = 'https://maps.google.com/maps/api/staticmap'.freeze
     KEY = 'AIzaSyCMFbHjf-I2rApFaatnmukLyfb1VIB8Jhk'.freeze
 
-    attr_reader :context
-
-    def initialize(context, config)
-      @context = context
-      @static_api_key = config.fetch(:static_api_key)
+    def initialize(static_api_key:)
+      @static_api_key = static_api_key
     end
 
     def js_source(params = {})

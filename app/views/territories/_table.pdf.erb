@@ -1,11 +1,5 @@
 <% householder = HouseholderDecorator.new(Householder.new) %>
 
-<% if territory.mapped? %>
-  <img width="100%" src="<%= here_maps.image_url(territory, params) %>" alt="Map Image">
-  <%= page_break %>
-<% end %>
-
-
 <table id="householders-table">
   <thead>
     <tr>
@@ -50,3 +44,9 @@
     <% end %>
   </tbody>
 </table>
+
+<% if territory.mapped? %>
+  <%= page_break %>
+  <img width="100%" src="<%= here_maps.image_url(territory, params) %>" alt="Map Image">
+<% end %>
+

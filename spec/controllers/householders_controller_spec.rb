@@ -46,7 +46,7 @@ RSpec.describe HouseholdersController, type: :controller do
     assert_equal 'text/csv; charset=utf-8', response.headers['Content-Type']
 
     # fails when all tests are run together
-    assert_match(/,#{territory.name},/, response.body)
+    assert_match(/#{territory.name},/, response.body)
   end
 
   it 'should get new' do

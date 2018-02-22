@@ -23,7 +23,7 @@ module HereMapsHelper
         w: 2048,
         h: 2048,
         r0: borders(map),
-        lc0: '9ab5e0',
+        lc0: 'e9a3ff',
         sc0: 'white',
         lw0: 20
       }

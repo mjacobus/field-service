@@ -43,9 +43,8 @@ module ApplicationHelper
 
   def query_string_params
     @query_string_params ||= begin
-                               query_values = Addressable::URI.parse(request.url).query_values
-                               (query_values || {}).symbolize_keys
-                             end
+       (Addressable::URI.parse(request.url).query_values || {}).symbolize_keys
+     end
   end
 
   def urls

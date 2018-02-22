@@ -23,9 +23,9 @@ module HereMapsHelper
         w: 2048,
         h: 2048,
         r0: borders(map),
-        lc0: 'yellow',
-        sc0: 'black',
-        lw0: 12
+        lc0: '9ab5e0',
+        sc0: 'white',
+        lw0: 20
       }
 
       markers(map).each_with_index do |marker, index|
@@ -52,7 +52,7 @@ module HereMapsHelper
       map.markers.with_geolocation.map.with_index do |marker, _index|
         marker_location = marker.geolocation
         geolocation = location_to_param(marker_location)
-        bg = marker_location[:visit] ? 'red' : 'white'
+        bg = marker_location[:visit] ? '4a6da7' : 'white'
         color = marker_location[:visit] ? 'white' : 'black'
 
         [geolocation, bg, color, 14, '.'].join(';')

@@ -1,17 +1,15 @@
 <% zoom = query_string_params.fetch(:zoom, 14) %>
-<% provider = query_string_params.fetch(:provider, 'google') %>
+<% provider = query_string_params.fetch(:provider, 'here') %>
+<%
+    image_url = if provider == 'google'
+                  google_maps.image_url(@territory, params)
+                else
+                  here_maps.image_url(@territory, params)
+                end
+%>
 
 <% content_for(:header) do %>
   <a target="_blank" href="<%= urls.download_territory_pdf(@territory, query_string_params.merge(zoom: zoom)) %>">Download PDF</a> |
-  Tamanhos
-  <% 12.upto(16) do |num| %>
-    <a href=" <%= url_for(query_string_params.merge(zoom: num)) %>"><%= num %></a> |
-  <% end %>
 <% end %>
 
-
-<% if provider == 'here' %>
-  <img width="80%" src="<%= here_maps.image_url(@territory, params) %>" alt="Map Image">
-<% else %>
-  <img src="<%= google_maps.image_url(@territory, params) %>" alt="Map Image">
-<% end %>
+<img style="max-width: 640px" src="<%= image_url %>" alt="Map Image">

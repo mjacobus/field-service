@@ -70,3 +70,6 @@ rake csv:householders:export_all # will export to csv/exports
   - https://developers.google.com/maps/documentation/javascript/examples/polygon-arrays
   - https://developers.google.com/maps/documentation/javascript/examples/control-custom
   - https://gist.github.com/christophercliff/1380958
+  - Examples:
+    - [lines](http://maps.google.com/maps/api/staticmap?size=400x400&zoom=13&path=color:0xff0000ff|weight:2|40.737102,-73.990318|40.749825,-73.987963&markers=color%3ablue|label%3aS|40.737102,-73.990318|40.749825,-73.987963&sensor=false)
+    - [lines](http://maps.googleapis.com/maps/api/staticmap?center=33.402285,-111.94271500000002&zoom=20&size=600x600&maptype=satellite&sensor=false&path=color%3ared%7Cweight:1%7Cfill%3awhite%7C33.4022475,-111.9426775%7C33.4022475,-111.9427525%7C33.4023225,-111.9427525%7C33.4023225,-111.9426775%7C33.4022475,-111.9426775)

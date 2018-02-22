@@ -34,6 +34,7 @@ module GoogleMapsHelper
       other_params = []
 
       other_params += static_markers(map)
+      other_params += [borders(map)]
 
       url = url_for(STATIC_MAP_URL, params.merge(key: @static_api_key)).to_s
       "#{url}&#{other_params.join('&')}"
@@ -48,6 +49,18 @@ module GoogleMapsHelper
         color = marker_location[:visit] ? 'red' : 'white'
         "markers=color:#{color}|#{geolocation}"
       end
+    end
+
+    def borders(map)
+      # path=color:0xff0000ff|weight:2|40.737102,-73.990318|40.749825,-73.987963&markers=color%3ablue|label%3aS|40.737102,-73.990318|40.749825,-73.987963
+
+      geolocations = map.coordinates.map do |coordinate|
+        location_to_param(coordinate.symbolize_keys)
+      end
+
+      geolocations.push(geolocations.first)
+
+      "path=color:0x000000|weight:5|#{geolocations.join('|')}"
     end
 
     def location_to_param(location)

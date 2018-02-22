@@ -25,15 +25,8 @@ module ApiResponse
           links: links(territory),
           assignments: assignments(territory),
           householders: territory_householders(territory),
-          map: territory_map(territory)
+          map: territory.map.to_h
         }
-      end
-
-      def territory_map(territory)
-        TerritoryMap.new(
-          coordinates: territory.map_coordinates,
-          markers: TerritoryHouseholderMapMarkers.new(territory.householders)
-        ).to_h
       end
 
       def territory_assignment(territory)

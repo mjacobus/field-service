@@ -6,21 +6,6 @@
     <meta charset="utf-8">
     <%= javascript_include_tag "google_maps" %>
     <%= csrf_meta_tags %>
-    <script type="text/javascript">
-      var Icons = {
-        pin: "<%= image_url('map_pin.png') %>",
-        flag: "<%= image_url('flag.png') %>",
-        sheep1: "<%= image_url('sheep1.png') %>",
-        sheep2: "<%= image_url('sheep2.png') %>",
-        sheep3: "<%= image_url('sheep3.png') %>",
-      };
-
-      Icons.mapPin = Icons.pin;
-
-      <% if params[:icon] %>
-        Icons.mapPin = Icons["<%= params[:icon] %>"];
-      <% end %>
-    </script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -42,12 +27,6 @@
         margin: 0;
       }
 
-      .topParButtons {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-      }
-
       .topParButtons a, a {
         color: white;
         text-decoration: none;
@@ -64,14 +43,14 @@
     </style>
   </head>
   <body>
-
     <div id="header">
-      <a href=" <%= urls.territory_path(@territory) %>">
-        <h1 id="title"><%= @territory.name %></h1>
-      </a>
+      <div class="topParButtons">
+        | <a href="<%= urls.territory_path(@territory) %>"><%= @territory.name %> </a> |
+        <a href="<%= urls.territory_map_path(@territory) %>">Mapa</a> |
+        <%= content_for(:header) if content_for?(:header) %>
+      </div>
     </div>
 
-    <%= content_for(:header) if content_for?(:header) %>
     <%= yield %>
     <div id="map"></div>
     <%= content_for(:scripts) %>

@@ -3,6 +3,10 @@ class MapsController < AuthenticatedController
 
   def show
     territory
+
+    if params[:print].present?
+      render :print
+    end
   end
 
   def new
@@ -11,7 +15,7 @@ class MapsController < AuthenticatedController
 
   def edit
     unless territory.mapped?
-      redirect_to url_helpers.new_territory_map_path(territory)
+      redirect_to url_helpers.new_territory_map(territory)
     end
   end
 

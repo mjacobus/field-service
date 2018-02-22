@@ -36,11 +36,19 @@ module ApiHelpers
       backend_path("/territories/#{territory.to_param}/map")
     end
 
-    def edit_territory_map_path(territory)
+    def edit_territory_map(territory)
       backend_path("/territories/#{territory.to_param}/map/edit")
     end
 
-    def new_territory_map_path(territory)
+    def print_territory_map(territory, params = {})
+      backend_path("/territories/#{territory.to_param}/map?print=true")
+    end
+
+    def download_territory_pdf(territory, params = {})
+      backend_path("/territories/#{territory.to_param}.pdf?#{params.to_query}")
+    end
+
+    def new_territory_map(territory)
       backend_path("/territories/#{territory.to_param}/map/new")
     end
 

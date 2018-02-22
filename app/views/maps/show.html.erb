@@ -1,11 +1,10 @@
 <% content_for(:header) do %>
-  <div class="topParButtons">
-    <% if @territory.mapped? %>
-      <a href="<%= urls.edit_territory_map_path(@territory) %>">Editar</a>
-    <% else %>
-      <a href="<%= urls.new_territory_map_path(@territory) %>">Criar</a>
+  <% if @territory.mapped? %>
+    <a href="<%= urls.edit_territory_map(@territory) %>">Editar</a> |
+    <a href="<%= urls.print_territory_map(@territory, query_string_params) %>">Previsualizar Impressão</a> |
+  <% else %>
+    <a href="<%= urls.new_territory_map(@territory) %>">Criar</a>
     <% end %>
-  </div>
 <% end %>
 
 <%= render partial: 'map' %>

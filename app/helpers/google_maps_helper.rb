@@ -21,14 +21,14 @@ module GoogleMapsHelper
       authorized_url(JS_URL, params).to_s
     end
 
-    def image_url(territory, _query_params = {})
+    def image_url(territory, query_params = {})
       map = territory.map
       center = location_to_param(map.center)
 
       params = {
         center: center,
         size: '640x640', # max for free usage
-        zoom: '14'
+        zoom: query_params.fetch(:zoom, 14)
       }
 
       other_params = []
@@ -52,8 +52,6 @@ module GoogleMapsHelper
     end
 
     def borders(map)
-      # path=color:0xff0000ff|weight:2|40.737102,-73.990318|40.749825,-73.987963&markers=color%3ablue|label%3aS|40.737102,-73.990318|40.749825,-73.987963
-
       geolocations = map.coordinates.map do |coordinate|
         location_to_param(coordinate.symbolize_keys)
       end

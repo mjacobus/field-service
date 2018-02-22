@@ -4,7 +4,7 @@ RSpec.describe GoogleMapsHelper, type: :helper do
   let(:key) { 'AIzaSyCMFbHjf-I2rApFaatnmukLyfb1VIB8Jhk' }
 
   before do
-    ENV['GOOGLE_MAPS_STATIC_API_KEY']
+    ENV['GOOGLE_MAPS_STATIC_API_KEY'] ||= 'some key'
   end
 
   describe '#google_maps' do

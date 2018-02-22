@@ -1,0 +1,19 @@
+<% content_for(:scripts) do %>
+  <!-- https://developers.google.com/maps/documentation/javascript/examples/polygon-simple -->
+  <% javascript_url = google_maps.js_source(libraries: 'drawing', callback: 'initMap') %>
+  <script async defer src="<%= javascript_url %>"> </script>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  var App = {};
+
+  function initMap() {
+    territoryMap = loadTerritoryMap({
+      app: App,
+      action: "<%= params['action'] %>",
+      containerId: "map",
+      territoryUrl: "<%= api_urls.territory_url(@territory) %>",
+      mapUrl: "<%= urls.territory_map_path(@territory) %>"
+    });
+  }
+</script>

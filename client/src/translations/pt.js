@@ -36,6 +36,7 @@ const translations = {
   search: 'Pesquisar',
   showAssignments: 'Mostrar Designações',
   showHouseholders: 'Mostrar Moradores',
+  showMap: 'Mapa',
   territoryAssignments: 'Designações de Territórios',
   territories: 'Territórios',
   territoriesFound: '{number} territórios encontrados.',

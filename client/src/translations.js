@@ -43,6 +43,7 @@ const translations = {
   search: translate('search'),
   showAssignments: translate('showAssignments'),
   showHouseholders: translate('showHouseholders'),
+  showMap: translate('showMap'),
   territoryAssignments: translate('territoryAssignments'),
   territories: translate('territories'),
   territoriesFound: (numberOfTerritories) => {

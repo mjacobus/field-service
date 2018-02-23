@@ -1,6 +1,13 @@
+<%
+publishers = Publisher.congregation_members.map do |publisher|
+  [publisher.name, publisher.id]
+end
+%>
+
 <%= simple_form_for(territory) do |f| %>
   <%= f.input :name %>
   <%= f.input :city %>
   <%= f.input :description, as: :string %>
+  <%= f.input :responsible_id, as: :select, collection: publishers  %>
   <%= territory_decorator.save_button %>
 <% end %>

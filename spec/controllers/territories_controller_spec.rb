@@ -9,11 +9,13 @@ RSpec.describe TerritoriesController do
     @new_url = @decorator.new_url
     @index_url = @decorator.index_url
     @resource_url = @decorator.url
+    @publisher = Publisher.make!
 
     @territory_params = {
       description: @territory.description,
       name: @territory.name,
-      city: 'Novo Hamburgo'
+      city: 'Novo Hamburgo',
+      responsible_id: @publisher.id
     }
 
     sign_in_as(current_user)
@@ -46,8 +48,11 @@ RSpec.describe TerritoriesController do
       post :create, params: { territory: @territory_params.merge(name: @territory.name) }
     end.to change { Territory.count }.by(1)
 
-    assert_redirected_to resource_url(Territory.last)
+    territory = Territory.last
+    assert_redirected_to resource_url(territory)
     assert_equal t('territories.created'), flash[:notice]
+
+    expect(territory.responsible).to eq @publisher
   end
 
   it 're-renders form on create error' do

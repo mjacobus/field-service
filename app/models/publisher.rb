@@ -27,4 +27,8 @@ class Publisher < ApplicationRecord
   def active_assignments
     assignments.where(returned: false)
   end
+
+  def to_s
+    name
+  end
 end

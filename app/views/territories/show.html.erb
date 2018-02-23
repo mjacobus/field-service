@@ -5,6 +5,7 @@
     <h2> <%= @territory_decorator.name %></h2>
     <p> <%= @territory_decorator.description %> </p>
     <p><%= @territory_decorator.title_for(:city) %>: <%= @territory_decorator.city %></p>
+    <p><%= @territory_decorator.title_for(:responsible) %>: <%= @territory_decorator.responsible %></p>
     <p><%= @territory_decorator.title_for(:number_of_householders) %>: <%= @territory_decorator.number_of_householders %></p>
     <p><%= @territory_decorator.title_for(:current_assignee) %>: <%= @territory_decorator.current_assignee_name %></p>
     <p><%= @territory_decorator.title_for(:return_date) %>: <%= @territory_decorator.return_date %></p>

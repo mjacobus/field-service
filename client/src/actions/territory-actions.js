@@ -90,7 +90,7 @@ export function updateTerritory(slug, values) {
     const oldTerritory = getState().territories.currentTerritory;
 
     const changed = !comparator.hash.equal(
-      oldTerritory, values, { only: [ 'name', 'city', 'description']}
+      oldTerritory, values, { only: [ 'name', 'city', 'description', 'responsible_id']}
     );
 
     dispatch(requestTerritoryUpdate());

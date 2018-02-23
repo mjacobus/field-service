@@ -7,6 +7,7 @@ import routes from '../../../app-routes';
 import InputText from '../../components/input-text';
 import Button from '../../components/button';
 import LoaderOrContent from '../../components/loader-or-content';
+import PublishersSelect from '../../pages/shared/publishers-selector';
 
 
 import globalStyle from '../../../global.css';
@@ -26,10 +27,16 @@ const TerritoryForm = withRouter(({ onSubmit, posting, territory = {}, onAttribu
     return onAttributeChange(event.target.name, event.target.value);
   }
 
+  const setResponsibleId = (selectedValues) => {
+    return onAttributeChange('responsible_id', selectedValues.pop() || null);
+  };
+
   return <form onSubmit={ onSubmit }>
     <InputText label={ t.name } name="name" value={ filterInput(territory.name) } onChange={ setValue } errors={ errors.name }/>
     <InputText label={ t.city } name="city" value={ filterInput(territory.city) } onChange={ setValue } errors={ errors.city }/>
     <InputText label={ t.description } name="description" value={ filterInput(territory.description) } onChange={ setValue } errors={ errors.description } />
+
+    <PublishersSelect label={ t.responsible } name="responsible_id" value={ filterInput(territory.responsible_id) } onCollectionChange={ setResponsibleId } errors={ errors.responsible_id } />
 
     <Button type="submit" disabled={ posting } className={ classNames }>{ t.save }</Button>
     <Button type="submit" className={ classNames } onClick={ () => history.push(routes.territories.index()) }>{ t.back }</Button>
@@ -68,7 +75,7 @@ export default class TerritoryEdit extends Component {
 
   getValues() {
     const values =  Object.assign({}, this.props.territory, this.state.territory);
-
+    values.responsible_id = values.responsible_id || (values.responsible || { id: null }).id
     const { slug } = this;
 
     return {
@@ -76,10 +83,12 @@ export default class TerritoryEdit extends Component {
       name: values.name,
       city: values.city,
       description: values.description,
+      responsible_id: values.responsible_id,
     }
   }
 
   setAttribute(attribute, value) {
+    console.log(attribute, value);
     const newTerritory = Object.assign({}, this.state.territory, { [attribute] : value });
     this.setState({ territory: newTerritory })
     this.changed = true;

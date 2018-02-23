@@ -18,7 +18,8 @@ module Api
       params.require(:territory).permit(
         :name,
         :description,
-        :city
+        :city,
+        :responsible_id
       ).to_h.symbolize_keys.tap do |territory|
         if params[:territory].key?(:map_coordinates)
           territory[:map_coordinates] = params[:territory][:map_coordinates].presence

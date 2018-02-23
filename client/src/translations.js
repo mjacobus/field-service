@@ -40,6 +40,7 @@ const translations = {
   pendingReturn: translate('pendingReturn'),
   returnedAt: translate('returnedAt'),
   returnTerritory: translate('returnTerritory'),
+  responsible: translate('responsible'),
   search: translate('search'),
   showAssignments: translate('showAssignments'),
   showHouseholders: translate('showHouseholders'),

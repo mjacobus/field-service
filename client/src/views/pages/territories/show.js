@@ -41,7 +41,7 @@ const renderTerritoryView = ({ territory, householderDeleteCallback }) =>  {
   let main = [
     <Item key={'name'} description={ t.name }>{ territory.name }</Item>,
     <Item key={'city'} description={ t.city }>{ territory.city }</Item>,
-    <Item key={'responsible'} description={ t.responsible }>{ territory.responsible }</Item>,
+    <Item key={'responsible'} description={ t.responsible }>{ (territory.responsible || {}).name }</Item>,
     <Item key={'description'} description={ t.description }>{ territory.description }</Item>,
     <Item key={'numberOfHouseholders'} description={ t.numberOfHouseholders }>{ territory.householders.length  }</Item>,
   ];

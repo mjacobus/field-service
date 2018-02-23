@@ -20,7 +20,7 @@ module ApiResponse
           name: territory.name,
           city: territory.city,
           description: territory.description,
-          responsible: territory.responsible.to_s.presence,
+          responsible: responsible,
           assigned: current_assignment.present?,
           currentAssignment: current_assignment,
           links: links(territory),
@@ -40,6 +40,11 @@ module ApiResponse
           returnDate: assignment.return_date,
           pendingReturn: assignment.pending_return?
         }
+      end
+
+      def responsible
+        return nil unless @territory.responsible
+        { id: @territory.responsible.id, name: @territory.responsible.name }
       end
 
       def assignments(territory)

@@ -21,9 +21,12 @@ RSpec.describe ApiResponse::Territories::Show do
     end
 
     it 'returns responsible name #responsible when one is assigned' do
-      territory.responsible = Publisher.new(name: 'John')
+      territory.responsible = Publisher.new(name: 'John', id: 1)
 
-      expect(data_hash[:responsible]).to eq 'John'
+      expect(data_hash[:responsible]).to eq(
+        id: 1,
+        name: 'John'
+      )
     end
   end
 end

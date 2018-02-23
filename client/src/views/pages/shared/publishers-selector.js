@@ -15,6 +15,11 @@ const fetchOptions = (callback, onlyOverseers = false) => {
       return { value: option.id, label: option.name };
     }).filter((option) => option !== null);
 
+    if (onlyOverseers) {
+      // force empty option
+      options.unshift({ value: '', label: '' });
+    }
+
     callback(options);
   });
 };

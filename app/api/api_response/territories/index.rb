@@ -18,8 +18,6 @@ module ApiResponse
       private
 
       def territory_to_hash(territory)
-        responsible = territory.try(:responsible).try(:name)
-
         {
           id: territory.id,
           slug: territory.slug,
@@ -28,7 +26,7 @@ module ApiResponse
           description: territory.description,
           householders: territory_householders(territory),
           currentAssignment: territory_assignment(territory),
-          responsible: responsible,
+          responsible: responsible(territory),
         }
       end
 
@@ -46,6 +44,15 @@ module ApiResponse
 
       def territory_householders(territory)
         territory.householders.select(:id).map {|h| h[:id] }
+      end
+
+      def responsible(territory)
+        return nil unless territory.responsible
+
+        {
+          id: territory.responsible.id,
+          name: territory.responsible.name
+        }
       end
     end
   end

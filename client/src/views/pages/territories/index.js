@@ -115,6 +115,12 @@ export default class TerritoryIndex extends Component {
             </span>
           </Col>
 
+          <Col xs={12} md={6}>
+            <span className={ style.territoryResponsable }>
+              { territory.responsable }
+            </span>
+          </Col>
+
           <Col xs={12} md={4}>
             { territory.currentAssignment &&
               <Row>

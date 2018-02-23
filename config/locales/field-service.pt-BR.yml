@@ -10,6 +10,7 @@ pt-BR:
         description: Descrição
         number_of_householders: Número de Moradores
         responsible: Responsável
+        responsible_id: Responsável
         current_assignee: Designado para
         return_date: Data de Retorno
       householder:

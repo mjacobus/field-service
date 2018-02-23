@@ -4,6 +4,7 @@ class Publisher < ApplicationRecord
 
   scope :sorted, -> { order(name: :asc) }
   scope :congregation_members, -> { where(congregation_member: true) }
+  scope :overseers, -> { where(overseer: true) }
 
   def self.search(search:)
     search = [nil, search, nil].join('%')

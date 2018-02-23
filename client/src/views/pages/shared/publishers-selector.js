@@ -3,13 +3,17 @@ import routes from '../../../api-routes';
 import Ajax from '../../../utils/ajax-helper';
 import Select from '../../components/select';
 
-const fetchOptions = (callback) => {
+const fetchOptions = (callback, onlyOverseers = false) => {
   const url = routes.publishers.index();
 
   Ajax.getJson(url).then((response) => {
-    const options = response.data.map((options) => {
-      return { value: options.id, label: options.name };
-    });
+    const options = response.data.map((option) => {
+      if (onlyOverseers && !option.overseer) {
+        return null;
+      }
+
+      return { value: option.id, label: option.name };
+    }).filter((option) => option !== null);
 
     callback(options);
   });
@@ -24,7 +28,7 @@ export default class extends Component {
   componentWillMount() {
     fetchOptions((options) => {
       this.setState({options: options});
-    });
+    }, this.props.overseers);
   }
 
   render() {

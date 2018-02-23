@@ -1,5 +1,5 @@
 <%
-publishers = Publisher.congregation_members.map do |publisher|
+publishers = Publisher.overseers.map do |publisher|
   [publisher.name, publisher.id]
 end
 %>

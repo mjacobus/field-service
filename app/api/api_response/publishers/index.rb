@@ -23,7 +23,8 @@ module ApiResponse
           name: publisehr.name,
           email: publisehr.email,
           phone: publisehr.phone,
-          congregationMember: publisehr.congregation_member?,
+          overseer: publisehr.overseer?,
+          congregationMember: publisehr.congregation_member?
         }
       end
     end

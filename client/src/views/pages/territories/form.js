@@ -36,7 +36,7 @@ const TerritoryForm = withRouter(({ onSubmit, posting, territory = {}, onAttribu
     <InputText label={ t.city } name="city" value={ filterInput(territory.city) } onChange={ setValue } errors={ errors.city }/>
     <InputText label={ t.description } name="description" value={ filterInput(territory.description) } onChange={ setValue } errors={ errors.description } />
 
-    <PublishersSelect label={ t.responsible } name="responsible_id" value={ filterInput(territory.responsible_id) } onCollectionChange={ setResponsibleId } errors={ errors.responsible_id } />
+    <PublishersSelect overseers={ true } label={ t.responsible } name="responsible_id" value={ filterInput(territory.responsible_id) } onCollectionChange={ setResponsibleId } errors={ errors.responsible_id } />
 
     <Button type="submit" disabled={ posting } className={ classNames }>{ t.save }</Button>
     <Button type="submit" className={ classNames } onClick={ () => history.push(routes.territories.index()) }>{ t.back }</Button>

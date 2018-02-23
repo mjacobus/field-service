@@ -33,6 +33,7 @@ const translations = {
   pendingReturn: 'Devolução pendente',
   returnedAt: 'Retornado em',
   returnTerritory: 'Devolver território',
+  responsible: 'Responsável',
   search: 'Pesquisar',
   showAssignments: 'Mostrar Designações',
   showHouseholders: 'Mostrar Moradores',

@@ -73,6 +73,6 @@ class TerritoriesController < AuthenticatedController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def territory_params
-    params.require(:territory).permit(:name, :description, :city)
+    params.require(:territory).permit(:name, :description, :city, :responsible_id)
   end
 end

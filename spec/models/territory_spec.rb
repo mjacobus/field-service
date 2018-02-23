@@ -7,6 +7,16 @@ RSpec.describe Territory do
     assert valid_territory.valid?
   end
 
+  it 'belongs to #responsible (Publisher)' do
+    publisher = Publisher.make
+    territory = Territory.make!(responsible: publisher)
+
+    persisted = Territory.last
+
+    expect(persisted.responsible).to eq publisher
+    expect(persisted.responsible_id).to eq publisher.id
+  end
+
   it 'validates presence of name' do
     territory = valid_territory
     territory.name = nil

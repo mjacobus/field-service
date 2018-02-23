@@ -9,6 +9,8 @@ pt-BR:
         city: Cidade
         description: Descrição
         number_of_householders: Número de Moradores
+        responsible: Responsável
+        responsible_id: Responsável
         current_assignee: Designado para
         return_date: Data de Retorno
       householder:
@@ -90,6 +92,7 @@ pt-BR:
     cannot_destroy: Território não pode ser removido. Certifique-se de que ele não possua moradores ou designações.
     assigned: Território designado com sucesso!
     assignment_error: Território não pode ser designado. Verifique se ele não precisa ser devolvido primeiro.
+    returned: Território devolvido com sucesso!
     returned: Território devolvido com sucesso!
 
   householders:

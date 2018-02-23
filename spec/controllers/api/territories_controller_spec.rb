@@ -27,6 +27,7 @@ RSpec.describe Api::TerritoriesController, type: :controller do
         name: 'the-name',
         description: 'the-description',
         city: 'the-city',
+        responsible_id: 'the-responsible',
         map_coordinates: unnormalized_coordinates
       }
 

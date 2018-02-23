@@ -39,10 +39,11 @@ const renderActions = withRouter(({ territory, history }) => {
 const renderTerritoryView = ({ territory, householderDeleteCallback }) =>  {
 
   let main = [
-    <Item key={1} description={ t.name }>{ territory.name }</Item>,
-    <Item key={2} description={ t.city }>{ territory.city }</Item>,
-    <Item key={3} description={ t.description }>{ territory.description }</Item>,
-    <Item key={4} description={ t.numberOfHouseholders }>{ territory.householders.length  }</Item>,
+    <Item key={'name'} description={ t.name }>{ territory.name }</Item>,
+    <Item key={'city'} description={ t.city }>{ territory.city }</Item>,
+    <Item key={'responsible'} description={ t.responsible }>{ (territory.responsible || {}).name }</Item>,
+    <Item key={'description'} description={ t.description }>{ territory.description }</Item>,
+    <Item key={'numberOfHouseholders'} description={ t.numberOfHouseholders }>{ territory.householders.length  }</Item>,
   ];
 
   if (territory.currentAssignment) {

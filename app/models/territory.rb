@@ -1,6 +1,7 @@
 class Territory < ApplicationRecord
   TerritoryError = Class.new(StandardError)
 
+  belongs_to :responsible, class_name: 'Publisher', optional: true
   has_many :householders
   has_many :assignments, class_name: 'TerritoryAssignment'
   validates :name, presence: true, uniqueness: { case_sensitive: false }

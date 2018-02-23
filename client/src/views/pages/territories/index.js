@@ -104,6 +104,9 @@ export default class TerritoryIndex extends Component {
             <span className={ style.householderCount }>
               ({ territory.householders.length })
             </span>
+            <div className={ style.territoryResponsible }>
+              { (territory.responsible || {}).name }
+            </div>
           </Col>
 
           <Col xs={12} md={6}>

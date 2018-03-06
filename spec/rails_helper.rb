@@ -36,12 +36,14 @@ require "clearance/rspec"
 
 require File.expand_path(File.dirname(__FILE__) + '/support/blueprints')
 require File.expand_path(File.dirname(__FILE__) + '/support/api/controller_spec_helper')
+require File.expand_path(File.dirname(__FILE__) + '/support/endpoint_spec_helper')
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+  config.include EndpointSpecHelper, type: :endpoint
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 

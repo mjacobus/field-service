@@ -2,6 +2,8 @@ module Api
   class ApiController < AuthenticatedController
     skip_before_action :require_admin
 
+    private
+
     # Map controller + action to endpoint. I.E.
     # TerritoriesController#show => Endpoints::Territories::ShowEndpoint
     # Then instantiate it and delegates payload to the perform method

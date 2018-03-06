@@ -1,0 +1,2 @@
+class UserPublisher < ApplicationRecord
+end

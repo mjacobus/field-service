@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe TerritoryService do
+  let(:service) do
+    TerritoryService.new(user: User.new(admin: true))
+  end
+
   let(:territory1) { Territory.make! }
   let(:territory2) { Territory.make! }
   let(:territory3) { Territory.make! }
@@ -15,7 +19,7 @@ RSpec.describe TerritoryService do
       end
 
       it 'returns all records' do
-        results = TerritoryService.new.search
+        results = service.search
 
         expect(results.count).to eq(1)
         expect(results.to_a).to eq([territory1])
@@ -46,7 +50,7 @@ RSpec.describe TerritoryService do
       end
 
       it 'returns only the territories assigned to the given ids' do
-        results = TerritoryService.new.search(assigned_to_ids: [publisher1.id])
+        results = service.search(assigned_to_ids: [publisher1.id])
 
         expect(results.count).to eq(1)
         expect(results.to_a).to eq([territory3])
@@ -77,7 +81,7 @@ RSpec.describe TerritoryService do
       end
 
       it 'returns only the ones with pending return' do
-        results = TerritoryService.new.search(pending_return: '1')
+        results = service.search(pending_return: '1')
 
         expect(results.count).to eq(1)
         expect(results.to_a).to eq([territory2])
@@ -104,13 +108,13 @@ RSpec.describe TerritoryService do
       end
 
       specify '#inactive returns the territories that were not worked from a given date' do
-        inactive = subject.inactive(from: 3.months.ago)
+        inactive = service.inactive(from: 3.months.ago)
 
         expect(inactive.to_a.map(&:id)).to eq([territory1.id, territory3.id, territory5.id])
       end
 
       specify '#worked returns only the ones returned and worked after the given date' do
-        worked = subject.worked(from: 3.months.ago)
+        worked = service.worked(from: 3.months.ago)
 
         expect(worked.to_a.map(&:id)).to eq([territory4.id])
       end
@@ -126,6 +130,33 @@ RSpec.describe TerritoryService do
       if to
         ReturnTerritory.new.perform(territory_id: territory.id, returned_at: to, complete: complete)
       end
+    end
+  end
+end
+
+RSpec.describe TerritoryQuery do
+  let(:scope) { double(:scope) }
+  let(:user) { User.new }
+
+  describe '#initializer' do
+    it 'rejects both user and scope' do
+      expect do
+        described_class.new(user: user, scope: scope)
+      end.to raise_error(ArgumentError, 'provide either user or scope')
+    end
+
+    it 'rejects both user nor scope' do
+      expect do
+        described_class.new(user: nil, scope: nil)
+      end.to raise_error(ArgumentError, 'provide either user or scope')
+    end
+
+    it 'takes only user' do
+      described_class.new(user: user)
+    end
+
+    it 'takes only scope' do
+      described_class.new(scope: scope)
     end
   end
 end

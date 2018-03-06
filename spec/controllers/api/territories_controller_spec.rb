@@ -45,7 +45,7 @@ RSpec.describe Api::TerritoriesController, type: :controller do
     end
 
     it 'can be used to delete mapped coordinates' do
-      sign_in_as(current_user)
+      sign_in_as_admin
 
       territory = Territory.make!(map_coordinates: [{ foo: :bar }])
 

@@ -1,5 +1,6 @@
 module Api
   class ApiController < AuthenticatedController
+    skip_before_action :require_admin
 
     # Map controller + action to endpoint. I.E.
     # TerritoriesController#show => Endpoints::Territories::ShowEndpoint

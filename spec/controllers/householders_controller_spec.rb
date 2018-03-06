@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HouseholdersController, type: :controller do
-  let(:current_user) { User.make!(password: 'admin') }
+  let(:current_user) { User.make(password: 'admin', admin: true) }
   let(:territory) { Territory.make! }
   let(:householder) { Householder.make!(territory: territory) }
   let(:decorator) { HouseholderDecorator.new(householder) }
@@ -30,13 +30,25 @@ RSpec.describe HouseholdersController, type: :controller do
     assert subject.is_a?(AuthenticatedController)
   end
 
-  it 'should get index' do
-    Householder.where(territory_id: territory.id).count
+  describe '#index' do
+    context 'when user is not admin' do
+      let(:current_user) { User.new(admin: false) }
 
-    get :index, params: { territory_slug: territory.to_param }
+      it 'redirects to the react page of territories' do
+        get :index, params: { territory_slug: territory.to_param }
 
-    assert_response :success
-    assert_equal 1, assigns(:householders_decorator).send(:collection).count
+        expect(response).to redirect_to('/app/territories')
+      end
+    end
+
+    it 'should get index' do
+      Householder.where(territory_id: territory.id).count
+
+      get :index, params: { territory_slug: territory.to_param }
+
+      assert_response :success
+      assert_equal 1, assigns(:householders_decorator).send(:collection).count
+    end
   end
 
   it 'should get index as csv' do

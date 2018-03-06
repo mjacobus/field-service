@@ -71,14 +71,18 @@ RSpec.describe HouseholdersController, type: :controller do
     expect_any_instance_of(Householder).to receive(:update_geolocation)
 
     expect do
-      post :create, params: { territory_slug: territory.to_param }.merge(householder: householder_params)
+      post :create, params: { territory_slug: territory.to_param }.merge(
+        householder: householder_params
+      )
     end.to change { territory.householders.count }.by(1)
 
     assert_redirected_to "/app/territories/#{householder.territory.to_param}"
   end
 
   it 're-render form when create fails' do
-    params = { territory_slug: territory.to_param }.merge(householder: householder_params.merge(name: ''))
+    params = { territory_slug: territory.to_param }.merge(
+      householder: householder_params.merge(name: '')
+    )
 
     post :create, params: params
 
@@ -100,7 +104,11 @@ RSpec.describe HouseholdersController, type: :controller do
   it 'should update householder' do
     expect_any_instance_of(Householder).to receive(:update_geolocation)
 
-    params = { territory_slug: territory.to_param, id: householder.id, householder: householder_params }
+    params = {
+      territory_slug: territory.to_param,
+      id: householder.id,
+      householder: householder_params
+    }
 
     patch :update, params: params
 

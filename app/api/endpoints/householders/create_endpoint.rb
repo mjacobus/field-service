@@ -1,7 +1,9 @@
 module Endpoints
   module Householders
-    class CreateEndpoint
-      def perform(territory_slug:, attributes:)
+    class CreateEndpoint < AdminEndpoint
+      private
+
+      def perform_as_admin(territory_slug:, attributes:)
         collection = Territory.find_by_slug(territory_slug).householders
         householder = collection.build(attributes)
 

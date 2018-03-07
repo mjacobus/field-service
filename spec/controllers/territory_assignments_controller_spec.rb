@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TerritoryAssignmentsController do
   before do
-    sign_in_as(User.new)
+    sign_in_as_admin
   end
 
   it 'is authenticated controller' do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MapsController, type: :controller do
   before do
-    sign_in_as(current_user)
+    sign_in_as_admin
   end
 
   let(:territory) { Territory.make!(map_coordinates: [{ lat: 1, lng: 1 }]) }

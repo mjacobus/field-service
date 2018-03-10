@@ -3,6 +3,7 @@ import LeftRightFrame from '../../components/left-right-frame';
 import ContentToggler from '../../components/content-toggler';
 import Date from '../../components/date';
 import appRoutes from '../../../app-routes';
+import urlHelper from '../../../utils/url-helper';
 import LoaderOrContent from '../../components/loader-or-content';
 import Item from '../../components/property-value-label';
 import Button from '../../components/button';
@@ -18,6 +19,7 @@ import styles from '../../../global.css';
 const renderActions = withRouter(({ territory, history }) => {
   const classes = [styles.wide, styles.fullLine, styles.decolapseDown];
   let assignmentButton = null;
+  let editButton = null;
 
   if (territory.links.return) {
     assignmentButton = <ReturnTerritoryButton className={ classes } territory={ territory } />;
@@ -27,11 +29,15 @@ const renderActions = withRouter(({ territory, history }) => {
     assignmentButton = <Button className={ classes } href={ territory.links.assign }>{ t.assignTerritory }</Button>;
   }
 
+  if (territory.links.edit) {
+    editButton = <Button className={classes} onClick={ () => history.push(urlHelper.onlyPath(territory.links.edit)) } >{ t.edit }</Button>;
+  }
+
   return (
     <div>
       <Button className={classes} onClick={ () => history.push(appRoutes.territories.index()) } >{ t.back }</Button>
       <Button className={classes} target="_blank" href={ appRoutes.territories.pdf(territory.slug) } >{ t.downloadPdf }</Button>
-      <Button className={classes} onClick={ () => history.push(appRoutes.territories.edit(territory.slug)) } >{ t.edit }</Button>
+      { editButton }
       { assignmentButton }
       <Button className={ classes } href={ appRoutes.territories.map(territory.slug)  } >{ t.showMap }</Button>
     </div>

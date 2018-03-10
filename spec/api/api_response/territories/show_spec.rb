@@ -10,8 +10,12 @@ RSpec.describe ApiResponse::Territories::Show do
   before do
     allow_any_instance_of(ApiHelpers::UrlHelper).to receive(:territory_return_path)
       .with(territory) { '/return' }
+
     allow_any_instance_of(ApiHelpers::UrlHelper).to receive(:territory_assign_path)
       .with(territory) { '/assign' }
+
+    allow_any_instance_of(ApiHelpers::UrlHelper).to receive(:edit_territory)
+      .with(territory) { '/edit' }
   end
 
   describe '#to_h' do
@@ -41,6 +45,10 @@ RSpec.describe ApiResponse::Territories::Show do
 
   describe 'links' do
     describe 'when user is an admin' do
+      it 'includes edit link when' do
+        expect(data_hash[:links][:edit]).to eq('/edit')
+      end
+
       it 'includes return link when territory is assigned' do
         allow(territory).to receive(:assigned?) { true }
 
@@ -68,6 +76,10 @@ RSpec.describe ApiResponse::Territories::Show do
 
     describe 'when user is not an admin' do
       let(:user) { User.new(admin: false) }
+
+      it 'does not includes edit link when' do
+        expect(data_hash[:links][:edit]).to be_nil
+      end
 
       it 'does not include return link when territory is assigned' do
         allow(territory).to receive(:assigned?) { true }

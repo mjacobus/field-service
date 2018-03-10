@@ -67,6 +67,8 @@ module ApiResponse
           return values
         end
 
+        values[:edit] = urls.edit_territory(territory)
+
         if territory.assigned?
           values[:return] = urls.territory_return_path(territory)
         end

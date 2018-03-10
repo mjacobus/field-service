@@ -19,5 +19,11 @@ module EndpointSpecHelper
         expect(subject.respond_to?(:perform_as_admin, true)).to be true
       end
     end
+
+    def is_not_admin_endpoint
+      it 'is not an admin endpoint' do
+        expect(subject).not_to be_a(Endpoints::AdminEndpoint)
+      end
+    end
   end
 end

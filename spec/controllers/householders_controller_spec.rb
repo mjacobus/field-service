@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HouseholdersController, type: :controller do
-  let(:current_user) { User.make(password: 'admin', admin: true) }
+  let(:current_user) { User.make(password: 'admin', admin: false) }
   let(:territory) { Territory.make! }
   let(:householder) { Householder.make!(territory: territory) }
   let(:decorator) { HouseholderDecorator.new(householder) }
@@ -17,13 +17,22 @@ RSpec.describe HouseholdersController, type: :controller do
     }
   end
 
+  def login_as_overseer
+    user = User.make!(admin: false)
+    publisher = Publisher.make!
+    UserPublisher.create!(publisher: publisher, user: user)
+    territory.responsible = publisher
+    territory.save!
+    sign_in_as(user)
+  end
+
   before do
     # other territory
     Householder.make!
 
     householder
 
-    sign_in_as(current_user)
+    login_as_overseer
   end
 
   it 'is authenticated controller' do
@@ -31,13 +40,15 @@ RSpec.describe HouseholdersController, type: :controller do
   end
 
   describe '#index' do
-    context 'when user is not admin' do
+    context 'when user is not the owner' do
       let(:current_user) { User.new(admin: false) }
 
       it 'redirects to the react page of territories' do
-        get :index, params: { territory_slug: territory.to_param }
+        sign_in_as(current_user)
 
-        expect(response).to redirect_to('/app/territories')
+        expect do
+          get :index, params: { territory_slug: territory.to_param }
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -96,6 +107,12 @@ RSpec.describe HouseholdersController, type: :controller do
   end
 
   it 'should get edit' do
+    get :edit, params: { territory_slug: territory.to_param, id: householder.id }
+
+    assert_response :success
+  end
+
+  it 'should get edit as overseer' do
     get :edit, params: { territory_slug: territory.to_param, id: householder.id }
 
     assert_response :success

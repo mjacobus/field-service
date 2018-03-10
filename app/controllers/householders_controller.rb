@@ -1,4 +1,6 @@
 class HouseholdersController < AuthenticatedController
+  skip_before_action :require_admin
+
   def index
     householders = territory.householders
     @householders_decorator = create_decorator(HouseholdersDecorator, householders, territory)
@@ -75,7 +77,7 @@ class HouseholdersController < AuthenticatedController
   private
 
   def territory
-    @_territory ||= Territory.find_by_slug(params[:territory_slug])
+    @_territory ||= current_user.territories.find_by_slug(params[:territory_slug])
   end
 
   # Use callbacks to share common setup or constraints between actions.

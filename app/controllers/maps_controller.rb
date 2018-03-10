@@ -1,4 +1,5 @@
 class MapsController < AuthenticatedController
+  skip_before_action :require_admin, only: [:show]
   layout 'google_maps'
 
   def show
@@ -22,6 +23,6 @@ class MapsController < AuthenticatedController
   private
 
   def territory
-    @territory ||= Territory.find_by_slug(params[:territory_slug])
+    @territory ||= current_user.territories.find_by_slug(params[:territory_slug])
   end
 end

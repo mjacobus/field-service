@@ -1,4 +1,6 @@
 class TerritoriesController < AuthenticatedController
+  skip_before_action :require_admin, only: [:show]
+
   def index
     @territories = TerritoryService.new(user: current_user).search(search_params)
     @territories_decorator = create_decorator(TerritoriesDecorator, @territories)

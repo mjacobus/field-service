@@ -16,7 +16,7 @@ RSpec.describe Endpoints::Territories::ShowEndpoint, type: :endpoint do
     end
 
     it 'returns the user territories when found' do
-      response = ApiResponse::Territories::Show.new(territory)
+      response = ApiResponse::Territories::Show.new(territory, user: current_user)
 
       expect(subject.perform(slug: 'the-slug')).to be_equal_to(response)
     end

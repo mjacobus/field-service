@@ -3,7 +3,7 @@ module Endpoints
     class ShowEndpoint < BaseEndpoint
       def perform(slug:)
         territory = current_user.territories.find_by_slug(slug)
-        ApiResponse::Territories::Show.new(territory)
+        ApiResponse::Territories::Show.new(territory, user: current_user)
       rescue ActiveRecord::RecordNotFound
         ApiResponse::NotFoundResponse.new
       end

@@ -1,8 +1,9 @@
 module ApiResponse
   module Territories
     class Show < BaseResponse
-      def initialize(territory)
+      def initialize(territory, user:)
         @territory = territory
+        @user = user
       end
 
       def to_h
@@ -61,6 +62,10 @@ module ApiResponse
 
       def links(territory)
         values = {}
+
+        unless @user.admin?
+          return values
+        end
 
         if territory.assigned?
           values[:return] = urls.territory_return_path(territory)

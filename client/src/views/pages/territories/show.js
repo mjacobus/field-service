@@ -21,7 +21,9 @@ const renderActions = withRouter(({ territory, history }) => {
 
   if (territory.links.return) {
     assignmentButton = <ReturnTerritoryButton className={ classes } territory={ territory } />;
-  } else {
+  }
+
+  if (territory.links.assign) {
     assignmentButton = <Button className={ classes } href={ territory.links.assign }>{ t.assignTerritory }</Button>;
   }
 

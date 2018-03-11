@@ -8,8 +8,8 @@ class ProfilesController < AuthenticatedController
   def update
     User.update_profile(current_user, user_params)
     redirect_to territories_path
-  rescue User::ValidationError => user
-    @user = user
+  rescue User::ValidationError => error
+    @user = error.user
     render :edit
   end
 

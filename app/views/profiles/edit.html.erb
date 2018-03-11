@@ -1,0 +1,9 @@
+<%= simple_form_for(@user, url: profile_path) do |f| %>
+  <%= f.input :email %>
+
+  <p><%= t('messages.change_password_hint') %></p>
+
+  <%= f.input :password %>
+  <%= f.input :new_password %>
+  <%= f.submit t('links.update') %>
+<% end %>

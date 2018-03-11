@@ -1,5 +1,11 @@
 pt-BR:
   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              invalid: "Senha inválida"
     models:
       territory: Território
       householder: Morador
@@ -26,15 +32,22 @@ pt-BR:
         email: Email
         phone: Telefone
         congregation_member: Membro da congregação
+      user:
+        name: Nome
+        email: Email
+        password: Senha (Palavra Passe)
+        new_password: Nova Senha (Palavra Passe)
 
   'yes': 'Sim'
   'no': 'Não'
 
   links:
+    profile: Meus Dados
     new: Novo
     logout: Sair
     edit: Editar
     save: Salvar
+    update: Alterar
     destroy: Excluir
     show: Visualizar
     back: Voltar
@@ -62,6 +75,7 @@ pt-BR:
   messages:
     geolocation_update_failed: As coordenadas de Geolocation não puderam ser atualizadas
     date_format_hint: Data, formato YYYY-MM-DD
+    change_password_hint: Para alterar sua senha, preencha a sua senha atual, e depois a sua nova senha. Deixe os campos de senha em branco para deixar tudo como está.
     confirm_destroy: Tem certeza que deseja excuir este registro?
     dev_env_warning: Este é um sistema de teste. Use-o a vontade.
 

@@ -39,6 +39,7 @@ const translations = {
   numberOfHouseholders: translate('numberOfHouseholders'),
   publishers: translate('publishers'),
   pendingReturn: translate('pendingReturn'),
+  profile: translate('profile'),
   returnedAt: translate('returnedAt'),
   returnTerritory: translate('returnTerritory'),
   responsible: translate('responsible'),

@@ -1,5 +1,5 @@
 class TerritoriesController < AuthenticatedController
-  skip_before_action :require_admin, only: [:show]
+  skip_before_action :require_admin, only: [:index, :show]
 
   def index
     @territories = TerritoryService.new(user: current_user).search(search_params)

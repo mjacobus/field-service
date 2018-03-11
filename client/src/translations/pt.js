@@ -32,6 +32,7 @@ const translations = {
   numberOfHouseholders: 'Número de Moradores',
   publishers: 'Publicadores',
   pendingReturn: 'Devolução pendente',
+  profile: 'Meus dados',
   returnedAt: 'Retornado em',
   returnTerritory: 'Devolver território',
   responsible: 'Responsável',

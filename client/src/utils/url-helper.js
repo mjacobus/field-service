@@ -12,4 +12,8 @@ export default class UrlHelper {
 
     return url;
   }
+
+  static onlyPath(url) {
+    return url.replace(/^(http(s)?:\/\/[\da-z.]+(:[\d]+)?)?/, '');
+  }
 }

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HouseholdersController, type: :controller do
-  let(:current_user) { User.make!(password: 'admin') }
+  let(:current_user) { User.make(password: 'admin', admin: false) }
   let(:territory) { Territory.make! }
   let(:householder) { Householder.make!(territory: territory) }
   let(:decorator) { HouseholderDecorator.new(householder) }
@@ -17,26 +17,49 @@ RSpec.describe HouseholdersController, type: :controller do
     }
   end
 
+  def login_as_overseer
+    user = User.make!(admin: false)
+    publisher = Publisher.make!
+    UserPublisher.create!(publisher: publisher, user: user)
+    territory.responsible = publisher
+    territory.save!
+    sign_in_as(user)
+  end
+
   before do
     # other territory
     Householder.make!
 
     householder
 
-    sign_in_as(current_user)
+    login_as_overseer
   end
 
   it 'is authenticated controller' do
     assert subject.is_a?(AuthenticatedController)
   end
 
-  it 'should get index' do
-    Householder.where(territory_id: territory.id).count
+  describe '#index' do
+    context 'when user is not the owner' do
+      let(:current_user) { User.new(admin: false) }
 
-    get :index, params: { territory_slug: territory.to_param }
+      it 'redirects to the react page of territories' do
+        sign_in_as(current_user)
 
-    assert_response :success
-    assert_equal 1, assigns(:householders_decorator).send(:collection).count
+        expect do
+          get :index, params: { territory_slug: territory.to_param }
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    it 'should get index' do
+      Householder.where(territory_id: territory.id).count
+
+      get :index, params: { territory_slug: territory.to_param }
+
+      assert_response :success
+      assert_equal 1, assigns(:householders_decorator).send(:collection).count
+    end
   end
 
   it 'should get index as csv' do
@@ -59,14 +82,18 @@ RSpec.describe HouseholdersController, type: :controller do
     expect_any_instance_of(Householder).to receive(:update_geolocation)
 
     expect do
-      post :create, params: { territory_slug: territory.to_param }.merge(householder: householder_params)
+      post :create, params: { territory_slug: territory.to_param }.merge(
+        householder: householder_params
+      )
     end.to change { territory.householders.count }.by(1)
 
     assert_redirected_to "/app/territories/#{householder.territory.to_param}"
   end
 
   it 're-render form when create fails' do
-    params = { territory_slug: territory.to_param }.merge(householder: householder_params.merge(name: ''))
+    params = { territory_slug: territory.to_param }.merge(
+      householder: householder_params.merge(name: '')
+    )
 
     post :create, params: params
 
@@ -85,10 +112,20 @@ RSpec.describe HouseholdersController, type: :controller do
     assert_response :success
   end
 
+  it 'should get edit as overseer' do
+    get :edit, params: { territory_slug: territory.to_param, id: householder.id }
+
+    assert_response :success
+  end
+
   it 'should update householder' do
     expect_any_instance_of(Householder).to receive(:update_geolocation)
 
-    params = { territory_slug: territory.to_param, id: householder.id, householder: householder_params }
+    params = {
+      territory_slug: territory.to_param,
+      id: householder.id,
+      householder: householder_params
+    }
 
     patch :update, params: params
 

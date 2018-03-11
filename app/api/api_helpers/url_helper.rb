@@ -16,6 +16,10 @@ module ApiHelpers
       territory_path(territory)
     end
 
+    def edit_territory(territory)
+      "#{territory_path(territory)}/edit"
+    end
+
     def territory_path(territory)
       frontend_path("/app/territories/#{territory.to_param}")
     end
@@ -40,7 +44,7 @@ module ApiHelpers
       backend_path("/territories/#{territory.to_param}/map/edit")
     end
 
-    def print_territory_map(territory, params = {})
+    def print_territory_map(territory, _params = {})
       backend_path("/territories/#{territory.to_param}/map?print=true")
     end
 

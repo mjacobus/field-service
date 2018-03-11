@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe TerritoriesController do
-  let(:current_user) { User.make! }
   before do
     @territory = Territory.make!
     @decorator = TerritoryDecorator.new(@territory)
@@ -18,7 +17,7 @@ RSpec.describe TerritoriesController do
       responsible_id: @publisher.id
     }
 
-    sign_in_as(current_user)
+    sign_in_as_admin
   end
 
   def resource_url(resource = @resource)

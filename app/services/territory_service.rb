@@ -1,6 +1,10 @@
 class TerritoryService
+  def initialize(user:)
+    @user = user
+  end
+
   def search(assigned_to_ids: nil, pending_return: nil, inactive_from: nil)
-    query = TerritoryQuery.new
+    query = new_query
 
     if inactive_from
       query = query.inactive(from: inactive_from)
@@ -18,16 +22,29 @@ class TerritoryService
   end
 
   def inactive(from:)
-    TerritoryQuery.new.inactive(from: from)
+    new_query.inactive(from: from)
   end
 
   def worked(from:)
-    TerritoryQuery.new.worked(from: from)
+    new_query.worked(from: from)
+  end
+
+  private
+
+  def new_query
+    TerritoryQuery.new(user: @user)
   end
 end
 
 class TerritoryQuery < SimpleDelegator
-  def initialize(scope = Territory.sorted)
+  def initialize(user: nil, scope: nil)
+    args = [user, scope].compact
+
+    if args.length != 1
+      raise ArgumentError, 'provide either user or scope'
+    end
+
+    scope ||= user.territories.sorted
     super(scope)
   end
 
@@ -62,7 +79,7 @@ class TerritoryQuery < SimpleDelegator
   private
 
   def new(scope)
-    self.class.new(scope)
+    self.class.new(scope: scope)
   end
 
   def scope

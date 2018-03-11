@@ -4,11 +4,8 @@ module Api
   module ControllerSpecHelper
     def self.included(base)
       base.class_eval do
-        before do
-          allow_any_instance_of(Api::ApiController).to receive(:current_user) { current_user }
-        end
-
         let(:current_user) { User.new }
+        let(:admin_user) { User.new(admin: true) }
       end
     end
 
@@ -32,6 +29,10 @@ module Api
       sign_in_as(current_user)
       mock_controller_rendering
       expect_any_instance_of(Api::ApiController).to receive(:perform_with).with(*args)
+    end
+
+    def sign_in_as_admin
+      sign_in_as(User.new(admin: true))
     end
   end
 end

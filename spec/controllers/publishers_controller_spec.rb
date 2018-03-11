@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PublishersController do
-  let(:current_user) { User.make! }
-
   before do
     @publisher = Publisher.make!
     @decorator = PublisherDecorator.new(@publisher)
@@ -17,7 +15,7 @@ RSpec.describe PublishersController do
       phone: @publisher.phone,
       congregation_member: 1
     }
-    sign_in_as(current_user)
+    sign_in_as_admin
   end
 
   def resource_url(resource = @resource)

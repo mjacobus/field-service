@@ -27,6 +27,7 @@ const translations = {
   hideAssignments: 'Ocultar Designações',
   hideHouseholders: 'Ocultar Moradores',
   loading: 'Carregando...',
+  logout: 'Sair',
   name: 'Nome',
   numberOfHouseholders: 'Número de Moradores',
   publishers: 'Publicadores',

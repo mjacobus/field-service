@@ -62,9 +62,16 @@ const assignmentRoutes = {
   }
 }
 
+const main = {
+  logout: () => {
+    return '/sign_out';
+  }
+}
+
 export default {
   territories: territoriesRoutes,
   householders: householdersRoutes,
   assignments: assignmentRoutes,
-  publishers: publishersRoutes
+  publishers: publishersRoutes,
+  main,
 }

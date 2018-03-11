@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'territories#index'
+  resource :session, controller: 'clearance/sessions', only: [:create]
+  get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
+  match '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out', via: [:get, :delete]
+
+  root to: 'home#index'
 
   resources :territories, param: :slug do
     resource :map

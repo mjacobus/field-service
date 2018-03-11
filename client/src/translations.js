@@ -34,6 +34,7 @@ const translations = {
   hideAssignments: translate('hideAssignments'),
   hideHouseholders: translate('hideHouseholders'),
   loading: translate('loading'),
+  logout: translate('logout'),
   name: translate('name'),
   numberOfHouseholders: translate('numberOfHouseholders'),
   publishers: translate('publishers'),

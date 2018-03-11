@@ -63,6 +63,10 @@ const assignmentRoutes = {
 }
 
 const main = {
+  profile: () => {
+    return '/profile/edit';
+  },
+
   logout: () => {
     return '/sign_out';
   }

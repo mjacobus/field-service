@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   resource :session, controller: 'clearance/sessions', only: [:create]
   get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
-  match '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out', via: [:get, :delete]
+  match '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out', via: %i[get delete]
 
   root to: 'home#index'
+
+  resource :profile, only: %i[edit update]
 
   resources :territories, param: :slug do
     resource :map
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :publishers
 
-  resources :territory_assignments, only: [:index, :update], as: :all_territory_assignments do
+  resources :territory_assignments, only: %i[index update], as: :all_territory_assignments do
     collection do
       get :edit
     end
@@ -35,6 +37,6 @@ Rails.application.routes.draw do
   get 'static/media/*asset', to: 'frontend#redirect_to_asset'
 
   unless Rails.env.staging?
-    get '/error', to: ->(env){ raise("Test Exception!") }
+    get '/error', to: ->(_env) { raise('Test Exception!') }
   end
 end

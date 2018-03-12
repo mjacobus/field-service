@@ -1,6 +1,6 @@
 class TerritoryAssignmentsController < AuthenticatedController
   def index
-    @territories = TerritoryService.new.search(search_params)
+    @territories = TerritoryService.new(user: current_user).search(search_params)
 
     respond_to do |format|
       format.html
@@ -13,7 +13,7 @@ class TerritoryAssignmentsController < AuthenticatedController
   end
 
   def edit
-    @territories = TerritoryService.new.search(search_params)
+    @territories = TerritoryService.new(user: current_user).search(search_params)
   end
 
   def update
@@ -54,6 +54,6 @@ class TerritoryAssignmentsController < AuthenticatedController
   private
 
   def territory
-    @_territory ||= Territory.find_by_slug(params[:territory_slug])
+    @_territory ||= current_user.territories.find_by_slug(params[:territory_slug])
   end
 end

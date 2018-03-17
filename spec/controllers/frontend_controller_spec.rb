@@ -7,6 +7,8 @@ RSpec.describe FrontendController, type: :controller do
 
   describe '#redirect_to_asset' do
     it 'redirects to asset' do
+      sign_in_as(User.new)
+
       expected_asset_name = 'foo.bar.gif'
 
       expect(ActionController::Base.helpers).to receive(:asset_path)

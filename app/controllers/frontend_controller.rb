@@ -1,5 +1,6 @@
 class FrontendController < AuthenticatedController
   layout 'frontend'
+  skip_before_action :require_admin
 
   def index
     render text: :foo

@@ -1,4 +1,4 @@
-class FrontendController < ApplicationController
+class FrontendController < AuthenticatedController
   layout 'frontend'
 
   def index
@@ -9,7 +9,7 @@ class FrontendController < ApplicationController
   # TODO: Create a middleware for that
   # TODO: Remove middleware and configure deployment/webpack descently
   def redirect_to_asset
-    asset = params[:asset].split('.').tap {|p| p << params[:format] }.join('.')
+    asset = params[:asset].split('.').tap { |p| p << params[:format] }.join('.')
     redirect_to ActionController::Base.helpers.asset_path(asset)
   end
 end

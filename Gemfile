@@ -29,6 +29,9 @@ gem 'rails', '~> 5.1'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'sqlite3'
 
+# security updages
+gem 'loofah', '~> 2.2.1'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

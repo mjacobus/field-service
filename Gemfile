@@ -1,11 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'clearance', '~>1.14.1'
-gem 'coffee-rails', '~> 4.2'
 gem 'dotenv-rails'
 gem 'foundation-icons-sass-rails'
 gem 'foundation-rails'
-gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'koine-csv', '~> 0.2.1'
 gem 'koine-db_bkp', '~> 0.1.2'

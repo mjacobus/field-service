@@ -1,6 +1,13 @@
 .doNotVisit, .doNotVisit a {
   color: red;
+}
+
+.strike {
   text-decoration: line-through !important;
+}
+
+.doNotVisitDate a {
+  color: #999;
 }
 
 .deleteButton {

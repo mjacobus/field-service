@@ -19,9 +19,13 @@ td, th {
   margin: 0;
 }
 
-tr.disabled td {
+tr.do-not-show td {
   text-decoration: line-through;
   color: red
+}
+
+tr.do-not-visit td {
+  color: gray
 }
 
 tr.even {

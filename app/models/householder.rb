@@ -7,7 +7,7 @@ class Householder < ApplicationRecord
   validates :house_number, presence: true
 
   default_scope -> { sorted }
-  scope :sorted, -> { order(:street_name, :house_number_as_int, :house_number) }
+  scope :sorted, -> { order(:normalized_street_name, :house_number_as_int, :house_number) }
 
   def initialize(*attrs)
     super
@@ -52,8 +52,9 @@ class Householder < ApplicationRecord
     self.house_number_as_int = number.to_i
   end
 
-  def normalized_street_name
-    StreetNameNormalizer.new.normalize(street_name)
+  def street_name=(street_name)
+    super(street_name)
+    self.normalized_street_name = street_normalizer.normalize(street_name).to_s
   end
 
   def address
@@ -75,5 +76,11 @@ class Householder < ApplicationRecord
 
   def city_name
     territory.city
+  end
+
+  private
+
+  def street_normalizer
+    @street_normalizer ||= StreetNameNormalizer.new
   end
 end

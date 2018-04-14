@@ -18,6 +18,21 @@ RSpec.describe Householder do
     end
   end
 
+  describe '#street_name' do
+    it 'sets normalized street_name as well' do
+      householder = Householder.make!(street_name:  'Somethingstr.')
+
+      last = Householder.last
+
+      expect(householder.normalized_street_name).to eq('Somethingstraße')
+      expect(last.normalized_street_name).to eq('Somethingstraße')
+
+      last.update(street_name: 'Other str.')
+
+      expect(Householder.last.normalized_street_name).to eq('Other straße')
+    end
+  end
+
   describe 'default_order' do
     let!(:ab)     { Householder.make!(street_name: 'b', house_number: 'A') }
     let!(:a)      { Householder.make!(street_name: 'a', house_number: 'A') }

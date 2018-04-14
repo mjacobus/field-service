@@ -93,6 +93,24 @@ function afterHouseholderCreated() {
 }
 
 function createHouseholder(territorySlug, attributes) {
+  return async () => {
+    const options = {
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8"
+      },
+      method: "POST",
+      body: JSON.stringify(attributes)
+    };
+
+    const url = routes.householders.create(territorySlug);
+
+    await fetch(url, options).then(response => {
+      return response.json().then(json => {
+        console.log(json)
+        return json;
+      });
+    });
+  };
 }
 
 export default function () {};

@@ -92,6 +92,9 @@ function afterHouseholderCreated() {
   };
 }
 
+function createHouseholder(territorySlug, attributes) {
+}
+
 export default function () {};
 
 export {

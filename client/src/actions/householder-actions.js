@@ -96,9 +96,10 @@ function createHouseholder(territorySlug, attributes) {
   return async (dispatch, getState) => {
     const url = routes.householders.create(territorySlug);
 
-     await postJson(url, attributes).then(response => {
+     await postJson(url, attributes).then(json => {
+       console.log('JSON', json);
       dispatch({ foo: 'bar', type: 'fake' })
-    });
+     });
   };
 }
 

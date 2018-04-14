@@ -1,11 +1,13 @@
 import cookies from './cookies';
 
+const token = cookies.getFormToken;
+
 const defaultOptions = () => ({
   credentials: 'include',
   headers:{
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'X-CSRF-Token': cookies.getFormToken(),
+    'X-CSRF-Token': token()
   }
 });
 
@@ -48,13 +50,18 @@ export default class {
 const postJson = (url, payload = {}) => {
   const method = 'POST';
 
-  // const options = Object.assign({}, defaultOptions(), {
-  const options = Object.assign({}, {}, {
+  const options = Object.assign({}, defaultOptions(), {
     method,
     body: JSON.stringify(payload)
   });
 
-  return fetch(url, options);
+  return fetch(url, options).then(response => {
+    if (response.ok) {
+      // return response.json();
+    }
+
+    return Promise.reject(response);
+  });
 }
 
 export {

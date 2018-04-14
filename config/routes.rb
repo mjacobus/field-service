@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
+    get 'householders/search'
+
     resources :territories, param: :slug do
       resources :householders
     end

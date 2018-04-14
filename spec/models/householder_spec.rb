@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Householder do
@@ -20,7 +22,7 @@ RSpec.describe Householder do
 
   describe '#street_name' do
     it 'sets normalized street_name as well' do
-      householder = Householder.make!(street_name:  'Somethingstr.')
+      householder = Householder.make!(street_name: 'Somethingstr.')
 
       last = Householder.last
 
@@ -172,6 +174,24 @@ RSpec.describe Householder do
         expect(householder.lat).to be_nil
         expect(householder.lon).to be_nil
       end
+    end
+  end
+
+  describe '.search' do
+    let(:perform) { described_class.search('John str.') }
+
+    it 'returns relevant data' do
+      one = Householder.make!(name: 'The John Doe', street_name: 'some strasse')
+      Householder.make!(name: 'Someone else', street_name: 'some strasse')
+
+      expect(perform.pluck(:name, :street_name)).to be_equal_to(
+        [
+          [
+            one.name,
+            one.street_name
+          ]
+        ]
+      )
     end
   end
 end

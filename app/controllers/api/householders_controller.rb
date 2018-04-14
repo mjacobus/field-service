@@ -4,6 +4,10 @@ module Api
       perform_with(territory_slug: params[:territory_slug], attributes: new_attributes)
     end
 
+    def search
+      perform_with(search_string: params[:q])
+    end
+
     private
 
     def new_attributes

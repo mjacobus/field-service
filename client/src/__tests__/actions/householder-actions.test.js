@@ -1,24 +1,24 @@
 import fetchMock from 'fetch-mock'
-import mockStore from 'fetch-mock'
+import thunk from "redux-thunk";
+import configureMockStore from "redux-mock-store";
 
 import routes from '../../api-routes';
 import * as actions from '../../actions/householder-actions';
 
-// import * from '../'
-
-// import configureMockStore from "redux-mock-store";
-// import thunk from "redux-thunk";
-// import fetchMock from "fetch-mock";
-// import queryString from "query-string";
-//
-// const middlewares = [thunk];
-// const mockStore = configureMockStore(middlewares);
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('createHouseholder', () => {
+  let store;
+  afterEach(() => {
+    fetchMock.reset();
+    fetchMock.restore();
+  });
+
   it('creates householder with correct payload', () => {
+    store = mockStore({});
     const territorySlug = 'the-slug';
     const url = routes.householders.create(territorySlug);
-
 
     const requestBody = { request: 'ok' };
     const responseBody = { ok: 'ok' };
@@ -26,6 +26,14 @@ describe('createHouseholder', () => {
 
     fetchMock.postOnce(url, mockResponse, responseBody);
 
-    actions.createHouseholder('the-slug', requestBody);
+    let expectedActions = { foo: 'bar' };
+
+    let action = actions.createHouseholder('the-slug', requestBody)
+    store
+      .dispatch(action)
+      .then(() => {
+        console.log('haa')
+        expect(store.getActions()).toEqual(expectedActions)
+      });
   });
 });

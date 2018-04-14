@@ -30,6 +30,28 @@ export default class {
     return this.apiRequest(path, 'post', data);
   }
 
+  static postJson(path, data = {}) {
+    return this.fetchJson('POST', path, data);
+  }
+
+  static fetchJson(method, path, data = {}) {
+    const options = Object.assign({}, defaultOptions(), {
+      method,
+      body: JSON.stringify(data)
+    });
+
+    return this.fetch(path, options).then((response) => {
+      // console.log('RESPONSE');
+      // if (response.ok) {
+      //   return response.json();
+      // }
+      //
+      // // return response.json();
+      // throw new Error('haa');
+    });
+  }
+
+
   static apiRequest(path, method, data) {
     let options = Object.assign({}, defaultOptions(), {
       method,

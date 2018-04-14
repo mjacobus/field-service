@@ -68,22 +68,23 @@ function prepareFormErrors(errors) {
 }
 
 function createHouseholder(territorySlug, attributes) {
-  return (dispatch, getState) => {
-    attributes = prepareFormAttributes(attributes);
-
-    dispatch(requestCreateHouseholder());
-
-    const url = routes.householders.create(territorySlug);
-
-    Ajax.post(url, attributes).then(response => {
-      if (response.errors) {
-        dispatch(displayFormErrors(prepareFormErrors(response.errors)))
-        return;
-      }
-
-      dispatch(householderCreated(response.data));
-    });
-  }
+  console.log('haaaaaaaaaaaaaaaaa')
+  // return (dispatch, getState) => {
+  //   attributes = prepareFormAttributes(attributes);
+  //
+  //   dispatch(requestCreateHouseholder());
+  //
+  //   const url = routes.householders.create(territorySlug);
+  //
+  //   Ajax.post(url, attributes).then(response => {
+  //     if (response.errors) {
+  //       dispatch(displayFormErrors(prepareFormErrors(response.errors)))
+  //       return;
+  //     }
+  //
+  //     dispatch(householderCreated(response.data));
+  //   });
+  // }
 }
 
 function afterHouseholderCreated() {
@@ -93,7 +94,7 @@ function afterHouseholderCreated() {
 }
 
 function createHouseholder(territorySlug, attributes) {
-  return async () => {
+  return async (dispatch) => {
     const options = {
       headers: {
         "Content-Type": "application/json; charset=UTF-8"
@@ -104,18 +105,36 @@ function createHouseholder(territorySlug, attributes) {
 
     const url = routes.householders.create(territorySlug);
 
-    await fetch(url, options).then(response => {
-      return response.json().then(json => {
-        console.log(json)
-        return json;
-      });
+      console.log('before');
+    await Ajax.postJson(url, options).then(response => {
+
+      console.log(response);
+      dispatch({ foo: 'fake-handler', type: 'bar' });
     });
   };
+}
+
+function resolveAfter2Seconds() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('resolved');
+    }, 2000);
+  });
+}
+
+async function asyncCall() {
+  console.log('calling');
+  var result = await resolveAfter2Seconds();
+  console.log(result);
+  return result;
+  // expected output: "resolved"
 }
 
 export default function () {};
 
 export {
+  resolveAfter2Seconds,
+  asyncCall,
   fetchHouseholder,
   createHouseholder,
   afterHouseholderCreated,

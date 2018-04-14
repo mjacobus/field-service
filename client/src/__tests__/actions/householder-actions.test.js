@@ -26,14 +26,16 @@ describe('createHouseholder', () => {
 
     fetchMock.postOnce(url, mockResponse, responseBody);
 
-    let expectedActions = { foo: 'bar' };
+    let expectedActions = { foo: 'bar-expectation-not-met' };
 
     let action = actions.createHouseholder('the-slug', requestBody)
     store
       .dispatch(action)
       .then(() => {
-        console.log('haa')
+        console.log('haaaaaaaaaaa');
         expect(store.getActions()).toEqual(expectedActions)
       });
+
+    // expect(true).toBe(false)
   });
 });

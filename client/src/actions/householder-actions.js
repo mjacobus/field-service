@@ -1,4 +1,4 @@
-import Ajax from '../utils/ajax-helper';
+import Ajax, { postJson } from '../utils/ajax-helper';
 import routes from '../api-routes';
 import hash from '../utils/hash-utils';
 
@@ -67,25 +67,24 @@ function prepareFormErrors(errors) {
   return newErrors;
 }
 
-function createHouseholder(territorySlug, attributes) {
-  console.log('haaaaaaaaaaaaaaaaa')
-  // return (dispatch, getState) => {
-  //   attributes = prepareFormAttributes(attributes);
-  //
-  //   dispatch(requestCreateHouseholder());
-  //
-  //   const url = routes.householders.create(territorySlug);
-  //
-  //   Ajax.post(url, attributes).then(response => {
-  //     if (response.errors) {
-  //       dispatch(displayFormErrors(prepareFormErrors(response.errors)))
-  //       return;
-  //     }
-  //
-  //     dispatch(householderCreated(response.data));
-  //   });
-  // }
-}
+// function createHouseholder(territorySlug, attributes) {
+//   return (dispatch, getState) => {
+//     attributes = prepareFormAttributes(attributes);
+//
+//     dispatch(requestCreateHouseholder());
+//
+//     const url = routes.householders.create(territorySlug);
+//
+//     Ajax.post(url, attributes).then(response => {
+//       if (response.errors) {
+//         dispatch(displayFormErrors(prepareFormErrors(response.errors)))
+//         return;
+//       }
+//
+//       dispatch(householderCreated(response.data));
+//     });
+//   }
+// }
 
 function afterHouseholderCreated() {
   return {
@@ -94,47 +93,16 @@ function afterHouseholderCreated() {
 }
 
 function createHouseholder(territorySlug, attributes) {
-  return async (dispatch) => {
-    const options = {
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8"
-      },
-      method: "POST",
-      body: JSON.stringify(attributes)
-    };
-
+  return async (dispatch, getState) => {
     const url = routes.householders.create(territorySlug);
 
-      console.log('before');
-    await Ajax.postJson(url, options).then(response => {
-
-      console.log(response);
-      dispatch({ foo: 'fake-handler', type: 'bar' });
+     await postJson(url, attributes).then(response => {
+      dispatch({ foo: 'bar', type: 'fake' })
     });
   };
 }
 
-function resolveAfter2Seconds() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve('resolved');
-    }, 2000);
-  });
-}
-
-async function asyncCall() {
-  console.log('calling');
-  var result = await resolveAfter2Seconds();
-  console.log(result);
-  return result;
-  // expected output: "resolved"
-}
-
-export default function () {};
-
 export {
-  resolveAfter2Seconds,
-  asyncCall,
   fetchHouseholder,
   createHouseholder,
   afterHouseholderCreated,

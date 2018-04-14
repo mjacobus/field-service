@@ -2,11 +2,11 @@ import cookies from './cookies';
 
 const defaultOptions = () => ({
   credentials: 'include',
-  headers: new Headers({
+  headers:{
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'X-CSRF-Token': cookies.getFormToken(),
-  })
+  }
 });
 
 export default class {
@@ -30,28 +30,6 @@ export default class {
     return this.apiRequest(path, 'post', data);
   }
 
-  static postJson(path, data = {}) {
-    return this.fetchJson('POST', path, data);
-  }
-
-  static fetchJson(method, path, data = {}) {
-    const options = Object.assign({}, defaultOptions(), {
-      method,
-      body: JSON.stringify(data)
-    });
-
-    return this.fetch(path, options).then((response) => {
-      // console.log('RESPONSE');
-      // if (response.ok) {
-      //   return response.json();
-      // }
-      //
-      // // return response.json();
-      // throw new Error('haa');
-    });
-  }
-
-
   static apiRequest(path, method, data) {
     let options = Object.assign({}, defaultOptions(), {
       method,
@@ -65,3 +43,20 @@ export default class {
     return response.json();
   }
 }
+
+
+const postJson = (url, payload = {}) => {
+  const method = 'POST';
+
+  // const options = Object.assign({}, defaultOptions(), {
+  const options = Object.assign({}, {}, {
+    method,
+    body: JSON.stringify(payload)
+  });
+
+  return fetch(url, options);
+}
+
+export {
+  postJson
+};

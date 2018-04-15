@@ -114,3 +114,15 @@ before 'deploy:assets:precompile', :generate_client_assets
 
 set :whenever_environment, -> { fetch(:stage) }
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
+
+namespace :app do
+  task :normalize_data do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'app:normalize_data'
+        end
+      end
+    end
+  end
+end

@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe HouseholderDecorator do
   let(:fake_view_helpers) { FakeViewHelpers.new }
+
+  let(:item) { @item }
+  let(:decorator) { @decorator }
 
   before do
     @territory = double(:territory, id: 4, to_param: ':t_param', name: 'T1')
@@ -10,8 +15,9 @@ RSpec.describe HouseholderDecorator do
       id: 1,
       to_param: 1,
       address: 'theAddress',
+      do_not_visit_date: nil,
       show: 'show',
-      show?: false,
+      show?: true,
       visit?: true,
       name: 'theName',
       notes: 'theNotes',
@@ -71,16 +77,28 @@ RSpec.describe HouseholderDecorator do
     assert_delegates :territory, @decorator, @item
   end
 
-  it "#html_classes returns '' when visit is true" do
-    @decorator = HouseholderDecorator.new(double(visit?: true))
+  it "#html_classes returns '' when show is true" do
+    allow(item).to receive(:show?).and_return(true)
 
     assert_equal '', @decorator.html_classes.to_s
   end
 
-  it '#html_classes returns disabled when visit is false' do
-    @decorator = HouseholderDecorator.new(double(visit?: false))
+  it '#html_classes returns do-not-show when show is false' do
+    allow(item).to receive(:show?).and_return(false)
 
-    assert_equal 'disabled', @decorator.html_classes.to_s
+    assert_equal 'do-not-show', @decorator.html_classes.to_s
+  end
+
+  it '#html_classes returns nothing when when visit is true and do_not_visit_date is not present' do
+    allow(@item).to receive(:do_not_visit_date).and_return(nil)
+
+    assert_equal '', @decorator.html_classes.to_s
+  end
+
+  it '#html_classes returns nothing when when visit is true and do_not_visit_date is present' do
+    allow(@item).to receive(:do_not_visit_date).and_return(Time.now)
+
+    assert_equal 'do-not-visit', @decorator.html_classes.to_s
   end
 
   xit '#breadcrumbs for existing record' do

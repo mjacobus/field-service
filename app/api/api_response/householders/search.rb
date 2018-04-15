@@ -23,11 +23,8 @@ module ApiResponse
 
       def householder_entry(householder)
         data = ApiResponse::Householders::Show.new(householder).to_h[:data]
-        data[:territory_name] = householder.territory_name
-        data[:links][:territory] = urls.territory_path(householder.territory)
         data
       end
-
     end
   end
 end

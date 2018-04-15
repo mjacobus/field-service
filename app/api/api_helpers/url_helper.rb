@@ -12,6 +12,12 @@ module ApiHelpers
       )
     end
 
+    def householder_path(householder)
+      frontend_path(
+        "/app/territories/#{householder.territory.to_param}/householders/#{householder.to_param}/edit"
+      )
+    end
+
     def territory_show_path(territory)
       territory_path(territory)
     end

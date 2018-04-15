@@ -1,0 +1,35 @@
+
+<form action="" method="get" accept-charset="utf-8" id="search-householders">
+  <input type="text" value="<%= params[:q] %>" name="q" />
+  <button class="button"><%= t('titles.search') %></button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Endereço</th>
+      <th>Nome</th>
+      <th>Território</th>
+    </tr>
+  </thead>
+  <tbody id="search-householder-result">
+  </tbody>
+</table>
+
+<script type="application/template" style="display: none;" id="search-result-template">
+  <tr>
+    <td><a href="__url__">__address__</a></td>
+    <td><a href="__url__">__name__</a></td>
+    <td> <a href="__territoryUrl__"> __territoryName__ </a> </td>
+  </tr>
+</script>
+
+<% if params[:q] %>
+  <script type="text/javascript" charset="utf-8">
+    searchHouseholders(
+      "<%= params[:q] %>",
+      '#search-householder-result',
+      document.getElementById('search-result-template').innerHTML
+    );
+  </script>
+<% end %>

@@ -143,7 +143,7 @@ RSpec.describe HouseholdersController, type: :controller do
 
     patch :update, params: params
 
-    expect(Householder.last.normalized_street_name).to eq('other straße')
+    expect(householder.reload.normalized_street_name).to eq('other straße')
   end
 
   it 're-render form when update fails' do

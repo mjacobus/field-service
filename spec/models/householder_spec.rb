@@ -22,11 +22,7 @@ RSpec.describe Householder do
 
   describe '#street_name' do
     it 'sets normalized street_name as well' do
-<<<<<<< HEAD
       householder = Householder.make!(street_name: 'Somethingstr.')
-=======
-      householder = Householder.make!(street_name:  'Somethingstr.')
->>>>>>> origin/master
 
       last = Householder.last
 

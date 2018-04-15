@@ -50,7 +50,7 @@ group :test do
   gem 'coveralls', require: false
   gem 'database_cleaner', '~>1.5'
   gem 'faker'
-  gem 'machinist', '~>2.0'
+  gem 'machinist', git: 'git://github.com/mjacobus/machinist.git', branch: 'fix-warning'
   gem 'object_comparator', '~> 0.1.3'
   gem 'poltergeist'
   gem 'rails-controller-testing', '~> 1.0.2'

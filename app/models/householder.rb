@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Householder < ApplicationRecord
   belongs_to :territory
 
@@ -21,6 +23,21 @@ class Householder < ApplicationRecord
 
   def self.ordered
     joins(:territory).order('territories.name', :street_name, :house_number)
+  end
+
+  def self.search(search_term)
+    query = Householder.limit(100)
+    normalizer = StreetNameNormalizer.new
+
+    search_term.split(' ').each do |part|
+      matcher = normalizer.normalize(part)
+      query = query.where(
+        'CONCAT(name, normalized_street_name) LIKE ?',
+        "%#{matcher}%"
+      )
+    end
+
+    query
   end
 
   def update_geolocation

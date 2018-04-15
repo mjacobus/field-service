@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/search'
+
   resource :session, controller: 'clearance/sessions', only: [:create]
   get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
   match '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out', via: %i[get delete]
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
+    get 'householders/search'
+
     resources :territories, param: :slug do
       resources :householders
     end

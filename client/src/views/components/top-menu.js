@@ -18,6 +18,7 @@ export default () => {
             <a href={ routes.publishers.index() }>{ t.publishers }</a>
           </Col>
           <Col xs={12} md={3}>
+            <a href={ routes.householders.search() }>{ t.search }</a>
           </Col>
           <Col xs={12} md={3}>
             <a href={ routes.main.profile() }>{ t.profile }</a> | <a href={ routes.main.logout() }>{ t.logout }</a>

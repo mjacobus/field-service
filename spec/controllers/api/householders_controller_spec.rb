@@ -21,4 +21,16 @@ RSpec.describe Api::HouseholdersController, type: :controller do
       expect(response).to be_success
     end
   end
+
+  describe '#search' do
+    it 'performs a search' do
+      expect_controller_to_perform_with(
+        search_string: 'the search term'
+      )
+
+      get :search, params: { q: 'the search term' }, format: :json
+
+      expect(response).to be_success
+    end
+  end
 end

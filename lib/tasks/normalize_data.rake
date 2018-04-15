@@ -6,7 +6,6 @@ namespace :app do
       householder.house_number = householder.house_number
       householder.street_name = householder.street_name
       householder.save!
-      print "."
     end
 
     puts  "done"

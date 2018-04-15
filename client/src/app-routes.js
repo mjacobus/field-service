@@ -47,6 +47,10 @@ const householdersRoutes = {
     return UrlHelper.create(`/app/territories/${territory.slug}/householders/new`);
   },
 
+  search: () => {
+    return fixUrl(UrlHelper.create(`/pages/search`));
+  },
+
   new: (territorySlug) => {
     return UrlHelper.create(`/app/territories/${territorySlug}/householders/new`);
   },

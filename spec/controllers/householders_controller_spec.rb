@@ -132,6 +132,20 @@ RSpec.describe HouseholdersController, type: :controller do
     assert_redirected_to "/app/territories/#{householder.territory.to_param}"
   end
 
+  it 'should update householder normalized_street_name' do
+    allow_any_instance_of(Householder).to receive(:update_geolocation)
+
+    params = {
+      territory_slug: territory.to_param,
+      id: householder.id,
+      householder: householder_params.merge(street_name: 'other str.')
+    }
+
+    patch :update, params: params
+
+    expect(householder.reload.normalized_street_name).to eq('other straße')
+  end
+
   it 're-render form when update fails' do
     params = {
       territory_slug: territory.to_param,

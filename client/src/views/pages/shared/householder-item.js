@@ -21,6 +21,14 @@ export default ({ householder, onDelete = noop, separator = true }) => {
     classNames.push(styles.doNotVisit);
   }
 
+  if (!householder.show) {
+    classNames.push(styles.strike);
+  }
+
+  if (householder.doNotVisitDate) {
+    classNames.push(styles.doNotVisitDate);
+  }
+
   const householderEditLink = (content) => {
     return <a href={ householder.links.edit }>{content}</a>;
   };

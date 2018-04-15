@@ -4,7 +4,17 @@ class HouseholderDecorator < ActiveRecordModelDecorator
   end
 
   def html_classes
-    'disabled' unless visit?
+    classes = []
+
+    if item.do_not_visit_date
+      classes.push('do-not-visit')
+    end
+
+    unless item.show?
+      classes.push('do-not-show')
+    end
+
+    classes.join(' ')
   end
 
   def territory_url

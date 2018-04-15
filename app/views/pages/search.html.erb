@@ -4,18 +4,6 @@
   <button class="button"><%= t('titles.search') %></button>
 </form>
 
-<table>
-  <thead>
-    <tr>
-      <th>Endereço</th>
-      <th>Nome</th>
-      <th>Território</th>
-    </tr>
-  </thead>
-  <tbody id="search-householder-result">
-  </tbody>
-</table>
-
 <script type="application/template" style="display: none;" id="search-result-template">
   <tr>
     <td><a href="__url__">__address__</a></td>
@@ -25,6 +13,18 @@
 </script>
 
 <% if params[:q] %>
+  <table>
+    <thead>
+      <tr>
+        <th>Endereço</th>
+        <th>Nome</th>
+        <th>Território</th>
+      </tr>
+    </thead>
+    <tbody id="search-householder-result">
+    </tbody>
+  </table>
+
   <script type="text/javascript" charset="utf-8">
     searchHouseholders(
       "<%= params[:q] %>",

@@ -15,10 +15,11 @@ export const TERRITORY_UPDATED = 'TERRITORY_UPDATED';
 export const UPDATE_TERRITORY = 'UPDATE_TERRITORY';
 
 /* index */
-function updateTerritoriesResult(territories) {
+function updateTerritoriesResult(response) {
   return {
     type: TERRITORIES_FETCHED,
-    territories
+    territories: response.data,
+    links: response.links,
   };
 };
 
@@ -33,7 +34,7 @@ export function fetchTerritories(params) {
     const url = routes.territories.index(params);
 
     Ajax.getJson(url).then(response => {
-      dispatch(updateTerritoriesResult(response.data));
+      dispatch(updateTerritoriesResult(response));
     });
   };
 };

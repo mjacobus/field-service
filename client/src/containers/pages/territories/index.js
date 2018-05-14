@@ -6,6 +6,7 @@ function mapStateToProps(state) {
   return {
     ...state.territories.meta,
     territories: state.territories.territories,
+    links: state.territories.links,
   };
 }
 

@@ -62,6 +62,10 @@ module ApiHelpers
       backend_path("/territories/#{territory.to_param}/map/new")
     end
 
+    def new_territory_url
+      backend_path('/territories/new')
+    end
+
     private
 
     def backend_path(path)

@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module ApiResponse
   module Territories
     class Index < BaseResponse
-      def initialize(territories)
+      def initialize(territories, user:)
         @territories = territories
+        @user = user
       end
 
       def to_h
@@ -12,7 +15,7 @@ module ApiResponse
           end
         end
 
-        { count: data.count, data: data }
+        { count: data.count, links: links, data: data }
       end
 
       private
@@ -26,7 +29,7 @@ module ApiResponse
           description: territory.description,
           householders: territory_householders(territory),
           currentAssignment: territory_assignment(territory),
-          responsible: responsible(territory),
+          responsible: responsible(territory)
         }
       end
 
@@ -43,7 +46,7 @@ module ApiResponse
       end
 
       def territory_householders(territory)
-        territory.householders.select(:id).map {|h| h[:id] }
+        territory.householders.select(:id).map { |h| h[:id] }
       end
 
       def responsible(territory)
@@ -52,6 +55,16 @@ module ApiResponse
         {
           id: territory.responsible.id,
           name: territory.responsible.name
+        }
+      end
+
+      def links
+        unless @user.admin?
+          return {}
+        end
+
+        {
+          newTerritory: urls.new_territory_url
         }
       end
     end

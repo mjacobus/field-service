@@ -7,6 +7,7 @@ const translations = {
   confirmDelete: 'Tem certeza de que deseja excluir "{item}"?',
   dateFormatPlaceholder: "Data, formato YYYY-MM-DD",
   addHouseholder: 'Adicionar Morador',
+  newTerritory: 'Adicionar Território',
   address: 'Endereço',
   streetName: 'Rua',
   houseNumber: 'Número',

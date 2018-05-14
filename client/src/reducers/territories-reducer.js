@@ -29,6 +29,7 @@ export function territoriesReducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         territories: action.territories,
+        links: action.links,
         meta: {
           ...state.meta,
           loading: false,

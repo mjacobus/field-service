@@ -4,6 +4,7 @@ import style from './list.css';
 import LoaderOrContent from '../../components/loader-or-content';
 import Label from '../../components/label';
 import AsyncButton from '../../components/async-button';
+import Button from '../../components/button';
 import LeftRightFrame from '../../components/left-right-frame';
 import PublishersSelector from '../../pages/shared/publishers-selector';
 import CheckBox from '../../components/check-box';
@@ -74,7 +75,7 @@ class SearchForm extends Component {
 }
 
 export default class TerritoryIndex extends Component {
-  static defaultProps = { territories: [], loading: true };
+  static defaultProps = { territories: [], loading: true, links: {} };
 
   componentWillMount() {
     this.props.fetchTerritories();
@@ -136,9 +137,12 @@ export default class TerritoryIndex extends Component {
   render() {
     const left = <SearchForm fetchTerritories={this.props.fetchTerritories} loading={ this.props.loading } />;
     const right = (
-      <LoaderOrContent loading={ this.props.loading }>
-        { this.renderTerritoryList(this.props.territories) }
-      </LoaderOrContent>
+        <LoaderOrContent loading={ this.props.loading }>
+          { this.props.links.newTerritory
+              && <div><Button href={ this.props.links.newTerritory }>{ t.newTerritory }</Button> <hr /></div>
+          }
+          { this.renderTerritoryList(this.props.territories) }
+        </LoaderOrContent>
     );
 
     return <LeftRightFrame leftComponent={left} rightComponent={right}/>;

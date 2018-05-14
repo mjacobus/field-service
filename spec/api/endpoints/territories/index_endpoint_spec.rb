@@ -14,7 +14,12 @@ RSpec.describe Endpoints::Territories::IndexEndpoint, type: :endpoint do
     it 'returns a response for the given user' do
       response = subject.perform(params)
 
-      expect(response).to be_equal_to(ApiResponse::Territories::Index.new(territories))
+      expected_response = ApiResponse::Territories::Index.new(
+        territories,
+        user: current_user
+      )
+
+      expect(response).to be_equal_to(expected_response)
     end
   end
 end

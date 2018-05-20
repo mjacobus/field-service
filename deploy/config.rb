@@ -18,6 +18,7 @@ set :chruby_ruby, 'ruby-2.4.0'
 set :pty, true
 set :keep_releases, 10
 set :bundle_flags, '--deployment'
+set :conditionally_migrate, true
 
 append :linked_files,
        'config/database.yml',

@@ -8,6 +8,6 @@ class Backup
   end
 
   def perform(strategy:)
-    strategy.deliver(self)
+    strategy.perform(self)
   end
 end

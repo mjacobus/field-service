@@ -3,19 +3,14 @@
 class Backup
   module Strategies
     class Email
-      def initialize(
-        recipients:,
-        from:,
-        subject: 'Field Service Backup',
-        body: 'Attached your backups'
-      )
+      def initialize(recipients:, from:, subject:, body:)
         @recipients = recipients
         @from = from
         @subject = subject
         @body = body
       end
 
-      def deliver(backup)
+      def perform(backup)
         mail = Mail.new.tap do |m|
           m.from = @from
           m.to @recipients

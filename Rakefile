@@ -112,8 +112,8 @@ namespace :backup do
     strategy = Backup::Strategies::Email.new(
       recipients: User.where(admin: true).pluck(:email),
       from: from,
-      subject: "Field service backup (#{Rails.env})",
-      body: 'Hello dear brother. Attached the backup for you know what ;-)'
+      subject: I18n.t('emails.backup.subject', app_env: Rails.env),
+      body: I18n.t('emails.backup.body'),
     )
 
     Backup.new(files: files).perform(strategy: strategy)

@@ -119,3 +119,8 @@ pt-BR:
     updated: Publicador atualizado com sucesso!
     destroyed: Publicador removido com sucesso!
     cannot_destroy: Publicador não pode ser removido. Certifique-se de que ele não possua designações
+
+  emails:
+    backup:
+      subject: Backups para o serviço de campo (%{app_env})
+      body: Queridos irmãos. Em anexo os arquivos de backup da nossa aplicação para serviço de campo. Um abraço.

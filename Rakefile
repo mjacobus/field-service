@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
@@ -31,10 +33,14 @@ namespace :csv do
     end
 
     desc 'export all'
-    task export_all: [:environment] do
+    task :export_all, [:filename] => [:environment] do |_t, args|
+      filename = args.fetch(:filename) do
+        suffix = DatePath.new(prefix: 'export_housholders_', suffix: '.csv').to_s
+        Rails.root.join('csv', 'exports', suffix)
+      end
+
+      file = Rails.root.join(filename)
       householders = Householder.ordered
-      file = DatePath.new(prefix: 'export_housholders_', suffix: '.csv').to_s
-      file = Rails.root.join('csv', 'exports', file)
       HouseholdersCsvExporter.new.export(householders).to_file(file)
 
       puts "Exported to #{file}"
@@ -58,6 +64,24 @@ namespace :csv do
   end
 end
 
+desc 'email backup files'
+task email_backup: %i[environment] do
+  files_to_backup = [
+    'bkp/mysql_latest.sql',
+    'bkp/housholders.csv'
+  ]
+
+  file = Rails.root.join(files_to_backup.last)
+
+  if File.exist?(file)
+    FileUtils.rm(file)
+  end
+
+  Rake::Task['mysql:dump_latest'].invoke(files_to_backup.last)
+  Rake::Task['csv:householders:export_all'].invoke(files_to_backup.last)
+  Rake::Task['backup:files'].invoke(*files_to_backup)
+end
+
 namespace :geolocation do
   desc 'update geolocations'
   task  update: [:environment] do
@@ -73,6 +97,26 @@ namespace :geolocation do
         puts e.message
       end
     end
+  end
+end
+
+namespace :backup do
+  desc 'performs backup'
+  task :files, [] => [:environment] do |_t, args|
+    files = args.extras.map do |filename|
+      Rails.root.join(filename.strip).to_s
+    end
+
+    from = ENV.fetch('BACKUP_EMAIL_FROM').split(',').map(&:strip)
+
+    strategy = Backup::Strategies::Email.new(
+      recipients: User.where(admin: true).pluck(:email),
+      from: from,
+      subject: "Field service backup (#{Rails.env})",
+      body: 'Hello dear brother. Attached the backup for you know what ;-)'
+    )
+
+    Backup.new(files: files).perform(strategy: strategy)
   end
 end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this file to easily define all of your cron jobs.
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
@@ -20,6 +22,10 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.hours, roles: [:mysql_dump] do
-  rake "mysql:dump"
-  rake "mysql:dump_latest"
+  rake 'mysql:dump'
+  rake 'mysql:dump_latest'
+end
+
+every 1.day, at: ['4:30 am'] do
+  rake 'email_backup'
 end

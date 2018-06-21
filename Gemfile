@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'clearance', '~>1.14.1'
@@ -9,6 +11,7 @@ gem 'koine-csv', '~> 0.2.1'
 gem 'koine-db_bkp', '~> 0.1.2'
 gem 'koine-google_maps_client'
 gem 'loofah', '~> 2.2.1'
+gem 'mail', '~> 2.7.0'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', require: 'rack/cors'

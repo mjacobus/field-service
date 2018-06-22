@@ -19,7 +19,7 @@ gem 'rails', '~> 5.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sentry-raven'
 gem 'simple_form', '~> 3.5'
-gem 'sprockets'
+gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-es6'
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks', '~> 5'

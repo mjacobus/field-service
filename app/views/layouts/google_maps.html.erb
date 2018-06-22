@@ -45,8 +45,12 @@
   <body>
     <div id="header">
       <div class="topParButtons">
-        | <a href="<%= urls.territory_path(@territory) %>"><%= @territory.name %> </a> |
-        <a href="<%= urls.territory_map_path(@territory) %>">Mapa</a> |
+        <% if @territory %>
+          | <a href="<%= urls.territory_path(@territory) %>"><%= @territory.name %> </a> |
+          <a href="<%= urls.territory_map_path(@territory) %>">Mapa</a> |
+        <% else %>
+          <a href="<%= urls.territory_index_path %>">Voltar</a>
+        <% end %>
         <%= content_for(:header) if content_for?(:header) %>
       </div>
     </div>

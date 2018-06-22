@@ -135,7 +135,13 @@ export default class TerritoryIndex extends Component {
   }
 
   render() {
-    const left = <SearchForm fetchTerritories={this.props.fetchTerritories} loading={ this.props.loading } />;
+    const left = <div>
+      <SearchForm fetchTerritories={this.props.fetchTerritories} loading={ this.props.loading } />
+      {
+        this.props.links.mapsOverview &&
+          <Button href={ this.props.links.mapsOverview }>{ t.mapsOverview }</Button>
+      }
+    </div>;
     const right = (
         <LoaderOrContent loading={ this.props.loading }>
           { this.props.links.newTerritory

@@ -8,6 +8,7 @@ const translations = {
   dateFormatPlaceholder: "Data, formato YYYY-MM-DD",
   addHouseholder: 'Adicionar Morador',
   newTerritory: 'Adicionar Território',
+  mapsOverview: 'Mapa Geral',
   address: 'Endereço',
   streetName: 'Rua',
   houseNumber: 'Número',

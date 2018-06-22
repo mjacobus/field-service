@@ -9,6 +9,7 @@ class Territory < ApplicationRecord
   validates :city, presence: true
 
   scope :sorted, -> { order(:name) }
+  scope :with_map, -> { where.not(map_coordinates: nil) }
 
   def initialize(*args)
     super

@@ -15,6 +15,7 @@ const translations = {
   dateFormatPlaceholder: translate('dateFormatPlaceholder'),
   addHouseholder: translate('addHouseholder'),
   newTerritory: translate('newTerritory'),
+  mapsOverview: translate('mapsOverview'),
   address: translate('address'),
   streetName: translate('streetName'),
   houseNumber: translate('houseNumber'),

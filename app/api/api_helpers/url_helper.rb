@@ -18,6 +18,10 @@ module ApiHelpers
       )
     end
 
+    def maps_url
+      backend_path('/maps')
+    end
+
     def territory_show_path(territory)
       territory_path(territory)
     end

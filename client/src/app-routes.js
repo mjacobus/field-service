@@ -60,6 +60,12 @@ const householdersRoutes = {
   }
 }
 
+const mapRoutes = {
+  index: () => {
+    return fixUrl(UrlHelper.create('/maps'));
+  }
+}
+
 const assignmentRoutes = {
   index: () => {
     return fixUrl(UrlHelper.create('/territory_assignments'));
@@ -81,5 +87,6 @@ export default {
   householders: householdersRoutes,
   assignments: assignmentRoutes,
   publishers: publishersRoutes,
+  maps: mapRoutes,
   main,
 }

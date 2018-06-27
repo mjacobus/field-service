@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resource :profile, only: %i[edit update]
 
+  get 'maps', to: 'maps#index'
+
   resources :territories, param: :slug do
     resource :map
     resources :householders
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     get 'householders/search'
 
+    resources :maps, only: [:index]
     resources :territories, param: :slug do
       resources :householders
     end

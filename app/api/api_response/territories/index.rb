@@ -59,13 +59,15 @@ module ApiResponse
       end
 
       def links
+        standard = {
+          mapsOverview: urls.maps_url,
+        }
+
         unless @user.admin?
-          return {}
+          return standard
         end
 
-        {
-          newTerritory: urls.new_territory_url
-        }
+        standard.merge(newTerritory: urls.new_territory_url)
       end
     end
   end

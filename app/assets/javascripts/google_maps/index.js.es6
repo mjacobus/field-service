@@ -59,3 +59,13 @@ const loadTerritoryMap = ({ mapUrl, app, territoryUrl, containerId, action }) =>
     });
   });
 }
+
+const loadTerritoriesMap = ({ app, mapsEndpoint, containerId }) => {
+  fetch(mapsEndpoint).then((jsonResponse) => {
+    app.map = TerritoriesMapFactory.create({
+      app,
+      territories: jsonResponse.data,
+      container: document.getElementById(containerId)
+    });
+  });
+}

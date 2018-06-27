@@ -2,6 +2,9 @@ class MapsController < AuthenticatedController
   skip_before_action :require_admin, only: [:show]
   layout 'google_maps'
 
+  def index
+  end
+
   def show
     territory
 

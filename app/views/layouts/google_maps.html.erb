@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Map - <%= params[:territory_slug] %></title>
+    <title>Map - <%= params[:territory_slug] || 'Overview' %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <%= javascript_include_tag "google_maps" %>
@@ -45,8 +45,12 @@
   <body>
     <div id="header">
       <div class="topParButtons">
-        | <a href="<%= urls.territory_path(@territory) %>"><%= @territory.name %> </a> |
-        <a href="<%= urls.territory_map_path(@territory) %>">Mapa</a> |
+        <% if @territory %>
+          | <a href="<%= urls.territory_path(@territory) %>"><%= @territory.name %> </a> |
+          <a href="<%= urls.territory_map_path(@territory) %>">Mapa</a> |
+        <% else %>
+          <a href="<%= urls.territory_index_path %>">Voltar</a>
+        <% end %>
         <%= content_for(:header) if content_for?(:header) %>
       </div>
     </div>

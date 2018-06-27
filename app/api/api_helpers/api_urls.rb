@@ -4,6 +4,10 @@ module ApiHelpers
       api_path("/territories/#{territory.to_param}")
     end
 
+    def maps_endpoint
+      api_path('maps')
+    end
+
     private
 
     def api_path(path)

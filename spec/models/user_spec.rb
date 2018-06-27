@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User do
@@ -33,6 +35,20 @@ RSpec.describe User do
 
       it 'returns only the territories that the user is responsible for' do
         expect(user.territories).to eq([territory1, territory2])
+      end
+
+      it 'returns also the territories assigned to that user' do
+        territory4 = Territory.make!(responsible_id: Publisher.make!.id)
+
+        # assign but then assign to someone else
+        assign_territory(territory3, publisher1)
+        assign_territory(territory3, Publisher.make!)
+
+        assign_territory(territory4, publisher1)
+
+        expect(user.territories.map(&:name)).to eq(
+          [territory1, territory2, territory4].map(&:name)
+        )
       end
     end
   end

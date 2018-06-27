@@ -80,3 +80,10 @@ def assert_delegates(method, delegator, delegated)
 
   expect(delegated.send(method)).not_to(be_nil, 'cannot check if delegates if value is nil')
 end
+
+def assign_territory(territory, publisher)
+  TerritoryAssigning.new.perform(
+    territory_id: territory.id,
+    publisher_id: publisher.id
+  )
+end

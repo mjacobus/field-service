@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   class ValidationError < RuntimeError
     attr_reader :user
@@ -15,7 +17,13 @@ class User < ApplicationRecord
     end
 
     publisher_ids = UserPublisher.where(user_id: id).select(:publisher_id)
+
+    territory_ids = TerritoryAssignment
+                    .where(publisher_id: publisher_ids, returned_at: nil)
+                    .select(:territory_id)
+
     Territory.where(responsible_id: publisher_ids)
+             .or(Territory.where(id: territory_ids))
   end
 
   # TODO: quick code. Need to be extracted into a descent service

@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def configuration
+    @_app_config ||= Configuration.create_config_object
+  end
+
   def breadcrumbs(parts)
     return if parts.empty?
     content_for(:breadcrumbs) do

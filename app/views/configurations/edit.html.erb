@@ -1,10 +1,8 @@
-<% config = t('configuration') %>
-
 <%= form_tag(configuration_url, method: :patch) do |f| %>
   <% @configuration.each_section do |section| %>
     <h4><%= section.label  %></h4>
     <hr>
-    <h5><%= section.description  %></h5>
+    <p><%= section.description  %></p>
     <% section.each do |item| %>
       <label><%= item.label %></label>
       <small><%= item.description %></small>

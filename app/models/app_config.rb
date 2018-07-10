@@ -21,6 +21,7 @@ class AppConfig
     # @sections.push(section)
 
     section = Section.new('pdf')
+    section.add('householders_per_page', default_value: 40)
     section.add('font_size', default_value: '12px')
     section.add('font_family', default_value: "Verdana, Arial, 'OpenSansRegular'")
     @sections.push(section)

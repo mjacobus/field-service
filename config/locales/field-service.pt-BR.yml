@@ -150,6 +150,9 @@ pt-BR:
       name: 'Lista de moradores'
       description: 'Configuração da lista dos moradores em PDF'
       fields:
+        householders_per_page:
+          name: 'Número de Moradores por Página'
+          description: 'Número de moradores por página. Valor padrão: %{default_value}'
         font_size:
           name: 'Tamanho da fonte'
           description: 'Tamanho da fonte no PDF com o nome dos moradores. Valor padrão: %{default_value}'

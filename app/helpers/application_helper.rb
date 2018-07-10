@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def configuration
     @_app_config ||= Configuration.create_config_object
+  end
+
+  def app_config(name)
+    configuration.get(name).value
   end
 
   def breadcrumbs(parts)
@@ -34,7 +40,7 @@ module ApplicationHelper
   end
 
   def body_class
-    if root_url =~ /staging|localhost/
+    if root_url.match?(/staging|localhost/)
       return 'development-env'
     end
 

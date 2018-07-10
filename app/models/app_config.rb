@@ -24,6 +24,12 @@ class AppConfig
     section.add('householders_per_page', default_value: 40)
     section.add('font_size', default_value: '12px')
     section.add('font_family', default_value: "Verdana, Arial, 'OpenSansRegular'")
+    section.add('page_height', default_value: 297)
+    section.add('page_width', default_value: 210)
+    section.add('margin_top', default_value: 4)
+    section.add('margin_bottom', default_value: 0)
+    section.add('margin_right', default_value: 0)
+    section.add('margin_left', default_value: 0)
     @sections.push(section)
   end
 
@@ -39,6 +45,14 @@ class AppConfig
 
   def get(key)
     find { |item| item.name == key } || raise(ArgumentError, "invalid key '#{key}'")
+  end
+
+  def get_int(key)
+    Integer(get_value(key))
+  end
+
+  def get_value(key)
+    get(key).value
   end
 
   def set(key, value)

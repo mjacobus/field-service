@@ -150,6 +150,24 @@ pt-BR:
       name: 'Lista de moradores'
       description: 'Configuração da lista dos moradores em PDF'
       fields:
+        page_height:
+          name: 'Altura da página'
+          description: 'Valor padrão em milímetros: %{default_value}'
+        page_width:
+          name: 'Largura da página'
+          description: 'Valor padrão em milímetros: %{default_value}'
+        margin_top:
+          name: 'Margin superior'
+          description: 'Valor padrão em milímetros: %{default_value}'
+        margin_bottom:
+          name: 'Margin superior'
+          description: 'Valor padrão em milímetros: %{default_value}'
+        margin_left:
+          name: 'Margin esquerda'
+          description: 'Valor padrão em milímetros: %{default_value}'
+        margin_right:
+          name: 'Margin direita'
+          description: 'Valor padrão em milímetros: %{default_value}'
         householders_per_page:
           name: 'Número de Moradores por Página'
           description: 'Número de moradores por página. Valor padrão: %{default_value}'

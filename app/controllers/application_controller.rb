@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include Clearance::Controller
   protect_from_forgery with: :exception
@@ -49,5 +51,9 @@ class ApplicationController < ActionController::Base
 
   def url_helpers
     @url_helpers ||= ApiHelpers::UrlHelper.new
+  end
+
+  def app_config
+    @_app_config ||= ::Configuration.create_config_object
   end
 end

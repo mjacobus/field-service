@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TerritoriesController < AuthenticatedController
-  skip_before_action :require_admin, only: [:index, :show]
+  skip_before_action :require_admin, only: %i[index show]
 
   def index
     @territories = TerritoryService.new(user: current_user).search(search_params)
@@ -17,7 +19,10 @@ class TerritoriesController < AuthenticatedController
     respond_to do |format|
       format.html
       format.pdf do
-        export_pdf("territory_#{@territory_decorator.name.parameterize}")
+        export_pdf(
+          "territory_#{@territory_decorator.name.parameterize}",
+          householders_pdf_options
+        )
       end
     end
   end
@@ -76,5 +81,18 @@ class TerritoriesController < AuthenticatedController
   # Never trust parameters from the scary internet, only allow the white list through.
   def territory_params
     params.require(:territory).permit(:name, :description, :city, :responsible_id)
+  end
+
+  def householders_pdf_options
+    {
+      page_height: app_config.get_int('pdf.page_height'),
+      page_width: app_config.get_int('pdf.page_width'),
+      margin:  {
+        top: app_config.get_int('pdf.margin_top'),
+        bottom: app_config.get_int('pdf.margin_bottom'),
+        right: app_config.get_int('pdf.margin_right'),
+        left: app_config.get_int('pdf.margin_left')
+      }
+    }
   end
 end

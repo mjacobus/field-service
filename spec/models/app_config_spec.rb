@@ -15,6 +15,14 @@ RSpec.describe AppConfig do
     end
   end
 
+  describe '#get_int' do
+    it 'coerces value to int' do
+      config.get('pdf.page_height').value = '1'
+
+      expect(config.get_int('pdf.page_height')).to be(1)
+    end
+  end
+
   describe '#set' do
     it 'set config to semthing else' do
       config.set('pdf.font_size', 'something_else')

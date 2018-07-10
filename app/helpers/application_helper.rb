@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def configuration
-    @_app_config ||= Configuration.create_config_object
+    @_app_config ||= ::Configuration.create_config_object
   end
 
   def app_config(name)

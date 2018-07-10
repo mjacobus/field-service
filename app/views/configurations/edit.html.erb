@@ -1,0 +1,13 @@
+<%= form_tag(configuration_url, method: :patch) do |f| %>
+  <% @configuration.each_section do |section| %>
+    <h4><%= section.label  %></h4>
+    <hr>
+    <p><%= section.description  %></p>
+    <% section.each do |item| %>
+      <label><%= item.label %></label>
+      <small><%= item.description %></small>
+      <%= text_field_tag("configuration[#{item.name}]", item.raw_value) %>
+    <% end %>
+  <% end %>
+  <button class="button"><%= t('links.save') %></button>
+<% end %>

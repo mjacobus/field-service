@@ -1,1 +1,16 @@
-<%= render partial: "territories/table", locals: { territory: @territory_decorator } %>
+<% householders = @territory_decorator.householders  %>
+<% group_size = Integer(app_config('pdf.householders_per_page')) %>
+
+
+<% @territory_decorator.householders.in_groups_of(group_size).each do |group| %>
+  <%= page_break %>
+  <%= render partial: "territories/table", locals: {
+    territory: @territory_decorator,
+    householders: group,
+  } %>
+<% end %>
+
+<% if @territory_decorator.mapped? %>
+  <%= page_break %>
+  <img width="100%" src="<%= here_maps.image_url(@territory_decorator, params) %>" alt="Map Image">
+<% end %>

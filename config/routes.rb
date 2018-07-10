@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  resource :configuration, only: %i[show edit update]
   get 'pages/search'
 
   resource :session, controller: 'clearance/sessions', only: [:create]

@@ -26,27 +26,23 @@
     </tr>
   </thead>
   <tbody>
-    <% territory.householders.each_with_index do |householder, index| %>
-      <tr class="<%= householder.html_classes %> <%= odd_or_even(index) %>">
-        <td colspan="2"><%= householder.normalized_street_name %></td>
-        <td class="text-center"><%= householder.house_number %></td>
-        <td><%= householder.name %></td>
-        <td><%= householder.do_not_visit_date %></td>
-      </tr>
-    <% end %>
-    <% expand_to(42, territory.householders.count).each do |index|  %>
-      <tr class="<%= odd_or_even(index + 1) %>">
-        <td colspan="2">&nbsp;</td>
-        <td class="text-center">&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
+    <% householders.each_with_index do |record, index| %>
+      <% if record %>
+        <% householder = HouseholderDecorator.new(record).with_view_helpers(self) %>
+        <tr class="<%= householder.html_classes %> <%= odd_or_even(index) %>">
+          <td colspan="2"><%= householder.normalized_street_name %></td>
+          <td class="text-center"><%= householder.house_number %></td>
+          <td><%= householder.name %></td>
+          <td><%= householder.do_not_visit_date %></td>
+        </tr>
+      <% else %>
+        <tr class="<%= odd_or_even(index) %>">
+          <td colspan="2">&nbsp;</td>
+          <td class="text-center">&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-
-<% if territory.mapped? %>
-  <%= page_break %>
-  <img width="100%" src="<%= here_maps.image_url(territory, params) %>" alt="Map Image">
-<% end %>
-

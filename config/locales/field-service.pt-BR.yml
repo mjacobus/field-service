@@ -109,6 +109,9 @@ pt-BR:
     returned: Território devolvido com sucesso!
     returned: Território devolvido com sucesso!
 
+  configurations:
+    updated: Configuração atualizada com sucesso!
+
   householders:
     created: Morador criado com sucesso!
     updated: Morador atualizado com sucesso!
@@ -124,3 +127,35 @@ pt-BR:
     backup:
       subject: Backups para o serviço de campo (%{app_env})
       body: Queridos irmãos. Em anexo os arquivos de backup da nossa aplicação para serviço de campo. Um abraço.
+
+  configuration:
+    emails:
+      name: 'Emails'
+      description: 'Configuração dos emails automáticos'
+      fields:
+        reply_to:
+          name: 'Responder para'
+          description: 'Email para quem responder'
+    maps:
+      name: 'Mapas'
+      description: 'Configuração dos mapas'
+      fields:
+        border_color:
+          name: 'Cor'
+          description: 'Cor da borda dos terriórios. Valor padrão: %{default_value}'
+        border_width:
+          name: 'Largura'
+          description: 'Largura das bordas do mapa - ponto como separador decimal. Exemplo: 1.2'
+    pdf:
+      name: 'Lista de moradores'
+      description: 'Configuração da lista dos moradores em PDF'
+      fields:
+        householders_per_page:
+          name: 'Número de Moradores por Página'
+          description: 'Número de moradores por página. Valor padrão: %{default_value}'
+        font_size:
+          name: 'Tamanho da fonte'
+          description: 'Tamanho da fonte no PDF com o nome dos moradores. Valor padrão: %{default_value}'
+        font_family:
+          name: 'Família da fonte'
+          description: 'Fonte no PDF com o nome dos moradores. Valor padrão: %{default_value}'

@@ -39,3 +39,7 @@ TerritoryAssignment.blueprint do
   return_date { sn.to_i.months.from_now }
   returned_at { nil }
 end
+
+Configuration.blueprint do
+  # Attributes here
+end

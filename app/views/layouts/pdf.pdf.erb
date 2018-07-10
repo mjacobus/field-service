@@ -5,6 +5,10 @@
     <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
     <%= wicked_pdf_javascript_include_tag "number_pages" %>
     <style type="text/css">
+      body {
+        font-family: <%= configuration.get('pdf.font_family').value %>;
+        font-size: <%= configuration.get('pdf.font_size').value %>;
+      }
     </style>
   </head>
   <body onload='number_pages'>

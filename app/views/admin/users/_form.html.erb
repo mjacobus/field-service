@@ -3,6 +3,10 @@
     <%= f.input :email %>
     <%= f.input :admin %>
 
+    <% if user.persisted? %>
+      <%= f.input :password, placeholder: t('messages.change_users_password') %>
+    <% end %>
+
     <%= UserDecorator.new(user).with_view_helpers(self).save_button %>
 <% end %>
 

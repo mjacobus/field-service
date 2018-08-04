@@ -77,6 +77,7 @@ pt-BR:
     geolocation_update_failed: As coordenadas de Geolocation não puderam ser atualizadas
     date_format_hint: Data, formato YYYY-MM-DD
     change_password_hint: Para alterar sua senha, preencha a sua senha atual, e depois a sua nova senha. Deixe os campos de senha em branco para deixar tudo como está.
+    change_users_password: Deixe em branco para deixar a senha inalterada
     confirm_destroy: Tem certeza que deseja excuir este registro?
     dev_env_warning: Este é um sistema de teste. Use-o a vontade.
 

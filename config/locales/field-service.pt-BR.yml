@@ -36,6 +36,7 @@ pt-BR:
         name: Nome
         email: Email
         admin: Administrador
+        authorized_on: Permissões sobre
         password: Senha (Palavra Passe)
         new_password: Nova Senha (Palavra Passe)
 

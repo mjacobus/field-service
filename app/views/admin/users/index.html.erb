@@ -7,6 +7,7 @@
       <th><%= User.human_attribute_name(:name) %></th>
       <th><%= User.human_attribute_name(:email) %></th>
       <th><%= User.human_attribute_name(:admin) %></th>
+      <th><%= User.human_attribute_name(:authorized_on) %></th>
       <th class="action" colspan="">
         <%= small_button_group(decorator.new_button) %>
       </th>
@@ -19,6 +20,7 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.admin %></td>
+        <td> <%= user.publishers.map(&:name).join(', ') %> </td>
         <td class="action">
           <%= small_button_group(
               user.edit_button,

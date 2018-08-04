@@ -12,6 +12,7 @@ class User < ApplicationRecord
   scope :by_name, -> { order(:name) }
   validates :name, presence: true
   has_many :user_publishers, dependent: :destroy
+  has_many :publishers, through: :user_publishers
 
   include Clearance::User
 

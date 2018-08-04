@@ -1,0 +1,8 @@
+<%= simple_form_for([:admin, user]) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :admin %>
+
+    <%= UserDecorator.new(user).with_view_helpers(self).save_button %>
+<% end %>
+

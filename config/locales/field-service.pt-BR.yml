@@ -35,6 +35,7 @@ pt-BR:
       user:
         name: Nome
         email: Email
+        admin: Administrador
         password: Senha (Palavra Passe)
         new_password: Nova Senha (Palavra Passe)
 

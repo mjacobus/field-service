@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Admin::UsersController do
   let(:user) { User.make! }
-  let(:attribute_names) { %i[name email] }
-  let(:payload) { User.make.attributes.symbolize_keys.slice(*attribute_names) }
+  let(:attribute_names) { %i[name email admin] }
+  let(:payload) { User.make(admin: true).attributes.symbolize_keys.slice(*attribute_names) }
   let(:changed_attributes) { User.last.attributes.symbolize_keys.slice(*attribute_names) }
 
   it 'is an authenticated controller' do

@@ -51,7 +51,7 @@ module Admin
     private
 
     def user_attributes
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :admin)
     end
   end
 end

@@ -81,12 +81,32 @@ RSpec.describe Admin::UsersController do
 
   describe '#update' do
     context 'when payload is valid' do
-      it 'creates a new user' do
+      it 'updates the user data' do
         patch :update, params: { id: user.to_param, user: payload }
 
         expect(response).to redirect_to('/admin/users')
 
         expect(changed_attributes).to eq(payload)
+      end
+    end
+
+    context 'updating password' do
+      context 'when password is empty' do
+        it 'does not update encrypted_password' do
+          expect do
+            patch :update, params: { id: user.to_param, user: payload.merge(password: '') }
+          end.not_to change { user.reload.encrypted_password }
+        end
+      end
+
+      context 'when password is sent' do
+        it 'updates encrypted_password' do
+          password = UniqueId.new.to_s
+
+          patch :update, params: { id: user.to_param, user: payload.merge(password: password) }
+
+          expect(user.reload.authenticated?(password)).to be true
+        end
       end
     end
 

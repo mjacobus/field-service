@@ -32,8 +32,13 @@ module Admin
 
     def update
       @user = User.find(params[:id])
+      data = user_attributes
 
-      if @user.update(user_attributes)
+      if password
+        data[:password] = password
+      end
+
+      if @user.update(data)
         redirect_to '/admin/users'
         return
       end
@@ -52,6 +57,10 @@ module Admin
 
     def user_attributes
       params.require(:user).permit(:name, :email, :admin)
+    end
+
+    def password
+      params[:user][:password].presence
     end
   end
 end

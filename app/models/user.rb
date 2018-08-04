@@ -9,6 +9,9 @@ class User < ApplicationRecord
     end
   end
 
+  scope :by_name, -> { order(:name) }
+  validates :name, presence: true
+
   include Clearance::User
 
   def territories

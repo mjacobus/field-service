@@ -9,7 +9,7 @@ class User < ApplicationRecord
     end
   end
 
-  scope :by_name, -> { order(:name) }
+  scope :sorted, -> { order(:name, :email) }
   validates :name, presence: true
   has_many :user_publishers, dependent: :destroy
   has_many :publishers, through: :user_publishers

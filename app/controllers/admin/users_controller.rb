@@ -3,7 +3,7 @@
 module Admin
   class UsersController < AuthenticatedController
     def index
-      @users = User.by_name
+      @users = User.sorted
     end
 
     def show

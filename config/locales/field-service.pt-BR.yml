@@ -35,6 +35,8 @@ pt-BR:
       user:
         name: Nome
         email: Email
+        admin: Administrador
+        authorized_on: Permissões sobre
         password: Senha (Palavra Passe)
         new_password: Nova Senha (Palavra Passe)
 
@@ -76,6 +78,8 @@ pt-BR:
     geolocation_update_failed: As coordenadas de Geolocation não puderam ser atualizadas
     date_format_hint: Data, formato YYYY-MM-DD
     change_password_hint: Para alterar sua senha, preencha a sua senha atual, e depois a sua nova senha. Deixe os campos de senha em branco para deixar tudo como está.
+    change_users_password: Deixe em branco para deixar a senha inalterada
+    user_publishers_hint: Autorizado a realizar ajustes para os seguintes grupos/publicadores (administradores tem acesso a todos)
     confirm_destroy: Tem certeza que deseja excuir este registro?
     dev_env_warning: Este é um sistema de teste. Use-o a vontade.
 
@@ -85,6 +89,7 @@ pt-BR:
     householders: Moradores
     search: Pesquisar
     publishers: Publicadores
+    users: Usuários
     territory_assignments: Designações de Território
     assign_territory: Designar Território
     return_territory: Devolver território

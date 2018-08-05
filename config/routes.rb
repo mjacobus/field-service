@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     resources :inactive_territories, only: [:index]
   end
 
+  namespace :admin do
+    resources :users
+  end
+
   namespace :api, defaults: { format: :json } do
     get 'householders/search'
 

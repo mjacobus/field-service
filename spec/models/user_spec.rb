@@ -3,6 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe User do
+  it 'validates presence of name' do
+    user = User.make
+    user.name = nil
+
+    expect(user).not_to be_valid
+  end
+
   describe '#territories' do
     context 'when user is admin' do
       let(:user) { User.new(admin: true) }

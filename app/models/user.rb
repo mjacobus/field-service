@@ -9,6 +9,11 @@ class User < ApplicationRecord
     end
   end
 
+  scope :sorted, -> { order(:name, :email) }
+  validates :name, presence: true
+  has_many :user_publishers, dependent: :destroy
+  has_many :publishers, through: :user_publishers
+
   include Clearance::User
 
   def territories

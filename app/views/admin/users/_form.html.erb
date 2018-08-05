@@ -1,0 +1,15 @@
+<%= simple_form_for([:admin, user]) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :admin %>
+
+    <% if user.persisted? %>
+      <%= f.input :password, placeholder: t('messages.change_users_password') %>
+    <% end %>
+
+    <p><%= t('messages.user_publishers_hint') %>:</p>
+    <%= f.collection_check_boxes :publisher_ids, Publisher.sorted, :id, :name %>
+
+    <%= UserDecorator.new(user).with_view_helpers(self).save_button %>
+<% end %>
+

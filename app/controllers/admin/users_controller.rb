@@ -56,7 +56,9 @@ module Admin
     private
 
     def user_attributes
-      params.require(:user).permit(:name, :email, :admin)
+      params.require(:user).permit(:name, :email, :admin, publisher_ids: []).tap do |attr|
+        attr[:publisher_ids] ||= []
+      end
     end
 
     def password

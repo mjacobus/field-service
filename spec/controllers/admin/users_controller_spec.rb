@@ -107,6 +107,24 @@ RSpec.describe Admin::UsersController do
 
           expect(user.reload.authenticated?(password)).to be true
         end
+
+        it 'assigns publisher' do
+          ids = [Publisher.make!.id]
+
+          expect do
+            patch :update, params: { id: user.to_param, user: payload.merge(publisher_ids: ids) }
+          end.to change(UserPublisher, :count).by(1)
+        end
+
+        it 'unassigns publisher' do
+          ids = [Publisher.make!.id]
+          user.publisher_ids = ids
+          user.save!
+
+          expect do
+            patch :update, params: { id: user.to_param, user: payload.merge(publisher_ids: []) }
+          end.to change(UserPublisher, :count).by(-1)
+        end
       end
     end
 

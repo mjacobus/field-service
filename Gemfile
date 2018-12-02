@@ -10,7 +10,6 @@ gem 'jquery-rails'
 gem 'koine-csv', '~> 0.2.1'
 gem 'koine-db_bkp', '~> 0.1.2'
 gem 'koine-google_maps_client'
-gem 'loofah', '~> 2.2.1'
 gem 'mail', '~> 2.7.0'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.0'
@@ -28,6 +27,10 @@ gem 'unicorn'
 gem 'whenever', require: false
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binpath'
+
+# security updates
+gem 'loofah', '>= 2.2.3'
+gem 'rack', '>= 2.0.6'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

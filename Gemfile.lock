@@ -281,9 +281,9 @@ GEM
     shoulda-context (1.2.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    simple_form (3.5.1)
-      actionpack (> 4, < 5.2)
-      activemodel (> 4, < 5.2)
+    simple_form (5.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -395,7 +395,7 @@ DEPENDENCIES
   shoulda (~> 3.5)
   shoulda-context (~> 1.2)
   shoulda-matchers (~> 2.0)
-  simple_form (~> 3.5)
+  simple_form (~> 5.0)
   simplecov
   spring
   spring-commands-rspec

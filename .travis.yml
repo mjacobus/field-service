@@ -12,6 +12,7 @@ env:
   # - DB=sqlite
 
 before_script:
+  - gem install bundler
   - yarn install
   - cd client && yarn install
 

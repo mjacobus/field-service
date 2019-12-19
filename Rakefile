@@ -11,12 +11,10 @@ task :travis_ci do
   ENV['RAILS_ENV'] = 'test'
   ENV['COVERAGE'] = 'true'
 
-  Rake::Task['db:drop'].invoke
+  # Rake::Task['db:drop'].invoke
   Rake::Task['db:create'].invoke
   Rake::Task['db:migrate'].invoke
   Rake::Task['spec'].invoke
-
-  exec 'yarn run test'
 end
 
 namespace :csv do

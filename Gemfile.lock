@@ -128,9 +128,9 @@ GEM
     foundation-icons-sass-rails (3.0.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
-    foundation-rails (6.6.1.0)
+    foundation-rails (6.2.4.0)
       railties (>= 3.1.0)
-      sass (>= 3.3.0)
+      sass (>= 3.3.0, < 3.5)
       sprockets-es6 (>= 0.9.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -266,11 +266,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
+    sass (3.4.25)
     sass-rails (5.0.7)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
@@ -375,7 +371,7 @@ DEPENDENCIES
   faker
   foreman
   foundation-icons-sass-rails
-  foundation-rails
+  foundation-rails (~> 6.2.4)
   jquery-rails
   koine-csv (~> 0.2.1)
   koine-db_bkp (~> 0.1.2)

@@ -11,7 +11,6 @@ env:
 
 script:
   - RAILS_ENV=test bundle exec rake travis_ci
-  - yarn install
   - cd client && yarn install && yarn run test
 
 services:

@@ -11,8 +11,7 @@ env:
 
 script:
   - RAILS_ENV=test bundle exec rake travis_ci
-  # - cd client && yarn install && yarn run test
-  - cd client && yarn install && yarn run build
+  - cd client && yarn install && yarn run test
 
 services:
   - mysql

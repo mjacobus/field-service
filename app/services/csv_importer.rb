@@ -2,7 +2,7 @@ require 'koine/csv'
 
 class CsvImporter
   def initialize(
-    parser: ::Koine::Csv::NamedColumnsParser.new(column_separator: ','),
+    parser: ::Koine::Csv::NamedColumnsParser.new(col_sep: ','),
     filter: CsvFilter.new,
     importer: HouseholderImporter.new
   )

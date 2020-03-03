@@ -8,6 +8,12 @@ rvm:
 
 env:
   - DB=mysql DATABASE_URL="mysql2://root@127.0.0.1:3306/field_service_test"
+  - DB=pg    DATABASE_URL="postgres://postgres@127.0.0.1:5432/field_service_test"
+
+before_script:
+  - cp .env.test.sample .env.test
+  - psql -c 'create database field_service_test;' -U postgres
+  - mysql -e 'CREATE DATABASE field_service_test;'
 
 script:
   - RAILS_ENV=test bundle exec rake travis_ci
@@ -15,3 +21,10 @@ script:
 
 services:
   - mysql
+
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+      - postgresql-10
+      - postgresql-client-10

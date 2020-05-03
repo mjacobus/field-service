@@ -23,7 +23,5 @@ db/schema.rb
 /bkp
 /node_modules
 yarn-error.log
-/app/assets/javascripts/fs_client.js
-/app/assets/stylesheets/fs_client.css
 .env.test.local
 /.env.test

@@ -190,7 +190,7 @@ GEM
       websocket-driver (>= 0.2.0)
     psych (3.1.0)
     public_suffix (4.0.1)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.0.8)
     rack-cors (1.1.0)

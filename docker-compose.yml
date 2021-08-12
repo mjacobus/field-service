@@ -3,7 +3,6 @@ services:
   db:
     image: "mysql:5.7"
     volumes:
-      - ./var/postgresql:/lib/postgresql/data
       - ./var/mysql:/var/lib/mysql
     ports:
       - 3307:3306

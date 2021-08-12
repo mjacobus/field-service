@@ -96,12 +96,6 @@ GEM
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.5)
-    coveralls (0.7.1)
-      multi_json (~> 1.3)
-      rest-client
-      simplecov (>= 0.7)
-      term-ansicolor
-      thor
     crass (1.0.5)
     database_cleaner (1.7.0)
     descendants_tracker (0.0.4)
@@ -153,7 +147,7 @@ GEM
     koine-google_maps_client (0.1.0)
       rest-client (~> 2.0)
     kwalify (0.7.2)
-    libv8 (3.16.14.19)
+    libv8-node (15.14.0.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -168,8 +162,9 @@ GEM
     mime-types-data (3.2019.1009)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
+    mini_racer (0.4.0)
+      libv8-node (~> 15.14.0.0)
     minitest (5.13.0)
-    multi_json (1.14.1)
     multipart-post (2.1.1)
     mysql2 (0.4.10)
     net-scp (2.0.0)
@@ -190,7 +185,7 @@ GEM
       websocket-driver (>= 0.2.0)
     psych (3.1.0)
     public_suffix (4.0.1)
-    puma (4.3.3)
+    puma (5.4.0)
       nio4r (~> 2.0)
     rack (2.0.8)
     rack-cors (1.1.0)
@@ -236,7 +231,6 @@ GEM
       parser (>= 2.5.0.0, < 2.7, != 2.5.1.1)
       psych (~> 3.1.0)
       rainbow (>= 2.0, < 4.0)
-    ref (2.0.0)
     regexp_parser (1.6.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -291,6 +285,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    simplecov-lcov (0.8.0)
     spring (2.1.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -311,15 +306,9 @@ GEM
     sshkit (1.20.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    term-ansicolor (1.7.1)
-      tins (~> 1.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tins (1.22.2)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -367,7 +356,6 @@ DEPENDENCIES
   capistrano-rails
   capybara
   clearance (~> 1.14.1)
-  coveralls
   database_cleaner (~> 1.5)
   dotenv-rails
   faker
@@ -382,11 +370,12 @@ DEPENDENCIES
   loofah (~> 2.2.3)
   machinist!
   mail (~> 2.7.0)
+  mini_racer
   mysql2 (>= 0.3.18, < 0.5)
   object_comparator (~> 0.1.3)
   pg
   poltergeist
-  puma (~> 4.3)
+  puma (~> 5.4)
   rack-cors
   rails (~> 5.1)
   rails-controller-testing (~> 1.0.2)
@@ -400,12 +389,12 @@ DEPENDENCIES
   shoulda-matchers (~> 2.0)
   simple_form (~> 3.5)
   simplecov
+  simplecov-lcov
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   sprockets (~> 3.7.2)
   sprockets-es6
-  therubyracer
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
@@ -416,4 +405,4 @@ DEPENDENCIES
   wkhtmltopdf-binpath
 
 BUNDLED WITH
-   2.1.4
+   2.2.25

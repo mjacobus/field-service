@@ -1,0 +1,37 @@
+name: Rails Unit Tests
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches:
+      - '*'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: "mysql:5.7"
+        ports: ['3306:3306']
+        env:
+          MYSQL_ROOT_PASSWORD: root
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+    - name: Build and test with Rake
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: "mysql2://root:root@127.0.0.1:3306/field_service_test"
+      run: |
+        cat .env.test.sample | grep -v DATABASE > .env
+        sudo apt-get -yqq install libpq-dev
+        yarn install
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec rails db:create
+        bundle exec rails db:migrate
+        ./bin/rspec
+    # - name: Coveralls
+    #   uses: coverallsapp/github-action@master
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}

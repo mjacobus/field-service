@@ -12,7 +12,7 @@ gem 'koine-db_bkp', '~> 0.1.2'
 gem 'koine-google_maps_client'
 gem 'loofah', '~> 2.2.3'
 gem 'mail', '~> 2.7.0'
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.4'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rails', '~> 5.1'
 gem 'sass-rails', '~> 5.0'
@@ -20,7 +20,8 @@ gem 'sentry-raven'
 gem 'simple_form', '~> 3.5'
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-es6'
-gem 'therubyracer', platforms: :ruby
+gem 'mini_racer'
+# gem 'therubyracer', platforms: :ruby
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
@@ -52,7 +53,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'coveralls', require: false
   gem 'database_cleaner', '~>1.5'
   gem 'faker'
   gem 'machinist', git: 'git://github.com/mjacobus/machinist.git', branch: 'fix-warning'
@@ -64,5 +64,6 @@ group :test do
   gem 'shoulda-context', '~>1.2'
   gem 'shoulda-matchers', '~> 2.0'
   gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
   gem 'spring-commands-rspec'
 end

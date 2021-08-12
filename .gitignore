@@ -27,3 +27,4 @@ yarn-error.log
 /app/assets/stylesheets/fs_client.css
 .env.test.local
 /.env.test
+/var

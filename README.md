@@ -2,8 +2,7 @@
 
 My personal field service helper
 
-[![Build Status](https://travis-ci.org/mjacobus/field-service.svg?branch=master)](https://travis-ci.org/mjacobus/field-service)
-[![Code Climate](https://codeclimate.com/github/mjacobus/field-service/badges/gpa.svg)](https://codeclimate.com/github/mjacobus/field-service)
+[![Rails Unit Tests](https://github.com/mjacobus/field-service/actions/workflows/rails-unit-tests.yml/badge.svg)](https://github.com/mjacobus/field-service/actions/workflows/rails-unit-tests.yml)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mjacobus/field-service/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mjacobus/field-service/?branch=master)
 [![Issue Count](https://codeclimate.com/github/mjacobus/field-service/badges/issue_count.svg)](https://codeclimate.com/github/mjacobus/field-service)
 [![BCH compliance](https://bettercodehub.com/edge/badge/mjacobus/field-service?branch=master)](https://bettercodehub.com/)

@@ -5,24 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     services:
       db:
-        image: postgres:12.5
-        ports: ['5432:5432']
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+        image: "mysql:5.7"
+        ports: ['3306:3306']
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          ALLOW_IP_RANGE: 0.0.0.0/0
+          MYSQL_ROOT_PASSWORD: root
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
     - name: Build and test with Rake
       env:
         RAILS_ENV: test
-        DATABASE_URL: "postgres://postgres:postgres@localhost:5432/khtest_test"
+        DATABASE_URL: "mysql2://root:root@127.0.0.1:3306/field_service_test"
       run: |
         sudo apt-get -yqq install libpq-dev
         yarn install

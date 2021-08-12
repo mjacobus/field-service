@@ -17,6 +17,7 @@ jobs:
         RAILS_ENV: test
         DATABASE_URL: "mysql2://root:root@127.0.0.1:3306/field_service_test"
       run: |
+        cat .env.test.sample | grep -v DATABASE > .env
         sudo apt-get -yqq install libpq-dev
         yarn install
         gem install bundler

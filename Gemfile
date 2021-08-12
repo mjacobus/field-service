@@ -53,7 +53,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'coveralls', require: false
   gem 'database_cleaner', '~>1.5'
   gem 'faker'
   gem 'machinist', git: 'git://github.com/mjacobus/machinist.git', branch: 'fix-warning'
@@ -65,5 +64,6 @@ group :test do
   gem 'shoulda-context', '~>1.2'
   gem 'shoulda-matchers', '~> 2.0'
   gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
   gem 'spring-commands-rspec'
 end

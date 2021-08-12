@@ -25,7 +25,7 @@ jobs:
         bundle exec rails db:create
         bundle exec rails db:migrate
         ./bin/rspec
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Coveralls
+    #   uses: coverallsapp/github-action@master
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}

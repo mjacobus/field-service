@@ -3,7 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 
-if ENV['COVERAGE']
+if ENV['CI'] || ENV['COVERAGE']
   require 'simplecov'
   require 'simplecov-lcov'
 

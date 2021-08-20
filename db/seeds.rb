@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if User.count == 0
-  User.create(email: 'admin@example.com', password: 'admin', admin: true)
+  User.create!(name: 'Admin', email: 'admin@example.com', password: 'admin', admin: true)
 end
 
 if ENV['INCLUDE_DEV_SEED'] == 'yes'
-  require_relative '../test/blueprints.rb'
+  require_relative '../spec/support/blueprints.rb'
 
   1.upto(5) do |_number|
     territory = Householder.make!.territory

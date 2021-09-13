@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'clearance', '~>1.14.1'
+gem 'clearance', '~>2.5.0'
 gem 'dotenv-rails'
 gem 'foundation-icons-sass-rails'
 gem 'foundation-rails', '~> 6.2.4'
